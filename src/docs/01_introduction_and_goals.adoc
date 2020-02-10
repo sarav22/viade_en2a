@@ -1,7 +1,7 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-This is project viade_en2a and it will consist of a SOLID app.
+This is the project viade_en2a and it will consists of a route managing application following the https://github.com/solid/solid-spec[SOLID specification] envisioned by https://www.w3.org/People/Berners-Lee/card#i[Tim Berners Lee]
 
 === Requirements Overview
 
