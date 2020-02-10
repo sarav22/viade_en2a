@@ -1,8 +1,7 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-[role="arc42help"]
-
+.Technical Constraints
 [width="100%",cols="4,10",options="header"]
 |=========================================================
 |Constraint |Motivation
@@ -11,6 +10,13 @@
 
 | React Native and OS independence | React Native allows us to share a code base for different platforms with little platform-specific code.
 
+|=========================================================
+
+.Organizational Constraints
+[width="100%",cols="4,10",options="header"]
+|=========================================================
+|Constraint |Motivation
+
 | Timespan| Development time must match the course duration.
 
 |Language | The project will be developed in its entirety using English.
@@ -18,4 +24,3 @@
 |Documentation | The provided arc42 templates written in AsciiDoc will be used.
 
 |=========================================================
-
