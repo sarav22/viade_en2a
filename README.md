@@ -11,3 +11,7 @@ This project is an assignment for the [Software Architecture course](https://arq
 The app is deployed at [https://arquisoft.github.io/viade_en2a/](https://arquisoft.github.io/viade_en2a/) which also contains a [technical documentation](https://arquisoft.github.io/viade_en2a/docs).
 
 More information about how this project has been setup is available [in the wiki](https://github.com/Arquisoft/viade_en2a/wiki).
+
+## cOMPILING INSTRUCTIONS
+
+tHIS PROJECT NEEDS NPM...
