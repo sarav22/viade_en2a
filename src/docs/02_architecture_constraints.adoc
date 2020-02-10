@@ -1,19 +1,21 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-
 [role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+[width="100%",cols="4,10",options="header"]
+|=========================================================
+|Constraint |Motivation
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+|SOLID | SOLID is a technology focused on changing the way data is managed in the web. It aims to decentralize data, giving each user ownership of their data.
+
+| React Native and OS independence | React Native allows us to share a code base for different platforms with little platform-specific code.
+
+| Timespan| Development time must match the course duration.
+
+|Language | The project will be developed in its entirety using English.
+
+|Documentation | The provided arc42 templates written in AsciiDoc will be used.
+
+|=========================================================
+
