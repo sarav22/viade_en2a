@@ -20,21 +20,37 @@ Various options:
 * Lists of communication partners and their interfaces.
 ****
 
-=== Main goal of the system
-
-
-
-
-
 
 === Business Context
 
 
-**<Diagram or Table>**
 
-image::SystemScopeDiagram.png
+image::SystemScopeDiagram.png[System scope diagram] 
 
-**<optionally: Explanation of external domain interfaces>**
+
+.Viade
+|=========================================================
+| Communication partner |Inputs |Outputs
+
+| User
+| Upload routes. Attaches photos, videos or information to them
+| Reads routes from its own pod
+
+| Pod
+| Can store routes in a interoperable route format
+| Allow viade to read the routes stored inside
+
+| Viade
+| Routes and multimedia 
+| Routes and push notifications
+
+| User's contact
+| 
+| Receives push notifications when a route is shared
+
+|=========================================================
+
+
 
 === Technical Context
 
