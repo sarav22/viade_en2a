@@ -4,6 +4,14 @@
 This is the project viade_en2a and it will consists of a route managing application following the https://github.com/solid/solid-spec[SOLID specification] envisioned by https://www.w3.org/People/Berners-Lee/card#i[Tim Berners Lee]
 
 === Requirements Overview
+The main requirement of the project is that the system is based on a decentralized architecture where data storage is separated from the application.
+Other high level requirements are the following:
+*Users can store their routes in their own PODs
+*Users can view the stored routes on a map
+*Users can share pictures, videos or information about a route with other friends
+*A user can get notifications when some friend shares a route with him
+*Users can have groups of friends with whom they may want to share a route
+*Interoperability with other route management systems
 
 [role="arc42help"]
 ****
