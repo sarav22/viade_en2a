@@ -1,24 +1,29 @@
 [[section-solution-strategy]]
-== Solution Strategy
+= Solution Strategy
+
+=== Technology Decisions
+
+==== Backend
+
+* Solid-auth-Client: users will in the end use this library developed by SOLID, which is open source, and free to use.
+
+* JSON: We will be using JSON to represent the routes, because we are familiar with it.
+
+*  solid-file-client: This a library from github that allow the interchange of files with the POD. It will be used to send and recieve the jsons and multimedia content.
+
+* GeoJson: It will be used to send the information to the map, as an abstraction layer in case there is a need to change the map.
+
+==== Frontend
+
+* Google Maps: We will need a map to show the users the route, we are selecting Google maps because os its simplicity and variaty of entry formats.
+
+==== Development Tools
+
+* Visual Studio Code: It is familiar to us and it has an extense amount of helpful plugins.
+
+=== Organizational Decisions
+
+We will try to follow an agile methodology, similar to Scrum, where we will develop user stories and assign them among us. 
 
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
-
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
-
-.Form
-Keep the explanation of these key decisions short.
-
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
