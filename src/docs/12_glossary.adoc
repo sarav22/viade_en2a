@@ -25,7 +25,11 @@ Potentially more columns in case you need translations.
 
 [options="header"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Term              | Definition
+| User               | Users of the app
+| Web Server        | The server that contains our web application
+| Https             | Communication between the user and the application using the Https protocol
+| Solid-auth-client | A library for reading and writing to solid PODs
+| Solid Server      | Server provided by SOLID where PODs are stored
+| POD               | Storage unit unique for each user
 |===
