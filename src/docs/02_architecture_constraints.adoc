@@ -6,9 +6,18 @@
 |=========================================================
 |Constraint |Motivation
 
-|SOLID | SOLID is a technology focused on changing the way data is managed in the web. It aims to decentralize data, giving each user ownership of their data.
+|SOLID | SOLID(derived from "social linked data") is a technology focused on changing the way data is managed in the web. It aims to decentralize data, giving each user ownership of their data.
 
-| React Native and OS independence | React Native allows us to share a code base for different platforms with little platform-specific code.
+|Linked Data a| 
+* Collection of interrelated datasets with the objective of being managaded by Semantic Web tools 
+* Use URIs as names for things
+* Use HTTP URIs so that people can look up those names.
+* When someone looks up a URI, provide useful information.
+* Include links to other URIs. so that they can discover more things. 
+
+|Pod| Pods(personal online data sotres) store a user personal data. These pods can be hosted wherever the user desires(pod providers or a personal server) The user retains complete ownership and control of data in the user's pods.
+
+|React| React is a JavasCript library(by Facebook) that allows us to create interactive UIs. Key features are: Components, Virtual DOM, and JSX or Javascrip XML.
 
 |=========================================================
 
