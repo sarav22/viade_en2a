@@ -54,10 +54,32 @@ image::SystemScopeDiagram.png[System scope diagram]
 
 === Technical Context
 
+image::technicalcontext.jpg[Technical context diagram] 
 
+.Technical Context Table
+|=========================================================
+| Object | Description 
 
-**<Diagram or Table>**
+| User
+| Users of the app
 
-**<optionally: Explanation of technical interfaces>**
+| App
+| Decentralised web application
 
-**<Mapping Input/Output to Channels>**
+| Web Server
+| The server that contains our web application
+
+| Https
+| Communication between the user and the application using the Https protocol
+
+| Solid-auth-client
+| A library for reading and writing to solid PODs
+
+| Solid Server
+| Server provided by SOLID where PODs are stored
+
+| POD
+| Storage unit unique for each user
+
+|=========================================================
+
