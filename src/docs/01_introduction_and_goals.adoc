@@ -14,6 +14,7 @@ Other high level requirements are the following:
 * A user should get notifications when some friend shares a route with him.
 * Users can have groups of friends with whom they may want to share a route.
 * Interoperability with other route management systems.
+
 === Quality Goals
 
 The quality goals are the non-functional requirements, i.e the requirements that are not related to how the application functions but its properties as a whole.
