@@ -1,7 +1,7 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 
-
+////
 [role="arc42help"]
 ****
 .Content
@@ -49,19 +49,33 @@ on this list.
 image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
 ****
 
+////
 
-=== _<Concept 1>_
-
-_<explanation>_
-
+=== Domain concepts and model
 
 
-=== _<Concept 2>_
+[plantuml,"Sequence diagram",png]
+----
+@startuml
+User -- Route
+User -- User : hasFriend
+Route "1" *--> "1..*" Waypoint
+Route "1" *--> "0..*" UserComment
+Waypoint o-- "0..*" Image
+Waypoint o-- "0..*" Video
+@enduml
+----
+
+=== User Experience concepts (UX)
 
 _<explanation>_
 
 ...
 
-=== _<Concept n>_
+=== Safety and security
 
-_<explanation>_
+
+=== Architecture and design patterns
+
+
+
