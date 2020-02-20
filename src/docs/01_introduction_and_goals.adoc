@@ -1,68 +1,40 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-This is project viade_en2a and it will consist of a SOLID app.
+This is the project viade_en2a and it will consist of a route managing application following the https://github.com/solid/solid-spec[SOLID specification] envisioned by https://www.w3.org/People/Berners-Lee/card#i[Tim Berners Lee].
 
 === Requirements Overview
 
-[role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+The main requirement of the project is that the system is based on a decentralized architecture where data storage is separated from the application.
+Other high level requirements are the following:
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+* Users can store their routes in their own PODs.
+* Users can view the stored routes on a map.
+* Users can share pictures, videos or information about a route with other friends.
+* A user should get notifications when some friend shares a route with him.
+* Users can have groups of friends with whom they may want to share a route.
+* Interoperability with other route management systems.
 
 === Quality Goals
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
-
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
-
+The quality goals are the non-functional requirements, i.e the requirements that are not related to how the application functions but its properties as a whole.
+Some of the most important quality attributes of this application are listed below.
+[options="header",cols="1,2"]
+|===
+|Quality Goal|Scenario
+| Interoperability | A final user should be able to use other SOLID based route applications and use their own POD the same way it is used for this application
+| Testability | The application is testable on all its development phases
+| Robustness | The whole application should be prepared against errors so that the probability of a user seeing one is highly reduced
+| Usability | Any user should have ease when using the application
+|===
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Tim Berners-Lee | timbl@w3.org | Carry out his idea, SOLID, with the support of software developers creating applications using this technology and the Inrupt company.
+| Inrupt  | https://inrupt.com/contact-us | Wants to have applications developed using its technology, SOLID, to show how it works and expand the ecosystem around it
+| Developers | --------------------------------------------- | Expand their knowledge using new technologies and develop a rich SOLID application
+| Final Users | --------------------------------------------- | Have a route managment application with great emphasis on the ownership of their data |
 |===
