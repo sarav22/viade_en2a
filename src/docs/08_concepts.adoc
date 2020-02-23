@@ -68,14 +68,39 @@ Waypoint o-- "0..*" Video
 
 === User Experience concepts (UX)
 
-_<explanation>_
+User Experience is one of the main goals of our application, as apps with bad UX fail often. Therefore, we should make a great effort to build Viade as an intuitive app that facilitates its use to all types of users and proficiency levels.
 
-...
+Performance is too a key factor in User Experience. As Viade will have to show a map most of the time we should strive to achieve the quickest loading times possible.
+
 
 === Safety and security
 
 
+=== Testability
+
+With great tests comes great software. 
+
+Tests to consider implementing:
+
+* Acceptance tests
+* Browser test
+* Load/Stress tests
+
+=== Performance
+
+Both performance and efficiency(the degree with which software fulfils its purpose without waste of resources) are essential attributes for any piece of software, especially when the user has a choice regarding which app to use.
+
+As mentioned in UX, how an app performs can determine whether it will succeed or not. In particular, we will have to guarantee the functionality of the app in low spec devices if we want to extend the app towards phones in the future.
+
+Accomplishing this should be done following good architectural/design practices.
+
+
 === Architecture and design patterns
 
+Viade is a React based app, therefore it follows the Model View Controller(MVC) architecture. 
+
+Persistence in Viade will be achieved following the SOLID specification.
+
+General note: our aim is to achieve a system that is maintainable, reliable, scalable and performant. We will work towards these goals using different design patterns to the best of our ability.
 
 
