@@ -25,6 +25,8 @@
 
 * Visual Studio Code: It is familiar to us and it has an extense amount of helpful plugins.
 
+* As an starting point for the implementation, we will be using this library: https://github.com/inrupt/generator-solid-react. We believe that it would be better a better approach for the developing process not to create the project from scratch.
+
 === Organizational Decisions
 
 We will try to follow an agile methodology, similar to Scrum, where we will develop user stories and assign them among us. 
