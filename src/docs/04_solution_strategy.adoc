@@ -13,13 +13,13 @@
 
 * GeoJson: It will be used to send the information to the map, as an abstraction layer in case there is a need to change the map.
 
-* Tripledoc: Is a library that we may use to manage data not directly related to routes.
+* Tripledoc: It is a library that we will use to manage data not directly related to routes.
 
 ==== Frontend
 
 * Google Maps: We will need a map to show the users the route, we are selecting Google maps because os its simplicity and variaty of entry formats.
 
-* We are considering the use of some bootstrap templates for making the design more simple and clean.
+* We are considering the use of some Bootstrap templates for making the design more simple and clean.
 
 ==== Development Tools
 
@@ -29,6 +29,6 @@
 
 We will try to follow an agile methodology, similar to Scrum, where we will develop user stories and assign them among us. 
 
-For such a purpose we will be using the "project" option in the github. We are now used to develop with a Kanban, due to other subjects in the degree.
+For such a purpose we will be using the "project" option in the github. We are now used to develop with a Kanban, due to other subjects in the degree. Therefore, we are implementing one.
 
 
