@@ -1,26 +1,27 @@
 [[section-design-decisions]]
 == Design Decisions
+=== Framework
+We decided to use React in the first place in order to develop a nice web application to create, manage and share routes with friends. If the project goes as expected, we will try to adapt it to android by using React Native to create a mobile app to follow and share those routes in real time.
 
+=== APIs
 
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+* Google Maps: As stated in section 4, we decided to use the Google Maps API to provide a view of the routes to the user. Having considered other alternatives such as OpenLayers or Leaflet, we believe that Google Maps can be the right option for us because we already have experience working with it. Although Google is a company that might not represent the SOLID way of thinking, using their API does not go against any constraint and it provides a very confortable user experience.
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
+=== Libraries
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
+* Solid-auth-client: Developed by SOLID, as it is explained in section 4, this library will be used to manage all the registration and log in processes. No other alternative was considered.
 
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
+===== File management libraries:
 
-.Form
-Various options:
+* Solid-file-client: Its objective is already explained in section 4. We will use it to manage multimedia files such as the images or videos related to a route.
 
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+* Tripledoc: We chose this library to manage links between files in the POD. The main advantage of this library is its simplicity. 
+
+* LDFlex: A very powerful library which we will use to query Linked Data. Another alternative to this one would be RDFLib, but we rejected it due to its complexity.
+
+=== Route format
+To structure routes data we have created a format using a subset of the existing Trip scheme from schema.org, some properties from the GeoCoordinates scheme, and the ItemList, ImageObject and VideoObject schemas. 
+
+Routes will have a list of GeoCoordinates to make up the their itinerary. Each coordinate will have as well another list of both images and videos shared by the user for each waypoint in the route. A route will also have a list of user comments.
+
+By proposing our schema to the rest of the projects we are trying to achieve interoperability between every application, so that users can view and share routes with each other no matter how they were created.
