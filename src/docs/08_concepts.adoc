@@ -66,16 +66,31 @@ Waypoint o-- "0..*" Video
 @enduml
 ----
 
-=== User Experience concepts (UX)
+A *route* must contain a name, optionally it can have a description.
+Its composed by at least one waypoint and may or not have a list of comments and media.
 
-_<explanation>_
+The *Waypoint* must have latitude and longitude. They can have as optional properties a name, altitude and a physical address.
 
-...
+A *userComment* must contain the text of the comment, the time it was published and the author, being the last one a IRI to a pod profile shape.
+
+And finally, an *Image* or a *Video* must have an IRI to te resource, another IRI to the pod profile of the author and the time it was published
+
+
 
 === Safety and security
 
+The application must use secure communication channels. This is achieved by using the protocols
+https://tools.ietf.org/html/rfc2818[HTTPS] and https://dvcs.w3.org/hg/WebID/raw-file/tip/spec/tls-respec.html[WebID-TLS].
+With them we ensure te authenticity and integrity of the data sended and received from the pods.
 
-=== Architecture and design patterns
+It is also important that the application validates all input data from the users. 
+All the data must be consistent and saved in the persistent storage following the standard RDF
+under a valid schema.
 
 
+=== Internacionalization
 
+We believe that support fo multiple languages is an important feature that our sofware should fulfill.
+Therefore, we try from the beginning to make it internationalizable. It must be easy to add new languages.
+
+Localization should also be considered, showing the formats of dates, units and so on of the corresponding region.
