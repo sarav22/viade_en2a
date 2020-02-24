@@ -3,7 +3,7 @@
 
 === Business Context
 
-image::SystemScopeDiagram.png[System scope diagram] 
+image::images/SystemScopeDiagram.png[System scope diagram] 
 
 
 .Viade
