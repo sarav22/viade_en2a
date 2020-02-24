@@ -32,7 +32,7 @@ image::images/SystemScopeDiagram.PNG[System scope diagram]
 
 === Technical Context
 
-image::technicalcontext.JPG[Technical context diagram] 
+image::images/technicalcontext.JPG[Technical context diagram] 
 
 .Technical Context Table
 |=========================================================
