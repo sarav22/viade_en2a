@@ -5,7 +5,7 @@ In this section, we deal with all the quality requirements of the project. They 
 
 === Quality Tree
 
-image::images/qualityRequirementsDiagram.PNG[Quality Tree]
+image::qualityRequirementsDiagram.PNG[Quality Tree]
 
 
 === Quality Scenarios
