@@ -1,0 +1,30 @@
+[[section-technical-risks]]
+== Risks and Technical Debts
+
+We have identified the risk or technical debts we might encounter during the project. They are ordered by priority from higher risk to lower.
+
+.Risk and Technical Debt Table
+|=========================================================
+| Risk | Explanation | Solution 
+
+| Lack of knowledge of SOLID
+| It is a new concept for us and since it is still greenfield, we can find few examples, if any, of similar projects to ours.
+| We must work hard, researching and asking other people that have worked with solid in the past. Attending to the SOLID conference at the University will be of great help.
+
+| Lack of knowledge of React
+| Although we have some knowledge of JavaScript (very basic), we are new to React.
+| It is the same solution as the previous one. We must invest a lot of time in researching and working with it so that we feel more confortable when starting to develop the code.
+
+| Time
+| We are limited by the deadlines of the course.
+| The only solution is to organize ourselves and try not to leave tasks for the last moment.
+
+| Use of GitHub 
+| Although we all have used GitHub in previous projects, we have to improve our skills and learn new features such as issues, pull requests, etc. In addition, conflicts could arise with the merges. 
+| We must be consistent in the way we use the tool in order to avoid conflicts. We should follow good practices regarding branches, merges, etc. We also should keep everything properly organized.
+
+| Team members
+| There is always some difficulty while working with other people, as everyone does things their own way.
+| We need good comunication and understanding. Well defined separation of tasks could also help.
+
+|=========================================================
