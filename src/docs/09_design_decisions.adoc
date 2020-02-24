@@ -1,5 +1,6 @@
 [[section-design-decisions]]
 == Design Decisions
+
 === Framework
 We decided to use React in the first place in order to develop a nice web application to create, manage and share routes with friends. If the project goes as expected, we will try to adapt it to android by using React Native to create a mobile app to follow and share those routes in real time.
 
