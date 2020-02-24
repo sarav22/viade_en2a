@@ -3,7 +3,7 @@
 
 === Business Context
 
-image::images/SystemScopeDiagram.png[System scope diagram] 
+image::images/SystemScopeDiagram.PNG[System scope diagram] 
 
 
 .Viade
@@ -32,7 +32,7 @@ image::images/SystemScopeDiagram.png[System scope diagram]
 
 === Technical Context
 
-image::technicalcontext.jpg[Technical context diagram] 
+image::technicalcontext.JPG[Technical context diagram] 
 
 .Technical Context Table
 |=========================================================
