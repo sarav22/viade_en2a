@@ -12,7 +12,6 @@ export class MapComponent extends Component<Props> {
   
       this.state = {
         name: "routeName",
-        isLoading: false
       };
     }
   
@@ -26,10 +25,10 @@ export class MapComponent extends Component<Props> {
   
   
     render() {
-      const { name, isLoading } = this.state;
+      const { name } = this.state;
       const { webId } = this.props;
       return (
-        <MapPageContent {...{ name, isLoading, webId, }} />
+        <MapPageContent {...{ name, webId, }} />
       );
     }
   }
