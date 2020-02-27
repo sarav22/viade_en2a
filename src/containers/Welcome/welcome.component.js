@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Uploader } from '@inrupt/solid-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {  errorToaster } from '@utils';
@@ -13,7 +13,9 @@ import {
   WelcomeDetail,
   Button,
   WelcomeName,
-  ImageWrapper
+  ImageWrapper,
+  Label,
+  Input
 } from './welcome.style';
 import { ImageProfile } from '@components';
 
@@ -27,6 +29,7 @@ import { ImageProfile } from '@components';
  */
 export const WelcomePageContent = props => {
   const { webId, image, updatePhoto, name } = props;
+  const [url, setUrl] = useState('');
   const { t } = useTranslation();
   const limit = 2100000;
   async function handleSave(event) {
@@ -55,12 +58,16 @@ export const WelcomePageContent = props => {
 
   async function handleFriend(event) {
     event.preventDefault();
-    return ldflex[webId].knows.add(ldflex["https://luispresacollada.solid.community/profile/card#me"]);
+    return ldflex[webId].knows.add(ldflex[url]);
+  }
+  async function handleUrlChange(event) {
+    event.preventDefault();
+    setUrl(event.target.value);
   }
 
   async function deleteFriend(event) {
     event.preventDefault();
-    return ldflex[webId].knows.delete(ldflex["https://luispresacollada.solid.community/profile/card#me"]);
+    return ldflex[webId].knows.delete(ldflex[url]);
   }
 
 
@@ -70,6 +77,10 @@ export const WelcomePageContent = props => {
         <WelcomeLogo data-testid="welcome-logo">
           <img src="/img/logo.svg" alt="Inrupt" />
         </WelcomeLogo>
+        <Label>
+          {"Introduce el webId del amigo que quieres añadir o borrar"}:
+          <Input type="text" size="200" value={url} onChange={handleUrlChange} />
+        </Label>
         <Button
               className="ids-link-filled ids-link-filled--secondary button"
               onClick={handleSave}

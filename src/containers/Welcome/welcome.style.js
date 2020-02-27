@@ -101,6 +101,14 @@ export const ImageWrapper = styled.div`
     margin-left: 0px;
   }
 `;
+export const Input = styled.input`
+  margin: 5px;
+`;
+
+export const Label = styled.label`
+  margin: 5px;
+`;
+
 
 export const ImageContainer = styled.div`
   background-image: ${({ image }) => (image ? `url(${image})` : '#cccccc')};
