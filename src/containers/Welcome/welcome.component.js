@@ -1,17 +1,24 @@
 import React from 'react';
 import { Uploader } from '@inrupt/solid-react-components';
 import { Trans, useTranslation } from 'react-i18next';
+import {  errorToaster } from '@utils';
+import ldflex from '@solid/query-ldflex';
+/*nuevo fileclient*/
+import * as fileClient from 'solid-file-client';
 import {
   WelcomeWrapper,
   WelcomeCard,
   WelcomeLogo,
   WelcomeProfile,
   WelcomeDetail,
+  Button,
   WelcomeName,
   ImageWrapper
 } from './welcome.style';
 import { ImageProfile } from '@components';
-import { errorToaster } from '@utils';
+
+
+  
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -22,12 +29,65 @@ export const WelcomePageContent = props => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
+  async function handleSave(event) {
+    event.preventDefault();
+    const appPath="/private/";
+    const r = ldflex[webId];
+    const root= r.toString().replace('/profile/card#me', '');
+    const message = `
+    @prefix : <#>.
+    @prefix schem: <http://schema.org/>.
+    @prefix s: <${ldflex[webId].toString().replace('#me', '#')}>.
+    :route
+      a schem:GeoCoordinates;
+      schem:sender s:me;
+      schem:latitude 10;
+      schem:longitude 4.
+    `;  
+    const path= `${root}${appPath}route.ttl`;
+    console.log(path);
+    fileClient.createFile(path).then((fileCreated: any) => {
+      fileClient.updateFile(fileCreated, message).then(() => {
+        console.log('Message has been sent successfully');
+      }, (err: any) => console.log(err));
+    });
+   }
+
+  async function handleFriend(event) {
+    event.preventDefault();
+    return ldflex[webId].knows.add(ldflex["https://luispresacollada.solid.community/profile/card#me"]);
+  }
+
+  async function deleteFriend(event) {
+    event.preventDefault();
+    return ldflex[webId].knows.delete(ldflex["https://luispresacollada.solid.community/profile/card#me"]);
+  }
+
+
   return (
     <WelcomeWrapper data-testid="welcome-wrapper">
       <WelcomeCard className="card">
         <WelcomeLogo data-testid="welcome-logo">
           <img src="/img/logo.svg" alt="Inrupt" />
         </WelcomeLogo>
+        <Button
+              className="ids-link-filled ids-link-filled--secondary button"
+              onClick={handleSave}
+            >
+              {"Guardar ejemplo ruta"}
+        </Button>
+        <Button
+              className="ids-link-filled ids-link-filled--secondary button"
+              onClick={handleFriend}
+            >
+              {"Añadir amigo"}
+        </Button>
+        <Button
+              className="ids-link-filled ids-link-filled--secondary button"
+              onClick={deleteFriend}
+            >
+              {"Borrar amigo"}
+        </Button>
         <WelcomeProfile data-testid="welcome-profile">
           <h3>
             {t('welcome.welcome')}, <WelcomeName>{name}</WelcomeName>

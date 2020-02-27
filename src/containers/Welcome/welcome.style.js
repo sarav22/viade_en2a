@@ -83,6 +83,14 @@ export const WelcomeProfile = styled.div`
     }
   `}
 `;
+export const Button = styled.button`
+  max-width: 128px;
+  display: inline-block;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+`;
 
 export const ImageWrapper = styled.div`
   display: flex;
