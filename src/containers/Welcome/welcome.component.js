@@ -3,8 +3,6 @@ import { Uploader } from '@inrupt/solid-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {  errorToaster } from '@utils';
 import ldflex from '@solid/query-ldflex';
-/*nuevo fileclient*/
-import * as fileClient from 'solid-file-client';
 import {
   WelcomeWrapper,
   WelcomeCard,
@@ -19,9 +17,6 @@ import {
 } from './welcome.style';
 import { ImageProfile } from '@components';
 
-
-  
-
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
  * Image component will get theimage context and resolve the value to render.
@@ -32,11 +27,14 @@ export const WelcomePageContent = props => {
   const [url, setUrl] = useState('');
   const { t } = useTranslation();
   const limit = 2100000;
+  
   async function handleSave(event) {
     event.preventDefault();
-    const appPath="/private/";
     const r = ldflex[webId];
     const root= r.toString().replace('/profile/card#me', '');
+    const FC   = require('solid-file-client');
+    const auth = require('solid-auth-cli')
+    const fileClient  = new FC(auth);
     const message = `
     @prefix : <#>.
     @prefix schem: <http://schema.org/>.
@@ -47,13 +45,12 @@ export const WelcomePageContent = props => {
       schem:latitude 10;
       schem:longitude 4.
     `;  
-    const path= `${root}${appPath}route.ttl`;
+    const path= `${root}/private/route.ttl`;
     console.log(path);
-    fileClient.createFile(path).then((fileCreated: any) => {
-      fileClient.updateFile(fileCreated, message).then(() => {
+    fileClient.createFile(path, message,"text/turtle").then((fileCreated: any) => {
         console.log('Message has been sent successfully');
       }, (err: any) => console.log(err));
-    });
+    
    }
 
   async function handleFriend(event) {
