@@ -27,6 +27,7 @@ class MapTriplet {
     }
 }
 
+// TODO: Discuss if async makes sense here
 export const loadMapInfo = jsonUrl => {
     // Load JSON-LD from map
 
