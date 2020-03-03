@@ -47,9 +47,9 @@ export const WelcomePageContent = props => {
     `;  
     const path= `${root}/private/route.ttl`;
     console.log(path);
-    fileClient.createFile(path, message,"text/turtle").then((fileCreated: any) => {
+    fileClient.createFile(path, message,"text/turtle").then((fileCreated) => {
         console.log('Message has been sent successfully');
-      }, (err: any) => console.log(err));
+      }, (err) => console.log(err));
     
    }
 
