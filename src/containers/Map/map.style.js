@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { GoogleMap } from '@react-google-maps/api';
 
 export const MapWrapper = styled.section`
 width: 100%;
@@ -17,6 +16,8 @@ h3 {
   }
 }
 `;
+
+
 
 
 export const MapCard = styled.div`

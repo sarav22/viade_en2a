@@ -133,8 +133,12 @@
     "minMaxString": "Error: Mínimo y máximo debería ser ",
     "defaultError": "Error: Formato incorrecto"
   },
-  "map":{
-    "view": "Visualizando la ruta: "
-
+  "mapView":{
+    "viewTitle":"Visualizando la ruta: ",
+    "menu":{
+      "images":"Imágenes y vídeos",
+      "comments": "Comentarios",
+      "data":"Datos sobre la ruta"
+    }
   }
 }

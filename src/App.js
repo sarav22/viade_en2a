@@ -13,11 +13,13 @@ import 'normalize.css';
 import './index.css';
 import '@inrupt/solid-style-guide';
 import { Toaster } from './App.styled';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 library.add(fas);
 library.add(faGithub);
 const App = () => (
   <Suspense fallback={<Loader />}>
+
     <ThemeProvider theme={theme}>
       <Fragment>
         <Routes />

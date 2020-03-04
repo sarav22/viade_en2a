@@ -133,8 +133,12 @@
     "minMaxString": "Error: Min and max should be ",
     "defaultError": "Error: Field value has wrong format"
   },
-  "map":{
-    "view": "Visualizing route: "
-
+  "mapView":{
+    "viewTitle":"Visualizing the route: ",
+    "menu":{
+      "images":"Images and videos",
+      "comments": "Comments",
+      "data":"Data about the route"
+    }
   }
 }

@@ -25,10 +25,10 @@ export const MapPageContent = props => {
   
   return (
 
-    <MapWrapper data-testid="map-wrapper">
+    <div>
       <MapCard className="card">
         <h3>
-          {t('map.view')} <MapRouteName>{name}</MapRouteName>
+          {t('mapView.viewTitle')} <MapRouteName>{name}</MapRouteName>
         </h3>
 
   
@@ -57,7 +57,7 @@ export const MapPageContent = props => {
         </GoogleMap>
       </LoadScript>
       </MapCard>
-    </MapWrapper>
+    </div>
 
   );
 
