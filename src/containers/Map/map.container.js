@@ -37,7 +37,8 @@ export class MapComponent extends Component<Props> {
 
   render() {
     const { name } = this.state;
-    const { webId } = this.props;
+    const { webId } = this.props.webId;
+    
     return (
       <Container fluid >  
         <Row>
