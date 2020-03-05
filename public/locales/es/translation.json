@@ -48,6 +48,7 @@
   "navBar": {
     "welcome": "Bienvenida",
     "seeRoutes": "Ver Rutas",
+    "createRoutes":"Crear Una Ruta",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
     "profile": "Perfil",

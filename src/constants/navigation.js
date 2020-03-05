@@ -3,16 +3,16 @@
  */
 export const NavigationItems = [
   {
-    id: 'welcome',
-    icon: '/img/icon/apps.svg',
-    label: 'navBar.welcome',
-    to: '/welcome'
+    id: 'seeRoutes',
+    icon: '/img/icon/seeRoutes.svg',
+    label: 'navBar.seeRoutes',
+    to: '/404' //Specify here the address of the See Routes view
   },
   {
-    id: 'seeRoutes',
-    icon: '/img/icon/map.svg',
-    label: 'navBar.seeRoutes',
-    to: '/welcome' //Specify here the address of the See Routes view
+    id: 'createRoutes',
+    icon: '/img/icon/createRoute.svg',
+    label: 'navBar.createRoutes',
+    to: '/404' //Specify here the address of the Create Routes view
   }
 ];
 
