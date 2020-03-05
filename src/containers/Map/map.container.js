@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { MapPageContent } from './map.component';
+import Map  from './Map';
 import LateralMenu from './LateralMenu';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import { Trans, useTranslation } from 'react-i18next';
-import styled from "styled-components";
 
-const StyledContainer = styled(Container)`
-  max-width:"100%";
-`;
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
@@ -48,7 +43,7 @@ export class MapComponent extends Component<Props> {
           </Col>
 
           <Col xs={12} md={8}>
-            <MapPageContent {...{ name, webId, }} />
+            <Map {...{ name, webId, }} />
           </Col>
 
         </Row>
