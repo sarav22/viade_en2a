@@ -13,6 +13,12 @@ export const NavigationItems = [
     icon: '/img/icon/createRoute.svg',
     label: 'navBar.createRoutes',
     to: '/404' //Specify here the address of the Create Routes view
+  },
+  {
+    id: 'manageFriends',
+    icon: '/img/icon/manageFriends.svg',
+    label: 'navBar.manageFriends',
+    to: '/404' //Specify here the address of the Create Routes view
   }
 ];
 
