@@ -47,6 +47,7 @@
   },
   "navBar": {
     "welcome": "Welcome",
+    "seeRoutes": "See Routes",
     "formModel": "Form Model",
     "logOut": "Log out",
     "profile": "Profile",
