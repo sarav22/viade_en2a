@@ -3,6 +3,7 @@ import Register, { RegistrationSuccess } from './Register';
 import PageNotFound from './PageNotFound';
 import Welcome from './Welcome';
 import Map from './Map';
+import FriendRoutes from "./FriendRoutes";
 
 export { 
      Login,
@@ -10,5 +11,6 @@ export {
      RegistrationSuccess,
      PageNotFound,
      Welcome,
-     Map 
+     Map,
+     FriendRoutes
 };

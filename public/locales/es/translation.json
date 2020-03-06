@@ -143,5 +143,9 @@
       "comments": "Comentarios",
       "data":"Datos sobre la ruta"
     }
+  },
+  "friendsManagement":{
+    "profile": "Ver Perfil",
+    "delete": "Eliminar Amigo"
   }
 }

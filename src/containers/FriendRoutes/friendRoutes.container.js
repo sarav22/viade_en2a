@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import SharedRoutes from "./SharedRoutes";
 import FriendBar from "./FriendBar";
+import Container from 'react-bootstrap/Container';
+import {FriendBarWrapper} from "./FriendBar/friendBar.style";
 
 
 export class FriendRoutesComponent extends Component<Props> {
@@ -19,23 +23,21 @@ export class FriendRoutesComponent extends Component<Props> {
     const friendWebId = "123456"/*this.props.friendWebId*/;
     
     return (
-      <div>  
-        <div>
-            <FriendBar friend={friendWebId}></FriendBar>
-        </div>
-        <div>
-
-          <div xs={9} md={6}>
+      <Container fluid>
+        <Row>
+          <FriendBarWrapper>
+            <FriendBar friend={{friendWebId}}></FriendBar>
+          </FriendBarWrapper>
+        </Row>
+        <Row>
+          <Col>
             <SharedRoutes {...{ webId, friendWebId}}/>
-          </div>
-
-          <div xs={9} md={6}>
-            <SharedRoutes {...{ friendWebId, webId, }} />
-          </div>
-
-        </div>
-
-      </div>
+          </Col>
+          <Col>
+            <SharedRoutes {...{ friendWebId, webId}} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

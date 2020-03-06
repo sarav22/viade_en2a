@@ -143,5 +143,9 @@
       "comments": "Comments",
       "data":"Data about the route"
     }
+  },
+  "friendsManagement":{
+    "profile": "View Profile",
+    "delete": "Delete Friend"
   }
 }

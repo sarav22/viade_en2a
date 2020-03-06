@@ -1,3 +1,3 @@
-import { FriendBar } from './friendBar.component';
+import FriendBar from './friendBar.component';
 
 export default FriendBar;

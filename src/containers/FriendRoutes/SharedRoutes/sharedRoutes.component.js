@@ -1,5 +1,4 @@
 import React from 'react';
-import { SharedRoutes } from './friendRoutes.style';
 
 /**
  * Routes list UI component, containing the styled components for the lists of routes
