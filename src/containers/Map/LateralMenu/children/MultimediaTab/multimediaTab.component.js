@@ -8,44 +8,34 @@ import Col from 'react-bootstrap/Col';
 
 
 const MultimediaTab = props => {
-    const { webId, multimedia } = props;
+    const { multimedia } = props;
 
     //found code at https://stackoverflow.com/questions/48886701/how-to-add-scroll-into-react-bootstrap-modal-body
     return (
-        <div>
-            <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
-                <Modal.Body style={{ 'max-height': 'calc(100vh - 200px)', 'overflow-y': 'auto', 'width': '100%' }}>
-                    <Container>
-                        {multimedia.map((item) => {
-                            return (
-                                <Row>
-                                    <Col>
-                                        <Image src={item.url} />
-                                    </Col>
-                                    <Col >
-                                        <p>{item.author}</p>
-                                        <p>{item.time}</p>
+        <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
+            <Modal.Body style={{ 'max-height': 'calc(100vh - 215px)', 'overflow-y': 'auto', 'width': '100%' }}>
+                <Container>
+                    {multimedia.map((item) => {
+                        return (
+                            <Row>
+                                <Col>
+                                    <Image src={item.url} />
+                                </Col>
+                                <Col >
+                                    <p>{item.author}</p>
+                                    <p>{item.time}</p>
 
-                                    </Col>
+                                </Col>
 
-                                </Row>
+                            </Row>
 
-                            );
-                        }
-                        )}
-
-
-
-                    </Container>
-
-                </Modal.Body>
-
-            </Modal.Dialog>
-
-
-        </div>
+                        );
+                    }
+                    )}
+                </Container>
+            </Modal.Body>
+        </Modal.Dialog>
     );
-
 };
 
 export default MultimediaTab;

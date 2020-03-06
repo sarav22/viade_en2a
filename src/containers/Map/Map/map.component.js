@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   MapRouteName
 } from './map.style';
@@ -14,31 +14,36 @@ import {
  * @param props
  */
  const Map = props => {
-  const { webId, name } = props;
+  const { route } = props;
   const { t } = useTranslation();
-  const mapCenter = {
-    lat: 0,
-    lng: -180,
-  }
+  const routePath=[];
+  route.waypoints.forEach(point => {
+      routePath.push({
+        lat:point.lat,
+        lng:point.lng
+      });
+  });
+  console.log(routePath)
   
   return (
 
     <div>
         <h3>
-          {t('mapView.viewTitle')} <MapRouteName>{name}</MapRouteName>
+          {t('mapView.viewTitle')} <MapRouteName>{route.name}</MapRouteName>
         </h3>
 
   
       <LoadScript
         id="script-loader"
-        googleMapsApiKey="AIzaSyAblM_CWZSOUgwMdvTONj3yHn3pHkJikNE"
+        googleMapsApiKey=""
       >
 
         <GoogleMap
           id='mapView'
-          zoom={17}
+          zoom={9}
           resetBoundsOnResize
           mapContainerStyle={{
+            "max-height":"calc(100vh - 180px)",
             height: "800px",
             width: "100%",
             padding: "1rem 3.5rem"
@@ -52,14 +57,7 @@ import {
         >
           <Polyline   geodesic={true}
             options={{
-                path: [   
-                  {"lat": 3.028846373870724, "lng": 101.62019493865353},
-                  {"lat": 3.0293392107899226, "lng": 101.62000181960445},
-                  {"lat": 3.0297677644503347, "lng": 101.61980870055538},
-                  {"lat": 3.0301963179410842, "lng": 101.61967995452267},
-                  {"lat": 3.0307105819060256, "lng": 101.6194868354736},
-                  {"lat": 3.0319319578431805, "lng": 101.61916497039181}
-              ],
+                path: routePath,
                 strokeColor: '#ff0000',
                 strokeOpacity: 1,
                 strokeWeight: 6,
