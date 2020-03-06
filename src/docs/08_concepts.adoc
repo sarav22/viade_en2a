@@ -54,15 +54,15 @@ image::images/08-Crosscutting-Concepts-Structure-EN.png["Possible topics for cro
 === Domain concepts and model
 
 
-[plantuml,"Sequence diagram",png]
+[plantuml,"Domain diagram",png]
 ----
 @startuml
-User -- Route
+User -- Route : ownesRoutes
 User -- User : hasFriend
-Route "1" *--> "1..*" Waypoint
-Route "1" *--> "0..*" UserComment
-Waypoint o-- "0..*" Image
-Waypoint o-- "0..*" Video
+Route "1" *--> "1..*" Waypoint : composedBy
+Route "1" *--> "0..*" UserComment : contains
+Waypoint o--> "0..*" Image : hasAttached
+Waypoint o--> "0..*" Video : hasAttached
 @enduml
 ----
 
