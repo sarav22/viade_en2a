@@ -7,7 +7,8 @@ import { Login,
   PageNotFound, 
   Welcome, 
   RegistrationSuccess, 
-  Map 
+  Map,
+  FriendRoutes
 } from './containers';
 
 const privateRoutes = [
@@ -20,6 +21,11 @@ const privateRoutes = [
     id: 'map',
     path: '/map',
     component: Map
+  },
+  {
+    id: "friendRoutes",
+    path: "/friendRoutes",
+    component: FriendRoutes
   }
 ];
 
