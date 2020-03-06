@@ -47,6 +47,9 @@
   },
   "navBar": {
     "welcome": "Bienvenida",
+    "seeRoutes": "Ver Rutas",
+    "createRoutes":"Crear Una Ruta",
+    "manageFriends":"Gestionar Amigos",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
     "profile": "Perfil",
