@@ -12,14 +12,16 @@ const FriendBar = props => {
     return (
 
       <Container fluid>
-        <Row lg={true} >
-          <Col md="auto">
+        <Row lg="true" >
+          <Col align="right">
             <BackButton />
           </Col>
-          <Col md="auto">
-          <Card body>THIS IS A TEST</Card>
+          <Col xs={6}>
+            <Card style={{ height: '25%'}} body text="primary">
+              {friendWebId}
+            </Card>
           </Col>
-          <Col md="auto">
+          <Col>
             <FriendDropdown {...{friendWebId}}/>
           </Col>
         </Row>

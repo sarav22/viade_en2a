@@ -10,7 +10,7 @@ const SharedRoutes = props => {
     return (
   
       <div>
-        <h1 class="friendHeaderBar">{friendWebId}</h1>
+        <h1 className="friendHeaderBar">{friendWebId}</h1>
         <p>{webId}</p>
       </div>
   
