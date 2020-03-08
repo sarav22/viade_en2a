@@ -92,12 +92,19 @@ export const WelcomePageContent = props => {
             <p>
               text
               <a
-                href="https://github.com/inrupt/solid-react-sdk"
+                href="https://solid.inrupt.com/docs/intro-to-linked-data"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                link{' '}
-              </a>{' '}
+                link
+              </a>
+              <a
+                href="https://solid.inrupt.com/how-it-works"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                link
+              </a>
               text
             </p>
           </Trans>
