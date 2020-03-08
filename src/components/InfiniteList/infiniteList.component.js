@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ListWrapper } from "./infiniteList.style";
 import Infinite from "react-infinite";
+import ldflex from "@solid/query-ldflex";
 
 class ListItem extends Component {
   render() {
@@ -11,9 +12,9 @@ class ListItem extends Component {
 export class InfiniteList extends Component<Props> {
   constructor(props) {
     super(props);
-
+    this.webId = props.webId;
     this.state = {
-      elements: this.buildElements(0, 500),
+      elements: this.buildElements(0, 100),
       isInfiniteLoading: false
     };
   }
@@ -26,20 +27,20 @@ export class InfiniteList extends Component<Props> {
     return elements;
   }
 
-  handleInfiniteLoad() {
+  handleInfiniteLoad = () => {
     var that = this;
     this.setState({
       isInfiniteLoading: true
     });
     setTimeout(function() {
       var elemLength = that.state.elements.length,
-        newElements = that.buildElements(elemLength, elemLength + 1000);
+        newElements = that.buildElements(elemLength, elemLength + 10);
       that.setState({
         isInfiniteLoading: false,
         elements: that.state.elements.concat(newElements)
       });
-    }, 2500);
-  }
+    }, 100);
+  };
 
   elementInfiniteLoad() {
     return <div className="infinite-list-item">Loading...</div>;

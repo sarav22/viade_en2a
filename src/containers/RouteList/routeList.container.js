@@ -9,6 +9,7 @@ import { successToaster, errorToaster } from "@utils";
  */
 export class RouteListComponent extends Component<Props> {
   render() {
-    return <RouteListPageContent></RouteListPageContent>;
+    const { webId } = this.props;
+    return <RouteListPageContent {...{ webId }} />;
   }
 }

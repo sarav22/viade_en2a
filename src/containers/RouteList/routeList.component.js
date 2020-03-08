@@ -76,7 +76,7 @@ export const RouteListPageContent = props => {
         </WelcomeProfile>
       </WelcomeCard>
       <WelcomeCard className="card">
-        <InfiniteList></InfiniteList>
+        <InfiniteList {...{ webId }} />
       </WelcomeCard>
     </WelcomeWrapper>
   );
