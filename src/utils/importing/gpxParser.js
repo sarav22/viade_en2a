@@ -1,6 +1,5 @@
-import Comment from '../../domain/domainClasses';
 import GPX from 'gpx-parser-builder';
-import { RouteSpec, TrackPoint } from 'react-router-dom';
+import { RouteSpec, TrackPoint, Comment} from '../../domain/domainClasses';
 
 
 class GpxParser {
