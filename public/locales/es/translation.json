@@ -147,5 +147,8 @@
   "friendsManagement":{
     "profile": "Ver Perfil",
     "delete": "Eliminar Amigo"
+  },
+  "utils":{
+    "back": "Atrás"
   }
 }

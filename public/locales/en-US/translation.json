@@ -147,5 +147,8 @@
   "friendsManagement":{
     "profile": "View Profile",
     "delete": "Delete Friend"
+  },
+  "utils":{
+    "back": "Back"
   }
 }

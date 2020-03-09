@@ -18,7 +18,7 @@ async function getName(webId) {
 }
 
 const FriendBar = props => {
-    const { friendWebId } = props;
+    const { webId, friendWebId } = props;
     const friendName = friendWebId.toString().substring(8).split(".")[0];
     return (
 
@@ -33,7 +33,7 @@ const FriendBar = props => {
             </Card>
           </Col>
           <Col>
-            <FriendDropdown {...{friendWebId}}/>
+            <FriendDropdown {...{webId, friendWebId}}/>
           </Col>
         </Row>
       </Container>
