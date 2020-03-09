@@ -9,8 +9,8 @@ const FriendDropdown = props => {
     return (
         
         <DropdownButton variant="light" id="dropdown-basic-button" title="">
-            <Dropdown.Item href="#">View Profile</Dropdown.Item>
-            <Dropdown.Item href="#">Delete Friend</Dropdown.Item>
+            <Dropdown.Item target="_blank" href={friendWebId}>View Profile</Dropdown.Item>
+            <Dropdown.Item >Delete Friend</Dropdown.Item>
         </DropdownButton>
   
     );
