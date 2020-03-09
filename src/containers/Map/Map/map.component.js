@@ -40,7 +40,7 @@ import {
 
         <GoogleMap
           id='mapView'
-          zoom={9}
+          zoom={12}
           resetBoundsOnResize
           mapContainerStyle={{
             "max-height":"calc(100vh - 180px)",
@@ -51,8 +51,8 @@ import {
           onLoad={() => console.log("map loading")}
           loadingElement={<div>Loading...</div>}
           center={{
-            lat: 3.028846373870724,
-            lng: 101.62019493865353
+            lat: routePath[0].lat,
+            lng: routePath[0].lng
           }}
         >
           <Polyline   geodesic={true}

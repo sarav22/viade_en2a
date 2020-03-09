@@ -9,7 +9,7 @@ const DataTab = props => {
 
     return (
         <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
-            <Modal.Body style={{ 'max-height': 'calc(100vh - 215px)', 'overflow-y': 'auto', 'width': '100%' }}>
+            <Modal.Body style={{ 'max-height': 'calc(100vh - 215px)', 'overflow-y': 'auto', 'width': '100%',"scrollbar-width":"thin" }}>
                 <Container>
                     <h4>{route.name}</h4>
                     <p>route.description</p>
