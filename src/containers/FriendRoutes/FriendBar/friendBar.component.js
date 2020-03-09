@@ -18,11 +18,8 @@ async function getName(webId) {
 }
 
 const FriendBar = props => {
-    const { webId } = props;
-
-    const name = getName(webId);
-    const newName = name.then(console.log);
-
+    const { friendWebId } = props;
+    const friendName = friendWebId.toString().substring(8).split(".")[0];
     return (
 
       <Container fluid>
@@ -32,11 +29,11 @@ const FriendBar = props => {
           </Col>
           <Col xs={6}>
             <Card style={{ height: '65%'}} text="primary">
-              {webId}
+              {friendName}
             </Card>
           </Col>
           <Col>
-            <FriendDropdown {...{webId}}/>
+            <FriendDropdown {...{friendWebId}}/>
           </Col>
         </Row>
       </Container>

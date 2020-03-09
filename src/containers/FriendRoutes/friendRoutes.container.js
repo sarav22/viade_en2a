@@ -26,7 +26,7 @@ export class FriendRoutesComponent extends Component<Props> {
       <Container fluid>
         <Row>
           <FriendBarWrapper>
-            <FriendBar {...{webId}} />
+            <FriendBar {...{friendWebId}} />
           </FriendBarWrapper>
         </Row>
         <Row>
