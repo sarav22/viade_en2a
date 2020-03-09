@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ListWrapper } from "./infiniteList.style";
 import Infinite from "react-infinite";
+import Button from 'react-bootstrap/Button'
 
 class ListItem extends Component {
   render() {
@@ -55,7 +56,13 @@ export class InfiniteList extends Component<Props> {
           loadingSpinnerDelegate={this.elementInfiniteLoad()}
           isInfiniteLoading={this.state.isInfiniteLoading}
         >
-          {this.state.elements}
+          {this.state.elements.map( element => (
+            <div>
+              <Button variant="outline-primary" href="/map">
+                {element}
+              </Button>
+            </div>
+          ))}
         </Infinite>
       </ListWrapper>
     );

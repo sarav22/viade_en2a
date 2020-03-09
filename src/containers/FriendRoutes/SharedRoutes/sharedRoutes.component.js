@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button'
+import InfiniteList from "@components/InfiniteList";
 
 
 const SharedRoutes = props => {
@@ -9,9 +10,7 @@ const SharedRoutes = props => {
     return (
   
       <Container fluid>
-        <h1 className="friendHeaderBar">{friendWebId}</h1>
-        <p>{webId}</p>
-        <Button variant="outline-primary">Ruta 1</Button>
+        <InfiniteList />
       </Container>
   
     );
