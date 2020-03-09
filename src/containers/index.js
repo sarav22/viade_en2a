@@ -4,6 +4,7 @@ import PageNotFound from './PageNotFound';
 import Welcome from './Welcome';
 import Map from './Map';
 import FriendRoutes from "./FriendRoutes";
+import RouteList from "./RouteList";
 
 export { 
      Login,
@@ -12,5 +13,6 @@ export {
      PageNotFound,
      Welcome,
      Map,
-     FriendRoutes
+     FriendRoutes,
+     RouteList
 };
