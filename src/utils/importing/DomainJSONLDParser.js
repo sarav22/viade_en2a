@@ -11,7 +11,7 @@ class DomainJSONLDParser {
 
 
         const comments = routeSpec.commentList.map(function (comment) {
-            return { "@id": comment.resourceUrl };
+            return { "@id": comment.resourceUrl }; 
         });
 
         const media = routeSpec.resourceList.map(function (media) {
@@ -36,26 +36,26 @@ class DomainJSONLDParser {
                 // Context for the data
 
                 "name": {
-                    "@id": "schema:name"
-                "@type": "xs:string"
-                }
+                    "@id": "schema:name",
+                    "@type": "xs:string"
+                },
 
-            "description": {
-                    "@id": "schema:description"
-                "@type": "xs:string" //Type coercion
-                }
+                "description": {
+                    "@id": "schema:description",
+                    "@type": "xs:string" //Type coercion
+                },
 
-            "comments": {
+                "comments": { 
                     "@id": "viade:comments",
                     "@container": "@list" //Order is important, not provided by default
-                }
+                },
 
-            "media": {
+                "media": {
                     "@id": "viade:media",
                     "@container": "@list"
-                }
+                },
 
-            "points": {
+                "points": {
                     "@id": "viade:points",
                     "@container": "@list"
                 }
