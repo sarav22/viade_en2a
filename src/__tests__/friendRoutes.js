@@ -1,14 +1,15 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import { FriendRoutesComponent } from './friendRoutes.container';
-import FriendBar from './FriendBar';
+import { FriendRoutesComponent } from '@containers/FriendRoutes/friendRoutes.container';
+import FriendBar from '@containers/FriendRoutes/FriendBar';
+import '@testing-library/jest-dom/';
 
-const testWebId = "https://raulpemol.solid.community/profile/card#me";
-const testFriendId = "https://agm.solid.community/profile/card#me";
+const webId = "https://raulpemol.solid.community/profile/card#me";
+const friendWebId = "https://saravg.inrupt.net/profile/card#me";
 
 afterAll(cleanup);
     const { container, getByTestId } = render(
-    <FriendRoutesComponent {...{testWebId, testFriendId}} />
+    <FriendRoutesComponent {...{webId, friendWebId}} />
 );
 
 test('Renders without crashing', () => {
@@ -20,7 +21,7 @@ test('Renders with styled components', () => {
 });
 
 test('Friend bar renders correctly', () =>{
-    const { getByTestId } = render(<FriendBar {...{testWebId, testFriendId}} />);
+    const { getByTestId } = render(<FriendBar {...{webId, friendWebId}} />);
     expect(getByTestId('friendBarName')).toBeTruthy();
     expect(getByTestId('friend-dropdown')).toBeTruthy();
     expect(getByTestId('friend-backButton')).toBeTruthy();

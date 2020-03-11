@@ -19,7 +19,7 @@ export class FriendRoutesComponent extends Component<Props> {
   }
 
   componentDidMount() {
-    this.getSharedRoutes();
+    //this.getSharedRoutes();
   }
 
   async getSharedRoutes() {
@@ -32,7 +32,7 @@ export class FriendRoutesComponent extends Component<Props> {
 
   render() {
     const webId = this.props.webId;
-    const friendWebId = this.props.friendWebId;
+    const friendWebId = "https://saravg.inrupt.net/profile/card#me";
     const routes = this.state.routes;
 
     if(routes == null){

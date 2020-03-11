@@ -30,6 +30,11 @@ const privateRoutes = [
     component: ManageFriends
   },
   {
+    id: 'manageFriends',
+    path: '/friendRoutes',
+    component: FriendRoutes
+  },
+  {
     id: "seeRoutes",
     path: "/seeRoutes",
     component: RouteList

@@ -21,6 +21,12 @@ export const NavigationItems = [
     to: "/404" //Specify here the address of the Create Routes view
   },
   {
+    id: "friendRoutes",
+    icon: "/img/icon/manageFriends.svg",
+    label: "navBar.friendRoutes",
+    to: "/friendRoutes" //Specify here the address of the Create Routes view
+  },
+  {
     id: 'manageFriends',
     icon: '/img/icon/manageFriends.svg',
     label: 'navBar.manageFriends',

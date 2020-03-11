@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button'
+import RouteButton from './RouteButton'
 
 
 const SharedRoutes = props => {
@@ -10,11 +10,9 @@ const SharedRoutes = props => {
   
       <Container fluid>
         {
-          routes.map(route => {
-            <Button variant="outline-primary" style={{margin: '10px'}}>
-              {route}
-            </Button>
-          })
+          routes.map(route => (
+            <RouteButton {...{route}} />
+          ))
         }
       </Container>
   
