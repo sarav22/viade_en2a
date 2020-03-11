@@ -17,7 +17,7 @@ const FriendDropdown = props => {
     
     return (
         
-        <DropdownButton variant="light" id="dropdown-basic-button" title="">
+        <DropdownButton variant="light" id="dropdown-basic-button" title="" data-testid="friend-dropdown">
             <Dropdown.Item target="_blank" href={friendWebId}>{t("friendsManagement.profile")}</Dropdown.Item>
             <Dropdown.Item onClick={deleteFriend}>{t("friendsManagement.delete")}</Dropdown.Item>
         </DropdownButton>

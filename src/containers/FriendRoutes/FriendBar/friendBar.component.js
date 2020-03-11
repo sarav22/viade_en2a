@@ -5,17 +5,6 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import BackButton from "./children/BackButton";
 import FriendDropdown from "./children/FriendDropdown";
-import { fetchDocument } from 'tripledoc';
-import { foaf } from 'rdf-namespaces';
-
-async function getName(webId) {
-  /* 1. Fetch the Document at `webId`: */
-  const webIdDoc = await fetchDocument(webId);
-  /* 2. Read the Subject representing the current user's profile: */
-  const profile = webIdDoc.getSubject(webId);
-  /* 3. Get their foaf:name: */
-  return profile.getString(foaf.name);
-}
 
 const FriendBar = props => {
     const { webId, friendWebId } = props;
@@ -28,7 +17,7 @@ const FriendBar = props => {
             <BackButton />
           </Col>
           <Col xs={6}>
-            <Card style={{ height: '65%'}} text="primary">
+            <Card style={{ height: '65%'}} text="primary" data-testid="friendBarName">
               {friendName}
             </Card>
           </Col>

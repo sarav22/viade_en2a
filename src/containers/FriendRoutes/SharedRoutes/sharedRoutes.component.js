@@ -1,16 +1,21 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button'
-import InfiniteList from "@components/InfiniteList";
 
 
 const SharedRoutes = props => {
-    const { webId, friendWebId } = props;
+    const { routes } = props;
     
     return (
   
       <Container fluid>
-        <InfiniteList />
+        {
+          routes.map(route => {
+            <Button variant="outline-primary" style={{margin: '10px'}}>
+              {route}
+            </Button>
+          })
+        }
       </Container>
   
     );

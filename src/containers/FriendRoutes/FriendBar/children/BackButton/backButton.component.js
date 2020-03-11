@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 const BackButton = props => {
     const { t } = useTranslation();
     return (
-        <Button variant="light" href="#">{t("utils.back")}</Button>
+        <Button variant="light" href="#" data-testid="friend-backButton">{t("utils.back")}</Button>
     );
 }
 
