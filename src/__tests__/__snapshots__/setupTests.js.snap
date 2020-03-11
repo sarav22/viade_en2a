@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parsing example data 1`] = `
+Object {
+  "@context": Object {
+    "@version": 1.1,
+    "comments": Object {
+      "@container": "@list",
+      "@id": "viade:comments",
+    },
+    "description": Object {
+      "@id": "schema:description",
+      "@type": "xs:string",
+    },
+    "media": Object {
+      "@container": "@list",
+      "@id": "viade:media",
+    },
+    "name": Object {
+      "@id": "schema:name",
+      "@type": "xs:string",
+    },
+    "points": Object {
+      "@container": "@list",
+      "@id": "viade:points",
+    },
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "http://schema.org/",
+    "viade": "http://arquisoft.github.io/viadeSpec/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+  },
+  "comments": Array [
+    Object {
+      "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.angelixus/routeComments/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.raupemol/routeComments/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
+    },
+  ],
+  "description": "Route test 1",
+  "media": Array [
+    Object {
+      "@id": "http://inrupt.luispc1998/routeMedia/image/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.angelixus/routeMedia/image/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.raupemol/routeMedia/video/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>",
+    },
+  ],
+  "name": "Route test 1",
+  "points": Array [
+    TrackPoint {
+      "latitude": 45.123,
+      "longitude": 34.121,
+    },
+    TrackPoint {
+      "latitude": 46.123,
+      "longitude": 34.121,
+    },
+    TrackPoint {
+      "latitude": 47.123,
+      "longitude": 34.121,
+    },
+    TrackPoint {
+      "latitude": 48.123,
+      "longitude": 32.121,
+    },
+    TrackPoint {
+      "latitude": 49.123,
+      "longitude": 34.121,
+    },
+    TrackPoint {
+      "latitude": 40.123,
+      "longitude": 32.121,
+    },
+    TrackPoint {
+      "latitude": 50.123,
+      "longitude": 33.121,
+    },
+    TrackPoint {
+      "latitude": 53.123,
+      "longitude": 34.121,
+    },
+    TrackPoint {
+      "latitude": 54.123,
+      "longitude": 34.121,
+    },
+    TrackPoint {
+      "latitude": 55.123,
+      "longitude": 35.121,
+    },
+    TrackPoint {
+      "latitude": 55.123,
+      "longitude": 34.121,
+    },
+  ],
+}
+`;
