@@ -38,11 +38,11 @@ export const ManageFriendsContent = props => {
 
   return (
     <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-      <ManageFriendsCard>
+      <ManageFriendsCard data-testid="manageFriends-card">
       {
         friends.map(friend => (
         <Dropdown as={ButtonGroup}>
-          <ButtonFriend id="t" variant="success"  onClick={(event) => viewRoutes(event,friend)} width='20' >{friend}</ButtonFriend>
+          <ButtonFriend variant="success"  onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
           <DropdownButton variant="light" id="dropdown-basic-button" key={friend+"dropdown"} title=""> 
             <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>View profile</Dropdown.Item>
             <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>Delete</Dropdown.Item>
