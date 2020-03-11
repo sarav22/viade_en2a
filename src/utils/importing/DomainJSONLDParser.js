@@ -60,8 +60,6 @@ class DomainJSONLDParser {
                     "@container": "@list"
                 }
 
-
-
             },
 
             "name": routeSpec.name,
@@ -71,9 +69,13 @@ class DomainJSONLDParser {
             "media": media
 
         }
+        return routeJsonLD;
 
+    }
 
+    sum(a, b){
+        return a+b
     }
 }
 
-export default DomainJSONLDParser;
+module.exports =  new DomainJSONLDParser();

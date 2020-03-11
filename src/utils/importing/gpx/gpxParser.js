@@ -1,6 +1,5 @@
 import GPX from 'gpx-parser-builder';
-import { RouteSpec, TrackPoint, Comment} from '../../domain/domainClasses';
-
+import { RouteSpec, TrackPoint, Comment} from '../../../domain/domainClasses';
 
 class GpxParser {
 
@@ -39,6 +38,6 @@ class GpxParser {
 	}
 }
 
-export default gpxParser;
+module.exports = new GpxParser();
 
 
