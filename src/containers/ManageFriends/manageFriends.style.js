@@ -48,15 +48,3 @@ export const ButtonFriend = styled.button`
   }
 `;
 
-export const ButtonDropdown = styled.button`
-  width: 120px;
-  display: inline-block;
-  &:first-child {
-    margin-right: 10px;
-  }
-`;
-
-
-
-
-

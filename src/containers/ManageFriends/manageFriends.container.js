@@ -21,7 +21,7 @@ export class ManageFriendsComponent extends Component<Props> {
    }
    
 
-     async loadFriends() {
+    async loadFriends() {
       const profileDoc =  await fetchDocument(this.props.webId);
       const profile = profileDoc.getSubject(this.props.webId);
       const fs=profile.getAllRefs(foaf.knows);

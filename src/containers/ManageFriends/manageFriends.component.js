@@ -1,6 +1,7 @@
 import React from 'react';
 import ldflex from '@solid/query-ldflex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {
   ManageFriendsWrapper,
@@ -23,7 +24,11 @@ export const ManageFriendsContent = props => {
   async function deleteFriend(event, friend) {
     event.preventDefault();
     ldflexDeleter(friend);
-    //reload the friends list
+    await reload();
+  }
+
+  const reload = () => {
+    window.location.reload(true);
   }
   
   async function viewRoutes(event, friend) {
@@ -36,15 +41,14 @@ export const ManageFriendsContent = props => {
       <ManageFriendsCard>
       {
         friends.map(friend => (
-          <div><Dropdown as={ButtonGroup}>
+        <Dropdown as={ButtonGroup}>
           <ButtonFriend id="t" variant="success"  onClick={(event) => viewRoutes(event,friend)} width='20' >{friend}</ButtonFriend>
-            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" >🠻</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <div><Dropdown.Item href={friend}><ButtonDropdown>View profile</ButtonDropdown></Dropdown.Item></div>
-              <div><Dropdown.Item onClick={(event) => deleteFriend(event,friend)}><ButtonDropdown>Delete</ButtonDropdown></Dropdown.Item></div>
-              <div><Dropdown.Item onClick={(event) => viewRoutes(event,friend)}><ButtonDropdown>View routes</ButtonDropdown></Dropdown.Item></div>
-            </Dropdown.Menu>
-        </Dropdown></div>
+          <DropdownButton variant="light" id="dropdown-basic-button" key={friend+"dropdown"} title=""> 
+            <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>View profile</Dropdown.Item>
+            <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>Delete</Dropdown.Item>
+            <Dropdown.Item as="button"  onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>View routes</Dropdown.Item>
+          </DropdownButton>
+        </Dropdown>
         ))
       }
       </ManageFriendsCard>
