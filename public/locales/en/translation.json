@@ -246,5 +246,10 @@
     "load": "Load",
     "save": "Save",
     "grantAccess": "Grant Access"
+  },
+  "manageFriends": {
+    "viewProfile": "View profile",
+    "delete": "Delete",
+    "viewRoutes": "View routes"
   }
 }
