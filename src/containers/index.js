@@ -5,6 +5,7 @@ import Welcome from './Welcome';
 import Map from './Map';
 import FriendRoutes from "./FriendRoutes";
 import RouteList from "./RouteList";
+import ManageFriends from './ManageFriends';
 
 export { 
      Login,
@@ -14,5 +15,6 @@ export {
      Welcome,
      Map,
      FriendRoutes,
-     RouteList
+     RouteList,
+     ManageFriends
 };

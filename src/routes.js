@@ -9,7 +9,8 @@ import { Login,
   RegistrationSuccess, 
   Map,
   RouteList,
-  FriendRoutes
+  FriendRoutes,
+  ManageFriends
 } from './containers';
 
 const privateRoutes = [
@@ -24,9 +25,9 @@ const privateRoutes = [
     component: Map
   },
   {
-    id: "friendRoutes",
-    path: "/friendRoutes",
-    component: FriendRoutes
+    id: 'manageFriends',
+    path: '/manageFriends',
+    component: ManageFriends
   },
   {
     id: "seeRoutes",
