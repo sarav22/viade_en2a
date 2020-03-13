@@ -147,9 +147,6 @@
     "profile": "View Profile",
     "delete": "Delete Friend"
   },
-  "utils":{
-    "back": "Back"
-  },
   "editor": {
     "explanation": "This simple text editor enables you to create a plaintext file and save it in a Pod. To make this very clear for the demo you provide a URL as an absolute path to the file in the Pod. The Pod can be the one this App has been logged into or another person's Pod. To write, and read, into another person's Pod the owner will have had to provide you with write permission.",
     "url": "URL",
@@ -162,5 +159,8 @@
     "viewProfile": "View profile",
     "delete": "Delete",
     "viewRoutes": "View routes"
+  },
+  "utils":{
+    "back": "Back"
   }
 }
