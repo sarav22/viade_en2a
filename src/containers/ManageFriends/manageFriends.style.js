@@ -5,7 +5,7 @@ export const ManageFriendsWrapper = styled.section`
   background-image: url('/img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
   padding: 50px 0;
-
+  flex-direction: row !important;
   h3 {
     color: #666666;
     span {
@@ -43,6 +43,8 @@ export const ManageFriendsCard = styled.div`
 export const ButtonFriend = styled.button`
   width: 400px;
   display: inline-block;
+  margin-left: 10px;
+  flex-direction: row !important;
   &:first-child {
     margin-right: 0px;
   }
