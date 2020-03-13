@@ -1,6 +1,7 @@
 import React from "react";
 import { Uploader } from "@inrupt/solid-react-components";
 import { Trans, useTranslation } from "react-i18next";
+
 import {
   RouteListWrapper,
   RouteListCard,
@@ -20,7 +21,17 @@ import { InfiniteList } from "@components";
  * @param props
  */
 export const RouteListPageContent = props => {
-  const { webId, image, updatePhoto, name } = props;
+  const {
+    webId,
+    image,
+    updatePhoto,
+    buildElements,
+    handleInfiniteLoad,
+    elementInfiniteLoad,
+    elements,
+    isInfiniteLoading,
+    name
+  } = props;
   const { t } = useTranslation();
   const limit = 2100000;
   return (
@@ -76,7 +87,16 @@ export const RouteListPageContent = props => {
         </WelcomeProfile>
       </RouteListCard>
       <RouteListCard className="card">
-        <InfiniteList {...{ webId }} />
+        <InfiniteList
+          {...{
+            webId,
+            elements: elements,
+            isInfiniteLoading: isInfiniteLoading,
+            buildElements: buildElements,
+            handleInfiniteLoad: handleInfiniteLoad,
+            elementInfiniteLoad: elementInfiniteLoad
+          }}
+        />
       </RouteListCard>
     </RouteListWrapper>
   );
