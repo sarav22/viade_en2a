@@ -47,7 +47,7 @@ export const ManageFriendsContent = props => {
       <ManageFriendsCard data-testid="manageFriends-card" >
       {
         friends.map(friend => (
-          <div>
+        <div key={friend + "div"}>
         <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
           <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>

@@ -12,20 +12,20 @@ const FriendDropdown = props => {
 
     async function deleteFriend(event) {
         event.preventDefault();
-        alert("Amigo eliminado");
-        return ldflex[webId].knows.delete(ldflex[friendWebId]);
+        ldflex[webId].knows.delete(ldflex[friendWebId]);
+        browserHistory.push("/manageFriends");
+        await reload();
     }
 
-    function goToMap(){
-        browserHistory.push("/map");
+    const reload = () => {
+        window.location.reload(true);
     }
     
     return (
         
         <DropdownButton variant="light" id="dropdown-basic-button" title="" data-testid="friend-dropdown">
             <Dropdown.Item target="_blank" href={friendWebId}>{t("friendsManagement.profile")}</Dropdown.Item>
-            <Dropdown.Item onClick={deleteFriend}>{t("friendsManagement.delete")}</Dropdown.Item>
-            <Dropdown.Item onClick={goToMap}>Ir al mapa</Dropdown.Item>
+            <Dropdown.Item onClick={(event) => deleteFriend(event)}>{t("friendsManagement.delete")}</Dropdown.Item>
         </DropdownButton>
   
     );

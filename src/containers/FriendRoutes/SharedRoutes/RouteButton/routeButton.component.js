@@ -7,7 +7,7 @@ export const RouteButton = props => {
 
     async function handleClick(event) {
         event.preventDefault();
-        browserHistory.push("/map");
+        browserHistory.push("/map/" + route);
         await reload();
     }
 

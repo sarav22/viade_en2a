@@ -21,7 +21,7 @@ const privateRoutes = [
   },
   {
     id: 'map',
-    path: '/map',
+    path: '/map/:route',
     component: Map
   },
   {

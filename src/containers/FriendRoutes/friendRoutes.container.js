@@ -32,7 +32,10 @@ export class FriendRoutesComponent extends Component<Props> {
 
   render() {
     const webId = this.props.webId;
-    const friendWebId = "https://saravg.solid.community/profile/card#me";
+    const f = this.props.match.params.f;
+    const s = this.props.match.params.s;
+    const n = this.props.match.params.n;
+    const friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
     const routes = this.state.routes;
 
     if(routes == null){
