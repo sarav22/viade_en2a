@@ -3,9 +3,15 @@ import data from "@solid/query-ldflex";
 import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
+import ldflex from "@solid/query-ldflex";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
+class ListItem extends Component {
+  render() {
+    return <div className="infinite-list-item">List Item {this.props.num}</div>;
+  }
+}
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
@@ -17,7 +23,9 @@ export class RouteListComponent extends Component<Props> {
       name: "",
       image: defaultProfilePhoto,
       isLoading: false,
-      hasImage: false
+      hasImage: false,
+      elements: this.buildElements(0, 100),
+      isInfiniteLoading: false
     };
   }
   componentDidMount() {
@@ -92,12 +100,51 @@ export class RouteListComponent extends Component<Props> {
     }
   };
 
+  buildElements(start, end) {
+    var elements = [];
+
+    for (var i = start; i < end; i++) {
+      elements.push(<ListItem key={i} num={i} />);
+    }
+    return elements;
+  }
+
+  handleInfiniteLoad = () => {
+    var that = this;
+    this.setState({
+      isInfiniteLoading: true
+    });
+    setTimeout(function() {
+      var elemLength = that.state.elements.length,
+        newElements = that.buildElements(elemLength, elemLength + 10);
+      that.setState({
+        isInfiniteLoading: false,
+        elements: that.state.elements.concat(newElements)
+      });
+    }, 100);
+  };
+
+  elementInfiniteLoad() {
+    return <div className="infinite-list-item">Loading...</div>;
+  }
+
   render() {
     const { name, image, isLoading } = this.state;
     const { webId } = this.props;
     return (
       <RouteListPageContent
-        {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }}
+        {...{
+          name,
+          image,
+          isLoading,
+          webId,
+          updatePhoto: this.updatePhoto,
+          buildElements: this.buildElements,
+          handleInfiniteLoad: this.handleInfiniteLoad,
+          elementInfiniteLoad: this.elementInfiniteLoad,
+          elements: this.state.elements,
+          isInfiniteLoading: this.state.isInfiniteLoading
+        }}
       />
     );
   }
