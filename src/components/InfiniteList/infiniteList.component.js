@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { ListWrapper } from "./infiniteList.style";
 import Infinite from "react-infinite";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
+
+type Props = {
+  webId: string
+};
 
 class ListItem extends Component {
   render() {
@@ -12,7 +16,7 @@ class ListItem extends Component {
 export class InfiniteList extends Component<Props> {
   constructor(props) {
     super(props);
-    this.webId = props.webId;
+    this.webId = props;
     this.state = {
       elements: this.buildElements(0, 100),
       isInfiniteLoading: false
@@ -56,7 +60,7 @@ export class InfiniteList extends Component<Props> {
           loadingSpinnerDelegate={this.elementInfiniteLoad()}
           isInfiniteLoading={this.state.isInfiniteLoading}
         >
-          {this.state.elements.map( element => (
+          {this.state.elements.map(element => (
             <div>
               <Button variant="outline-primary" href="/map">
                 {element}

@@ -2,8 +2,8 @@ import React from "react";
 import { Uploader } from "@inrupt/solid-react-components";
 import { Trans, useTranslation } from "react-i18next";
 import {
-  WelcomeWrapper,
-  WelcomeCard,
+  RouteListWrapper,
+  RouteListCard,
   WelcomeLogo,
   WelcomeProfile,
   WelcomeDetail,
@@ -24,8 +24,8 @@ export const RouteListPageContent = props => {
   const { t } = useTranslation();
   const limit = 2100000;
   return (
-    <WelcomeWrapper data-testid="welcome-wrapper">
-      <WelcomeCard className="card">
+    <RouteListWrapper data-testid="welcome-wrapper">
+      <RouteListCard className="card">
         <WelcomeLogo data-testid="welcome-logo">
           <img src="/img/logo.svg" alt="Inrupt" />
         </WelcomeLogo>
@@ -74,10 +74,10 @@ export const RouteListPageContent = props => {
             />
           </ImageWrapper>
         </WelcomeProfile>
-      </WelcomeCard>
-      <WelcomeCard className="card">
+      </RouteListCard>
+      <RouteListCard className="card">
         <InfiniteList {...{ webId }} />
-      </WelcomeCard>
-    </WelcomeWrapper>
+      </RouteListCard>
+    </RouteListWrapper>
   );
 };
