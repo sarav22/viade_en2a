@@ -153,7 +153,7 @@ Object {
       "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
   ],
-  "description": "Route test 1",
+  "description": "Route test 2",
   "media": Array [
     Object {
       "@id": "http://inrupt.luispc1998/routeMedia/image/<comentarioConSuTipo>",
@@ -167,8 +167,14 @@ Object {
     Object {
       "@id": "http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>",
     },
+    Object {
+      "@id": "http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>",
+    },
+    Object {
+      "@id": "http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>",
+    },
   ],
-  "name": "Route test 1",
+  "name": "Route test 2",
   "points": Array [
     TrackPoint {
       "latitude": 45.123,
@@ -211,8 +217,24 @@ Object {
       "longitude": 35.121,
     },
     TrackPoint {
+      "latitude": 57.123,
+      "longitude": 30.121,
+    },
+    TrackPoint {
+      "latitude": 56.123,
+      "longitude": 26.121,
+    },
+    TrackPoint {
+      "latitude": 53.123,
+      "longitude": 25.121,
+    },
+    TrackPoint {
       "latitude": 55.123,
-      "longitude": 34.121,
+      "longitude": 20.121,
+    },
+    TrackPoint {
+      "latitude": 51.123,
+      "longitude": 15.121,
     },
   ],
 }

@@ -23,19 +23,9 @@ export class Comment {
     }
 }
 
+
+
 export class Route {
-
-    constructor(mapNodelist, resourceList, commentList) {
-        this.mapNodelist = mapNodelist;
-        this.resourceList = resourceList;
-        this.commentList = commentList ;
-    }
-
-
-}
-
-
-export class RouteSpec {
 
     /**
      * You are supposed to pass a map with all the necessary information

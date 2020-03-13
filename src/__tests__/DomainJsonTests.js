@@ -4,7 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/';
 import parseRouteJsonLD from '../services/importing/DomainJSONLDParser.js'
-import {TrackPoint, Resource, Comment, RouteSpec} from "../domain/DomainClasses.js"
+import {TrackPoint, Resource, Comment, Route} from "../domain/DomainClasses.js"
 
 
 const comments = [
@@ -45,7 +45,7 @@ const params = {
 
 }
 
-const route = new RouteSpec(params)
+const route = new Route(params)
 
 
 
@@ -92,10 +92,10 @@ const params2 = {
 }
 
 
-const route2 = new RouteSpec(params2)
+const route2 = new Route(params2)
 
 
 
 test("Parsing example data2", () =>{
-    expect(parseRouteJsonLD(route)).toMatchSnapshot()
+    expect(parseRouteJsonLD(route2)).toMatchSnapshot()
 })
