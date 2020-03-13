@@ -1,37 +1,27 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {Redirect} from 'react-router-dom';
+import {browserHistory} from 'react-router';
 
-class RouteButton extends React.Component<Props> {
+export const RouteButton = props => {
+    const { route } = props;
 
-    constructor(props){
-        super(props);
-            this.state={
-                toRoute: false
-            }
+    async function handleClick(event) {
+        event.preventDefault();
+        browserHistory.push("/map");
+        await reload();
     }
 
-    handleClick = () => {
-        this.setState(() => ({
-            toRoute: true
-        }))
+    const reload = () => {
+        window.location.reload(true);
     }
-
-    render(){
-        const { route } = this.props;
-
-        if(this.state.toRoute === true){
-            return <Redirect to="/map" />
-        }
+   
+    return (
         
-        return (
-            
-            <Button onClick={this.handleClick}>
+        <Button onClick={(event) => handleClick(event)}>
 
-            </Button>
-    
-        );
-    }
+        </Button>
+
+    );
 }
 
 export default RouteButton;
