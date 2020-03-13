@@ -150,5 +150,18 @@
   },
   "utils":{
     "back": "Atrás"
+  },
+  "editor": {
+    "explanation": "Aqui tiene un simple editor de textos con que puede crear un fichero de texto plano y guardarlo en un Pod. Para mostrarlo claramente en este demo, hay que proveer una URL que directamente identifica el fichero en el Pod. El Pod puede ser el del mismo usuario conectado, o de otra persona. Para poder escribir, y leer, al Pod de otra persona, el proprietario tendrá que dar permiso de escribir, usando el botón de 'Dar Acceso' abajo.",
+    "url": "URL",
+    "friend": "Webid de collaborador",
+    "load": "Cargar",
+    "save": "Guardar",
+    "grantAccess": "Dar Acceso"
+  },
+  "manageFriends": {
+    "viewProfile": "Ver perfil",
+    "delete": "Eliminar",
+    "viewRoutes": "Ver rutas"
   }
 }
