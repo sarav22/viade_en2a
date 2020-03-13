@@ -16,10 +16,8 @@ type Props = {
 
 export const InfiniteList = (props: Props) => {
   const {
-    webId,
     elements,
     isInfiniteLoading,
-    buildElements,
     handleInfiniteLoad,
     elementInfiniteLoad
   } = props;

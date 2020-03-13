@@ -89,10 +89,8 @@ export const RouteListPageContent = props => {
       <RouteListCard className="card">
         <InfiniteList
           {...{
-            webId,
             elements: elements,
             isInfiniteLoading: isInfiniteLoading,
-            buildElements: buildElements,
             handleInfiniteLoad: handleInfiniteLoad,
             elementInfiniteLoad: elementInfiniteLoad
           }}
