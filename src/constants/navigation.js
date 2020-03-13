@@ -3,10 +3,16 @@
  */
 export const NavigationItems = [
   {
+    id: 'map',
+    icon: '/img/icon/map.svg',
+    label: 'navBar.map',
+    to: '/map'
+  },
+  {
     id: "seeRoutes",
     icon: "/img/icon/seeRoutes.svg",
     label: "navBar.seeRoutes",
-    to: "/seeRoutes" //Specify here the address of the See Routes view
+    to: "/seeRoutes"
   },
   {
     id: "createRoutes",
@@ -15,10 +21,10 @@ export const NavigationItems = [
     to: "/404" //Specify here the address of the Create Routes view
   },
   {
-    id: "manageFriends",
-    icon: "/img/icon/manageFriends.svg",
-    label: "navBar.manageFriends",
-    to: "/404" //Specify here the address of the Create Routes view
+    id: 'manageFriends',
+    icon: '/img/icon/manageFriends.svg',
+    label: 'navBar.manageFriends',
+    to: '/manageFriends'
   }
 ];
 

@@ -2,20 +2,37 @@ import React, { Fragment } from "react";
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from "@layouts";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 
-import {
-  Login,
-  Register,
-  PageNotFound,
-  Welcome,
+import { Login, 
+  Register, 
+  PageNotFound, 
+  Welcome, 
+  RegistrationSuccess, 
+  Map,
   RouteList,
-  RegistrationSuccess
-} from "./containers";
+  FriendRoutes,
+  ManageFriends
+} from './containers';
 
 const privateRoutes = [
   {
     id: "welcome",
     path: "/welcome",
     component: Welcome
+  },
+  {
+    id: 'map',
+    path: '/map/:route',
+    component: Map
+  },
+  {
+    id: 'manageFriends',
+    path: '/manageFriends',
+    component: ManageFriends
+  },
+  {
+    id: 'manageFriends',
+    path: '/friendRoutes/:f/:s/:n',
+    component: FriendRoutes
   },
   {
     id: "seeRoutes",
