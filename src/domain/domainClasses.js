@@ -1,14 +1,13 @@
 // TODO: Discuss if we should export every class or only the Route class.
 
-export default class TrackPoint {
-    constructor(name, latitude, longitude) {
-        this.name = name
+export class TrackPoint {
+    constructor(latitude, longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 }
 
-export default class Resource {
+export class Resource {
     
     constructor(resourceUrl) {
         this.resourceUrl = resourceUrl;
@@ -16,25 +15,14 @@ export default class Resource {
 }
 
 // TODO: Discuss and create comment structure
-export default class Comment {
+export class Comment {
     constructor(resourceUrl) {
         this.resourceUrl = resourceUrl;
     }
 }
 
-export default class Route {
 
-    constructor(mapNodelist, resourceList, commentList) {
-        this.mapNodelist = mapNodelist;
-        this.resourceList = resourceList;
-        this.commentList = commentList ;
-    }
-
-
-}
-
-
-export default class RouteSpec {
+export class Route {
 
     /**
      * You are supposed to pass a map with all the necessary information
@@ -61,7 +49,7 @@ export default class RouteSpec {
         }
 
         if (params.resources){
-            this.resources = resources;
+            this.resources = params.resources;
         }
     }
 }
