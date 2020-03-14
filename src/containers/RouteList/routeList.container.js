@@ -5,7 +5,6 @@ import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
-import ldflex from "@solid/query-ldflex";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
@@ -182,7 +181,6 @@ export class RouteListComponent extends Component<Props> {
 
   render() {
     const { name, image, isLoading } = this.state;
-    const { webId } = this.props;
     return (
       <RouteListPageContent
         {...{

@@ -1,13 +1,11 @@
 import React from "react";
 import { Uploader } from "@inrupt/solid-react-components";
-import { Trans, useTranslation } from "react-i18next";
-
+import { useTranslation } from "react-i18next";
 import {
   RouteListWrapper,
   RouteListCard,
   WelcomeLogo,
   WelcomeProfile,
-  WelcomeDetail,
   WelcomeName,
   ImageWrapper
 } from "./routeList.style";
@@ -25,7 +23,6 @@ export const RouteListPageContent = props => {
     webId,
     image,
     updatePhoto,
-    buildElements,
     handleInfiniteLoad,
     elementInfiniteLoad,
     elements,
