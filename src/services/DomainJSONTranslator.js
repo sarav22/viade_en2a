@@ -1,5 +1,5 @@
 import {Route, Resource, Comment, TrackPoint} from '../domain/domainClasses.js'
-import {retrieveJson} from './PODExtractor.js'
+import {retrieveJson, retrieveAllRoutes} from './PODExtractor.js'
 
 // TODO: Discuss if async makes sense here
 
@@ -47,3 +47,12 @@ export const loadMapInfo = async jsonUrl => {
     var route = new Route({"name" : routeName, "description" : routeDescription, "itineray" : trackPointList, "resources" : resourceList, "comments" : commentList})
     return route;
 };
+
+export const loadAllRoutes = async () => {
+  var filesObj = await retrieveAllRoutes();
+  if(filesObj.files)
+    return filesObj.files.map(function(urlMap) {
+      return urlMap.url
+    });
+  return filesObj;
+}
