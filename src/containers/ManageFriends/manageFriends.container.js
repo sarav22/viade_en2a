@@ -33,7 +33,7 @@ export class ManageFriendsComponent extends Component<Props> {
    }
 
     searchFriends(matchingString) {
-      if (matchingString!=""){
+      if (matchingString!==""){
         const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
         this.setState({searchResults: filtered});
       }
