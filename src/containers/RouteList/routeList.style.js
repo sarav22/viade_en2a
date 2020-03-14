@@ -88,10 +88,6 @@ export const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  button {
-    margin-left: 0px;
-  }
 `;
 
 export const ImageContainer = styled.div`
@@ -118,4 +114,29 @@ export const WelcomeDetail = styled.div`
 export const WelcomeName = styled.span`
   overflow-wrap: break-word;
   word-break: break-word;
+`;
+
+export const ListItemData = styled.div`
+  display: flex;
+  overflow-wrap: break-word;
+  word-break: break-word;
+`;
+
+export const ItemWrapper = styled.div`
+  max-height: 175px !important;
+  //Overriding the style guide card flexbox settings
+  flex-direction: row !important;
+
+  align-items: left;
+`;
+
+export const RouteImage = styled.div`
+  width: 50%;
+  height: 100%;
+  position: relative;
+  img {
+    width: auto;
+    height: 160px;
+    margin: 0 auto;
+  }
 `;

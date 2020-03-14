@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import { ListWrapper } from "./infiniteList.style";
+import React from "react";
+import { ListWrapper, ListItemWrapper } from "./infiniteList.style";
 import Infinite from "react-infinite";
 import Button from "react-bootstrap/Button";
-import ldflex from "@solid/query-ldflex";
-import { withWebId } from "@inrupt/solid-react-components";
 
 type Props = {
   webId: String,
@@ -25,7 +23,7 @@ export const InfiniteList = (props: Props) => {
   return (
     <ListWrapper>
       <Infinite
-        elementHeight={20}
+        elementHeight={200}
         useWindowAsScrollContainer={true}
         infiniteLoadBeginEdgeOffset={200}
         onInfiniteLoad={handleInfiniteLoad}
@@ -33,11 +31,16 @@ export const InfiniteList = (props: Props) => {
         isInfiniteLoading={isInfiniteLoading}
       >
         {elements.map(element => (
-          <div>
-            <Button variant="outline-primary" href="/map">
+          <ListItemWrapper>
+            <Button
+              style={{ height: 190 }}
+              variant="outline-primary"
+              href="/map"
+              block
+            >
               {element}
             </Button>
-          </div>
+          </ListItemWrapper>
         ))}
       </Infinite>
     </ListWrapper>

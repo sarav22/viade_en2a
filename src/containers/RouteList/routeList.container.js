@@ -1,15 +1,27 @@
 import React, { Component } from "react";
 import data from "@solid/query-ldflex";
+import Image from "react-bootstrap/Image";
 import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
+import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import ldflex from "@solid/query-ldflex";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
 class ListItem extends Component {
   render() {
-    return <div className="infinite-list-item">List Item {this.props.num}</div>;
+    return (
+      <ItemWrapper className="card">
+        <RouteImage>
+          <Image src={this.props.src} style={{ padding: "5px" }} />
+        </RouteImage>
+        <WelcomeProfile>
+          {this.props.num} {this.props.nombre}, {this.props.fecha},
+          {this.props.distancia}, etc.
+        </WelcomeProfile>
+      </ItemWrapper>
+    );
   }
 }
 /**
@@ -24,7 +36,7 @@ export class RouteListComponent extends Component<Props> {
       image: defaultProfilePhoto,
       isLoading: false,
       hasImage: false,
-      elements: this.buildElements(0, 100),
+      elements: this.buildElements(0, 10),
       isInfiniteLoading: false
     };
   }
@@ -104,9 +116,49 @@ export class RouteListComponent extends Component<Props> {
     var elements = [];
 
     for (var i = start; i < end; i++) {
-      elements.push(<ListItem key={i} num={i} />);
+      var ruta = this.getRoute(i);
+      elements.push(
+        <ListItem
+          key={i}
+          num={i}
+          src={ruta.src}
+          nombre={ruta.nombre}
+          fecha={ruta.fecha}
+          distancia={ruta.distancia}
+        />
+      );
     }
     return elements;
+  }
+
+  getRoute(index) {
+    var routes = [
+      {
+        src:
+          "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869",
+        nombre: "Best name",
+        fecha: "21/02/2019",
+        distancia: "666 km"
+      },
+      {
+        src:
+          "https://static2.elcomercio.es/www/multimedia/202002/07/media/cortadas/ruta-calzada-romana-rioseco-kCZH-U10082985458pVD-624x385@El%20Comercio.jpg",
+        nombre: "Better name",
+        fecha: "21/02/2015",
+        distancia: "420 km"
+      },
+      {
+        src:
+          "https://cdn.civitatis.com/bolivia/la-paz/galeria/camino-muerte-paz.jpg",
+        nombre: "Worst name",
+        fecha: "21/02/2011",
+        distancia: "40 km"
+      }
+    ];
+    if (index > routes.length - 1) {
+      return routes[routes.length - 1];
+    }
+    return routes[index];
   }
 
   handleInfiniteLoad = () => {
