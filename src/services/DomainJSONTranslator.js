@@ -28,7 +28,7 @@ export const loadMapInfo = async jsonUrl => {
   
         if(key === "points") {
             for(var latLong in value) {
-                trackPointList.push(new TrackPoint(value[latLong].latitude, value[latLong].longitude));
+                trackPointList.push(new TrackPoint(value[latLong]["schema:latitude"], value[latLong]["schema:longitude"]));
             }
         }
   
