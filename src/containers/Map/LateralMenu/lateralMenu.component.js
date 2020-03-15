@@ -8,13 +8,13 @@ import DataTab from './children/DataTab';
 
 const LateralMenu = props  => {
 
+  
   const { t } = useTranslation();
   const { route } = props;
-
   return (
     <Tabs id="controlled-tab-example" >
       <Tab eventKey="home" title={t('mapView.menu.images')}>
-        <MultimediaTab multimedia={route.multimedia}/>
+        <MultimediaTab resources={route.resources}/>
       </Tab>
       <Tab eventKey="profile" title={t('mapView.menu.comments')}>
         <CommentsTab comments={route.comments} />
