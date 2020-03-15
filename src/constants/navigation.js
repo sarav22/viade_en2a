@@ -2,13 +2,7 @@
  * Object mapping of known possible inboxes for the user
  */
 export const NavigationItems = [
-  {
-    id: 'map',
-    icon: '/img/icon/map.svg',
-    label: 'navBar.map',
-    to: '/map'
-  },
-  {
+   {
     id: "seeRoutes",
     icon: "/img/icon/seeRoutes.svg",
     label: "navBar.seeRoutes",
