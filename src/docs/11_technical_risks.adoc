@@ -28,3 +28,11 @@ We have identified the risk or technical debts we might encounter during the pro
 | We need good comunication and understanding. Well defined separation of tasks could also help.
 
 |=========================================================
+
+|=========================================================
+| Technical Debt | Explanation 
+
+| Only one track per Gpm file considered
+| At this very momment in the develpment we are only consider one tag "track" inside a gpx, this may be mean afterwards a group of route or some kind of complex route.
+
+|=========================================================
