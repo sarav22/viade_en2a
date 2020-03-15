@@ -21,8 +21,8 @@ export class MapComponent extends Component<Props> {
 
   componentDidMount() {
 
-    loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt")
-    .then(ruta => {this.setState({loading: false, route:ruta}); });
+    //loadMapInfo("https://angel-olmedo-garcia.inrupt.net/viade/routes/route.txt")
+    //.then(ruta => {this.setState({loading: false, route:ruta}); });
 
     //const route = null;
     //loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt").then(function (result){const route = result;console.log(route)})

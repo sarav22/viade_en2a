@@ -11,7 +11,7 @@ const DataTab = props => {
             <Modal.Body style={{ 'max-height': 'calc(100vh - 215px)', 'overflow-y': 'auto', 'width': '100%',"scrollbar-width":"thin" }}>
                 <Container>
                     <h4>{route.name}</h4>
-                    <p>route.description</p>
+                    <p>{route.description}</p>
                     <h5>Puntos de ruta</h5>
                     <ol>
                         {route.itinerary.map(point => {
