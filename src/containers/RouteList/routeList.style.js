@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { media } from '../../utils';
+import styled from "styled-components";
+import { media } from "../../utils";
 
-export const WelcomeWrapper = styled.section`
+export const RouteListWrapper = styled.section`
   width: 100%;
-  background-image: url('/img/concentric-hex-pattern_2x.png');
+  background-image: url("/img/concentric-hex-pattern_2x.png");
   background-repeat: repeat;
   padding: 50px 0;
 
@@ -18,7 +18,7 @@ export const WelcomeWrapper = styled.section`
   }
 `;
 
-export const WelcomeCard = styled.div`
+export const RouteListCard = styled.div`
   background-color: #fff;
   margin: 30px auto;
 
@@ -88,14 +88,10 @@ export const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  button {
-    margin-left: 0px;
-  }
 `;
 
 export const ImageContainer = styled.div`
-  background-image: ${({ image }) => (image ? `url(${image})` : '#cccccc')};
+  background-image: ${({ image }) => (image ? `url(${image})` : "#cccccc")};
   background-size: cover;
   border-radius: 50%;
   width: 128px;
@@ -118,4 +114,29 @@ export const WelcomeDetail = styled.div`
 export const WelcomeName = styled.span`
   overflow-wrap: break-word;
   word-break: break-word;
+`;
+
+export const ListItemData = styled.div`
+  display: flex;
+  overflow-wrap: break-word;
+  word-break: break-word;
+`;
+
+export const ItemWrapper = styled.div`
+  max-height: 175px !important;
+  //Overriding the style guide card flexbox settings
+  flex-direction: row !important;
+
+  align-items: left;
+`;
+
+export const RouteImage = styled.div`
+  width: 50%;
+  height: 100%;
+  position: relative;
+  img {
+    width: auto;
+    height: 160px;
+    margin: 0 auto;
+  }
 `;

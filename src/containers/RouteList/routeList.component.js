@@ -1,12 +1,11 @@
 import React from "react";
 import { Uploader } from "@inrupt/solid-react-components";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import {
-  WelcomeWrapper,
-  WelcomeCard,
+  RouteListWrapper,
+  RouteListCard,
   WelcomeLogo,
   WelcomeProfile,
-  WelcomeDetail,
   WelcomeName,
   ImageWrapper
 } from "./routeList.style";
@@ -20,12 +19,21 @@ import { InfiniteList } from "@components";
  * @param props
  */
 export const RouteListPageContent = props => {
-  const { webId, image, updatePhoto, name } = props;
+  const {
+    webId,
+    image,
+    updatePhoto,
+    handleInfiniteLoad,
+    elementInfiniteLoad,
+    elements,
+    isInfiniteLoading,
+    name
+  } = props;
   const { t } = useTranslation();
   const limit = 2100000;
   return (
-    <WelcomeWrapper data-testid="welcome-wrapper">
-      <WelcomeCard className="card">
+    <RouteListWrapper data-testid="welcome-wrapper">
+      <RouteListCard className="card">
         <WelcomeLogo data-testid="welcome-logo">
           <img src="/img/logo.svg" alt="Inrupt" />
         </WelcomeLogo>
@@ -74,10 +82,17 @@ export const RouteListPageContent = props => {
             />
           </ImageWrapper>
         </WelcomeProfile>
-      </WelcomeCard>
-      <WelcomeCard className="card">
-        <InfiniteList></InfiniteList>
-      </WelcomeCard>
-    </WelcomeWrapper>
+      </RouteListCard>
+      <RouteListCard className="card">
+        <InfiniteList
+          {...{
+            elements: elements,
+            isInfiniteLoading: isInfiniteLoading,
+            handleInfiniteLoad: handleInfiniteLoad,
+            elementInfiniteLoad: elementInfiniteLoad
+          }}
+        />
+      </RouteListCard>
+    </RouteListWrapper>
   );
 };
