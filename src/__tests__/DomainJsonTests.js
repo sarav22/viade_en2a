@@ -4,7 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/';
 import parseRouteJsonLD from '../services/importing/DomainJSONLDParser.js'
-import {TrackPoint, Resource, Comment, Route} from "../domain/DomainClasses.js"
+import {TrackPoint, Resource, Comment, Route} from "../domain/domainClasses.js"
 
 
 const comments = [
