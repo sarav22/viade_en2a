@@ -159,7 +159,7 @@
   },
   "name": "viade_en2a",
   "version": "0.1.0",
-  "homepage": "https://arquisoft.github.io/viade_0/",
+  "homepage": "https://arquisoft.github.io/viade_en2a/",
   "private": true,
   "devDependencies": {
     "@babel/core": "7.1.6",
