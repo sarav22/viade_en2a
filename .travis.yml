@@ -9,7 +9,7 @@ before_install:
   - npm install
 script:
   - npm install -g codecov
-  - npm test && codecov
+  - npm codecov
   - CI=false npm run build
   - npm run docs
 deploy:
