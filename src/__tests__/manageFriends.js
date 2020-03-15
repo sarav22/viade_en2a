@@ -14,7 +14,6 @@ afterAll(cleanup);
 test('Renders correctly', () => {
     expect(container).toBeTruthy();
     expect(getByTestId('manageFriends-wrapper')).toBeTruthy();
-    expect(getByTestId('manageFriends-card')).toBeTruthy();
 });
 
 test('Renders friends buttons correctly', () =>{

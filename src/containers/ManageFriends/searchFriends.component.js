@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
   ManageFriendsWrapper,
-  ManageFriendsCard,
   ButtonFriend,
 } from './manageFriends.style';
 
@@ -44,7 +43,6 @@ export const SearchFriendsContent = props => {
 
   return (
     <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-      <ManageFriendsCard data-testid="manageFriends-card" >
       {
         searchResults.map(friend => (
           <div>
@@ -60,7 +58,6 @@ export const SearchFriendsContent = props => {
         </div>
         ))
       }
-      </ManageFriendsCard>
     </ManageFriendsWrapper>
   );
 }
