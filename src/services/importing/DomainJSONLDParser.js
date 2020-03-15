@@ -1,4 +1,4 @@
-import { Route, TrackPoint, Comment } from '../../domain/DomainClasses';
+
 
 
 function parseRouteJsonLD(routeSpec) {
@@ -57,8 +57,8 @@ function parseRouteJsonLD(routeSpec) {
         },
 
         "name": routeSpec.name,
-        "description": routeSpec.name,
-        "points": routeSpec.itinerary,
+        "description": routeSpec.description,
+        "points": routeSpec.points,
         "comments": comments,
         "media": media
 

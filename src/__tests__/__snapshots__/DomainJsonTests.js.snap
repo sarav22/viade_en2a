@@ -44,7 +44,7 @@ Object {
       "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
   ],
-  "description": "Route test 1",
+  "description": "This is a test to see the output of the JsonLDConversor",
   "media": Array [
     Object {
       "@id": "http://inrupt.luispc1998/routeMedia/image/<comentarioConSuTipo>",
@@ -60,52 +60,7 @@ Object {
     },
   ],
   "name": "Route test 1",
-  "points": Array [
-    TrackPoint {
-      "latitude": 45.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 46.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 47.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 48.123,
-      "longitude": 32.121,
-    },
-    TrackPoint {
-      "latitude": 49.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 40.123,
-      "longitude": 32.121,
-    },
-    TrackPoint {
-      "latitude": 50.123,
-      "longitude": 33.121,
-    },
-    TrackPoint {
-      "latitude": 53.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 54.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 55.123,
-      "longitude": 35.121,
-    },
-    TrackPoint {
-      "latitude": 55.123,
-      "longitude": 34.121,
-    },
-  ],
+  "points": undefined,
 }
 `;
 
@@ -153,7 +108,7 @@ Object {
       "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
   ],
-  "description": "Route test 2",
+  "description": "This is a test to see the output of the JsonLDConversor",
   "media": Array [
     Object {
       "@id": "http://inrupt.luispc1998/routeMedia/image/<comentarioConSuTipo>",
@@ -175,67 +130,6 @@ Object {
     },
   ],
   "name": "Route test 2",
-  "points": Array [
-    TrackPoint {
-      "latitude": 45.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 46.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 47.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 48.123,
-      "longitude": 32.121,
-    },
-    TrackPoint {
-      "latitude": 49.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 40.123,
-      "longitude": 32.121,
-    },
-    TrackPoint {
-      "latitude": 50.123,
-      "longitude": 33.121,
-    },
-    TrackPoint {
-      "latitude": 53.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 54.123,
-      "longitude": 34.121,
-    },
-    TrackPoint {
-      "latitude": 55.123,
-      "longitude": 35.121,
-    },
-    TrackPoint {
-      "latitude": 57.123,
-      "longitude": 30.121,
-    },
-    TrackPoint {
-      "latitude": 56.123,
-      "longitude": 26.121,
-    },
-    TrackPoint {
-      "latitude": 53.123,
-      "longitude": 25.121,
-    },
-    TrackPoint {
-      "latitude": 55.123,
-      "longitude": 20.121,
-    },
-    TrackPoint {
-      "latitude": 51.123,
-      "longitude": 15.121,
-    },
-  ],
+  "points": undefined,
 }
 `;
