@@ -48,8 +48,8 @@ export const loadMapInfo = async jsonUrl => {
     return route;
 };
 
-export const loadAllRoutes = async () => {
-  var filesObj = await retrieveAllRoutes();
+export const loadAllRoutes = async (personWebId) => {
+  var filesObj = await retrieveAllRoutes(personWebId);
   if(filesObj.files)
     return filesObj.files.map(function(urlMap) {
       return urlMap.url

@@ -8,9 +8,8 @@ export const retrieveJson = async (jsonUrl) => {
     }
 }
 
-export const retrieveAllRoutes = async () => {
-    let session = await auth.currentSession()
-    var routeURI = session.webId.toString()
+export const retrieveAllRoutes = async (personWebId) => {
+    var routeURI = personWebId
     var routeURIExtended = routeURI.substring(0, routeURI.length - 16) + '/viade/routes'
     var res = []
     if(await fc.itemExists(routeURIExtended)) {
