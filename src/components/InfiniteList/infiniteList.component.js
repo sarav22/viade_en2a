@@ -2,6 +2,7 @@ import React from "react";
 import { ListWrapper, ListItemWrapper } from "./infiniteList.style";
 import Infinite from "react-infinite";
 import Button from "react-bootstrap/Button";
+import { Base64 } from "js-base64";
 
 type Props = {
   webId: String,
@@ -33,9 +34,9 @@ export const InfiniteList = (props: Props) => {
         {elements.map(element => (
           <ListItemWrapper>
             <Button
+              {...{ href: "/map/" + Base64.encode(element.props.url) }}
               style={{ height: 190 }}
               variant="outline-primary"
-              href="/map"
               block
             >
               {element}
