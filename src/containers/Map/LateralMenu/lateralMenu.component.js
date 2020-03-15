@@ -11,9 +11,6 @@ const LateralMenu = props  => {
   
   const { t } = useTranslation();
   const { route } = props;
-  console.log("Lateral menu")
-  console.log(route)
-
   return (
     <Tabs id="controlled-tab-example" >
       <Tab eventKey="home" title={t('mapView.menu.images')}>

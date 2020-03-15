@@ -16,15 +16,13 @@ export class MapComponent extends Component<Props> {
 
   constructor(props) {
     super(props);
-    this.state = {loading:true, route:null, title:null}
+    this.state = {loading:true, route:null, title:null};
   }
 
   componentDidMount() {
 
-    loadMapInfo("https://carlosmanrique.solid.community/viade/routes/rutaDePrueba.txt")
-    .then(ruta => {this.setState({loading: false, route:ruta})
-                    
-  })
+    loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt")
+    .then(ruta => {this.setState({loading: false, route:ruta}); });
 
     //const route = null;
     //loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt").then(function (result){const route = result;console.log(route)})
@@ -36,7 +34,7 @@ export class MapComponent extends Component<Props> {
 
   }
 
-  ViewContent = route => {
+  viewContent = route => {
     return (
       <Container fluid >
         <Row>
@@ -50,17 +48,17 @@ export class MapComponent extends Component<Props> {
   
         </Row>
       </Container>
-    )
-  }
+    );
+  };
 
 
   render() {
     const {loading, route} = this.state;
-    let that = this
+    let that = this;
     return (
 
      <Fragment>
-        {loading ? "Loading..." : this.ViewContent(this.state.route)}
+        {loading ? "Loading..." : this.viewContent(this.state.route)}
       </Fragment>
     );
   }
