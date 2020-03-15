@@ -19,7 +19,10 @@ export class MapComponent extends Component<Props> {
 	}
 
   componentDidMount() {
-  
+    const route = null;
+    loadMapInfo("https://carlosmanrique.solid.community/viade/routes/rutaDePrueba.txt").then(function (result){const route = result;console.log(route)})
+    
+    console.log("log2"+ route)
   }
 
   componentDidUpdate(prevProps) {
@@ -28,7 +31,6 @@ export class MapComponent extends Component<Props> {
 
 
   render() {
-    const route=loadMapInfo(this.props.webId);
 
     return (
       <Container fluid >

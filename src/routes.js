@@ -21,14 +21,10 @@ const privateRoutes = [
   },
   {
     id: 'map',
-    path: '/map/:route',
+    path: '/map/',
     component: Map
   },
-  {
-    id: 'map',
-    path: '/map',
-    component: Map
-  },
+
   {
     id: 'manageFriends',
     path: '/manageFriends',
