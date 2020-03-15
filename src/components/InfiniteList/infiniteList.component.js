@@ -1,70 +1,48 @@
-import React, { Component } from "react";
-import { ListWrapper } from "./infiniteList.style";
+import React from "react";
+import { ListWrapper, ListItemWrapper } from "./infiniteList.style";
 import Infinite from "react-infinite";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
-class ListItem extends Component {
-  render() {
-    return <div className="infinite-list-item">List Item {this.props.num}</div>;
-  }
-}
+type Props = {
+  webId: String,
+  elements: [],
+  isInfiniteLoading: Boolean,
+  buildElements: () => void,
+  handleInfiniteLoad: () => void,
+  elementInfiniteLoad: () => void
+};
 
-export class InfiniteList extends Component<Props> {
-  constructor(props) {
-    super(props);
+export const InfiniteList = (props: Props) => {
+  const {
+    elements,
+    isInfiniteLoading,
+    handleInfiniteLoad,
+    elementInfiniteLoad
+  } = props;
 
-    this.state = {
-      elements: this.buildElements(0, 500),
-      isInfiniteLoading: false
-    };
-  }
-
-  buildElements(start, end) {
-    var elements = [];
-    for (var i = start; i < end; i++) {
-      elements.push(<ListItem key={i} num={i} />);
-    }
-    return elements;
-  }
-
-  handleInfiniteLoad() {
-    var that = this;
-    this.setState({
-      isInfiniteLoading: true
-    });
-    setTimeout(function() {
-      var elemLength = that.state.elements.length,
-        newElements = that.buildElements(elemLength, elemLength + 1000);
-      that.setState({
-        isInfiniteLoading: false,
-        elements: that.state.elements.concat(newElements)
-      });
-    }, 2500);
-  }
-
-  elementInfiniteLoad() {
-    return <div className="infinite-list-item">Loading...</div>;
-  }
-  render() {
-    return (
-      <ListWrapper>
-        <Infinite
-          elementHeight={20}
-          useWindowAsScrollContainer={true}
-          infiniteLoadBeginEdgeOffset={200}
-          onInfiniteLoad={this.handleInfiniteLoad}
-          loadingSpinnerDelegate={this.elementInfiniteLoad()}
-          isInfiniteLoading={this.state.isInfiniteLoading}
-        >
-          {this.state.elements.map( element => (
-            <div>
-              <Button variant="outline-primary" href="/map">
-                {element}
-              </Button>
-            </div>
-          ))}
-        </Infinite>
-      </ListWrapper>
-    );
-  }
-}
+  return (
+    <ListWrapper>
+      <Infinite
+        elementHeight={200}
+        useWindowAsScrollContainer={true}
+        infiniteLoadBeginEdgeOffset={200}
+        onInfiniteLoad={handleInfiniteLoad}
+        loadingSpinnerDelegate={elementInfiniteLoad()}
+        isInfiniteLoading={isInfiniteLoading}
+      >
+        {elements.map(element => (
+          <ListItemWrapper>
+            <Button
+              style={{ height: 190 }}
+              variant="outline-primary"
+              href="/map"
+              block
+            >
+              {element}
+            </Button>
+          </ListItemWrapper>
+        ))}
+      </Infinite>
+    </ListWrapper>
+  );
+};
