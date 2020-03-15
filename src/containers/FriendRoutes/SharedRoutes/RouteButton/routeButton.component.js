@@ -18,7 +18,7 @@ export const RouteButton = props => {
     return (
         
         <Button onClick={(event) => handleClick(event)}>
-
+            {route}
         </Button>
 
     );

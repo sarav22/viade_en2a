@@ -5,44 +5,39 @@ import SharedRoutes from "./SharedRoutes";
 import FriendBar from "./FriendBar";
 import Container from 'react-bootstrap/Container';
 import {FriendBarWrapper} from "./FriendBar/friendBar.style";
+import {loadAllRoutes} from "@services/DomainJSONTranslator.js";
 
 
 export class FriendRoutesComponent extends Component<Props> {
 
   constructor(props){
     super(props);
-		this.state={
-			routes:null
-		}
+		this.state = {
+      friendWebId: "",
+      routes: []
+    };
   }
 
-  componentDidMount() {
-    
-  }
-/*
-//For this version we will not implement this feature
-  async getSharedRoutes(friendWebId) {
-    const auth = require('solid-auth-cli')
-    const sharedFolder = "/public/viade/sharedRoutes/";
-    const friendPod = friendWebId.split("/")[0] + "//" + friendWebId.split("/")[1]
-    const FC = require('solid-file-client');
-    const fc = new FC( auth );
-    let froutes = await fc.readFolder( friendPod + sharedFolder ).links;
-    this.setState({routes:froutes});
-    return null; 
-  }
-*/
-
-  render() {
-    const webId = this.props.webId;
+  loadData() {
     const f = this.props.match.params.f;
     const s = this.props.match.params.s;
     const n = this.props.match.params.n;
     const friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
-    //const routes = this.getSharedRoutes(friendWebId);
-    const routes = null;
+    this.state.friendWebId = friendWebId;
+    this.getRoutes(friendWebId);
+  }
 
-    if(routes == null){
+  async getRoutes(friendWebId){
+      this.state.routes = await loadAllRoutes(friendWebId);
+  }
+
+  render() {
+    this.loadData();
+    const webId = this.props.webId;
+    const friendWebId = this.state.friendWebId;
+    const routes = this.state.routes;
+
+    if(routes.length == 0){
       return (
         <Container fluid>
           <Row>
@@ -67,9 +62,7 @@ export class FriendRoutesComponent extends Component<Props> {
             </FriendBarWrapper>
           </Row>
           <Row>
-            <Col>
-              <SharedRoutes {...{routes}}/>
-            </Col>
+            <SharedRoutes {...{routes}} />
           </Row>
         </Container>
       );
