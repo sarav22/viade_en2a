@@ -12,7 +12,7 @@ const FriendDropdown = props => {
 
     async function deleteFriend(event) {
         event.preventDefault();
-        ldflex[webId].knows.delete(ldflex[friendWebId]);
+        await ldflex[webId].knows.delete(ldflex[friendWebId]);
         browserHistory.push("/manageFriends");
         await reload();
     }
