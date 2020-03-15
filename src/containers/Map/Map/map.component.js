@@ -16,14 +16,14 @@ import {
  const Map = props => {
   const { route } = props;
   const { t } = useTranslation();
+
   const routePath=[];
-  route.waypoints.forEach(point => {
+  route.itinerary.forEach(trackPoint => {
       routePath.push({
-        lat:point.lat,
-        lng:point.lng
+        lat:trackPoint.latitude,
+        lng:trackPoint.longitude
       });
   });
-  console.log(routePath)
   
   return (
 
