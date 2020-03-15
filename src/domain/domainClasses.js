@@ -1,13 +1,11 @@
 // TODO: Discuss if we should export every class or only the Route class.
 
-
 export class TrackPoint {
-    constructor( latitude, longitude) {
+    constructor(latitude, longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 }
-
 
 export class Resource {
     
@@ -22,7 +20,6 @@ export class Comment {
         this.resourceUrl = resourceUrl;
     }
 }
-
 
 
 export class Route {
@@ -43,18 +40,16 @@ export class Route {
             this.description=params.description;
         }
 
-        
-        if (params.itinerary){
-            this.itinerary = params.itinerary;
-            
+        if (params.itineray){
+            this.itineray = params.itineray;
         }
 
         if (params.comments){
-            this.commentList = params.comments;
+            this.comments = params.comments;
         }
 
         if (params.resources){
-            this.resourceList = params.resources;
+            this.resources = params.resources;
         }
     }
 
