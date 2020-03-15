@@ -4,11 +4,11 @@
 function parseRouteJsonLD(routeSpec) {
 
 
-    const comments = routeSpec.commentList.map(function (comment) {
+    const comments = routeSpec.comments.map(function (comment) {
         return { "@id": comment.resourceUrl };
     });
 
-    const media = routeSpec.resourceList.map(function (media) {
+    const media = routeSpec.resources.map(function (media) {
         return { "@id": media.resourceUrl };
     });
 
@@ -58,7 +58,7 @@ function parseRouteJsonLD(routeSpec) {
 
         "name": routeSpec.name,
         "description": routeSpec.description,
-        "points": routeSpec.points,
+        "points": points,
         "comments": comments,
         "media": media
 

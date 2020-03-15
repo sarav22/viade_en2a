@@ -40,8 +40,8 @@ export class Route {
             this.description=params.description;
         }
 
-        if (params.itineray){
-            this.itineray = params.itineray;
+        if (params.itinerary){
+            this.itinerary = params.itinerary;
         }
 
         if (params.comments){
