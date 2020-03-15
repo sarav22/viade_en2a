@@ -1,49 +1,37 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  MapRouteName
-} from './map.style';
-import {
-  LoadScript,
-  GoogleMap,
-  Polyline
-} from '@react-google-maps/api'
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { MapRouteName } from "./map.style";
+import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
  * @param props
  */
- const Map = props => {
+const Map = props => {
   const { route } = props;
   const { t } = useTranslation();
 
-  const routePath=[];
+  const routePath = [];
   route.itinerary.forEach(trackPoint => {
-      routePath.push({
-        lat:trackPoint.latitude,
-        lng:trackPoint.longitude
-      });
+    routePath.push({
+      lat: trackPoint.latitude,
+      lng: trackPoint.longitude
+    });
   });
-  
+
   return (
-
     <div>
-        <h3>
-          {t('mapView.viewTitle')} <MapRouteName>{route.name}</MapRouteName>
-        </h3>
+      <h3>
+        {t("mapView.viewTitle")} <MapRouteName>{route.name}</MapRouteName>
+      </h3>
 
-  
-      <LoadScript
-        id="script-loader"
-        googleMapsApiKey=""
-      >
-
+      <LoadScript id="script-loader" googleMapsApiKey="">
         <GoogleMap
-          id='mapView'
+          id="mapView"
           zoom={12}
           resetBoundsOnResize
           mapContainerStyle={{
-            "max-height":"calc(100vh - 180px)",
+            "max-height": "calc(100vh - 180px)",
             height: "800px",
             width: "100%",
             padding: "1rem 3.5rem"
@@ -55,25 +43,25 @@ import {
             lng: routePath[0].lng
           }}
         >
-          <Polyline   geodesic={true}
+          <Polyline
+            geodesic={true}
             options={{
-                path: routePath,
-                strokeColor: '#ff0000',
-                strokeOpacity: 1,
-                strokeWeight: 6,
-                icons: [{
-                    offset: '0',
-                    repeat: '10px'
-                }],
+              path: routePath,
+              strokeColor: "#ff0000",
+              strokeOpacity: 1,
+              strokeWeight: 6,
+              icons: [
+                {
+                  offset: "0",
+                  repeat: "10px"
+                }
+              ]
             }}
- />
-          
+          />
         </GoogleMap>
       </LoadScript>
     </div>
-
   );
-
 };
 
 export default Map;

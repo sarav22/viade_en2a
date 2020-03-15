@@ -6,7 +6,6 @@ import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes } from "/services/DomainJSONTranslator";
-import { url } from "rdf-namespaces/dist/cal";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
