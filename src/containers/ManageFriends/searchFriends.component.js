@@ -16,8 +16,8 @@ import {
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const ManageFriendsContent = props => {
-  const { webId,friends} = props;
+export const SearchFriendsContent = props => {
+  const { webId,searchResults} = props;
   const { t } = useTranslation();
 
   async function ldflexDeleter(friend){
@@ -46,8 +46,8 @@ export const ManageFriendsContent = props => {
     <ManageFriendsWrapper data-testid="manageFriends-wrapper">
       <ManageFriendsCard data-testid="manageFriends-card" >
       {
-        friends.map(friend => (
-        <div key={friend + "div"}>
+        searchResults.map(friend => (
+          <div>
         <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
           <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
@@ -63,4 +63,4 @@ export const ManageFriendsContent = props => {
       </ManageFriendsCard>
     </ManageFriendsWrapper>
   );
-};
+}
