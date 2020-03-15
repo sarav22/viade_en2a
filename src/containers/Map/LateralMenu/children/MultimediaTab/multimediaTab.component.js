@@ -20,7 +20,7 @@ const MultimediaTab = props => {
                             <Row>
                                 <Col>
                                     <Image src={item.resourceUrl}
-                                        style={{ "padding": "15px" }}
+                                        style={{ "padding": "15px", "max-width":"300px", "max-height":"300px" }}
                                     />
                                 </Col>
 
