@@ -48,9 +48,7 @@ export const loadMapInfo = async jsonUrl => {
             }
         }
     }
-    var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentList})
-    console.log("RUTA GENERADA")
-    console.log(route)
+    var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentList});
     return route;
 };
 
