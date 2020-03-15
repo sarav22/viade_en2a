@@ -16,11 +16,23 @@ const DataTab = props => {
                     <ol>
                         {route.itinerary.map(point => {
                             return (
-                                <li><p>name:{point.name}</p>
-                                    <p>description:{point.name}</p>
-                                    <p>latitude:{point.lat}</p>
-                                    <p>longitude:{point.lng}</p>
-                                    <p>elevation:{point.ele}</p>
+                                <li>
+                                    
+                                    {    
+                                        point.name!=null &&
+                                        <p>name:{point.name}</p>
+                                    }
+                                    {    
+                                        point.description!=null &&
+                                        <p>description:{point.description}</p>
+                                    }                                    
+                                    
+                                    <p>latitude:{point.latitude}</p>
+                                    <p>longitude:{point.longitude}</p>
+                                    {    
+                                        point.elevation!=null &&
+                                        <p>elevation:{point.elevation}</p>
+                                    }
                                 </li>
                             );
                         }

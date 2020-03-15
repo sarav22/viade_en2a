@@ -21,7 +21,7 @@ export class MapComponent extends Component<Props> {
 
   componentDidMount() {
 
-    loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt")
+    loadMapInfo("https://carlosmanrique.solid.community/viade/routes/rutaDePrueba.txt")
     .then(ruta => {this.setState({loading: false, route:ruta})
                     
   })
