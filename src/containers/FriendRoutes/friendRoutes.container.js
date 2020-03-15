@@ -19,7 +19,8 @@ export class FriendRoutesComponent extends Component<Props> {
   componentDidMount() {
     
   }
-
+/*
+//For this version we will not implement this feature
   async getSharedRoutes(friendWebId) {
     const auth = require('solid-auth-cli')
     const sharedFolder = "/public/viade/sharedRoutes/";
@@ -28,9 +29,9 @@ export class FriendRoutesComponent extends Component<Props> {
     const fc = new FC( auth );
     let froutes = await fc.readFolder( friendPod + sharedFolder ).links;
     this.setState({routes:froutes});
-    return null; //For this version we will not implement this feature
+    return null; 
   }
-
+*/
 
   render() {
     const webId = this.props.webId;
@@ -38,7 +39,8 @@ export class FriendRoutesComponent extends Component<Props> {
     const s = this.props.match.params.s;
     const n = this.props.match.params.n;
     const friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
-    const routes = this.getSharedRoutes(friendWebId);
+    //const routes = this.getSharedRoutes(friendWebId);
+    const routes = null;
 
     if(routes == null){
       return (
