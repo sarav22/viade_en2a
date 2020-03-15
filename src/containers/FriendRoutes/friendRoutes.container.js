@@ -28,7 +28,7 @@ export class FriendRoutesComponent extends Component<Props> {
     const fc = new FC( auth );
     let froutes = await fc.readFolder( friendPod + sharedFolder ).links;
     this.setState({routes:froutes});
-    return this.state.routes;
+    return null; //For this version we will not implement this feature
   }
 
 
