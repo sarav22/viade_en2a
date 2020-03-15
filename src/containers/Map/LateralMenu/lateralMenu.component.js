@@ -8,8 +8,11 @@ import DataTab from './children/DataTab';
 
 const LateralMenu = props  => {
 
+  
   const { t } = useTranslation();
   const { route } = props;
+  console.log("Lateral menu")
+  console.log(route)
 
   return (
     <Tabs id="controlled-tab-example" >

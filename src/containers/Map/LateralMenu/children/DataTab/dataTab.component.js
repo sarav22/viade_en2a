@@ -6,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 
 const DataTab = props => {
     const { route } = props;
-
     return (
         <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
             <Modal.Body style={{ 'max-height': 'calc(100vh - 215px)', 'overflow-y': 'auto', 'width': '100%',"scrollbar-width":"thin" }}>
@@ -15,7 +14,7 @@ const DataTab = props => {
                     <p>route.description</p>
                     <h5>Puntos de ruta</h5>
                     <ol>
-                        {route.waypoints.map(point => {
+                        {route.itinerary.map(point => {
                             return (
                                 <li><p>name:{point.name}</p>
                                     <p>description:{point.name}</p>

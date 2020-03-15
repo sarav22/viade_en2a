@@ -1,15 +1,19 @@
 import {Route, Resource, Comment, TrackPoint} from '../domain/domainClasses.js'
 import {retrieveJson, retrieveAllRoutes} from './PODExtractor.js'
 
+
 // TODO: Discuss if async makes sense here
 
 export const loadMapInfo = async jsonUrl => {
     // Load JSON-LD from map
   
     var routeJson = ""
+    
     await retrieveJson(jsonUrl).then(function(result) {
       routeJson = JSON.parse(result);
     }) 
+    
+
 
     var routeName = "";
     var routeDescription = "";
@@ -44,7 +48,9 @@ export const loadMapInfo = async jsonUrl => {
             }
         }
     }
-    var route = new Route({"name" : routeName, "description" : routeDescription, "itineray" : trackPointList, "resources" : resourceList, "comments" : commentList})
+    var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentList})
+    console.log("RUTA GENERADA")
+    console.log(route)
     return route;
 };
 

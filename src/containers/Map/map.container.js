@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Map from './Map';
 import LateralMenu from './LateralMenu';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-import {loadMapInfo} from "../../services/DomainJSONTranslator";
+import { loadMapInfo } from "../../services/DomainJSONTranslator";
 
 
 /**
@@ -14,39 +14,54 @@ import {loadMapInfo} from "../../services/DomainJSONTranslator";
 export class MapComponent extends Component<Props> {
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
-	}
+    this.state = {loading:true, route:null, title:null}
+  }
 
   componentDidMount() {
-    const route = null;
-    loadMapInfo("https://carlosmanrique.solid.community/viade/routes/rutaDePrueba.txt").then(function (result){const route = result;console.log(route)})
-    
-    console.log("log2"+ route)
+
+    loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt")
+    .then(ruta => {this.setState({loading: false, route:ruta})
+                    
+  })
+
+    //const route = null;
+    //loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt").then(function (result){const route = result;console.log(route)})
+
+    //console.log("log2"+ route)
   }
 
   componentDidUpdate(prevProps) {
 
   }
 
-
-  render() {
-
+  ViewContent = route => {
     return (
       <Container fluid >
         <Row>
-
           <Col xs={6} md={4}>
-            <LateralMenu  route={this.route}/>
+            <LateralMenu route={route} />
           </Col>
-
+  
           <Col xs={12} md={8}>
-            <Map route={this.route} />
+            <Map route={route} />
           </Col>
-
+  
         </Row>
-
       </Container>
+    )
+  }
+
+
+  render() {
+    const {loading, route} = this.state;
+    let that = this
+    return (
+
+     <Fragment>
+        {loading ? "Loading..." : this.ViewContent(this.state.route)}
+      </Fragment>
     );
   }
 }
