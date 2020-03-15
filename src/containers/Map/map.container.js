@@ -50,8 +50,7 @@ export class MapComponent extends Component<Props> {
   };
 
   render() {
-    const { loading, route } = this.state;
-    let that = this;
+    const { loading } = this.state;
     return (
       <Fragment>
         {loading ? "Loading..." : this.viewContent(this.state.route)}
