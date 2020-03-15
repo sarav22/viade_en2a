@@ -8,8 +8,6 @@ before_install:
   - sudo apt-get -y install graphviz
   - npm install
 script:
-  - npm install -g codecov
-  - npm codecov
   - CI=false npm run build
   - npm run docs
 deploy:
