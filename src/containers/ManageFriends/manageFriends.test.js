@@ -1,26 +1,23 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { ManageFriendsComponent } from '../Welcome/welcome.container';
+import {  cleanup } from 'react-testing-library';
+import { ManageFriendsContent } from '@containers/ManageFriends/manageFriends.component';
+import { ManageFriendsContainer } from '@containers/ManageFriends/manageFriends.container';
+import '@testing-library/jest-dom/';
 
-library.add(fas);
+const webId =  "https://saravg.inrupt.net/profile/card#me";
+const friends =["https://raulpemol.inrupt.net/profile/card#me", "https://carlosmanrique.inrupt.net/profile/card#me"];
 
+afterAll(cleanup);
+    const { container, getByTestId } = ManageFriendsContainer.render(
+    <ManageFriendsContent {...{webId, friends}} />
+);
 
-describe.only('ManageFriends', () => {
-  afterAll(cleanup);
-  const { container, getByTestId } = render(
-    <Router>
-      <ManageFriendsComponent {...{}} />
-    </Router>
-  );
-
-  test('renders without crashing', () => {
+test('Renders correctly', () => {
     expect(container).toBeTruthy();
-  });
-
-  test('renders with styled components', () => {
     expect(getByTestId('manageFriends-wrapper')).toBeTruthy();
-  });
+});
+
+test('Renders friends buttons correctly', () =>{
+    friends.map(friend=>(
+        expect(getByTestId('buttonFriend'+friend)).toBeTruthy()));
 });
