@@ -5,8 +5,6 @@ import SharedRoutes from "./SharedRoutes";
 import FriendBar from "./FriendBar";
 import Container from 'react-bootstrap/Container';
 import {FriendBarWrapper} from "./FriendBar/friendBar.style";
-import { fetchDocument } from 'tripledoc';
-import { foaf } from 'rdf-namespaces';
 
 
 export class FriendRoutesComponent extends Component<Props> {
@@ -19,14 +17,18 @@ export class FriendRoutesComponent extends Component<Props> {
   }
 
   componentDidMount() {
-    //this.getSharedRoutes();
+    
   }
 
-  async getSharedRoutes() {
-    const webIdDoc = await fetchDocument(this.props.friendWebId);
-    const profile = webIdDoc.getSubject(this.props.friendWebId);
-    const froutes = profile.getAllRefs(/*Write here the namespace for the routes*/);
+  async getSharedRoutes(friendWebId) {
+    const auth = require('solid-auth-cli')
+    const sharedFolder = "/public/viade/sharedRoutes/";
+    const friendPod = friendWebId.split("/")[0] + "//" + friendWebId.split("/")[1]
+    const FC = require('solid-file-client');
+    const fc = new FC( auth );
+    let froutes = await fc.readFolder( friendPod + sharedFolder ).links;
     this.setState({routes:froutes});
+    return this.state.routes;
   }
 
 
@@ -36,7 +38,7 @@ export class FriendRoutesComponent extends Component<Props> {
     const s = this.props.match.params.s;
     const n = this.props.match.params.n;
     const friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
-    const routes = this.state.routes;
+    const routes = this.getSharedRoutes(friendWebId);
 
     if(routes == null){
       return (
@@ -47,9 +49,6 @@ export class FriendRoutesComponent extends Component<Props> {
             </FriendBarWrapper>
           </Row>
           <Row>
-            <Col>
-              <div></div>
-            </Col>
             <Col>
               <div></div>
             </Col>
@@ -68,9 +67,6 @@ export class FriendRoutesComponent extends Component<Props> {
           <Row>
             <Col>
               <SharedRoutes {...{routes}}/>
-            </Col>
-            <Col>
-              <SharedRoutes {...{routes}} />
             </Col>
           </Row>
         </Container>
