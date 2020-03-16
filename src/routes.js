@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from "@layouts";
-import { HashRouter as Router, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 
 import {
   Login,
@@ -47,16 +47,16 @@ const Routes = () => (
   <Router>
     <Fragment>
       <Switch>
-        <NotLoggedInLayout component={Login} path={process.env.PUBLIC_URL + "/login"} exact />
-        <NotLoggedInLayout component={Register} path={process.env.PUBLIC_URL + "/register"} exact />
+        <NotLoggedInLayout component={Login} path="/login" exact />
+        <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout
           path="/register/success"
           component={RegistrationSuccess}
           exact
         />
         <PublicLayout path="/404" component={PageNotFound} exact />
-        <Redirect from={process.env.PUBLIC_URL + "/"} to={process.env.PUBLIC_URL + "/welcome"} exact />
-        <PrivateLayout path={process.env.PUBLIC_URL + "/"} routes={privateRoutes} />
+        <Redirect from="/" to="/welcome" exact />
+        <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
       </Switch>
     </Fragment>
