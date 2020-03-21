@@ -28,7 +28,7 @@ export const InfiniteList = (props: Props) => {
         useWindowAsScrollContainer={true}
         infiniteLoadBeginEdgeOffset={200}
         onInfiniteLoad={handleInfiniteLoad}
-        loadingSpinnerDelegate={elementInfiniteLoad()}
+        loadingSpinnerDelegate={elementInfiniteLoad}
         isInfiniteLoading={isInfiniteLoading}
       >
         {elements.map(element => (

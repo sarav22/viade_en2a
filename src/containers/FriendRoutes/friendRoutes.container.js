@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import SharedRoutes from "./SharedRoutes";
 import FriendBar from "./FriendBar";
 import Container from 'react-bootstrap/Container';
 import {FriendBarWrapper} from "./FriendBar/friendBar.style";
 import {loadAllRoutes} from "/services/DomainJSONTranslator";
+import { InfiniteList } from "@components";
+import {ListItem} from "/containers/RouteList/routeList.container";
 
 
 export class FriendRoutesComponent extends Component<Props> {
@@ -14,7 +15,8 @@ export class FriendRoutesComponent extends Component<Props> {
     super(props);
 		this.state = {
       friendWebId: "",
-      routes: []
+      routes: [],
+      isInfiniteLoading: false,
     };
   }
 
@@ -30,16 +32,43 @@ export class FriendRoutesComponent extends Component<Props> {
   async getRoutes(friendWebId){
     var routes = await loadAllRoutes(friendWebId);
     routes = routes.map(route => route.replace("https://", ""));
+    routes.map(route => 
+      <ListItem
+        src={
+          "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
+        }
+        url={route}
+      />
+    );
     this.setState({ routes: routes });
+  }
+
+  handleInfiniteLoad = () => {
+    var that = this;
+    this.setState({
+      isInfiniteLoading: true
+    });
+    setTimeout(function() {
+      var elemLength = that.state.elements.length,
+        newElements = that.buildElements(elemLength, elemLength + 10);
+      that.setState({
+        isInfiniteLoading: false,
+        elements: that.state.elements.concat(newElements)
+      });
+    }, 100);
+  };
+
+  elementInfiniteLoad = () => {
+    return <div className="infinite-list-item">Loading...</div>;
   }
 
   render() {
     this.loadData();
     const webId = this.props.webId;
     const friendWebId = this.state.friendWebId;
-    const routes = this.state.routes;
+    const elements = this.state.routes;
 
-    if(routes.length == 0){
+    if(elements.length == 0){
       return (
         <Container fluid>
           <Row>
@@ -64,7 +93,7 @@ export class FriendRoutesComponent extends Component<Props> {
             </FriendBarWrapper>
           </Row>
           <Row>
-            <SharedRoutes {...{routes}} />
+
           </Row>
         </Container>
       );

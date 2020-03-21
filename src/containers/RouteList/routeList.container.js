@@ -9,7 +9,7 @@ import { loadAllRoutes } from "/services/DomainJSONTranslator";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
-class ListItem extends Component {
+export class ListItem extends Component {
   render() {
     return (
       <ItemWrapper className="card">
