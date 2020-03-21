@@ -5,7 +5,7 @@ import SharedRoutes from "./SharedRoutes";
 import FriendBar from "./FriendBar";
 import Container from 'react-bootstrap/Container';
 import {FriendBarWrapper} from "./FriendBar/friendBar.style";
-import {loadAllRoutes} from "@services/DomainJSONTranslator.js";
+import {loadAllRoutes} from "/services/DomainJSONTranslator";
 
 
 export class FriendRoutesComponent extends Component<Props> {
@@ -22,13 +22,15 @@ export class FriendRoutesComponent extends Component<Props> {
     const f = this.props.match.params.f;
     const s = this.props.match.params.s;
     const n = this.props.match.params.n;
-    const friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
+    var friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
     this.state.friendWebId = friendWebId;
     this.getRoutes(friendWebId);
   }
 
   async getRoutes(friendWebId){
-      this.state.routes = await loadAllRoutes(friendWebId);
+    var routes = await loadAllRoutes(friendWebId);
+    routes = routes.map(route => route.replace("https://", ""));
+    this.setState({ routes: routes });
   }
 
   render() {
