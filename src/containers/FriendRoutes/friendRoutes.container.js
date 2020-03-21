@@ -17,6 +17,7 @@ export class FriendRoutesComponent extends Component<Props> {
       friendWebId: "",
       routes: [],
       isInfiniteLoading: false,
+      elements: []
     };
   }
 
@@ -32,15 +33,24 @@ export class FriendRoutesComponent extends Component<Props> {
   async getRoutes(friendWebId){
     var routes = await loadAllRoutes(friendWebId);
     routes = routes.map(route => route.replace("https://", ""));
-    routes.map(route => 
-      <ListItem
-        src={
-          "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
-        }
-        url={route}
-      />
-    );
     this.setState({ routes: routes });
+  }
+
+  buildElements(start, end) {
+    var elements = [];
+    for (var i = start; i < end; i++) {
+      elements.push(
+        <ListItem
+          key={i}
+          num={i}
+          src={
+            "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
+          }
+          url={this.state.routes[i]}
+        />
+      );
+    }
+    return elements;
   }
 
   handleInfiniteLoad = () => {
@@ -66,9 +76,8 @@ export class FriendRoutesComponent extends Component<Props> {
     this.loadData();
     const webId = this.props.webId;
     const friendWebId = this.state.friendWebId;
-    const elements = this.state.routes;
 
-    if(elements.length == 0){
+    if(this.state.routes.length == 0){
       return (
         <Container fluid>
           <Row>
@@ -77,9 +86,7 @@ export class FriendRoutesComponent extends Component<Props> {
             </FriendBarWrapper>
           </Row>
           <Row>
-            <Col>
-              <div></div>
-            </Col>
+            <div></div>
           </Row>
         </Container>
       );
@@ -93,7 +100,14 @@ export class FriendRoutesComponent extends Component<Props> {
             </FriendBarWrapper>
           </Row>
           <Row>
-
+            <InfiniteList
+              {...{
+                elements: this.state.elements,
+                isInfiniteLoading: this.isInfiniteLoading,
+                handleInfiniteLoad: this.handleInfiniteLoad,
+                elementInfiniteLoad: this.state.elementInfiniteLoad
+              }}
+            />
           </Row>
         </Container>
       );
