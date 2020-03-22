@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import FriendBar from "./FriendBar";
 import Container from 'react-bootstrap/Container';
@@ -14,8 +13,9 @@ export class FriendRoutesComponent extends Component<Props> {
 
   constructor(props){
     super(props);
+    var friendWebId = "https://" + Base64.decode(this.props.match.params.friend);
 		this.state = {
-      friendWebId: "",
+      friendWebId: friendWebId,
       routes: [],
       isInfiniteLoading: false,
       elements: []
@@ -23,9 +23,7 @@ export class FriendRoutesComponent extends Component<Props> {
   }
 
   loadData() {
-    var friendWebId = "https://" + Base64.decode(this.props.match.params.friend);
-    this.state.friendWebId = friendWebId;
-    this.getRoutes(friendWebId);
+    this.getRoutes(this.state.friendWebId);
   }
 
   async getRoutes(friendWebId){
@@ -80,7 +78,7 @@ export class FriendRoutesComponent extends Component<Props> {
     const webId = this.props.webId;
     const friendWebId = this.state.friendWebId;
 
-    if(this.state.routes.length == 0){
+    if(this.state.routes.length === 0){
       return (
         <Container fluid>
           <Row>
