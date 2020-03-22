@@ -57,7 +57,7 @@ In the best case you will get away with examples or simple signatures.
 
 ****
 
-_**<Overview Diagram>**_
+image::buildingblockviewdiagram.png[Building block view diagram] 
 
 Motivation::
 
