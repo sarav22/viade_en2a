@@ -3,204 +3,131 @@
 
 == Building Block View
 
-[role="arc42help"]
-****
-.Content
-The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers, functions, macros, operations,
-datas structures, ...) as well as their dependencies (relationships, associations, ...)
-
-This view is mandatory for every architecture documentation.
-In analogy to a house this is the _floor plan_.
-
-.Motivation
-Maintain an overview of your source code by making its structure understandable through
-abstraction.
-
-This allows you to communicate with your stakeholder on an abstract level without disclosing implementation details.
-
-.Form
-The building block view is a hierarchical collection of black boxes and white boxes
-(see figure below) and their descriptions.
-
-image::images/05_building_blocks-EN.png["Hierarchy of building blocks"]
-
-*Level 1* is the white box description of the overall system together with black
-box descriptions of all contained building blocks.
-
-*Level 2* zooms into some building blocks of level 1.
-Thus it contains the white box description of selected building blocks of level 1, together with black box descriptions of their internal building blocks.
-
-*Level 3* zooms into selected building blocks of level 2, and so on.
-****
-
-=== Whitebox Overall System
-
-[role="arc42help"]
-****
-Here you describe the decomposition of the overall system using the following white box template. It contains
-
- * an overview diagram
- * a motivation for the decomposition
- * black box descriptions of the contained building blocks. For these we offer you alternatives:
-
-   ** use _one_ table for a short and pragmatic overview of all contained building blocks and their interfaces
-   ** use a list of black box descriptions of the building blocks according to the black box template (see below).
-   Depending on your choice of tool this list could be sub-chapters (in text files), sub-pages (in a Wiki) or nested elements (in a modeling tool).
 
 
- * (optional:) important interfaces, that are not explained in the black box templates of a building block, but are very important for understanding the white box.
-Since there are so many ways to specify interfaces why do not provide a specific template for them.
- In the worst case you have to specify and describe syntax, semantics, protocols, error handling,
- restrictions, versions, qualities, necessary compatibilities and many things more.
-In the best case you will get away with examples or simple signatures.
+=== Overall System Diagram
+This diagrams stand as the whole struncture of our system.
 
-****
+image::images/buildingblockviewdiagram.png["Hierarchy of building blocks"]
 
-image::buildingblockviewdiagram.png[Building block view diagram] 
+=== Whitebox Overall  (Level 1)
 
-Motivation::
+===== Motivation
+The general structure of the system, is an application where users can see routes that are stored in their PODs, or in their friends PODs. Since the POD structure is already implemented we consider it as a neighbor system in this diagram.
 
-_<text explanation>_
-
-
-Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
-
-Important Interfaces::
-_<Description of important interfaces>_
-
-[role="arc42help"]
-****
-Insert your explanations of black boxes from level 1:
-
-If you use tabular form you will only describe your black boxes with name and
-responsibility according to the following schema:
+===== Contained Building Blocks
 
 [cols="1,2" options="header"]
 |===
 | **Name** | **Responsibility**
-| _<black box 1>_ | _<Text>_
-| _<black box 2>_ | _<Text>_
+| Viade | The application that the user can see
+| POD | The infraestructure for data that the user needs for using the application
 |===
-
-
-
-If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
-Its headline is the name of the black box.
-****
-
-
-==== <Name black box 1>
-
-[role="arc42help"]
-****
-Here you describe <black box 1>
-according the the following black box template:
-
-* Purpose/Responsibility
-* Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.
-* (Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, ....
-* (Optional) directory/file location
-* (Optional) Fulfilled requirements (if you need traceability to requirements).
-* (Optional) Open issues/problems/risks
-
-****
-
-_<Purpose/Responsibility>_
-
-_<Interface(s)>_
-
-_<(Optional) Quality/Performance Characteristics>_
-
-_<(Optional) Directory/File Location>_
-
-_<(Optional) Fulfilled Requirements>_
-
-_<(optional) Open Issues/Problems/Risks>_
-
-
-
-
-==== <Name black box 2>
-
-_<black box template>_
-
-==== <Name black box n>
-
-_<black box template>_
-
-
-==== <Name interface 1>
-
-...
-
-==== <Name interface m>
-
 
 
 === Level 2
 
-[role="arc42help"]
-****
-Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.
 
-You have to decide which building blocks of your system are important enough to justify such a detailed description.
-Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
-Leave out normal, simple, boring or standardized parts of your system
-****
+===== Motivation
+This level provides an overview of the types of code in the project.
 
-==== White Box _<building block 1>_
+===== Contained Building Blocks
 
-[role="arc42help"]
-****
-...describes the internal structure of _building block 1_.
-****
-
-_<white box template>_
-
-==== White Box _<building block 2>_
-
-
-_<white box template>_
-
-...
-
-==== White Box _<building block m>_
-
-
-_<white box template>_
-
-
+[cols="1,2" options="header"]
+|===
+| **Name** | **Responsibility**
+| App | Code oriented to solve the functionality of the viade project
+| Tests | Code oriented to test the code un module App
+| Modules | Stands for the npm modules installed in the project and our depencies to them.
+|===
 
 === Level 3
 
-[role="arc42help"]
-****
-Here you can specify the inner structure of (some) building blocks from level 2 as white boxes.
+==== App
 
-When you need more detailed levels of your architecture please copy this
-part of arc42 for additional levels.
-****
+===== Motivation
+During the desing of the functionality implementation we were in need of structuring the code. In the degree we became used to use the layer architectural pattern, which does not really fit with the constraint of using REACT. Even though, we strutured it in a similar way to the one in the pattern.
 
+===== Contained Building Blocks
 
-==== White Box <_building block x.1_>
-
-[role="arc42help"]
-****
-Specifies the internal structure of _building block x.1_.
-****
-
-
-_<white box template>_
-
-
-==== White Box <_building block x.2_>
-
-_<white box template>_
+[cols="1,2" options="header"]
+|===
+| **Name** | **Responsibility**
+| Internationalization | This stand for the cross cutting code that leads to an easy translation process of the app
+| Domain classes | Here we have some Entities commonly used in the management of Routes, for instance a TrackPoint
+| Services | Here we have complex functionality that does not really fit into a component
+| Components | Based on the REACT framework, here we have presentation layer, and some logic
+|===
 
 
 
-==== White Box <_building block y.1_>
+==== Tests
 
-_<white box template>_
+===== Motivation
+The code needs to be tested, in multiple ways if possible, so we need several test framework.
+
+===== Contained Building Blocks
+
+[cols="1,2" options="header"]
+|===
+| **Name** | **Responsibility**
+| Jest | Test for functionality of the app
+| Cucumber | Test for functionality of the app
+|===
+
+
+=== Level 4
+
+==== Services
+
+===== Motivation
+There is some complex functionality and algorithms that may be need to be changed in the future, or even during the development sprints, such as the translations to the data in the pod. In this particular case, we depend on something that is not really fixed, which is the standard in viadeSpec.
+
+In the end, we believe that this functionality should be separated from the rest, in order to improve extensibility and maintainability. 
+
+===== Contained Building Blocks
+
+[cols="1,2" options="header"]
+|===
+| **Name** | **Responsibility**
+| GPX Parser | Translates a gpx structure to domain classes objects that we can handle.
+| JSON-LD Translator | Translates domain objects to jsonld format and viceversa.
+|===
+
+==== Domain Classes
+
+===== Motivation
+Some entities are needed during the develpment of the project. Routes, comments, images, videos... To manage them properly we have created classes that model this entities 
+
+===== Contained Building Blocks
+
+[cols="1,2" options="header"]
+|===
+| **Name** | **Responsibility**
+| Route | Models a route, not only the geolocalization coodinates, but also, its comments and resources
+| TrackPoint | Models a combination of coordinates, latitude, longitude...
+| Comment | Models a user comment
+| Resource | Models an image or a video
+|===
+
+
+==== Components
+
+===== Motivation
+By means of React we have created several components to cover the expected functionality of the app.
+
+===== Contained Building Blocks
+
+[cols="1,2" options="header"]
+|===
+| **Name** | **Responsibility**
+| Login | Allows the user to login in the app, by means of a login to their POD
+| Register | Allows new Users to register and get a POD
+| Welcome | This is the first component that can be seen when logged into the app
+| NavBar | Allows the navigation across the different components of the app
+| Notifications | Handles the notification events
+| ManageFriends | Handles friends, and allows to see information related to them
+| Map | Displays the route and information about it to the User
+| RouteList | Displays all the routes of the User
+| FriendRoutes | Displays the routes of a User friend
+|===
