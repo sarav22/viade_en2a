@@ -7,6 +7,7 @@ import {FriendBarWrapper} from "./FriendBar/friendBar.style";
 import {loadAllRoutes} from "/services/DomainJSONTranslator";
 import { InfiniteList } from "@components";
 import {ListItem} from "/containers/RouteList/routeList.container";
+import { Base64 } from "js-base64";
 
 
 export class FriendRoutesComponent extends Component<Props> {
@@ -22,10 +23,7 @@ export class FriendRoutesComponent extends Component<Props> {
   }
 
   loadData() {
-    const f = this.props.match.params.f;
-    const s = this.props.match.params.s;
-    const n = this.props.match.params.n;
-    var friendWebId = "https://"+f+"."+s+"."+n+"/profile/card#me";
+    var friendWebId = "https://" + Base64.decode(this.props.match.params.friend);
     this.state.friendWebId = friendWebId;
     this.getRoutes(friendWebId);
   }

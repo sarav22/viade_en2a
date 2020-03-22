@@ -9,6 +9,7 @@ import {
   ManageFriendsWrapper,
   ButtonFriend,
 } from './manageFriends.style';
+import { Base64 } from "js-base64";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -34,10 +35,9 @@ export const ManageFriendsContent = props => {
   
   async function viewRoutes(event, friend) {
     event.preventDefault();
-    const f = friend.toString().substring(8).split(".")[0];
-    const s = friend.toString().substring(8).split(".")[1];
-    const n = friend.toString().substring(8).split(".")[2].split("/")[0];
-    browserHistory.push('/friendRoutes/'+ f +'/'+s + '/'+n);
+    var url = friend.replace("https://", "")
+    url = Base64.encode(url);
+    browserHistory.push('/friendRoutes/'+ url);
     await reload();
   }  
 

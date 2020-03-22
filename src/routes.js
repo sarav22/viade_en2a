@@ -33,7 +33,7 @@ const privateRoutes = [
   },
   {
     id: "manageFriends",
-    path: "/friendRoutes/:f/:s/:n",
+    path: "/friendRoutes/:friend",
     component: FriendRoutes
   },
   {
