@@ -13,7 +13,7 @@ function parseRouteJsonLD(routeSpec) {
     });
 
     const points = routeSpec.itinerary.map(function (trackPoint) {
-        return { "schema:latitude": trackPoint.latitude, "schema:longitude": trackPoint.longitude }
+        return { "latitude": trackPoint.latitude, "longitude": trackPoint.longitude }
     });
 
     const routeJsonLD = {
@@ -52,6 +52,14 @@ function parseRouteJsonLD(routeSpec) {
             "points": {
                 "@id": "viade:points",
                 "@container": "@list"
+            },
+            "latitude": {
+                "@id": "schema:latitude",
+                "@type": "xs:double"
+            },
+            "longitude": {
+                "@id": "schema:longitude",
+                "@type": "xs:double"
             }
 
         },
