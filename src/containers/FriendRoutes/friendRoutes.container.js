@@ -37,16 +37,21 @@ export class FriendRoutesComponent extends Component<Props> {
   buildElements(start, end) {
     var elements = [];
     for (var i = start; i < end; i++) {
-      elements.push(
-        <ListItem
-          key={i}
-          num={i}
-          src={
-            "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
-          }
-          url={this.state.routes[i]}
-        />
-      );
+      if(this.state.routes[i] !== undefined){
+        elements.push(
+          <ListItem
+            key={i}
+            num={i}
+            src={
+              "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
+            }
+            url={this.state.routes[i]}
+          />
+        );
+      }
+      else{
+        break;
+      }
     }
     return elements;
   }
