@@ -52,7 +52,7 @@ _**<Overview Diagram>**_
 
 Motivation::
 
-_<explanation in text form>_
+The motivation behind this deployment structure is that the user can interact with the Solid application to manage his/her routes, which will translate in having to access the user's POD, where the routes will be stored.
 
 Quality and/or Performance Features::
 
