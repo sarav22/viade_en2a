@@ -21,13 +21,6 @@ import {browserHistory} from 'react-router';
     await reload();
   }  
 
-
-  export function searchFriends(matchingString) {
-    if (matchingString!==""){
-      const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
-      this.setState({searchResults: filtered});
-    }
-  }
   
   const reload = () => {
     window.location.reload(true);
