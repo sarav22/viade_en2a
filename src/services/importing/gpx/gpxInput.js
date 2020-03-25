@@ -1,7 +1,7 @@
 
 
 function parseSuperString() {
-    let string = ""
+    var string = ""
     string += '<gpx creator="GPS Visualizer https://www.gpsvisualizer.com/" version="1.0">'
     string += '<wpt lat="45.44283" lon="-121.72904">'
     string += '<ele>1374'
@@ -38,6 +38,8 @@ function parseSuperString() {
     string += '<trk>'
     string += '<name>Barrett Spur 1'
     string += '</name>'
+    string += '<desc>Uy como esto funcione xD'
+    string += '</desc>'
     string += '<extensions>'
     string += '<line xmlns="http://www.topografix.com/GPX/gpx_style/0/2">'
     string += '<color>9900ff'
@@ -48,6 +50,8 @@ function parseSuperString() {
     string += '</extensions>'
     string += '<trkseg>'
     string += '<trkpt lat="45.4431641" lon="-121.7295456">'
+    string += '<ele>1777'
+    string += '</ele>'
     string += '</trkpt>'
     string += '<trkpt lat="45.4428615" lon="-121.7290800">'
     string += '</trkpt>'
