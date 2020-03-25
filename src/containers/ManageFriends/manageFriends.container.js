@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { ManageFriendsContent } from './manageFriends.component';
 import { SearchFriendsContent } from './searchFriends.component';
+import {searchFriends } from '../../services/friendsManager';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
+
 
 
 /**
@@ -17,35 +19,27 @@ export class ManageFriendsComponent extends Component<Props> {
       searchResults:null,
     }
     this.handleChange = this.handleChange.bind(this);
-	}
- 
+  }
+  
+
    componentDidMount() {
-     this.loadFriends();
-     this.searchFriends("");
+     this.loadFriends(this.props.webId);
+     searchFriends("");
    }
+
+   async  loadFriends(webId) {
+    const profileDoc =  await fetchDocument(webId);
+    const profile = profileDoc.getSubject(webId);
+    const fs=profile.getAllRefs(foaf.knows);
+    this.setState({friends: fs});
+   } 
    
-
-    async loadFriends() {
-      const profileDoc =  await fetchDocument(this.props.webId);
-      const profile = profileDoc.getSubject(this.props.webId);
-      const fs=profile.getAllRefs(foaf.knows);
-      this.setState({friends: fs});
-   }
-
-    searchFriends(matchingString) {
-      if (matchingString!==""){
-        const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
-        this.setState({searchResults: filtered});
-      }
-    }
-
     handleChange(e) {
       const stringToSearch = e.target.value;
       if (stringToSearch !== "") {
-        this.searchFriends(stringToSearch);
+        searchFriends(stringToSearch);
       }
     }
-
 
    render() {
     if (this.state.friends==null) {
