@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import { useTranslation } from "react-i18next";
-import { MapRouteName } from "./map.style";
+import { MapRouteName, Button } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
+import { Modal } from 'react-bootstrap';
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
@@ -10,6 +11,7 @@ import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 const Map = props => {
   const { route } = props;
   const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
 
   const routePath = [];
   route.itinerary.forEach(trackPoint => {
@@ -18,6 +20,15 @@ const Map = props => {
       lng: trackPoint.longitude
     });
   });
+
+  
+ const show = () => {
+   setShowModal(true);
+  };
+
+  const close = () => {
+    setShowModal(false);
+  };
 
   return (
     <div>
@@ -60,6 +71,17 @@ const Map = props => {
           />
         </GoogleMap>
       </LoadScript>
+      <Button variant="success" onClick={show} width='20' data-testid={"buttonShare"} key={"buttonShare"}>Share route</Button>
+      <Modal show={showModal} onHide={close} centered>
+        <Modal.Header closeButton>
+          </Modal.Header>
+          <Modal.Body>Choose a friend or group to share with:</Modal.Body>
+          <Modal.Footer>
+             <Button variant="primary" onClick={close}>
+                Share
+             </Button>
+          </Modal.Footer>
+      </Modal>
     </div>
   );
 };

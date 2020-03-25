@@ -49,3 +49,14 @@ export const MapRouteName = styled.span`
   word-break: break-word;
 `;
 
+
+
+export const Button = styled.button`
+  min-width: 450px;
+  display: inline-block;
+  margin-left: 10px;
+  flex-direction: row !important;
+  &:first-child {
+    margin-right: 0px;
+  }
+`;
