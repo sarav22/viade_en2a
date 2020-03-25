@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ManageFriendsContent } from './manageFriends.component';
 import { SearchFriendsContent } from './searchFriends.component';
-import {searchFriends } from '../../services/friendsManager';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
 
@@ -24,7 +23,7 @@ export class ManageFriendsComponent extends Component<Props> {
 
    componentDidMount() {
      this.loadFriends(this.props.webId);
-     searchFriends("");
+     this.searchFriends("");
    }
 
    async  loadFriends(webId) {
@@ -34,10 +33,18 @@ export class ManageFriendsComponent extends Component<Props> {
     this.setState({friends: fs});
    } 
    
+
+  searchFriends(matchingString) {
+    if (matchingString!==""){
+      const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
+      this.setState({searchResults: filtered});
+    }
+  }
+   
     handleChange(e) {
       const stringToSearch = e.target.value;
       if (stringToSearch !== "") {
-        searchFriends(stringToSearch);
+        this.searchFriends(stringToSearch);
       }
     }
 
