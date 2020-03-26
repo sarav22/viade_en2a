@@ -44,7 +44,7 @@ const privateRoutes = [
 ];
 
 const Routes = () => (
-  <Router basename = {process.env.PUBLIC_URL}>
+  <Router>
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact />
