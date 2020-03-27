@@ -34,7 +34,7 @@ export class FriendBar extends Component<Props> {
 
     return (
 
-      <Container fluid>
+      <Container fluid data-testid="friendBar-component">
         <Row>
           <Col align="right">
             <BackButton />
