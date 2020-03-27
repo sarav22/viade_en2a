@@ -42,7 +42,7 @@ export class MapComponent extends Component<Props> {
           </Col>
 
           <Col xs={12} md={8}>
-            <Map route={route} />
+            <Map route={route} webId={this.props.webId} routeUrl={"https://" + Base64.decode(this.props.match.params.route)}/>
           </Col>
         </Row>
       </Container>

@@ -1,17 +1,19 @@
 import React, {useState} from "react";
 import { useTranslation } from "react-i18next";
-import { MapRouteName, Button } from "./map.style";
+import { MapRouteName, Button, Input } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 import { Modal } from 'react-bootstrap';
+import {share } from '../../../services/sharing';
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
  * @param props
  */
 const Map = props => {
-  const { route } = props;
+  const { route, webId, routeUrl} = props;
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [agent, setAgent] = useState("");
 
   const routePath = [];
   route.itinerary.forEach(trackPoint => {
@@ -29,6 +31,17 @@ const Map = props => {
   const close = () => {
     setShowModal(false);
   };
+
+  const shareWith = () => { 
+    share(webId, routeUrl, agent);
+    close();
+  };
+
+  function handleInputChange(event){
+    event.preventDefault();
+    setAgent(event.target.value);
+  };
+
 
   return (
     <div>
@@ -75,9 +88,11 @@ const Map = props => {
       <Modal show={showModal} onHide={close} centered>
         <Modal.Header closeButton>
           </Modal.Header>
-          <Modal.Body>Choose a friend or group to share with:</Modal.Body>
+          <Modal.Body>Choose a friend or group to share with:
+            <Input type="text" size="200" value={agent} onChange={handleInputChange} />
+          </Modal.Body>
           <Modal.Footer>
-             <Button variant="primary" onClick={close}>
+             <Button variant="primary" onClick={shareWith}>
                 Share
              </Button>
           </Modal.Footer>

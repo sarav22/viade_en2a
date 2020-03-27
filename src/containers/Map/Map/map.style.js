@@ -60,3 +60,7 @@ export const Button = styled.button`
     margin-right: 0px;
   }
 `;
+
+export const Input = styled.input`
+  margin: 5px;
+`;
