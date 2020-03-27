@@ -47,7 +47,7 @@ const Routes = () => (
   <Router basename = {process.env.PUBLIC_URL}>
     <Fragment>
       <Switch>
-        <NotLoggedInLayout component={Login} path="/login" />
+        <NotLoggedInLayout component={Login} path="/login" exact/>
         <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout
           path="/register/success"
