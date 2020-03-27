@@ -48,7 +48,11 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
 ****
 
-_**<Overview Diagram>**_
+AQUÍ IRÍA LA IMAGEN DEL DIAGRAMA
+
+The user needs his/her device of choice, which must be connected to the Internet; a web browser is required for the user to be able to access the application. Regarding the device, our application can be used with either a computer or a mobile device; however, it's not optimized for the latter so the computer is the preferred option. In the case of the browser, any modern web browser should work fine, although Chrome or Firefox are recommended as they're the ones we have been using during the development.
+Our application, Viade, is deployed using GitHub Pages, hosted by GitHub.
+A Solid POD is required for using the application. It can be provided by any POD provider, either Inrupt or Solid Community. This POD will be in a server, which can be anywhere in the world.
 
 Motivation::
 
@@ -56,10 +60,18 @@ The motivation behind this deployment structure is that the user can interact wi
 
 Quality and/or Performance Features::
 
-_<explanation in text form>_
+As with any Web application, the performance will be affected by the quality of the network connection and the servers on which the application relies. It's not possible for us to control that.
+However, it's worth noting that performance can also be drained by poorly written code; in our application, we strove to make our code with as much quality as possible, so that this would not represent a problem to the final user. 
 
 Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
+
+As we mentioned, the main components in the deployment of the application are:
+* the user's device (such as his/her PC)
+* the browser (in the user's device)
+* the web server in which the application is run (whose execution environment is GitHub Pages)
+* the application itself
+* the user's POD (provided by a POD provider)
+* the POD server
 
 
 === Infrastructure Level 2
