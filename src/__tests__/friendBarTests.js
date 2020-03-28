@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, wait } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 import FriendBar from "@containers/FriendRoutes/FriendBar/friendBar.component";
 import '@testing-library/jest-dom/';
 
