@@ -135,7 +135,10 @@
       "images":"Imágenes y vídeos",
       "comments": "Comentarios",
       "data":"Datos sobre la ruta"
-    }
+    },
+    "shareButton":"Share route",
+    "shareWith":"Choose a friend or group to share with: ",
+    "share":"Share"
   },
   "friendsManagement":{
     "profile": "Ver Perfil",

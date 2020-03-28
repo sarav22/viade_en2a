@@ -4,6 +4,8 @@ import { MapRouteName, Button, Input } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 import { Modal } from 'react-bootstrap';
 import {share } from '../../../services/sharing';
+import { useNotification } from '@inrupt/solid-react-components';
+import { ldflexHelper } from '@utils';
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
@@ -31,9 +33,16 @@ const Map = props => {
   const close = () => {
     setShowModal(false);
   };
+  
+  const {
+    createNotification
+  } = useNotification(webId);
 
-  const shareWith = () => { 
+  async function shareWith(){ 
     share(webId, routeUrl, agent);
+    const content = "New friend added";
+    const globalInbox = await ldflexHelper.discoverInbox(webId);
+    createNotification(content, globalInbox);
     close();
   };
 
@@ -84,16 +93,16 @@ const Map = props => {
           />
         </GoogleMap>
       </LoadScript>
-      <Button variant="success" onClick={show} width='20' data-testid={"buttonShare"} key={"buttonShare"}>Share route</Button>
+      <Button variant="success" onClick={show} width='20' data-testid={"buttonShare"} key={"buttonShare"}> {t("mapView.shareButton")}</Button>
       <Modal show={showModal} onHide={close} centered>
         <Modal.Header closeButton>
           </Modal.Header>
-          <Modal.Body>Choose a friend or group to share with:
+          <Modal.Body>{t("mapView.shareWith")}
             <Input type="text" size="200" value={agent} onChange={handleInputChange} />
           </Modal.Body>
           <Modal.Footer>
              <Button variant="primary" onClick={shareWith}>
-                Share
+             {t("mapView.share")}
              </Button>
           </Modal.Footer>
       </Modal>
