@@ -21,7 +21,7 @@ On the other hand, its main disadvantage is that it makes us stick to React JS. 
 
 * Solid-file-client: Its objective is already explained in section 4. We will use it to manage multimedia files such as the images or videos related to a route.
 
-* Tripledoc: We chose this library to manage links between files in the POD. It is also used to query data such as the name of a person. The main advantage of this library is its simplicity. Its only counterpart is the need to handle profile documents, which
+* Tripledoc: We chose this library to manage links between files in the POD. It is also used to query data such as the name of a person. The main advantage of this library is its simplicity. Its only counterpart is the need to handle profile documents, which are intermediate objects obtained querying with a Web ID.
 
 * LDFlex: A very powerful library which, as Tripledoc, we will use to query Linked Data. Another alternative to this one would be RDFLib, but we rejected it due to its complexity. The documentation for LDFlex is really poor, but the library is really simple to use and very handy to manipulate friends from the POD.
 
