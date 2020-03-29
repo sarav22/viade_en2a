@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ManageFriendsContent } from './manageFriends.component';
 import { SearchFriendsContent } from './searchFriends.component';
+import { AddFriendsContent } from './addFriend.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
 
@@ -58,6 +59,7 @@ export class ManageFriendsComponent extends Component<Props> {
           <div>
             <ManageFriendsContent {...{ webId, friends}} />
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+            <AddFriendsContent/>
           </div>
         );
       }
@@ -67,6 +69,7 @@ export class ManageFriendsComponent extends Component<Props> {
           <ManageFriendsContent {...{ webId, friends}} />
           <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
           <SearchFriendsContent {...{ webId, searchResults}} />
+          <AddFriendsContent/>
         </div>
       );
     }
