@@ -2,7 +2,12 @@
 == Design Decisions
 
 === Framework
-We decided to use React in the first place in order to develop a nice web application to create, manage and share routes with friends. If the project goes as expected, we will try to adapt it to android by using React Native to create a mobile app to follow and share those routes in real time.
+We decided to use React JS in the first place in order to develop a nice web application to create, manage and share routes with friends. After debating about using React JS or React Native, we prioritized developing a web application whith full functionality over having two incomplete applications. Also, as the application's UI we are developing is perfectly scalable, using it with an smartphone is very convenient.
+
+=== Inrupt-React Solid Generator
+This generator is an open source project used to create a basic Solid application using React JS. By using it as an starting point for our project we could speed up the implementation process a lot. As it is fully tested it also follows the TDD approach we are trying to achieve. 
+
+On the other hand, its main disadvantage is that it makes us stick to React JS. This could be a problem if we decided to change the framework, as the migration would be harder. However, as React was stated as a constraint for this project, we considered that in order to develop a high-end product in little time it was something we had to deal with.
 
 === APIs
 
@@ -10,19 +15,25 @@ We decided to use React in the first place in order to develop a nice web applic
 
 === Libraries
 
-* Solid-auth-client: Developed by SOLID, as it is explained in section 4, this library will be used to manage all the registration and log in processes. No other alternative was considered.
+* Solid-auth-client: Developed by SOLID, as it is explained in section 4, this library will be used to manage all the registration and log in processes. This one is really handy as it is already integrated in the _Inrupt-React Solid Generator_.
 
 ===== File management libraries:
 
 * Solid-file-client: Its objective is already explained in section 4. We will use it to manage multimedia files such as the images or videos related to a route.
 
-* Tripledoc: We chose this library to manage links between files in the POD. The main advantage of this library is its simplicity. 
+* Tripledoc: We chose this library to manage links between files in the POD. It is also used to query data such as the name of a person. The main advantage of this library is its simplicity. Its only counterpart is the need to handle profile documents, which
 
-* LDFlex: A very powerful library which we will use to query Linked Data. Another alternative to this one would be RDFLib, but we rejected it due to its complexity.
+* LDFlex: A very powerful library which, as Tripledoc, we will use to query Linked Data. Another alternative to this one would be RDFLib, but we rejected it due to its complexity. The documentation for LDFlex is really poor, but the library is really simple to use and very handy to manipulate friends from the POD.
 
 === Route format
 To structure routes data we have created a format using a subset of the existing Trip scheme from schema.org, some properties from the GeoCoordinates scheme, and the ItemList, ImageObject and VideoObject schemas. 
 
 Routes will have a list of GeoCoordinates to make up the their itinerary. Each coordinate will have as well another list of both images and videos shared by the user for each waypoint in the route. A route will also have a list of user comments.
 
-By proposing our schema to the rest of the projects we are trying to achieve interoperability between every application, so that users can view and share routes with each other no matter how they were created.
+This format, updated with proposals from ViadeSpec, will make us able to achieve interoperability between our application and the others, so that users can view and share routes with each other no matter how they were created.
+
+Finally, the language chosen to represent these routes in our application will be JSON-LD. The idea is that our application supports routes stored in GPX or Turtle, but internally they will be converted to JSON objects. 
+
+One the one hand, a JSON-LD is just a JSON with a "@context" property, so, as a team, we are familiar with ths format. Futhermore, javascript has a built-in object called JSON, which is really useful to parse route files.
+
+On the other hand, JSON-LDs are not yet supported by the POD's UI, so as a final user we cannot navigate the data graph with the POD UI. However, this is just a temporal inconvenience, as in the Solid specification it is stated that it must support JSON-LD, so eventually the POD will be able to manage it.
