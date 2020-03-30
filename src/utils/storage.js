@@ -2,7 +2,6 @@ import data from "@solid/query-ldflex";
 import { AccessControlList } from "@inrupt/solid-react-components";
 import { resourceExists, createDoc, createDocument } from "./ldflex-helper";
 import { storageHelper, errorToaster, permissionHelper } from "@utils";
-import { shareWrite } from "../services/sharing";
 
 const appPath = "viade/";
 
@@ -90,9 +89,7 @@ export const createInitialFiles = async webId => {
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
-      await createDocument(settingsFilePath);
-      const agent ="http://localhost:3000/";
-      shareWrite(webId,settingsFilePath ,agent);
+      await createDocument(settingsFilePath,  {createPath:true});
     }
 
     return true;
