@@ -34,7 +34,7 @@ export const InfiniteList = (props: Props) => {
         {elements.map(element => (
           <ListItemWrapper>
             <Button
-              {...{ href: "/map/" + Base64.encode(element.props.url) }}
+              {...{ href: "/#/map/" + Base64.encode(element.props.url) }}
               style={{ height: 190 }}
               variant="outline-primary"
               block
