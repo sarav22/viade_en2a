@@ -26,8 +26,9 @@ export const retrieveAllRoutes = async (personWebId) => {
 export const storeJSONToPOD = async (jsonLD, callback) => {
     let session = await auth.currentSession();
     let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
-    let fileName = jsonLD.name + '_' + uuidv4() + '.jsonld';
-    
+    let formattedName = jsonLD.name.replace(/ /g, "_");
+    console.log(formattedName + " "+jsonLD.name)
+    let fileName = formattedName + '_' + uuidv4() + '.jsonld';
     let fileURI = userWebIdRoute + '/' + fileName;
     if(await fc.itemExists(userWebIdRoute)) {
         fc.createFile(fileURI, JSON.stringify(jsonLD), 'text/plain').then( fileCreated => {

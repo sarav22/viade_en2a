@@ -21,7 +21,9 @@ export default class LateralForm extends Component<Props>{
                         type="text"
                         placeholder="nombre"
                         defaultValue={this.props.name}
-                        onChange={this.props.setName}
+                        onChange={(x: React.FormEvent<FormControl & HTMLInputElement>) => { 
+                            this.props.setName(x.currentTarget.value);
+                         } }
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
@@ -32,8 +34,9 @@ export default class LateralForm extends Component<Props>{
                         as="textarea"
                         rows="3"
                         defaultValue={this.props.description}
-                        onChange={this.props.setDescription}
-                    />
+                        onChange={(x: React.FormEvent<FormControl & HTMLInputElement>) => { 
+                            this.props.setDescription(x.currentTarget.value);
+                         } }                    />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

@@ -30,12 +30,13 @@ export class CreateRoute extends Component<Props>{
     }
 
 
-    handleSetName(event) {
-        this.setState({ name: event.target.name });
+    handleSetName(newName) {
+        console.log(newName)
+        this.setState({ name: newName });
     }
 
-    handleSetDescription(event) {
-        this.setState({ description: event.target.description });
+    handleSetDescription(newDesc) {
+        this.setState({ description: newDesc});
     }
 
     handleSetWaypoints(list) {
@@ -56,7 +57,7 @@ export class CreateRoute extends Component<Props>{
         let poly = this.state.polyline;
         poly.setMap(null);
         this.setState({ polyline: poly });
-
+        console.log(route.name);
         saveRouteToPOD(route, function(success){
             if(success){
                 alert("La ruta se ha guardado en el pod: OK!");
