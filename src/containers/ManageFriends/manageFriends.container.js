@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ManageFriendsContent } from './manageFriends.component';
 import { SearchFriendsContent } from './searchFriends.component';
-import { AddFriendsContent } from './addFriend.component';
+//import { AddFriendsContent } from './addFriend.component';
+import  AddFriendsContent  from './addFriend.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
 
