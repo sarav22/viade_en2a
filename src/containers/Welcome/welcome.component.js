@@ -3,8 +3,7 @@ import data from "@solid/query-ldflex";
 import { namedNode } from "@rdfjs/data-model";
 import {
   Uploader,
-  AccessControlList,
-  useNotification
+  AccessControlList
 } from "@inrupt/solid-react-components";
 import { Trans, useTranslation } from "react-i18next";
 import {
@@ -24,11 +23,10 @@ import {
   permissionHelper,
   notification as helperNotification
 } from "@utils";
-import { shareWrite, shareRead } from "../../services/sharing";
+
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
 const fc = new FC(auth);
-
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
  * Image component will get theimage context and resolve the value to render.
@@ -39,14 +37,11 @@ export const WelcomePageContent = props => {
   const { t } = useTranslation();
   const limit = 2100000;
 
-  const { createInbox } = useNotification(webId);
-
   async function initializeOrRepairFiles(path) {
     // Set inbox path relative to the existing app's path in the pod
     const settingsFilePath = `${path}settings.ttl`;
     let inboxPath = `${path}inbox/`;
     let hasInboxLink = false;
-    const agent ="http://localhost:3000/";
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
     if (inboxLinkedPath) {
@@ -61,11 +56,28 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      await createInbox(inboxPath, path);
-      shareWrite(webId, inboxPath ,agent);
+      if(ldflexHelper.resourceExists(inboxPath)){
+      await fc.createFolder(inboxPath, {createPath:true});
+
+      // Check for CONTROL permissions to see if we can set permissions or not
+      const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+        webId,
+        AccessControlList.MODES.CONTROL
+      );
+
+      // If the user has Write and Control permissions, check the inbox settings
+      if (hasControlPermissions) {
+        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
+        await permissionHelper.checkOrSetInboxAppendPermissions(
+          inboxPath,
+          webId
+        );
+      }
+
       if (!hasInboxLink) {
         await data[settingsFilePath].inbox.set(namedNode(inboxPath));
       }
+    }
     }
   }
 
@@ -75,6 +87,7 @@ export const WelcomePageContent = props => {
 
       // Fetch the game's path in the pod, based on user's storage settings
       await storageHelper.createInitialFiles(webId);
+      
       if (path) {
         await initializeOrRepairFiles(path);
       }
