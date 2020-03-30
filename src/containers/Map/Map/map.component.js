@@ -25,7 +25,7 @@ const Map = props => {
         {t("mapView.viewTitle")} <MapRouteName>{route.name}</MapRouteName>
       </h3>
 
-      <LoadScript id="script-loader" googleMapsApiKey="">
+      <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
         <GoogleMap
           id="mapView"
           zoom={12}

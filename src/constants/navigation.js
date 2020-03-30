@@ -9,10 +9,10 @@ export const NavigationItems = [
     to: "/seeRoutes"
   },
   {
-    id: "createRoutes",
+    id: "createRoute",
     icon: "img/icon/createRoute.svg",
-    label: "navBar.createRoutes",
-    to: "/404" //Specify here the address of the Create Routes view
+    label: "navBar.createRoute",
+    to: "/createRoute" 
   },
   {
     id: 'manageFriends',
