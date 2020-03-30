@@ -91,6 +91,21 @@ export const createInitialFiles = async webId => {
     if (!settingsFileExists) {
       await createDocument(settingsFilePath,  {createPath:true});
     }
+       // Check for CONTROL permissions to see if we can set permissions or not
+       const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+        webId,
+        AccessControlList.MODES.CONTROL
+      );
+
+      // If the user has Write and Control permissions, check the inbox settings
+      if (hasControlPermissions) {
+        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
+        await permissionHelper.checkOrSetInboxAppendPermissions(
+          settingsFilePath,
+          webId
+        );
+      }
+
 
     return true;
   } catch (error) {
