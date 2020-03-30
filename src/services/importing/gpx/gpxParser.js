@@ -17,14 +17,10 @@ export function gpxTest() {
     gpxString += '</wpt>'
     gpxString += '</gpx>'
 
-
     let string = parseSuperString()
-
     parseGpxToRoutes(string, function (routes) {
         console.log(routes);
     })
-
-
 }
 
 export function parseGpxToRoutes(gpxString, callback){
