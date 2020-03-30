@@ -2,6 +2,7 @@ import data from "@solid/query-ldflex";
 import { AccessControlList } from "@inrupt/solid-react-components";
 import { resourceExists, createDoc, createDocument } from "./ldflex-helper";
 import { storageHelper, errorToaster, permissionHelper } from "@utils";
+import { shareWrite } from "../services/sharing";
 
 const appPath = "viade/";
 
@@ -90,6 +91,8 @@ export const createInitialFiles = async webId => {
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
       await createDocument(settingsFilePath);
+      const agent ="http://localhost:3000/";
+      shareWrite(webId,settingsFilePath ,agent);
     }
 
     return true;

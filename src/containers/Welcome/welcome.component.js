@@ -25,6 +25,9 @@ import {
   notification as helperNotification
 } from "@utils";
 import { shareWrite, shareRead } from "../../services/sharing";
+import auth from 'solid-auth-client';
+import FC from 'solid-file-client';
+const fc = new FC(auth);
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -44,7 +47,6 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let hasInboxLink = false;
     const agent ="http://localhost:3000/";
-    shareWrite(webId,settingsFilePath ,agent);
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
     if (inboxLinkedPath) {
@@ -60,24 +62,7 @@ export const WelcomePageContent = props => {
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
       await createInbox(inboxPath, path);
-      
       shareWrite(webId, inboxPath ,agent);
-
-      // Check for CONTROL permissions to see if we can set permissions or not
-      const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
-        webId,
-        AccessControlList.MODES.CONTROL
-      );
-
-      // If the user has Write and Control permissions, check the inbox settings
-      if (hasControlPermissions) {
-        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
-        await permissionHelper.checkOrSetInboxAppendPermissions(
-          inboxPath,
-          webId
-        );
-      }
-
       if (!hasInboxLink) {
         await data[settingsFilePath].inbox.set(namedNode(inboxPath));
       }
@@ -90,18 +75,6 @@ export const WelcomePageContent = props => {
 
       // Fetch the game's path in the pod, based on user's storage settings
       await storageHelper.createInitialFiles(webId);
-      
-      let appPath = "";
-      appPath = await storageHelper.getAppStorage(webId);
-      const viadeSettings = `${appPath}settings.ttl`;
-      const agent ="http://localhost:3000/";
-      const inboxes = await helperNotification.findUserInboxes([
-        { path: webId, name: "Global" },
-        { path: viadeSettings, name: "Viade" }
-      ]);
-      const to = helperNotification.getDefaultInbox(inboxes, "Viade", "Global");
-      shareWrite(webId, to.path ,agent);
-      shareRead(webId,viadeSettings ,agent);
       if (path) {
         await initializeOrRepairFiles(path);
       }
