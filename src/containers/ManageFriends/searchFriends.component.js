@@ -37,7 +37,7 @@ export const SearchFriendsContent = props => {
     const f = friend.toString().substring(8).split(".")[0];
     const s = friend.toString().substring(8).split(".")[1];
     const n = friend.toString().substring(8).split(".")[2].split("/")[0];
-    browserHistory.push('/friendRoutes/'+ f +'/'+s + '/'+n);
+    browserHistory.push('/#/friendRoutes/'+ f +'/'+s + '/'+n);
     await reload();
   }  
 
