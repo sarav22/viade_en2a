@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 
 import Map from "./Map";
 import LateralForm from "./LateralForm";
+import {Route} from '../../domain/domainClasses.js'
 
 
 export class CreateRoute extends Component<Props>{
@@ -33,12 +34,13 @@ export class CreateRoute extends Component<Props>{
         this.setState({ description: event.target.description });
     }
 
-    handleSetWaypoints(event) {
-        this.setState({ waypoints: event.currentTarget.waypoints });
+    handleSetWaypoints(list) {
+        this.setState({ waypoints: list });
     }
 
     handleSubmit(event) {
-        alert("The route is uploading");
+        var route = new Route({"name": this.state.name, "description":this.state.description,"itinerary": this.state.waypoints});
+        alert("The route is uploading\n"+route.toString());
         event.preventDefault();
     }
 

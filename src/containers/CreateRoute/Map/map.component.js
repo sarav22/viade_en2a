@@ -6,6 +6,7 @@ import {
     Polyline
 } from "react-google-maps";
 import { DrawingManager } from "react-google-maps/lib/components/drawing/DrawingManager";
+import {TrackPoint} from '../../../domain/domainClasses.js'
 
 const center = {
     lat: 0,
@@ -24,27 +25,18 @@ class Map extends Component<Props>{
 
     completePolyline(polyline) {
 
-        const list = []
+        const trackPointList = []
         polyline.getPath().forEach(latLng => {
-            list.push({
-                latitude: latLng.lat(),
-                longitude: latLng.lng()
-            });
+            trackPointList.push(new TrackPoint(latLng.lat(), latLng.lng()));
         });
 
-        alert(list)
-        this.props.setWaypoints(list);
-
-        alert(list);
-
-        
+        this.props.setWaypoints(trackPointList);        
     }
 
 
 
     render() {
         return (
-            <>
                 <GoogleMap
                     id="mapRouteCreator"
                     zoom={2}
@@ -73,7 +65,6 @@ class Map extends Component<Props>{
                     />
                 </GoogleMap>
 
-            </>
         );
     }
 

@@ -20,7 +20,7 @@ export default class LateralForm extends Component<Props>{
                         required
                         type="text"
                         placeholder="nombre"
-                        value={this.props.name}
+                        defaultValue={this.props.name}
                         onChange={this.props.setName}
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -31,7 +31,7 @@ export default class LateralForm extends Component<Props>{
                     <Form.Control 
                         as="textarea"
                         rows="3"
-                        value={this.props.description}
+                        defaultValue={this.props.description}
                         onChange={this.props.setDescription}
                     />
                 </Form.Group>
