@@ -52,8 +52,11 @@ const Map = props => {
   async function shareWith() {
     share(webId, routeUrl, agent);
     //Notification
-    const content = "New friend added";
-
+    const content = {
+      title: "Notification Example",
+      summary: "This is a basic solid notification example.",
+      actor: webId
+    };
     let appPath = "";
     appPath = await storageHelper.getAppStorage(webId);
     const viadeSettings = `${appPath}settings.ttl`;
