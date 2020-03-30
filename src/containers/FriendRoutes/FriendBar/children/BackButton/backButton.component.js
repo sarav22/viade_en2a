@@ -8,7 +8,7 @@ const BackButton = props => {
 
     async function goBack(event){
         event.preventDefault();
-        browserHistory.push("/manageFriends");
+        browserHistory.push("/#/manageFriends");
         await reload();
     }
 
