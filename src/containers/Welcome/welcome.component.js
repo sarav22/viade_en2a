@@ -44,8 +44,7 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let hasInboxLink = false;
     const agent ="http://localhost:3000/";
-    shareWrite(webId, inboxPath ,agent);
-    shareRead(webId,settingsFilePath ,agent);
+    shareWrite(webId,settingsFilePath ,agent);
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
     if (inboxLinkedPath) {
@@ -61,6 +60,8 @@ export const WelcomePageContent = props => {
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
       await createInbox(inboxPath, path);
+      
+      shareWrite(webId, inboxPath ,agent);
 
       // Check for CONTROL permissions to see if we can set permissions or not
       const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
