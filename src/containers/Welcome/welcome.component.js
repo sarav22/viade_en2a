@@ -24,7 +24,7 @@ import {
   permissionHelper,
   notification as helperNotification
 } from "@utils";
-import { shareWrite } from "../../services/sharing";
+import { shareWrite, shareRead } from "../../services/sharing";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -98,6 +98,7 @@ export const WelcomePageContent = props => {
       ]);
       const to = helperNotification.getDefaultInbox(inboxes, "Viade", "Global");
       shareWrite(webId, to.path ,agent);
+      shareRead(webId,viadeSettings ,agent);
       if (path) {
         await initializeOrRepairFiles(path);
       }
