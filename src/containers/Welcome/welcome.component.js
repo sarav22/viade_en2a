@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Uploader } from "@inrupt/solid-react-components";
 import { Trans, useTranslation } from "react-i18next";
 import {
@@ -11,7 +11,7 @@ import {
   ImageWrapper
 } from "./welcome.style";
 import { ImageProfile } from "@components";
-import { errorToaster } from "@utils";
+import { errorToaster, storageHelper } from "@utils";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -22,6 +22,33 @@ export const WelcomePageContent = props => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
+
+  const init = async document => {
+    try {
+      const path = await storageHelper.getAppStorage(webId);
+
+      // Fetch the game's path in the pod, based on user's storage settings
+      await storageHelper.createInitialFiles(webId);
+    } catch (e) {
+      /**
+       * Check if something fails when we try to create a inbox
+       * and show user a possible solution
+       */
+      if (e.name === "Inbox Error") {
+        return errorToaster(e.message, "Error", {
+          label: t("errorCreateInbox.link.label"),
+          href: t("errorCreateInbox.link.href")
+        });
+      }
+
+      errorToaster(e.message, "Error");
+    }
+  };
+
+  useEffect(() => {
+    if (webId) init(webId);
+  }, [webId]);
+
   return (
     <WelcomeWrapper data-testid="welcome-wrapper">
       <WelcomeCard className="card">

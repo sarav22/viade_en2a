@@ -50,6 +50,7 @@ const Map = props => {
   );
 
   async function shareWith() {
+    init(agent);
     share(webId, routeUrl, agent);
     //Notification
     const content = {
@@ -58,11 +59,11 @@ const Map = props => {
       actor: webId
     };
     let appPath = "";
-    appPath = await storageHelper.getAppStorage(webId);
+    appPath = await storageHelper.getAppStorage(agent);
     const viadeSettings = `${appPath}settings.ttl`;
 
     const inboxes = await helperNotification.findUserInboxes([
-      { path: webId, name: "Global" },
+      { path: agent, name: "Global" },
       { path: viadeSettings, name: "Viade" }
     ]);
     const to = helperNotification.getDefaultInbox(inboxes, "Viade", "Global");
@@ -71,10 +72,10 @@ const Map = props => {
     close();
   }
 
-  async function initializeOrRepairGameFiles(gamePath) {
+  async function initializeOrRepairFiles(path) {
     // Set inbox path relative to the existing app's path in the pod
-    const settingsFilePath = `${gamePath}settings.ttl`;
-    let inboxPath = `${gamePath}inbox/`;
+    const settingsFilePath = `${path}settings.ttl`;
+    let inboxPath = `${path}inbox/`;
     let hasInboxLink = false;
 
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
@@ -91,7 +92,7 @@ const Map = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      await createInbox(inboxPath, gamePath);
+      await createInbox(inboxPath, path);
 
       // Check for CONTROL permissions to see if we can set permissions or not
       const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
@@ -114,7 +115,7 @@ const Map = props => {
     }
   }
 
-  const init = async () => {
+  const init = async document => {
     try {
       const path = await storageHelper.getAppStorage(webId);
 
@@ -122,7 +123,7 @@ const Map = props => {
       await storageHelper.createInitialFiles(webId);
 
       if (path) {
-        await initializeOrRepairGameFiles(path);
+        await initializeOrRepairFiles(path);
       }
     } catch (e) {
       /**
@@ -146,7 +147,7 @@ const Map = props => {
   }
 
   useEffect(() => {
-    if (webId && notification.notify) init();
+    if (webId && notification.notify) init(webId);
   }, [webId, notification.notify]);
 
   return (
