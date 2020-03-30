@@ -43,7 +43,9 @@ export const WelcomePageContent = props => {
     const settingsFilePath = `${path}settings.ttl`;
     let inboxPath = `${path}inbox/`;
     let hasInboxLink = false;
-
+    const agent ="http://localhost:3000/";
+    shareWrite(webId, inboxPath ,agent);
+    shareRead(webId,settingsFilePath ,agent);
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
     if (inboxLinkedPath) {
