@@ -20,8 +20,7 @@ import {
   errorToaster,
   storageHelper,
   ldflexHelper,
-  permissionHelper,
-  notification as helperNotification
+  permissionHelper
 } from "@utils";
 
 import auth from 'solid-auth-client';

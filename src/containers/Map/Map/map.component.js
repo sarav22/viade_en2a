@@ -3,12 +3,11 @@ import { useTranslation } from "react-i18next";
 import { MapRouteName, Button, Input } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 import { Modal } from "react-bootstrap";
-import { shareRead } from "../../../services/sharing";
 import {
   useNotification,
   NotificationTypes
 } from "@inrupt/solid-react-components";
-import { storageHelper, notification as helperNotification } from "@utils";
+import { storageHelper, permissionHelper, notification as helperNotification } from "@utils";
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
@@ -39,7 +38,7 @@ const Map = props => {
   const { createNotification } = useNotification(webId);
 
   async function shareWith() {
-    shareRead(webId, routeUrl, agent);
+    permissionHelper.setReadPermissions(routeUrl,webId, agent);
     //Notification
     const content = {
       title: "Notification Example",
