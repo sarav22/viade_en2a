@@ -21,8 +21,10 @@ import {
   errorToaster,
   storageHelper,
   ldflexHelper,
-  permissionHelper
+  permissionHelper,
+  notification as helperNotification
 } from "@utils";
+import { shareWrite } from "../../services/sharing";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -85,7 +87,17 @@ export const WelcomePageContent = props => {
 
       // Fetch the game's path in the pod, based on user's storage settings
       await storageHelper.createInitialFiles(webId);
-
+      
+      let appPath = "";
+      appPath = await storageHelper.getAppStorage(webId);
+      const viadeSettings = `${appPath}settings.ttl`;
+      const agent ="http://localhost:3000/";
+      const inboxes = await helperNotification.findUserInboxes([
+        { path: webId, name: "Global" },
+        { path: viadeSettings, name: "Viade" }
+      ]);
+      const to = helperNotification.getDefaultInbox(inboxes, "Viade", "Global");
+      shareWrite(webId, to.path ,agent);
       if (path) {
         await initializeOrRepairFiles(path);
       }

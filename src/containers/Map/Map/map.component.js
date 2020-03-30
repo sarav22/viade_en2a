@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { MapRouteName, Button, Input } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 import { Modal } from "react-bootstrap";
-import { share } from "../../../services/sharing";
+import { shareRead } from "../../../services/sharing";
 import {
   useNotification,
   NotificationTypes
@@ -39,7 +39,7 @@ const Map = props => {
   const { createNotification } = useNotification(webId);
 
   async function shareWith() {
-    share(webId, routeUrl, agent);
+    shareRead(webId, routeUrl, agent);
     //Notification
     const content = {
       title: "Notification Example",
