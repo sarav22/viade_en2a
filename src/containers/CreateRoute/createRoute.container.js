@@ -7,6 +7,7 @@ import Map from "./Map";
 import LateralForm from "./LateralForm";
 import {Route} from '../../domain/domainClasses.js'
 
+import {saveRouteToPOD} from '../../services/DomainJSONTranslator.js'
 
 export class CreateRoute extends Component<Props>{
 
@@ -15,12 +16,15 @@ export class CreateRoute extends Component<Props>{
         this.state = {
             name: "The name of the route",
             description: "The description of the route",
-            waypoints: []
+            waypoints: [],
+            polyline:null
         };
 
         this.handleSetName = this.handleSetName.bind(this);
         this.handleSetDescription = this.handleSetDescription.bind(this);
         this.handleSetWaypoints = this.handleSetWaypoints.bind(this);
+        this.handleSetPolyline = this.handleSetPolyline.bind(this);
+        this.handleGetPolyline = this.handleGetPolyline.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -38,9 +42,30 @@ export class CreateRoute extends Component<Props>{
         this.setState({ waypoints: list });
     }
 
+    handleSetPolyline(poly) {
+        this.setState({ polyline: poly });
+    }
+
+    handleGetPolyline() {
+        return this.state.polyline;
+    }
+
     handleSubmit(event) {
-        var route = new Route({"name": this.state.name, "description":this.state.description,"itinerary": this.state.waypoints});
-        alert("The route is uploading\n"+route.toString());
+        var route = new Route({"name": this.state.name, "description":this.state.description,"itinerary": this.state.waypoints, "resources" : [], "comments" : []});
+
+        let poly = this.state.polyline;
+        poly.setMap(null);
+        this.setState({ polyline: poly });
+
+        saveRouteToPOD(route, function(success){
+            if(success){
+                alert("La ruta se ha guardado en el pod: OK!");
+            }
+            else{
+                alert("Mierda, hubo un problema y no se pudo guardar");
+            }
+        });
+
         event.preventDefault();
     }
 
@@ -61,11 +86,13 @@ export class CreateRoute extends Component<Props>{
                         <Map 
                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0&libraries=drawing"
                             loadingElement={<div style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `400px` }} />}
+                            containerElement={<div style={{ height: `800px` }} />}
                             mapElement={<div style={{ height: `100%` }} />}
 
                             setWaypoints={this.handleSetWaypoints} 
                             waypoints={this.state.waypoints}
+                            setPolyline={this.handleSetPolyline}
+                            getPolyline={this.handleGetPolyline}
                         />
                      </Col>
                 </Row>

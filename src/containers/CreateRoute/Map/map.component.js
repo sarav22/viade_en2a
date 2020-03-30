@@ -18,19 +18,27 @@ class Map extends Component<Props>{
 
     constructor(props) {
         super(props);
-
+ 
         this.completePolyline = this.completePolyline.bind(this);
 
     }
 
     completePolyline(polyline) {
 
+        if(this.props.getPolyline()!=null){
+                this.props.getPolyline().setMap(null);
+            return;
+        }
+        
         const trackPointList = []
         polyline.getPath().forEach(latLng => {
             trackPointList.push(new TrackPoint(latLng.lat(), latLng.lng()));
         });
 
-        this.props.setWaypoints(trackPointList);        
+       
+        this.props.setPolyline(polyline);
+        this.props.setWaypoints(trackPointList);     
+        
     }
 
 
