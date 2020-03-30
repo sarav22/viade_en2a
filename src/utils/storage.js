@@ -89,7 +89,7 @@ export const createInitialFiles = async webId => {
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
-      await createDocument(settingsFilePath,  {createPath:true});
+      await createDocument(settingsFilePath);
     }
        // Check for CONTROL permissions to see if we can set permissions or not
        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
