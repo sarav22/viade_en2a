@@ -34,7 +34,7 @@ export class CreateRoute extends Component<Props>{
     }
 
     handleSetWaypoints(event) {
-        this.setState({ waypoints: event.target.waypoints });
+        this.setState({ waypoints: event.currentTarget.waypoints });
     }
 
     handleSubmit(event) {
@@ -56,8 +56,16 @@ export class CreateRoute extends Component<Props>{
                     </Col>
 
                     <Col xs={12} md={8}>
-                        <Map setWaypoints={this.handleSetWaypoints} waypoints={this.state.waypoints}/>
-                    </Col>
+                        <Map 
+                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0&libraries=drawing"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `400px` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+
+                            setWaypoints={this.handleSetWaypoints} 
+                            waypoints={this.state.waypoints}
+                        />
+                     </Col>
                 </Row>
             </Container>
         );
