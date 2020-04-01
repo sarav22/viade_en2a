@@ -3,7 +3,7 @@ import { media } from "../../utils";
 
 export const RouteListWrapper = styled.section`
   width: 100%;
-  background-image: url("/img/concentric-hex-pattern_2x.png");
+  background-image: url("/img/concentric-hex-pattern_2x_black.png");
   background-repeat: repeat;
   padding: 50px 0;
 
@@ -19,7 +19,6 @@ export const RouteListWrapper = styled.section`
 `;
 
 export const RouteListCard = styled.div`
-  background-color: #fff;
   margin: 30px auto;
 
   //Overriding the style guide card flexbox settings

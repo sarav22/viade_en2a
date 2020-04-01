@@ -7,6 +7,7 @@ import {loadAllRoutes} from "/services/DomainJSONTranslator";
 import { InfiniteList } from "@components";
 import {ListItem} from "/containers/RouteList/routeList.container";
 import { Base64 } from "js-base64";
+import { FriendRoutesWrapper } from "./friendRoutes.style";
 
 
 export class FriendRoutesComponent extends Component<Props> {
@@ -80,37 +81,41 @@ export class FriendRoutesComponent extends Component<Props> {
 
     if(this.state.routes.length === 0){
       return (
-        <Container fluid>
-          <Row>
-            <FriendBarWrapper data-testid="friendBar-wrapper">
-              <FriendBar {...{webId, friendWebId}} />
-            </FriendBarWrapper>
-          </Row>
-          <Row>
-            <div></div>
-          </Row>
-        </Container>
+        <FriendRoutesWrapper>
+          <Container fluid>
+            <Row>
+              <FriendBarWrapper data-testid="friendBar-wrapper">
+                <FriendBar {...{webId, friendWebId}} />
+              </FriendBarWrapper>
+            </Row>
+            <Row>
+              <div></div>
+            </Row>
+          </Container>
+        </FriendRoutesWrapper>
       );
     }
     else{
       return (
-        <Container fluid>
-          <Row>
-            <FriendBarWrapper data-testid="friendBar-wrapper">
-              <FriendBar {...{webId, friendWebId}} />
-            </FriendBarWrapper>
-          </Row>
-          <Row>
-            <InfiniteList
-              {...{
-                elements: this.state.elements,
-                isInfiniteLoading: this.isInfiniteLoading,
-                handleInfiniteLoad: this.handleInfiniteLoad,
-                elementInfiniteLoad: this.state.elementInfiniteLoad
-              }}
-            />
-          </Row>
-        </Container>
+        <FriendRoutesWrapper>
+          <Container fluid>
+            <Row>
+              <FriendBarWrapper data-testid="friendBar-wrapper">
+                <FriendBar {...{webId, friendWebId}} />
+              </FriendBarWrapper>
+            </Row>
+            <Row>
+              <InfiniteList
+                {...{
+                  elements: this.state.elements,
+                  isInfiniteLoading: this.isInfiniteLoading,
+                  handleInfiniteLoad: this.handleInfiniteLoad,
+                  elementInfiniteLoad: this.state.elementInfiniteLoad
+                }}
+              />
+            </Row>
+          </Container>
+        </FriendRoutesWrapper>
       );
     }
   }

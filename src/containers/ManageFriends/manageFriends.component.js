@@ -6,7 +6,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
-  ManageFriendsWrapper,
   ButtonFriend,
 } from './manageFriends.style';
 import { Base64 } from "js-base64";
@@ -42,7 +41,7 @@ export const ManageFriendsContent = props => {
   }  
 
   return (
-    <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+    <div data-testid="manageFriends-container">
       {
         friends.map(friend => (
         <div key={friend + "div"}>
@@ -58,6 +57,6 @@ export const ManageFriendsContent = props => {
         </div>
         ))
       }
-    </ManageFriendsWrapper>
+      </div>
   );
 };
