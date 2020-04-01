@@ -17,6 +17,7 @@ export const MapCard = styled.div`
 
 
 export const MapRouteName = styled.span`
+  color: #18A9E6;
   overflow-wrap: break-word;
   word-break: break-word;
 `;

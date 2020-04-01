@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import { loadMapInfo } from "../../services/DomainJSONTranslator";
 import { Base64 } from "js-base64";
 import { MapWrapper } from "./Map/map.style";
+import { LateralMenuWrapper } from "./LateralMenu/lateralMenu.style";
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
@@ -40,7 +41,9 @@ export class MapComponent extends Component<Props> {
         <Container fluid>
           <Row>
             <Col xs={6} md={4}>
-              <LateralMenu route={route} />
+              <LateralMenuWrapper>
+                <LateralMenu route={route} />
+              </LateralMenuWrapper>
             </Col>
 
             <Col xs={12} md={8}>

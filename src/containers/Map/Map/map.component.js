@@ -22,7 +22,7 @@ const Map = props => {
   return (
     <div>
       <h3>
-        {t("mapView.viewTitle")} <MapRouteName>{route.name}</MapRouteName>
+        <MapRouteName>{t("mapView.viewTitle")}{route.name}</MapRouteName>
       </h3>
     <MapCard>
       <LoadScript id="script-loader" googleMapsApiKey="">
