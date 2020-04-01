@@ -19,7 +19,7 @@ export const WelcomeWrapper = styled.section`
 `;
 
 export const WelcomeCard = styled.div`
-  background-color: #fff;
+  background-color: ;
   margin: 30px auto;
 
   //Overriding the style guide card flexbox settings
