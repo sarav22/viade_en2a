@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ldflex from '@solid/query-ldflex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -9,6 +9,9 @@ import {
   ButtonFriend,
 } from './manageFriends.style';
 import { Base64 } from "js-base64";
+import Button from 'react-bootstrap/Button';
+import {fetchDocument} from "tripledoc";
+import {foaf} from "rdf-namespaces";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -22,6 +25,7 @@ export const ManageFriendsContent = props => {
   async function ldflexDeleter(friend){
      return ldflex[webId].knows.delete(ldflex[friend]);
   }
+
   async function deleteFriend(event, friend) {
     event.preventDefault();
     await ldflexDeleter(friend);
@@ -47,7 +51,11 @@ export const ManageFriendsContent = props => {
         <div key={friend + "div"}>
         <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
-          <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
+          <ButtonFriend>
+            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} style={{'padding-left': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+              {friend}
+            </Button>
+          </ButtonFriend>
           <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
             <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
             <Dropdown.Item onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>

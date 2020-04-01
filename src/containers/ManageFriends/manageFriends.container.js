@@ -4,6 +4,7 @@ import { SearchFriendsContent } from './searchFriends.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
 import { ManageFriendsWrapper } from "./manageFriends.style";
+import Row from 'react-bootstrap/Row';
 
 
 /**
@@ -24,7 +25,6 @@ export class ManageFriendsComponent extends Component<Props> {
      this.loadFriends();
      this.searchFriends("");
    }
-   
 
     async loadFriends() {
       const profileDoc =  await fetchDocument(this.props.webId);
@@ -57,16 +57,24 @@ export class ManageFriendsComponent extends Component<Props> {
       if (this.state.searchResults==null){
         return (
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+          <Row>
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+          </Row>
+          <Row>
             <ManageFriendsContent {...{ webId, friends}} />
+          </Row>
           </ManageFriendsWrapper>
         );
       }
       const searchResults = this.state.searchResults;
       return (
         <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+        <Row>
           <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+        </Row>
+        <Row>
           <SearchFriendsContent {...{ webId, searchResults}} />
+        </Row>
         </ManageFriendsWrapper>
       );
     }

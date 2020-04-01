@@ -5,6 +5,5 @@ export const FriendBarWrapper = styled.div`
   max-height: 20%;
   flex-direction: row !important;
   padding: 20px 0px;
-
   align-items: center;
 `;
