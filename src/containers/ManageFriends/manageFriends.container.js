@@ -57,15 +57,14 @@ export class ManageFriendsComponent extends Component<Props> {
       if (this.state.searchResults==null){
         return (
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-            <ManageFriendsContent {...{ webId, friends}} />
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+            <ManageFriendsContent {...{ webId, friends}} />
           </ManageFriendsWrapper>
         );
       }
       const searchResults = this.state.searchResults;
       return (
         <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-          <ManageFriendsContent {...{ webId, friends}} />
           <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
           <SearchFriendsContent {...{ webId, searchResults}} />
         </ManageFriendsWrapper>
