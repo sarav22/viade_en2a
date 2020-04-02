@@ -122,11 +122,17 @@ export const ListItemData = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-  max-height: 175px !important;
   //Overriding the style guide card flexbox settings
   flex-direction: row !important;
-
+  padding: 0px 0px;
   align-items: left;
+
+  color: black;
+
+  :hover {
+    color: #18A9E6;
+    background-color: #F2F2F2;
+  }
 `;
 
 export const RouteImage = styled.div`
@@ -135,7 +141,6 @@ export const RouteImage = styled.div`
   position: relative;
   .img {
     width: auto;
-    height: 160px;
-    margin: 0 auto;
+    height: 100px;
   }
 `;
