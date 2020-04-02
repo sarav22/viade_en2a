@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ldflex from '@solid/query-ldflex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -10,8 +10,6 @@ import {
 } from './manageFriends.style';
 import { Base64 } from "js-base64";
 import Button from 'react-bootstrap/Button';
-import {fetchDocument} from "tripledoc";
-import {foaf} from "rdf-namespaces";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page

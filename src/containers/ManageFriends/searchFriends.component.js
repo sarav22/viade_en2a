@@ -6,7 +6,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
-  ManageFriendsWrapper,
   ButtonFriend,
 } from './manageFriends.style';
 import Button from 'react-bootstrap/Button';
