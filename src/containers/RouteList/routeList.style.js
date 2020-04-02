@@ -133,7 +133,7 @@ export const RouteImage = styled.div`
   width: 50%;
   height: 100%;
   position: relative;
-  img {
+  .img {
     width: auto;
     height: 160px;
     margin: 0 auto;

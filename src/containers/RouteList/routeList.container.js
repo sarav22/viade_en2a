@@ -28,14 +28,13 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
+    const img = route.resources.length !== 0 ? route.resources[0].resourceUrl : this.defaultImage;
     return (
       <ItemWrapper className="card">
         <RouteImage>
-          <Image src={
-              this.state.route.resources.length == 0 ? this.state.route.resources[0].resourceUrl : this.defaultImage
-            } style={{ padding: "5px" }} />
+          <Image className="img" src={img} />
         </RouteImage>
-        <WelcomeProfile>{this.state.route.name} </WelcomeProfile>
+        <WelcomeProfile>{route.name} </WelcomeProfile>
       </ItemWrapper>
     );
   };
