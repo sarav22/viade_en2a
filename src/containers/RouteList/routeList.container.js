@@ -13,7 +13,7 @@ const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 export class ListItem extends Component {
   constructor(props) {
     super(props);
-
+    this.defaultImage = "/img/defaultRouteImg.png";
     this.state = {
       loading: true,
       route: "https://" + this.props.url,
@@ -31,7 +31,9 @@ export class ListItem extends Component {
     return (
       <ItemWrapper className="card">
         <RouteImage>
-          <Image src={this.state.route.resources[0].resourceUrl} style={{ padding: "5px" }} />
+          <Image src={
+              this.state.route.resources.length == 0 ? this.state.route.resources[0].resourceUrl : this.defaultImage
+            } style={{ padding: "5px" }} />
         </RouteImage>
         <WelcomeProfile>{this.state.route.name} </WelcomeProfile>
       </ItemWrapper>
@@ -152,9 +154,6 @@ export class RouteListComponent extends Component<Props> {
         <ListItem
           key={i}
           num={i}
-          src={
-            "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
-          }
           url={this.state.routes[i]}
         />
       );
