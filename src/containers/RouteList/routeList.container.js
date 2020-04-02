@@ -1,24 +1,49 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import data from "@solid/query-ldflex";
 import Image from "react-bootstrap/Image";
 import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
-import { loadAllRoutes } from "/services/DomainJSONTranslator";
+import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
 export class ListItem extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      route: "https://" + this.props.url,
+      title: null
+    };
+  }
+
+  componentDidMount() {
+    loadMapInfo(this.state.route).then(ruta => {
+      this.setState({ loading: false, route: ruta });
+    });
+  }
+
+  viewContent = route => {
     return (
       <ItemWrapper className="card">
         <RouteImage>
-          <Image src={this.props.src} style={{ padding: "5px" }} />
+          <Image src={this.state.route.resources[0].resourceUrl} style={{ padding: "5px" }} />
         </RouteImage>
-        <WelcomeProfile>{this.props.url} </WelcomeProfile>
+        <WelcomeProfile>{this.state.route.name} </WelcomeProfile>
       </ItemWrapper>
+    );
+  };
+
+  render() {
+    const { loading } = this.state;
+    return (
+      <Fragment>
+        {loading ? null : this.viewContent(this.state.route)}
+      </Fragment>
     );
   }
 }

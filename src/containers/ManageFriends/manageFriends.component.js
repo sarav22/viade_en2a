@@ -52,7 +52,7 @@ export const ManageFriendsContent = props => {
         <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
           <ButtonFriend>
-            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} style={{'padding-left': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
               {friend}
             </Button>
           </ButtonFriend>
