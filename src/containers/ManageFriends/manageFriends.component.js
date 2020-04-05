@@ -23,13 +23,13 @@ export const ManageFriendsContent = props => {
       {
         friends.map(friend => (
         <div key={friend + "div"}>
-        <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
+        <Dropdown key={friend+"d"} data-testid={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
           <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
-          <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
-            <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
-            <Dropdown.Item onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
-            <Dropdown.Item onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
+          <DropdownButton variant="light" key={friend+"dropdown"} data-testid={friend+"dropdown"} title=""> 
+            <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"} data-testid={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
+            <Dropdown.Item onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"} data-testid={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
+            <Dropdown.Item onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"} data-testid={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
           </DropdownButton>
         </Dropdown>
         </div>

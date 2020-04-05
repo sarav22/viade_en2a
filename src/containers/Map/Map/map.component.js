@@ -13,7 +13,7 @@ import { storageHelper, permissionHelper, notification as helperNotification } f
  * Map Page UI component, containing the styled components for the Map Page
  * @param props
  */
-const Map = props => {
+export const Map = props => {
   const { route, webId, routeUrl } = props;
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
@@ -38,25 +38,27 @@ const Map = props => {
   const { createNotification } = useNotification(webId);
 
   async function shareWith() {
-    permissionHelper.setReadPermissions(routeUrl,webId, agent);
-    //Notification
-    const content = {
-      title: "Notification Example",
-      summary: "This is a basic solid notification example.",
-      actor: webId
-    };
-    let appPath = "";
-    appPath = await storageHelper.getAppStorage(agent);
-    const viadeSettings = `${appPath}settings.ttl`;
+    if(agent != null && agent.length!==0){
+      permissionHelper.setReadPermissions(routeUrl,webId, agent);
+      //Notification
+      const content = {
+        title: "Notification Example",
+        summary: "This is a basic solid notification example.",
+        actor: webId
+      };
+      let appPath = "";
+      appPath = await storageHelper.getAppStorage(agent);
+      const viadeSettings = `${appPath}settings.ttl`;
 
-    const inboxes = await helperNotification.findUserInboxes([
-      { path: agent, name: "Global" },
-      { path: viadeSettings, name: "Viade" }
-    ]);
-    const to = helperNotification.getDefaultInbox(inboxes, "Viade", "Global");
-    const license = "https://creativecommons.org/licenses/by-sa/4.0/";
-    createNotification(content, to.path, NotificationTypes.ANNOUNCE, license);
-    close();
+      const inboxes = await helperNotification.findUserInboxes([
+        { path: agent, name: "Global" },
+        { path: viadeSettings, name: "Viade" }
+      ]);
+      const to = helperNotification.getDefaultInbox(inboxes, "Viade", "Global");
+      const license = "https://creativecommons.org/licenses/by-sa/4.0/";
+      createNotification(content, to.path, NotificationTypes.ANNOUNCE, license);
+      close();
+    }
   }
 
   function handleInputChange(event) {
@@ -115,8 +117,9 @@ const Map = props => {
         {" "}
         {t("mapView.shareButton")}
       </Button>
-      <Modal show={showModal} onHide={close} centered>
-        <Modal.Header closeButton></Modal.Header>
+      <Modal show={showModal} onHide={close} centered 
+        data-testid={"modalShare"} key={"modalShare"}>
+        <Modal.Header closeButton key={"closeShare"} data-testid={"closeShare"}></Modal.Header>
         <Modal.Body>
           {t("mapView.shareWith")}
           <Input
@@ -124,10 +127,14 @@ const Map = props => {
             size="200"
             value={agent}
             onChange={handleInputChange}
+            data-testid={"inputShare"}
+            key={"inputShare"}
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={shareWith}>
+          <Button variant="primary" onClick={shareWith} 
+        data-testid={"shareWith"}
+        key={"shareWith"}>
             {t("mapView.share")}
           </Button>
         </Modal.Footer>
