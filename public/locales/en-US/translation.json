@@ -155,5 +155,13 @@
     "viewRoutes": "View routes"
   },"utils":{
     "back": "Back"
+  },
+  "createRouteView":{
+    "create" : {
+      "tabTitle" : "Create route"
+    },
+    "import" : {
+      "tabTitle" : "Import route"
+    }
   }
 }

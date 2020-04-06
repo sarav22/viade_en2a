@@ -156,5 +156,13 @@
   },
   "utils":{
     "back": "Atrás"
+  },
+  "createRouteView":{
+    "create" : {
+      "tabTitle" : "Crear ruta"
+    },
+    "import" : {
+      "tabTitle" : "Importar ruta"
+    }
   }
 }
