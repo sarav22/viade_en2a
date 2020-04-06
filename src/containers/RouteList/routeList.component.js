@@ -35,7 +35,7 @@ export const RouteListPageContent = props => {
     <RouteListWrapper data-testid="welcome-wrapper">
       <RouteListCard className="card">
         <WelcomeLogo data-testid="welcome-logo">
-          <img src="/img/logo.svg" alt="Inrupt" />
+          <img src="img/logo.svg" alt="Inrupt" />
         </WelcomeLogo>
         <WelcomeProfile data-testid="welcome-profile">
           <h3>

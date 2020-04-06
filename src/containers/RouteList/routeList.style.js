@@ -31,6 +31,7 @@ export const RouteListCard = styled.div`
   a {
     text-decoration: none;
     &:hover {
+      color: #ff0000;
       text-decoration: underline;
     }
   }

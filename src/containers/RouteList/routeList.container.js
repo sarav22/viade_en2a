@@ -8,7 +8,7 @@ import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
 
-const defaultProfilePhoto = "/img/icon/empty-profile.svg";
+const defaultProfilePhoto = "img/icon/empty-profile.svg";
 
 export class ListItem extends Component {
   constructor(props) {
