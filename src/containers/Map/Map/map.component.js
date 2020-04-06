@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { MapRouteName } from "./map.style";
+import { MapRouteName, MapCard } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
 
 /**
@@ -22,10 +22,10 @@ const Map = props => {
   return (
     <div>
       <h3>
-        {t("mapView.viewTitle")} <MapRouteName>{route.name}</MapRouteName>
+        <MapRouteName>{t("mapView.viewTitle")}{route.name}</MapRouteName>
       </h3>
-
-      <LoadScript id="script-loader" googleMapsApiKey="">
+    <MapCard>
+      <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
         <GoogleMap
           id="mapView"
           zoom={12}
@@ -60,6 +60,7 @@ const Map = props => {
           />
         </GoogleMap>
       </LoadScript>
+      </MapCard>
     </div>
   );
 };

@@ -6,9 +6,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
-  ManageFriendsWrapper,
   ButtonFriend,
 } from './manageFriends.style';
+import { Base64 } from "js-base64";
+import Button from 'react-bootstrap/Button';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -22,6 +23,7 @@ export const ManageFriendsContent = props => {
   async function ldflexDeleter(friend){
      return ldflex[webId].knows.delete(ldflex[friend]);
   }
+
   async function deleteFriend(event, friend) {
     event.preventDefault();
     await ldflexDeleter(friend);
@@ -34,21 +36,24 @@ export const ManageFriendsContent = props => {
   
   async function viewRoutes(event, friend) {
     event.preventDefault();
-    const f = friend.toString().substring(8).split(".")[0];
-    const s = friend.toString().substring(8).split(".")[1];
-    const n = friend.toString().substring(8).split(".")[2].split("/")[0];
-    browserHistory.push('/friendRoutes/'+ f +'/'+s + '/'+n);
+    var url = friend.replace("https://", "")
+    url = Base64.encode(url);
+    browserHistory.push('/friendRoutes/'+ url);
     await reload();
   }  
 
   return (
-    <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+    <div data-testid="manageFriends-container">
       {
         friends.map(friend => (
         <div key={friend + "div"}>
         <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
-          <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
+          <ButtonFriend>
+            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+              {friend}
+            </Button>
+          </ButtonFriend>
           <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
             <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
             <Dropdown.Item onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
@@ -58,6 +63,6 @@ export const ManageFriendsContent = props => {
         </div>
         ))
       }
-    </ManageFriendsWrapper>
+      </div>
   );
 };

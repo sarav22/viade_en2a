@@ -11,7 +11,8 @@ import {
   Map,
   RouteList,
   FriendRoutes,
-  ManageFriends
+  ManageFriends,
+  CreateRoute
 } from "./containers";
 
 const privateRoutes = [
@@ -33,18 +34,23 @@ const privateRoutes = [
   },
   {
     id: "manageFriends",
-    path: "/friendRoutes/:f/:s/:n",
+    path: "/friendRoutes/:friend",
     component: FriendRoutes
   },
   {
     id: "seeRoutes",
     path: "/seeRoutes",
     component: RouteList
+  },
+  {
+    id:"createRoute",
+    path:"/createRoute",
+    component: CreateRoute
   }
 ];
 
 const Routes = () => (
-  <Router>
+  <Router basename = {process.env.PUBLIC_URL}>
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact />
