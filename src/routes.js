@@ -26,6 +26,7 @@ const privateRoutes = [
     path: "/map/:route",
     component: Map
   },
+
   {
     id: "manageFriends",
     path: "/manageFriends",
@@ -40,7 +41,8 @@ const privateRoutes = [
     id: "seeRoutes",
     path: "/seeRoutes",
     component: RouteList
-  },{
+  },
+  {
     id:"createRoute",
     path:"/createRoute",
     component: CreateRoute
