@@ -10,6 +10,7 @@ before_install:
 script:
   - CI=false npm run build
   - npm run docs
+  - npm run test:e2e
 deploy:
   provider: pages
   skip_cleanup: true

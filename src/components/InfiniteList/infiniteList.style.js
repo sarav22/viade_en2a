@@ -12,19 +12,13 @@ export const ListWrapper = styled.div`
       font-size: 1.9rem;
     }
   }
+
 `;
 
 export const ListItemWrapper = styled.div`
-  width: 98%;
-  height: 190px;
-  margin: 5px 20px;
+  .listButton {
+    height: 130px;
+  }
 
-  p,
-  li {
-    color: #666666;
-  }
-  ul {
-    list-style: disc;
-    margin: 0 18px;
-  }
+  margin: 10px 20px;
 `;

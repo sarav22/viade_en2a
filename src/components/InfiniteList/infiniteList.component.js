@@ -28,15 +28,14 @@ export const InfiniteList = (props: Props) => {
         useWindowAsScrollContainer={true}
         infiniteLoadBeginEdgeOffset={200}
         onInfiniteLoad={handleInfiniteLoad}
-        loadingSpinnerDelegate={elementInfiniteLoad()}
+        loadingSpinnerDelegate={elementInfiniteLoad}
         isInfiniteLoading={isInfiniteLoading}
       >
         {elements.map(element => (
           <ListItemWrapper>
             <Button
               {...{ href: "/map/" + Base64.encode(element.props.url) }}
-              style={{ height: 190 }}
-              variant="outline-primary"
+              variant="outline-light"
               block
             >
               {element}
