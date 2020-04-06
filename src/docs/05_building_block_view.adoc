@@ -6,14 +6,14 @@
 
 
 === Overall System Diagram
-This diagrams stand as the whole struncture of our system.
+This diagrams stands as the whole structure of our system.
 
 image::images/buildingblockviewdiagram.png["Hierarchy of building blocks"]
 
 === Whitebox Overall  (Level 1)
 
 ===== Motivation
-The general structure of the system, is an application where users can see routes that are stored in their PODs, or in their friends PODs. Since the POD structure is already implemented we consider it as a neighbor system in this diagram.
+The general structure of the system is an application, where users can see routes that are stored in their PODs, or in their friends PODs. Since the POD structure is already implemented we consider it as a neighbor system in this diagram.
 
 ===== Contained Building Blocks
 
@@ -21,7 +21,7 @@ The general structure of the system, is an application where users can see route
 |===
 | **Name** | **Responsibility**
 | Viade | The application that the user can see
-| POD | The infraestructure for data that the user needs for using the application
+| POD | The infrastructure for data that the user needs for using the application
 |===
 
 
@@ -38,7 +38,7 @@ This level provides an overview of the types of code in the project.
 | **Name** | **Responsibility**
 | App | Code oriented to solve the functionality of the viade project
 | Tests | Code oriented to test the code un module App
-| Modules | Stands for the npm modules installed in the project and our depencies to them.
+| Modules | Stands for the npm modules installed in the project and our dependencies to them.
 |===
 
 === Level 3
@@ -46,14 +46,14 @@ This level provides an overview of the types of code in the project.
 ==== App
 
 ===== Motivation
-During the desing of the functionality implementation we were in need of structuring the code. In the degree we became used to use the layer architectural pattern, which does not really fit with the constraint of using REACT. Even though, we strutured it in a similar way to the one in the pattern.
+During the design of the functionality implementation we were in need of structuring the code. In the degree we became used to use the layer architectural pattern, which does not really fit with the constraint of using REACT. Even though, we structured it in a similar way to the one in the pattern.
 
 ===== Contained Building Blocks
 
 [cols="1,2" options="header"]
 |===
 | **Name** | **Responsibility**
-| Internationalization | This stand for the cross cutting code that leads to an easy translation process of the app
+| Internationalization | This stands for the cross cutting code that leads to an easy translation process of the app
 | Domain classes | Here we have some Entities commonly used in the management of Routes, for instance a TrackPoint
 | Services | Here we have complex functionality that does not really fit into a component
 | Components | Based on the REACT framework, here we have presentation layer, and some logic
@@ -64,7 +64,7 @@ During the desing of the functionality implementation we were in need of structu
 ==== Tests
 
 ===== Motivation
-The code needs to be tested, in multiple ways if possible, so we need several test framework.
+The code needs to be tested, in multiple ways if possible, so we need several test frameworks.
 
 ===== Contained Building Blocks
 
@@ -97,7 +97,7 @@ In the end, we believe that this functionality should be separated from the rest
 ==== Domain Classes
 
 ===== Motivation
-Some entities are needed during the develpment of the project. Routes, comments, images, videos... To manage them properly we have created classes that model this entities 
+Some entities are needed during the develpment of the project. Routes, comments, images, videos... To manage them properly we have created classes that model these entities 
 
 ===== Contained Building Blocks
 
@@ -129,5 +129,5 @@ By means of React we have created several components to cover the expected funct
 | ManageFriends | Handles friends, and allows to see information related to them
 | Map | Displays the route and information about it to the User
 | RouteList | Displays all the routes of the User
-| FriendRoutes | Displays the routes of a User friend
+| FriendRoutes | Displays the routes of a User's friend
 |===
