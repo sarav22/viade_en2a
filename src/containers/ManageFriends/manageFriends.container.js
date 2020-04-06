@@ -7,6 +7,7 @@ import { ManageFriendsWrapper } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
 
 
+
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
@@ -19,34 +20,35 @@ export class ManageFriendsComponent extends Component<Props> {
       searchResults:null,
     }
     this.handleChange = this.handleChange.bind(this);
-	}
- 
+  }
+  
+
    componentDidMount() {
-     this.loadFriends();
+     this.loadFriends(this.props.webId);
      this.searchFriends("");
    }
 
-    async loadFriends() {
-      const profileDoc =  await fetchDocument(this.props.webId);
-      const profile = profileDoc.getSubject(this.props.webId);
-      const fs=profile.getAllRefs(foaf.knows);
-      this.setState({friends: fs});
-   }
+   async  loadFriends(webId) {
+    const profileDoc =  await fetchDocument(webId);
+    const profile = profileDoc.getSubject(webId);
+    const fs=profile.getAllRefs(foaf.knows);
+    this.setState({friends: fs});
+   } 
+   
 
-    searchFriends(matchingString) {
-      if (matchingString!==""){
-        const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
-        this.setState({searchResults: filtered});
-      }
+  searchFriends(matchingString) {
+    if (matchingString!==""){
+      const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
+      this.setState({searchResults: filtered});
     }
-
+  }
+   
     handleChange(e) {
       const stringToSearch = e.target.value;
       if (stringToSearch !== "") {
         this.searchFriends(stringToSearch);
       }
     }
-
 
    render() {
     if (this.state.friends==null) {
