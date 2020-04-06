@@ -40,14 +40,13 @@ export class MapComponent extends Component<Props> {
       <MapWrapper>
         <Container fluid>
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={12} md={7} sm={8} xs={12}>
+              <Map route={route} />
+            </Col>
+            <Col xs={6} md={5} sm={4} xs={12}>
               <LateralMenuWrapper>
                 <LateralMenu route={route} />
               </LateralMenuWrapper>
-            </Col>
-
-            <Col xs={12} md={8}>
-              <Map route={route} />
             </Col>
           </Row>
         </Container>
