@@ -1,6 +1,5 @@
 import {Route, Resource, Comment, TrackPoint} from '../domain/domainClasses.js'
-import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js'
-import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
+import {retrieveJson, retrieveAllRoutes} from './PODExtractor.js'
 
 
 // TODO: Discuss if async makes sense here
@@ -33,7 +32,7 @@ export const loadMapInfo = async jsonUrl => {
   
         if(key === "points") {
             for(var latLong in value) {
-                trackPointList.push(new TrackPoint(value[latLong]["latitude"], value[latLong]["longitude"]));
+                trackPointList.push(new TrackPoint(value[latLong]["schema:latitude"], value[latLong]["schema:longitude"]));
             }
         }
   
@@ -60,9 +59,4 @@ export const loadAllRoutes = async (personWebId) => {
       return urlMap.url
     });
   return filesObj;
-}
-
-export const saveRouteToPOD = async (routeObj, callback) => {
-    var jsonLD = parseRouteJsonLD(routeObj);
-    storeJSONToPOD(jsonLD, callback);
 }
