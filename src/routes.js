@@ -47,7 +47,7 @@ const Routes = () => (
   <Router basename = {process.env.PUBLIC_URL}>
     <Fragment>
       <Switch>
-        <NotLoggedInLayout component={Login} path="/login" exact />
+        <NotLoggedInLayout component={Login} path="/login" exact/>
         <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout
           path="/register/success"
@@ -55,7 +55,7 @@ const Routes = () => (
           exact
         />
         <PublicLayout path="/404" component={PageNotFound} exact />
-        <Redirect from="/" to="/welcome" exact />
+        <Redirect from="/" to="/viade_en2a/#/welcome" exact />
         <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
       </Switch>
