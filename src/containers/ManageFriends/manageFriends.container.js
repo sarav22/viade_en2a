@@ -60,7 +60,7 @@ export class ManageFriendsComponent extends Component<Props> {
           <div>
             <ManageFriendsContent {...{ webId, friends}} />
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-            <AddFriendsContent/>
+            <AddFriendsContent webId={webId}/>
           </div>
         );
       }
@@ -70,7 +70,7 @@ export class ManageFriendsComponent extends Component<Props> {
           <ManageFriendsContent {...{ webId, friends}} />
           <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
           <SearchFriendsContent {...{ webId, searchResults}} />
-          <AddFriendsContent/>
+          <AddFriendsContent webId={webId}/>
         </div>
       );
     }

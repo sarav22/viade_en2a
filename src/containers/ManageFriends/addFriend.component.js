@@ -8,6 +8,7 @@ import {browserHistory} from 'react-router';
 import {
   ManageFriendsWrapper,
 } from './manageFriends.style';
+import { relativeTimeRounding } from 'moment';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -15,19 +16,34 @@ import {
  * @param props
  */
 
-class AddFriendsContent extends Component {
+class AddFriendsContent extends Component<Props> {
   constructor(props){
     super(props);
 
     this.state = {status: 200, done: false}
   }
 
+  /*async loadFriends() {
+    const profileDoc =  await fetchDocument(this.props.webId);
+    const profile = profileDoc.getSubject(this.props.webId);
+    const fs=profile.getAllRefs(foaf.knows);
+    this.setState({friends: fs});
+ }*/
 
   componentDidMount(){
 
   }
 
-  addFriend(event) {
+  async ldflexDeleter(friend){
+    console.log(this.props.webId)
+    return ldflex[this.props.webId].knows.add(ldflex[friend]);
+  }
+  
+  reload(){
+    window.location.reload(true);
+  }
+
+  async addFriend(event) {
     event.preventDefault();
     let userId = document.getElementById("webId").value;
      //alert(userId);
@@ -36,8 +52,13 @@ class AddFriendsContent extends Component {
     //alert(friendToAdd);
     fetch('https://' + friendToAdd + '.solid.community').then( response => {
       this.setState({status: response.status, done: true});
-      alert(this.state.status)
+      //alert(this.state.status);
+      
+      
     });
+    await this.ldflexDeleter('https://' + friendToAdd + ".solid.community/profile/card#me");
+    await this.reload();
+
     //Mirar cómo lanzar la petición
     /*var request = new XMLHttpRequest();  
     request.open('GET', 'https://' + friendToAdd + '.solid.community', true);
@@ -49,8 +70,8 @@ class AddFriendsContent extends Component {
             }  
         }
         request.send();*/
-    /*await ldflexDeleter(friend);
-    await reload();*/
+    
+    //await reload();
   }
 
 
