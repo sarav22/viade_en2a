@@ -24,7 +24,7 @@ const Map = props => {
       <h3>
         <MapRouteName>{t("mapView.viewTitle")}{route.name}</MapRouteName>
       </h3>
-    <MapCard>
+
       <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
         <GoogleMap
           id="mapView"
