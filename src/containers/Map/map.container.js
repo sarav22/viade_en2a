@@ -45,10 +45,16 @@ export class MapComponent extends Component<Props> {
               <Map route={route} />
             </Col>
             <Col xs={6} md={5} sm={4} xs={12}>
-              <LateralMenuWrapper>
-                <LateralMenu route={route} />
-              </LateralMenuWrapper>
-              <ShareButton webId={this.props.webId} routeUrl={"https://" + Base64.decode(this.props.match.params.route)} />
+              <Container fluid>
+                <Row>
+                  <LateralMenuWrapper>
+                    <LateralMenu route={route} />
+                  </LateralMenuWrapper>
+                </Row>
+                <Row>
+                  <ShareButton webId={this.props.webId} routeUrl={"https://" + Base64.decode(this.props.match.params.route)} />
+                </Row>
+              </Container>
             </Col>
           </Row>
         </Container>

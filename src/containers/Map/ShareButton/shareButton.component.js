@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Input } from "../Map/map.style";
+import { ButtonWrapper, Input } from "../Map/map.style";
+import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import {
   useNotification,
@@ -55,16 +56,16 @@ export const ShareButton = props => {
 
     return (
         <div>
-            <Button
+            <ButtonWrapper>
+              <Button
                 variant="success"
                 onClick={show}
-                width="20"
                 data-testid={"buttonShare"}
                 key={"buttonShare"}
                 >
-                {" "}
                 {t("mapView.shareButton")}
             </Button>
+            </ButtonWrapper>
             <Modal show={showModal} onHide={close} centered 
                 data-testid={"modalShare"} key={"modalShare"}>
                 <Modal.Header closeButton key={"closeShare"} data-testid={"closeShare"}></Modal.Header>

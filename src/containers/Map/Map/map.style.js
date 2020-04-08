@@ -22,14 +22,11 @@ export const MapRouteName = styled.span`
 
 
 
-export const Button = styled.button`
-  min-width: 450px;
+export const ButtonWrapper = styled.div`
+  width: 100%;
   display: inline-block;
-  margin-left: 10px;
+  margin: 10px auto;
   flex-direction: row !important;
-  &:first-child {
-    margin-right: 0px;
-  }
 `;
 
 export const Input = styled.input`
