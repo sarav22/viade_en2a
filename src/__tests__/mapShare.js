@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent} from 'react-testing-library';
-import { Map } from '@containers/Map/Map/map.component';
+import { ShareButton } from '@containers/Map/ShareButton/shareButton.component';
 import '@testing-library/jest-dom/';
 import {Route, TrackPoint} from '../domain/domainClasses.js'
 
@@ -11,7 +11,7 @@ const routeUrl =  "https://podejemplo2.inrupt.net/viade/routes/ruta.txt";
 
 afterAll(cleanup);
     const { container, getByTestId } = render(
-    <Map {...{route, webId, routeUrl}} />
+    <ShareButton {...{webId, routeUrl}} />
     
 );
 
