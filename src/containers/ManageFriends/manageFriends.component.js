@@ -38,7 +38,7 @@ export const ManageFriendsContent = props => {
     event.preventDefault();
     var url = friend.replace("https://", "")
     url = Base64.encode(url);
-    browserHistory.push('/friendRoutes/'+ url);
+    browserHistory.push('/viade_en2a/#/friendRoutes/'+ url);
     await reload();
   }  
 
