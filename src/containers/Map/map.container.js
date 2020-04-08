@@ -41,7 +41,7 @@ export class MapComponent extends Component<Props> {
         <Container fluid>
           <Row>
             <Col xs={12} md={7} sm={8} xs={12}>
-              <Map route={route} />
+              <Map route={route} webId={this.props.webId} routeUrl={"https://" + Base64.decode(this.props.match.params.route)}/>
             </Col>
             <Col xs={6} md={5} sm={4} xs={12}>
               <LateralMenuWrapper>
