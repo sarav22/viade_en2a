@@ -6,9 +6,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
-  ManageFriendsWrapper,
   ButtonFriend,
 } from './manageFriends.style';
+import Button from 'react-bootstrap/Button';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -37,27 +37,28 @@ export const SearchFriendsContent = props => {
     const f = friend.toString().substring(8).split(".")[0];
     const s = friend.toString().substring(8).split(".")[1];
     const n = friend.toString().substring(8).split(".")[2].split("/")[0];
-    browserHistory.push('/friendRoutes/'+ f +'/'+s + '/'+n);
+    browserHistory.push('/viade_en2a/#/friendRoutes/'+ f +'/'+s + '/'+n);
     await reload();
   }  
 
   return (
-    <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+    <div data-testid="manageFriends-container">
       {
         searchResults.map(friend => (
           <div>
         <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
-
-          <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
+          <ButtonFriend>
+            <Button variant="light" className="buttonFriend" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</Button>
+          </ButtonFriend>
           <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
-        <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
-        <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
-        <Dropdown.Item as="button"  onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
+            <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
+            <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
+            <Dropdown.Item as="button"  onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
           </DropdownButton>
         </Dropdown>
         </div>
         ))
       }
-    </ManageFriendsWrapper>
+    </div>
   );
 }

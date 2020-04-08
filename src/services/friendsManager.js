@@ -1,5 +1,6 @@
 import ldflex from '@solid/query-ldflex';
 import {browserHistory} from 'react-router';
+import { Base64 } from "js-base64";
 
 
  export async function ldflexDeleter(friend, webId){
@@ -14,10 +15,9 @@ import {browserHistory} from 'react-router';
 
  export async function viewRoutes(event, friend) {
     event.preventDefault();
-    const f = friend.toString().substring(8).split(".")[0];
-    const s = friend.toString().substring(8).split(".")[1];
-    const n = friend.toString().substring(8).split(".")[2].split("/")[0];
-    browserHistory.push('/friendRoutes/'+ f +'/'+s + '/'+n);
+    let f = friend.replace("https://", "");
+    f = Base64.encode(f);
+    browserHistory.push('/viade_en2a/#/friendRoutes/'+ f);
     await reload();
   }  
 

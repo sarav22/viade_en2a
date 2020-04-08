@@ -5,9 +5,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import {deleteFriend, viewRoutes } from '../../services/friendsManager';
 import {
-  ManageFriendsWrapper,
   ButtonFriend,
 } from './manageFriends.style';
+import { Base64 } from "js-base64";
+import Button from 'react-bootstrap/Button';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -19,13 +20,17 @@ export const ManageFriendsContent = props => {
   const { t } = useTranslation();
 
   return (
-    <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+    <div data-testid="manageFriends-container">
       {
         friends.map(friend => (
         <div key={friend + "div"}>
         <Dropdown key={friend+"d"} data-testid={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
-          <ButtonFriend variant="success" onClick={(event) => viewRoutes(event,friend)} width='20' data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>{friend}</ButtonFriend>
+        <ButtonFriend>
+            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} style={{'padding-left': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+              {friend}
+            </Button>
+          </ButtonFriend>
           <DropdownButton variant="light" key={friend+"dropdown"} data-testid={friend+"dropdown"} title=""> 
             <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"} data-testid={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
             <Dropdown.Item onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"} data-testid={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
@@ -35,6 +40,6 @@ export const ManageFriendsContent = props => {
         </div>
         ))
       }
-    </ManageFriendsWrapper>
+      </div>
   );
 };
