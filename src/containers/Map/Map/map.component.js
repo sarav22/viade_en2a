@@ -129,6 +129,7 @@ export const Map = props => {
             onChange={handleInputChange}
             data-testid={"inputShare"}
             key={"inputShare"}
+            name="inputShare"
           />
         </Modal.Body>
         <Modal.Footer>
