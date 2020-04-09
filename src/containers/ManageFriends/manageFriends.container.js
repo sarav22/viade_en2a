@@ -3,6 +3,9 @@ import { ManageFriendsContent } from './manageFriends.component';
 import { SearchFriendsContent } from './searchFriends.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
+import { ManageFriendsWrapper } from "./manageFriends.style";
+import Row from 'react-bootstrap/Row';
+
 
 
 /**
@@ -17,35 +20,35 @@ export class ManageFriendsComponent extends Component<Props> {
       searchResults:null,
     }
     this.handleChange = this.handleChange.bind(this);
-	}
- 
+  }
+  
+
    componentDidMount() {
-     this.loadFriends();
+     this.loadFriends(this.props.webId);
      this.searchFriends("");
    }
+
+   async  loadFriends(webId) {
+    const profileDoc =  await fetchDocument(webId);
+    const profile = profileDoc.getSubject(webId);
+    const fs=profile.getAllRefs(foaf.knows);
+    this.setState({friends: fs});
+   } 
    
 
-    async loadFriends() {
-      const profileDoc =  await fetchDocument(this.props.webId);
-      const profile = profileDoc.getSubject(this.props.webId);
-      const fs=profile.getAllRefs(foaf.knows);
-      this.setState({friends: fs});
-   }
-
-    searchFriends(matchingString) {
-      if (matchingString!==""){
-        const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
-        this.setState({searchResults: filtered});
-      }
+  searchFriends(matchingString) {
+    if (matchingString!==""){
+      const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
+      this.setState({searchResults: filtered});
     }
-
+  }
+   
     handleChange(e) {
       const stringToSearch = e.target.value;
       if (stringToSearch !== "") {
         this.searchFriends(stringToSearch);
       }
     }
-
 
    render() {
     if (this.state.friends==null) {
@@ -55,19 +58,26 @@ export class ManageFriendsComponent extends Component<Props> {
       const webId=this.props.webId;
       if (this.state.searchResults==null){
         return (
-          <div>
-            <ManageFriendsContent {...{ webId, friends}} />
+          <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+          <Row>
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-          </div>
+          </Row>
+          <Row>
+            <ManageFriendsContent {...{ webId, friends}} />
+          </Row>
+          </ManageFriendsWrapper>
         );
       }
       const searchResults = this.state.searchResults;
       return (
-        <div>
-          <ManageFriendsContent {...{ webId, friends}} />
+        <ManageFriendsWrapper data-testid="manageFriends-wrapper">
+        <Row>
           <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+        </Row>
+        <Row>
           <SearchFriendsContent {...{ webId, searchResults}} />
-        </div>
+        </Row>
+        </ManageFriendsWrapper>
       );
     }
    }

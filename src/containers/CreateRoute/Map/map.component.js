@@ -6,7 +6,7 @@ import {
     Polyline
 } from "react-google-maps";
 import { DrawingManager } from "react-google-maps/lib/components/drawing/DrawingManager";
-import {TrackPoint} from '../../../domain/domainClasses.js'
+import {TrackPoint} from '../../../domain/domainClasses.js';
 
 const center = {
     lat: 0,
@@ -72,7 +72,6 @@ class Map extends Component<Props>{
                         onPolylineComplete={this.completePolyline}
                     />
                 </GoogleMap>
-
         );
     }
 
