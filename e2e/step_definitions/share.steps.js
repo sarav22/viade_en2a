@@ -32,7 +32,7 @@ defineFeature(feature, test=>{
         });
 
         then('a message appears saying that the route was shared', async () =>{
-            await expect(page).toMatch('The route was shared');
+            await expect(page).toMatch('The route was shared succesfully');
         });
                 
     });
@@ -51,7 +51,7 @@ defineFeature(feature, test=>{
         });
 
         then('a message appears saying that the route was shared', async () =>{
-            await expect(page).toMatch('The route was shared');
+            await expect(page).toMatch('The route was shared succesfully');
         });
                
         

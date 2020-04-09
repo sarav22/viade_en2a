@@ -23,14 +23,14 @@ test('Renders share button', () =>{
         expect(getByTestId('buttonShare')).toBeTruthy();
 });
 
-test('Modal works', () =>{
+test('Modal works', async () =>{
     
     getByTestId('buttonShare').click();
     expect(getByTestId('modalShare')).toBeTruthy();
     getByTestId('closeShare').click();
     fireEvent.input(getByTestId('inputShare'), 'https://raulpemol.inrupt.net/profile/card#me' );
     getByTestId('shareWith').click(); 
-    expect(getByTestId('modalShare')).toBeTruthy();
+   await expect(getByTestId('modalSuccess')).toBeTruthy();
     
 });
 

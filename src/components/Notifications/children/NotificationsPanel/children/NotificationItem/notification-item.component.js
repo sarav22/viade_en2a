@@ -51,7 +51,8 @@ const NotificationItem = ({ notification, markAsRead, children, deleteNotificati
       </a>
       <Body>
         <Message onClick={redirectTo}>
-          <strong>{actor && actor.name}</strong> {notification.summary}
+          <strong>{notification.title}</strong><br></br>
+          {notification.summary}
         </Message>
         <Meta>
           <span className="moment">{moment(notification.published).fromNow()}</span>

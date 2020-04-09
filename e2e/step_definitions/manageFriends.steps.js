@@ -31,7 +31,7 @@ defineFeature(feature, test=>{
         });
         
         then('Bob is no longer her friend', async () =>{
-            await expect(page).toMatchElement('span', { text: bob});
+            await expect(page).toMatch( bob);
         });
     });
 

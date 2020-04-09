@@ -13,6 +13,18 @@ import { Base64 } from "js-base64";
     await reload();
   }
 
+  
+ export async function ldflexAdder(friend, webId){
+  return ldflex[webId].knows.add(ldflex[friend]);
+}
+
+export async function addFriend(event, friend, webId) {
+ event.preventDefault();
+ await ldflexAdder(friend, webId);
+ await reload();
+}
+
+
  export async function viewRoutes(event, friend) {
     event.preventDefault();
     let f = friend.replace("https://", "");

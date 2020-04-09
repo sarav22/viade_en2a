@@ -40,6 +40,8 @@ export const WelcomePageContent = props => {
     // Set inbox path relative to the existing app's path in the pod
     const settingsFilePath = `${path}settings.ttl`;
     let inboxPath = `${path}inbox/`;
+    let groupsPath = `${path}groups/`;
+    let sharedPath = `${path}shared/`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -76,6 +78,13 @@ export const WelcomePageContent = props => {
       if (!hasInboxLink) {
         await data[settingsFilePath].inbox.set(namedNode(inboxPath));
       }
+    }
+    
+    if(ldflexHelper.resourceExists(groupsPath)){
+      await fc.createFolder(groupsPath, {createPath:true});
+    }
+    if(ldflexHelper.resourceExists(sharedPath)){
+      await fc.createFolder(sharedPath, {createPath:true});
     }
     }
   }
