@@ -14,7 +14,7 @@ defineFeature(feature, test=>{
         await expect(page).toClick('button', { name: 'login' })
         await expect(page).toClick('a', { href: 'manageFriends' })
         await expect(page).toClick({type:'xpath', value:'\\a'}, {href: 'manageFriends' })
-        console.log("hola");
+
 
     })
 

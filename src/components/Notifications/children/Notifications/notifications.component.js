@@ -90,10 +90,10 @@ async function mark(path,id){
         saveSharedFile(webId, notifications[i]);
         mark(notifications[i].path, notifications[i].id)
         isFriend(webId,notifications[i].actor.webId).then(function(value) {
-          if(value===true){
-            //no hacer nada porque ya son amigos
-        }else{
+          if(value===false){
             //darle al usuario la opción de añadir el amigo
+        }else{
+            //no hacer nada porque ya son amigos, está aquí para pruebas, luego borrar el else
         }}
         );
       }
