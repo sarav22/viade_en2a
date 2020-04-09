@@ -22,6 +22,15 @@ export class Comment {
 }
 
 
+// TODO: Discuss and create comment structure
+export class CommentEntity {
+    constructor(text, dateCreated) {
+        this.text = text;
+        this.dateCreated = dateCreated;
+    }
+}
+
+
 export class Route {
 
     /**
@@ -50,6 +59,10 @@ export class Route {
 
         if (params.resources){
             this.resources = params.resources;
+        }
+
+        if (params.commentList){
+            this.commentList=params.commentList; // Parsed Comments list
         }
     }
 

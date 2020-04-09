@@ -1,3 +1,3 @@
-import CommentsTab from './commentsTab.component';
+import CommentsTab2 from './commentsTab.component';
 
-export default CommentsTab;
+export default CommentsTab2;
