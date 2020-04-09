@@ -57,7 +57,7 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      if(ldflexHelper.resourceExists(inboxPath)){
+      if(!ldflexHelper.resourceExists(inboxPath)){
       await fc.createFolder(inboxPath, {createPath:true});
 
       // Check for CONTROL permissions to see if we can set permissions or not
@@ -80,10 +80,10 @@ export const WelcomePageContent = props => {
       }
     }
     
-    if(ldflexHelper.resourceExists(groupsPath)){
+    if(!ldflexHelper.resourceExists(groupsPath)){
       await fc.createFolder(groupsPath, {createPath:true});
     }
-    if(ldflexHelper.resourceExists(sharedPath)){
+    if(!ldflexHelper.resourceExists(sharedPath)){
       await fc.createFolder(sharedPath, {createPath:true});
     }
     }
