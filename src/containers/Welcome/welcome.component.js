@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import data from "@solid/query-ldflex";
 import { namedNode } from "@rdfjs/data-model";
-import {
-  Uploader,
-  AccessControlList
-} from "@inrupt/solid-react-components";
+import { Uploader, AccessControlList } from "@inrupt/solid-react-components";
 import { Trans, useTranslation } from "react-i18next";
 import {
   WelcomeWrapper,
@@ -13,25 +10,25 @@ import {
   WelcomeProfile,
   WelcomeDetail,
   WelcomeName,
-  ImageWrapper
+  ImageWrapper,
 } from "./welcome.style";
 import { ImageProfile } from "@components";
 import {
   errorToaster,
   storageHelper,
   ldflexHelper,
-  permissionHelper
+  permissionHelper,
 } from "@utils";
 
-import auth from 'solid-auth-client';
-import FC from 'solid-file-client';
+import auth from "solid-auth-client";
+import FC from "solid-file-client";
 const fc = new FC(auth);
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const WelcomePageContent = props => {
+export const WelcomePageContent = (props) => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
@@ -57,45 +54,45 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      if(ldflexHelper.resourceExists(inboxPath)){
-      await fc.createFolder(inboxPath, {createPath:true});
+      if (ldflexHelper.resourceExists(inboxPath)) {
+        await fc.createFolder(inboxPath, { createPath: true });
 
-      // Check for CONTROL permissions to see if we can set permissions or not
-      const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
-        webId,
-        AccessControlList.MODES.CONTROL
-      );
-
-      // If the user has Write and Control permissions, check the inbox settings
-      if (hasControlPermissions) {
-        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
-        await permissionHelper.checkOrSetInboxAppendPermissions(
-          inboxPath,
-          webId
+        // Check for CONTROL permissions to see if we can set permissions or not
+        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+          webId,
+          AccessControlList.MODES.CONTROL
         );
+
+        // If the user has Write and Control permissions, check the inbox settings
+        if (hasControlPermissions) {
+          // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
+          await permissionHelper.checkOrSetInboxAppendPermissions(
+            inboxPath,
+            webId
+          );
+        }
+
+        if (!hasInboxLink) {
+          await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        }
       }
 
-      if (!hasInboxLink) {
-        await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+      if (ldflexHelper.resourceExists(groupsPath)) {
+        await fc.createFolder(groupsPath, { createPath: true });
       }
-    }
-    
-    if(ldflexHelper.resourceExists(groupsPath)){
-      await fc.createFolder(groupsPath, {createPath:true});
-    }
-    if(ldflexHelper.resourceExists(sharedPath)){
-      await fc.createFolder(sharedPath, {createPath:true});
-    }
+      if (ldflexHelper.resourceExists(sharedPath)) {
+        await fc.createFolder(sharedPath, { createPath: true });
+      }
     }
   }
 
-  const init = async document => {
+  const init = async (document) => {
     try {
       const path = await storageHelper.getAppStorage(webId);
 
       // Fetch the game's path in the pod, based on user's storage settings
       await storageHelper.createInitialFiles(webId);
-      
+
       if (path) {
         await initializeOrRepairFiles(path);
       }
@@ -107,7 +104,7 @@ export const WelcomePageContent = props => {
       if (e.name === "Inbox Error") {
         return errorToaster(e.message, "Error", {
           label: t("errorCreateInbox.link.label"),
-          href: t("errorCreateInbox.link.href")
+          href: t("errorCreateInbox.link.href"),
         });
       }
 
@@ -138,34 +135,34 @@ export const WelcomePageContent = props => {
                 accept: "jpg,jpeg,png",
                 errorsText: {
                   sizeLimit: t("welcome.errors.sizeLimit", {
-                    limit: `${limit / 1000000}Mbs`
+                    limit: `${limit / 1000000}Mbs`,
                   }),
                   unsupported: t("welcome.errors.unsupported"),
-                  maximumFiles: t("welcome.errors.maximumFiles")
+                  maximumFiles: t("welcome.errors.maximumFiles"),
                 },
-                onError: error => {
+                onError: (error) => {
                   if (error && error.statusText) {
                     errorToaster(error.statusText, t("welcome.errorTitle"));
                   }
                 },
-                onComplete: uploadedFiles => {
+                onComplete: (uploadedFiles) => {
                   updatePhoto(
                     uploadedFiles[uploadedFiles.length - 1].uri,
                     t("welcome.uploadSuccess"),
                     t("welcome.successTitle")
                   );
                 },
-                render: props => (
+                render: (props) => (
                   <ImageProfile
                     {...{
                       ...props,
                       webId,
                       photo: image,
                       text: t("welcome.upload"),
-                      uploadingText: t("welcome.uploadingText")
+                      uploadingText: t("welcome.uploadingText"),
                     }}
                   />
-                )
+                ),
               }}
             />
           </ImageWrapper>
