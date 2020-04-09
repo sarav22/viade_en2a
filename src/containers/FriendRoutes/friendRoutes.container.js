@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import FriendBar from "./FriendBar";
 import Container from 'react-bootstrap/Container';
 import {FriendBarWrapper} from "./FriendBar/friendBar.style";
-import {loadAllRoutes} from "/services/DomainJSONTranslator";
+import {loadFriendRoutes} from "/services/DomainJSONTranslator";
 import { InfiniteList } from "@components";
 import {ListItem} from "/containers/RouteList/routeList.container";
 import { Base64 } from "js-base64";
@@ -28,7 +28,8 @@ export class FriendRoutesComponent extends Component<Props> {
   }
 
   async getRoutes(friendWebId){
-    var routes = await loadAllRoutes(friendWebId);
+    const filename = friendWebId.substring(8, friendWebId.length - 16);
+    var routes = await loadFriendRoutes(this.props.webId, filename);
     routes = routes.map(route => route.replace("https://", ""));
     this.setState({ routes: routes });
   }

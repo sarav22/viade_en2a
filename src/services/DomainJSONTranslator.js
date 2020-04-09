@@ -60,3 +60,23 @@ export const loadAllRoutes = async (personWebId) => {
     });
   return filesObj;
 }
+
+export const loadFriendRoutes = async (webId, filename) => {
+    var routeUri = webId.substring(0, webId.length - 16) + "/viade/shared/" + filename + ".json";
+    
+    var json = "";
+    await retrieveJson(routeUri).then(function(result) {
+        json = JSON.parse(result);
+    });
+
+    var routes = [];
+
+    for(var key in json){
+        if(key === "route"){
+            var value = json[key];
+            routes.push(value);
+        }
+    }
+
+    return routes;
+}
