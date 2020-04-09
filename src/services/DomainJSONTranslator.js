@@ -62,7 +62,7 @@ export const loadAllRoutes = async (personWebId) => {
 }
 
 export const loadFriendRoutes = async (webId, filename) => {
-    var routeUri = webId.substring(0, webId.length - 16) + "/viade/shared/" + filename + ".json";
+    var routeUri = webId.substring(0, webId.length - 16) + "/viade/shared/" + filename + ".jsonld";
     
     var json = "";
     await retrieveJson(routeUri).then(function(result) {
@@ -72,7 +72,7 @@ export const loadFriendRoutes = async (webId, filename) => {
     var routes = [];
 
     for(var key in json){
-        if(key === "route"){
+        if(key === "routes"){
             var value = json[key];
             routes.push(value);
         }
