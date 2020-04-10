@@ -28,9 +28,10 @@ export class FriendRoutesComponent extends Component<Props> {
   }
 
   async getRoutes(friendWebId){
-    const filename = friendWebId.substring(8, friendWebId.length - 16);
+    const filename = await friendWebId.substring(8, friendWebId.length - 16);
     var routes = await loadFriendRoutes(this.props.webId, filename);
-    routes = routes.map(route => route.replace("https://", ""));
+    await this.setState({ routes: routes });
+    routes = this.state.routes.map(route => route.replace("https://", ""));
     this.setState({ routes: routes });
   }
 

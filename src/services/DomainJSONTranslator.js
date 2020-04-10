@@ -75,7 +75,9 @@ export const loadFriendRoutes = async (webId, filename) => {
     for(var key in json){
         if(key === "routes"){
             var value = json[key];
-            routes.push(value);
+            for(var route in value){
+                routes.push(value[route]["@id"]);
+            }
         }
     }
 
