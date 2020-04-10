@@ -132,6 +132,7 @@
   },
   "mapView":{
     "viewTitle":"Visualizando la ruta: ",
+    "importedRoutesTitle":"Visualizando rutas importadas",
     "menu":{
       "images":"Imágenes y vídeos",
       "comments": "Comentarios",

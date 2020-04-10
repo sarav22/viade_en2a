@@ -1,8 +1,7 @@
 import React, { useCallback, useMemo } from "react";
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {useDropzone} from 'react-dropzone';
-import parseGpxToRoutes from '../../../services/importing/gpx/gpxParser.js';
+import {parseGpxToRoutes} from '../../../services/importing/gpx/gpxParser.js';
 import {saveRouteToPOD} from '../../../services/DomainJSONTranslator.js';
  
 const LateralMenu = props  => {
@@ -18,12 +17,18 @@ const LateralMenu = props  => {
           reader.onerror = () => console.log('file reading has failed')
           reader.onload = () => {
             const routeString = reader.result;
-            console.log(routeString);
             try {
-                parseGpxToRoutes(routeString, function(route) {
-
-                    this.props.viewRoute(route);
-                    saveRouteToPOD(route);
+                parseGpxToRoutes(routeString, function(routeArray) {
+                  routeArray.forEach(route => {
+                    saveRouteToPOD(route, function(result) {
+                      if(result) {
+                        alert('Everything ok');
+                      } else {
+                        alert('Everythin bad');
+                      }
+                    });
+                  });
+                  props.setRoute(routeArray);
                 });
             } catch(error) {
               alert(t('error.importError'));

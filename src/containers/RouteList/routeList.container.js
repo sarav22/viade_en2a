@@ -6,7 +6,6 @@ import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes } from "/services/DomainJSONTranslator";
-import ReactLoading from 'react-loading';
 import { Loader } from '@util-components';
 
 

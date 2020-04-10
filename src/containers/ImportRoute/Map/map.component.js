@@ -1,28 +1,20 @@
-import React from "react";
+import React from "react"; 
 import { useTranslation } from "react-i18next";
-import { MapRouteName } from "./map.style";
-import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
+import { LoadScript, GoogleMap, Polyline, Marker } from "@react-google-maps/api";
+import { Loader } from '@util-components';
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
  * @param props
  */
 const Map = props => {
-  const { route } = props;
+  const { routeArray } = props;
   const { t } = useTranslation();
-
-  const routePath = [];
-  route.itinerary.forEach(trackPoint => {
-    routePath.push({
-      lat: trackPoint.latitude,
-      lng: trackPoint.longitude
-    });
-  });
 
   return (
     <div>
       <h3>
-        {t("mapView.viewTitle")} <MapRouteName>{route.name}</MapRouteName>
+        {t("mapView.importedRoutesTitle")}
       </h3>
 
       <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
@@ -37,27 +29,48 @@ const Map = props => {
             padding: "1rem 3.5rem"
           }}
           onLoad={() => console.log("map loading")}
-          loadingElement={<div>Loading...</div>}
+          loadingElement={<Loader />}
           center={{
-            lat: routePath[0].lat,
-            lng: routePath[0].lng
+            lat: routeArray[0].itinerary[0].latitude,
+            lng: routeArray[0].itinerary[0].longitude
           }}
         >
-          <Polyline
-            geodesic={true}
-            options={{
-              path: routePath,
-              strokeColor: "#ff0000",
-              strokeOpacity: 1,
-              strokeWeight: 6,
-              icons: [
-                {
-                  offset: "0",
-                  repeat: "10px"
-                }
-              ]
-            }}
-          />
+
+          {
+            routeArray.map(route => {
+              return(                  
+              <Marker
+                title={route.name}
+                position={{lat: route.itinerary[0].latitude, lng: route.itinerary[0].longitude}} />  )
+            })
+          }
+          {
+          routeArray.map(route => {
+                let routePath = [];
+                route.itinerary.forEach(trackPoint => {
+                  routePath.push({
+                    lat: trackPoint.latitude,
+                    lng: trackPoint.longitude
+                  });
+                });
+                console.log(routePath);
+                return(            
+                  <Polyline
+                    geodesic={true}
+                    options={{
+                      path: routePath,
+                      strokeColor: "#ff0000",
+                      strokeOpacity: 1,
+                      strokeWeight: 6,
+                      icons: [
+                        {
+                          offset: "0",
+                          repeat: "10px"
+                        }
+                      ]
+                    }}
+                    />)
+          })}
         </GoogleMap>
       </LoadScript>
     </div>

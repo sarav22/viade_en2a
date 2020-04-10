@@ -8,7 +8,7 @@ import MapEmpty from "./MapEmpty"
 import LateralMenu from "./LateralMenu";
 
 export class ImportRoute extends Component<Props>{
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ export class ImportRoute extends Component<Props>{
         this.setState({importedRoute: true, route: routeImported});
     }
 
-    viewRoute = route => {
+    viewRoute = routeArray => {
         return (
             <Container fluid>
                 <Row>
@@ -30,7 +30,7 @@ export class ImportRoute extends Component<Props>{
                     </Col>
 
                     <Col xs={12} md={8}>
-                        <Map route={route}></Map>
+                        <Map routeArray={routeArray}></Map>
                      </Col>
                 </Row>
             </Container>
@@ -45,7 +45,7 @@ export class ImportRoute extends Component<Props>{
               <Container fluid>
                 <Row>
                     <Col xs={6} md={4}>
-                        <LateralMenu viewRoute={this.viewRoute}/>
+                        <LateralMenu setRoute={this.setRoute}/>
                     </Col>
 
                     <Col xs={12} md={8}>
