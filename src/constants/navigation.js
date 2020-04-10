@@ -4,15 +4,15 @@
 export const NavigationItems = [
    {
     id: "seeRoutes",
-    icon: "img/icon/seeRoutes.svg",
+    icon: "/img/icon/seeRoutes.svg",
     label: "navBar.seeRoutes",
     to: "/seeRoutes"
   },
   {
     id: "createRoute",
-    icon: "img/icon/createRoute.svg",
+    icon: "/img/icon/createRoute.svg",
     label: "navBar.createRoute",
-    to: "/createRoute" 
+    to: "/createRoute"
   },
   {
     id: "importRoute",
@@ -22,7 +22,7 @@ export const NavigationItems = [
   },
   {
     id: 'manageFriends',
-    icon: 'img/icon/manageFriends.svg',
+    icon: '/img/icon/manageFriends.svg',
     label: 'navBar.manageFriends',
     to: '/manageFriends'
   }

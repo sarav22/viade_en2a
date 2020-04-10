@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import { MapWrapper } from "./createRoute.style";
 
 import Map from "./Map";
 import LateralForm from "./LateralForm";
@@ -72,32 +73,34 @@ export class CreateRoute extends Component<Props>{
 
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col xs={6} md={4}>
-                        <LateralForm setDescription={this.handleSetDescription} 
-                            setName={this.handleSetName} 
-                            handleSubmit={this.handleSubmit}
-                            name={this.state.name}
-                            description={this.state.description}
-                         />
-                    </Col>
+            <MapWrapper>
+                <Container fluid>
+                    <Row>
+                        <Col xs={12} md={7} sm={8} xs={12}>
+                            <Map 
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0&libraries=drawing"
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `800px`, border: `2px solid #fff`, margin: '20px auto', "max-height": "calc(100vh - 180px)", }} />}
+                                mapElement={<div style={{ height: `100%` }} />}
 
-                    <Col xs={12} md={8}>
-                        <Map 
-                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0&libraries=drawing"
-                            loadingElement={<div style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `800px` }} />}
-                            mapElement={<div style={{ height: `100%` }} />}
+                                setWaypoints={this.handleSetWaypoints} 
+                                waypoints={this.state.waypoints}
+                                setPolyline={this.handleSetPolyline}
+                                getPolyline={this.handleGetPolyline}
+                            />
+                        </Col>
 
-                            setWaypoints={this.handleSetWaypoints} 
-                            waypoints={this.state.waypoints}
-                            setPolyline={this.handleSetPolyline}
-                            getPolyline={this.handleGetPolyline}
-                        />
-                     </Col>
-                </Row>
-            </Container>
+                        <Col xs={6} md={5} sm={4} xs={12}>
+                            <LateralForm setDescription={this.handleSetDescription} 
+                                setName={this.handleSetName} 
+                                handleSubmit={this.handleSubmit}
+                                name={this.state.name}
+                                description={this.state.description}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            </MapWrapper>
         );
     }
 }

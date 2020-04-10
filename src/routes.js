@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from "@layouts";
-import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, Switch, Redirect } from "react-router-dom";
 
 import {
   Login,
@@ -27,6 +27,7 @@ const privateRoutes = [
     path: "/map/:route",
     component: Map
   },
+
   {
     id: "manageFriends",
     path: "/manageFriends",
@@ -34,14 +35,15 @@ const privateRoutes = [
   },
   {
     id: "manageFriends",
-    path: "/friendRoutes/:f/:s/:n",
+    path: "/friendRoutes/:friend",
     component: FriendRoutes
   },
   {
     id: "seeRoutes",
     path: "/seeRoutes",
     component: RouteList
-  },{
+  },
+  {
     id:"createRoute",
     path:"/createRoute",
     component: CreateRoute
@@ -53,10 +55,10 @@ const privateRoutes = [
 ];
 
 const Routes = () => (
-  <Router basename = {process.env.PUBLIC_URL}>
+  <Router>
     <Fragment>
       <Switch>
-        <NotLoggedInLayout component={Login} path="/login" exact />
+        <NotLoggedInLayout component={Login} path="/login" exact/>
         <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout
           path="/register/success"

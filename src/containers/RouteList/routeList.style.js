@@ -3,9 +3,9 @@ import { media } from "../../utils";
 
 export const RouteListWrapper = styled.section`
   width: 100%;
-  background-image: url("img/concentric-hex-pattern_2x.png");
+  background-image: url("/img/concentric-hex-pattern_2x_black.png");
   background-repeat: repeat;
-  padding: 50px 0;
+  padding: 20px 0;
 
   h3 {
     color: #666666;
@@ -19,20 +19,18 @@ export const RouteListWrapper = styled.section`
 `;
 
 export const RouteListCard = styled.div`
-  background-color: #fff;
-  margin: 30px auto;
+  margin: 20px auto;
 
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
   flex-direction: row !important;
-  padding: 50px 0 !important; //temporary fix to a style guide bug
+  padding: 20px 0 !important; //temporary fix to a style guide bug
 
   align-items: center;
 
   a {
     text-decoration: none;
     &:hover {
-      color: #ff0000;
       text-decoration: underline;
     }
   }
@@ -124,20 +122,25 @@ export const ListItemData = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-  max-height: 175px !important;
   //Overriding the style guide card flexbox settings
   flex-direction: row !important;
-
+  padding: 0px 0px;
   align-items: left;
+
+  color: black;
+
+  :hover {
+    color: #18A9E6;
+    background-color: #F2F2F2;
+  }
 `;
 
 export const RouteImage = styled.div`
   width: 50%;
   height: 100%;
   position: relative;
-  img {
+  .img {
     width: auto;
-    height: 160px;
-    margin: 0 auto;
+    height: 100px;
   }
 `;

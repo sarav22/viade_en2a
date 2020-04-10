@@ -1,5 +1,4 @@
 
-
 function parseRouteJsonLD(routeSpec) {
 
     var comments = []
