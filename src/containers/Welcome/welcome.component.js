@@ -81,12 +81,12 @@ export const WelcomePageContent = props => {
         }
       }
     
-      const groupsFolderExists = await fc.resourceExists(groupsPath);
+      const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
       if(!groupsFolderExists){
         await fc.createFolder(groupsPath, {createPath:true});
       }
   
-      const sharedFolderExists = await fc.resourceExists(sharedPath);
+      const sharedFolderExists = await ldflexHelper.resourceExists(sharedPath);
       if(!sharedFolderExists){
         await fc.createFolder(sharedPath, {createPath:true});
       }
