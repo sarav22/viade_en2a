@@ -5,11 +5,11 @@ import{ ldflexHelper} from "@utils";
 
 export const saveSharedFile = (webId, notification) => {
 
-    let namefile= notification.actor.webId.substring(8, webId.length - 16)
+    let namefile= notification.actor.webId.substring(8, notification.actor.webId.length - 16)
       let path= webId.substring(0, webId.length - 16)
       let jsonfile = `${path}/viade/shared/${namefile}.jsonld`;
       var summary =notification.summary.split(" ");
-      let friendpath= notification.actor.webId.substring(0, webId.length - 16)
+      let friendpath= notification.actor.webId.substring(0, notification.actor.webId.length - 16)
       var ruta =`${friendpath}/viade/routes/${summary[summary.length-1]}`; 
   
       ldflexHelper.resourceExists(jsonfile).then(function(result) {
