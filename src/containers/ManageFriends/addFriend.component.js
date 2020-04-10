@@ -23,18 +23,12 @@ class AddFriendsContent extends Component<Props> {
     this.state = {status: 200, done: false}
   }
 
-  /*async loadFriends() {
-    const profileDoc =  await fetchDocument(this.props.webId);
-    const profile = profileDoc.getSubject(this.props.webId);
-    const fs=profile.getAllRefs(foaf.knows);
-    this.setState({friends: fs});
- }*/
 
   componentDidMount(){
 
   }
 
-  async ldflexDeleter(friend){
+  async ldflexAdder(friend){
     console.log(this.props.webId)
     return ldflex[this.props.webId].knows.add(ldflex[friend]);
   }
@@ -46,32 +40,21 @@ class AddFriendsContent extends Component<Props> {
   async addFriend(event) {
     event.preventDefault();
     let userId = document.getElementById("webId").value;
-     //alert(userId);
-     // Creates an object which can read files from the server
     var friendToAdd = userId;
-    //alert(friendToAdd);
-    fetch('https://' + friendToAdd + '.solid.community').then( response => {
-      this.setState({status: response.status, done: true});
-      //alert(this.state.status);
-      
-      
-    });
-    await this.ldflexDeleter('https://' + friendToAdd + ".solid.community/profile/card#me");
-    await this.reload();
-
-    //Mirar cómo lanzar la petición
-    /*var request = new XMLHttpRequest();  
-    request.open('GET', 'https://' + friendToAdd + '.solid.community', true);
-    request.onreadystatechange = function(){
-        alert("yipee");
-        if (request.readyState === 4){
-            if (request.status === 404) {  
-                alert("Oh no, it does not exist!");
-            }  
+    if (friendToAdd.search("/profile/card#me") != -1){
+      fetch(friendToAdd).then( response => {
+        this.setState({status: response.status, done: true});
+        if (this.state.status == 200) {
+          this.ldflexAdder(friendToAdd);
+        } else if (this.state.status == 404) {
+          //El webId no existe
+          alert("This webId does not exist"); //Esto de poner alerts me parece un poco sucio, debería ser en un div o algo así en el propio código html
+        } else {
+          alert("An error occurred while trying to fetch this webId"); //Y lo mismo aquí
         }
-        request.send();*/
-    
-    //await reload();
+      });
+    }
+    await this.reload();
   }
 
 
@@ -81,9 +64,10 @@ class AddFriendsContent extends Component<Props> {
         {
           <form>
               <p>Enter the webID of the person you want to add as friend: </p>
-              <input id="webId" type="text"/>
+              <input id="webId" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"/>
               <input type="submit" value="Add friend" onClick={(event) => this.addFriend(event)}/>
           </form>
+          
         }
       </ManageFriendsWrapper>
     )
@@ -93,42 +77,3 @@ class AddFriendsContent extends Component<Props> {
 }
 
 export default AddFriendsContent;
-
-/*export const AddFriendsContent = props => {
-    const { webId } = props;
-    const { t } = useTranslation();
-
-  
-  const reload = () => {
-    window.location.reload(true);
-  }
-
-
- 
- /*async function addFriend(event) {
-    event.preventDefault();
-    let userId = document.getElementById("webId").value;
-     //alert(userId);
-     // Creates an object which can read files from the server
-    var friendToAdd = userId;
-    alert(friendToAdd);
-    //Mirar cómo lanzar la petición
-    var request = new XMLHttpRequest();  
-    request.open('GET', 'https://' + friendToAdd + '.solid.community', true);
-    request.onreadystatechange = function(){
-        alert("yipee");
-        if (request.readyState === 4){
-            if (request.status === 404) {  
-                alert("Oh no, it does not exist!");
-            }  
-        }
-        request.send();
-    /*await ldflexDeleter(friend);
-    await reload();*/
-   // }
- //}
-//}
-
-
-  
-//}
