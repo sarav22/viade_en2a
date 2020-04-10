@@ -16,7 +16,7 @@ export const NavigationItems = [
   },
   {
     id: "importRoute",
-    icon: "img/icon/importRoute.svg",
+    icon: "/img/icon/importRoute.svg",
     label: "navBar.importRoute",
     to: "/importRoute"
   },
