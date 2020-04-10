@@ -1,14 +1,12 @@
 import React from 'react';
-import ldflex from '@solid/query-ldflex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
-import {browserHistory} from 'react-router';
+import {deleteFriend, viewRoutes } from '../../services/friendsManager';
 import {
   ButtonFriend,
 } from './manageFriends.style';
-import { Base64 } from "js-base64";
 import Button from 'react-bootstrap/Button';
 
 /**
@@ -17,47 +15,25 @@ import Button from 'react-bootstrap/Button';
  * @param props
  */
 export const ManageFriendsContent = props => {
-  const { webId,friends} = props;
+  const { webId, friends} = props;
   const { t } = useTranslation();
-
-  async function ldflexDeleter(friend){
-     return ldflex[webId].knows.delete(ldflex[friend]);
-  }
-
-  async function deleteFriend(event, friend) {
-    event.preventDefault();
-    await ldflexDeleter(friend);
-    await reload();
-  }
-
-  const reload = () => {
-    window.location.reload(true);
-  }
-  
-  async function viewRoutes(event, friend) {
-    event.preventDefault();
-    var url = friend.replace("https://", "")
-    url = Base64.encode(url);
-    browserHistory.push('/friendRoutes/'+ url);
-    await reload();
-  }  
 
   return (
     <div data-testid="manageFriends-container">
       {
         friends.map(friend => (
         <div key={friend + "div"}>
-        <Dropdown key={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
+        <Dropdown key={friend+"d"} data-testid={friend+"d"} style={{margin:'20px'}} as={ButtonGroup}>
 
-          <ButtonFriend>
-            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+        <ButtonFriend>
+            <Button className="buttonFriend" variant="light" onClick={(event) => viewRoutes(event,friend)} style={{'padding-left': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
               {friend}
             </Button>
           </ButtonFriend>
-          <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
-            <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
-            <Dropdown.Item onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
-            <Dropdown.Item onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
+          <DropdownButton variant="light" key={friend+"dropdown"} data-testid={friend+"dropdown"} title=""> 
+            <Dropdown.Item target="_blank" href={friend} key={friend+"dropdownI1"} data-testid={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
+            <Dropdown.Item onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"} data-testid={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
+            <Dropdown.Item onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"} data-testid={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
           </DropdownButton>
         </Dropdown>
         </div>

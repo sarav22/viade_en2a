@@ -7,8 +7,6 @@ background-repeat: repeat;
 `;
 
 
-
-
 export const MapCard = styled.div`
   flex-direction: row !important;
   align-items: center;
@@ -22,3 +20,15 @@ export const MapRouteName = styled.span`
   word-break: break-word;
 `;
 
+
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  display: inline-block;
+  margin: 10px auto;
+  flex-direction: row !important;
+`;
+
+export const Input = styled.input`
+  margin: 5px;
+`;

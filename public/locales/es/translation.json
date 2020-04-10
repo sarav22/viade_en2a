@@ -49,7 +49,7 @@
     "map": "Mapa",
     "welcome": "Bienvenida",
     "seeRoutes": "Ver Rutas",
-    "createRoutes":"Crear Una Ruta",
+    "createRoute":"Crear Una Ruta",
     "manageFriends":"Gestionar Amigos",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
@@ -135,7 +135,13 @@
       "images":"Imágenes y vídeos",
       "comments": "Comentarios",
       "data":"Datos sobre la ruta"
-    }
+    },
+    "shareButton":"Share route",
+    "shareWith":"Choose a friend or group to share with: ",
+    "share":"Share",
+    "shareSuccess": "La ruta se compartió correctamente",
+    "notificationTitle": "Ruta compartida",
+    "notificationSummary": " ha compartido una ruta contigo: "
   },
   "friendsManagement":{
     "profile": "Ver Perfil",

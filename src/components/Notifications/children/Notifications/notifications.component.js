@@ -4,7 +4,9 @@ import { useNotification, useLiveUpdate } from '@inrupt/solid-react-components';
 import { NotificationsWrapper } from './notifications.style';
 import { Bell, NotificationsPanel } from '../index';
 import { useOnClickOutside } from '@hooks';
-
+import { id } from 'rdf-namespaces/dist/sioc';
+import{saveSharedFile} from '../../../../services/sharing'
+import{isFriend} from '../../../../services/friendsManager'
 let oldTimestamp;
 
 type Props = {
@@ -33,6 +35,7 @@ const Notifications = ({ webId, inbox }: Props) => {
 
   const { timestamp } = useLiveUpdate();
   const { notifications, unread, notify } = notification;
+  
   /**
    * pass date to string to compare time updates
    * @type {*|string}
@@ -53,6 +56,8 @@ const Notifications = ({ webId, inbox }: Props) => {
       setIsLoading(false);
     }
   };
+        
+   
 
   /**
    * If webId and notify instance exist we will init notifications, similar to componentDidMount
@@ -63,6 +68,7 @@ const Notifications = ({ webId, inbox }: Props) => {
     }
   }, [inbox, notify]);
 
+ 
   /**
    * Fetch new notifications when liveUpdate's timestamp changes, similar to componentWillUpdate
    */
@@ -72,6 +78,28 @@ const Notifications = ({ webId, inbox }: Props) => {
       oldTimestamp = currentTimestamp;
     }
   }, [timestamp]);
+
+async function mark(path,id){
+  await markAsRead(path, id)
+}
+  
+  useEffect(() => {
+    initNotifications();
+    for(var  i = 0; i< notifications.length ; i++){
+      if( notifications[i] !==undefined && notifications[i].read==="false"){
+        saveSharedFile(webId, notifications[i]);
+        mark(notifications[i].path, notifications[i].id)
+        isFriend(webId,notifications[i].actor.webId).then(function(value) {
+          if(value===false){
+            //darle al usuario la opción de añadir el amigo
+        }else{
+            //no hacer nada porque ya son amigos, está aquí para pruebas, luego borrar el else
+        }}
+        );
+      }
+    }
+  }, [unread]);
+
 
   return (
     <NotificationsWrapper ref={ref}>

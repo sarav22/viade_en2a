@@ -13,7 +13,7 @@ const MultimediaTab = props => {
     //found code at https://stackoverflow.com/questions/48886701/how-to-add-scroll-into-react-bootstrap-modal-body
     return (
         <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
-            <Modal.Body style={{ 'max-height': 'calc(100vh - 215px)', 'overflow-y': 'auto', 'width': '100%', "scrollbar-width": "thin" }}>
+            <Modal.Body style={{ 'max-height': 'calc(100vh - 220px)', 'overflow-y': 'auto', 'width': '100%', "scrollbar-width": "thin" }}>
                 <Container>
                     {resources.map((item) => {
                         return (
