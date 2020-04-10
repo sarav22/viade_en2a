@@ -67,11 +67,8 @@ class AddFriendsContent extends Component<Props> {
         {
           <form>
               <p>Enter the webID of the person you want to add as friend: </p>
-              
               <input id="webId" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"/>
               <input id="addFriendButton" class="addFriendButton" type="submit" value="Add friend" onClick={(event) => this.addFriend(event)}/>
-              
-              
           </form>
           
         }
