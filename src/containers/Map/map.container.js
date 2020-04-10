@@ -4,6 +4,7 @@ import LateralMenu from "./LateralMenu";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import { Loader } from '@util-components';
 
 import { loadMapInfo } from "../../services/DomainJSONTranslator";
 import { Base64 } from "js-base64";
@@ -53,7 +54,7 @@ export class MapComponent extends Component<Props> {
     const { loading } = this.state;
     return (
       <Fragment>
-        {loading ? "Loading..." : this.viewContent(this.state.route)}
+        {loading ? 	<Loader /> : this.viewContent(this.state.route)}
       </Fragment>
     );
   }

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { useTranslation } from 'react-i18next';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 

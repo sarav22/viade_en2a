@@ -50,6 +50,7 @@
     "welcome": "Bienvenida",
     "seeRoutes": "Ver Rutas",
     "createRoute":"Crear Una Ruta",
+    "importRoute":"Importar Una Ruta",
     "manageFriends":"Gestionar Amigos",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
@@ -156,5 +157,13 @@
   },
   "utils":{
     "back": "Atrás"
+  },
+  "error":{
+    "importError": "Un error ha ocurrido al importar la ruta, porfavor inténtelo de nuevo",
+    "sizeLimitImport": "El número máximo de archivos que se pueden importar es 1"
+  },
+  "import": {
+    "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
+    "dragAndDropSupported": "Los archivos soportados son *.gpx"
   }
 }

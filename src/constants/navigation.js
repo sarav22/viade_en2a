@@ -15,6 +15,12 @@ export const NavigationItems = [
     to: "/createRoute" 
   },
   {
+    id: "importRoute",
+    icon: "img/icon/importRoute.svg",
+    label: "navBar.importRoute",
+    to: "/importRoute"
+  },
+  {
     id: 'manageFriends',
     icon: 'img/icon/manageFriends.svg',
     label: 'navBar.manageFriends',

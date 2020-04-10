@@ -7,6 +7,16 @@ export class TrackPoint {
     }
 }
 
+export class Waypoint {
+    constructor(name, description, latitude, longitude, elevation) {
+        this.name = name; 
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.elevation = elevation;
+    }
+}
+
 export class Resource {
     
     constructor(resourceUrl) {

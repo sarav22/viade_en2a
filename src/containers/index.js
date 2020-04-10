@@ -7,6 +7,7 @@ import FriendRoutes from "./FriendRoutes";
 import RouteList from "./RouteList";
 import ManageFriends from './ManageFriends';
 import CreateRoute from './CreateRoute';
+import ImportRoute from './ImportRoute';
 
 export { 
      Login,
@@ -18,5 +19,6 @@ export {
      FriendRoutes,
      RouteList,
      ManageFriends,
-     CreateRoute
+     CreateRoute,
+     ImportRoute
 };
