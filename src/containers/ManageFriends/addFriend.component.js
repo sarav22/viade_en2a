@@ -53,6 +53,8 @@ class AddFriendsContent extends Component<Props> {
           alert("An error occurred while trying to fetch this webId"); //Y lo mismo aquí
         }
       });
+    } else {
+      alert("This is not a valid webId"); //Y lo mismo aquí
     }
     await this.reload();
   }
