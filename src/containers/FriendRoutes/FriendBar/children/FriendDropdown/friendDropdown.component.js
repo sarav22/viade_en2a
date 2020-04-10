@@ -4,22 +4,12 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ldflex from "@solid/query-ldflex";
 import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
+import {deleteFriend, viewRoutes } from '../../../../../services/friendsManager';
 
 const FriendDropdown = props => {
 
     const { webId, friendWebId } = props;
     const { t } = useTranslation();
-
-    async function deleteFriend(event) {
-        event.preventDefault();
-        await ldflex[webId].knows.delete(ldflex[friendWebId]);
-        browserHistory.push("/manageFriends");
-        await reload();
-    }
-
-    const reload = () => {
-        window.location.reload(true);
-    }
     
     return (
         

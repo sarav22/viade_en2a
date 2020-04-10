@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from "@layouts";
-import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, Switch, Redirect } from "react-router-dom";
 
 import {
   Login,
@@ -11,7 +11,8 @@ import {
   Map,
   RouteList,
   FriendRoutes,
-  ManageFriends
+  ManageFriends,
+  CreateRoute
 } from "./containers";
 
 const privateRoutes = [
@@ -33,18 +34,23 @@ const privateRoutes = [
   },
   {
     id: "manageFriends",
-    path: "/friendRoutes/:f/:s/:n",
+    path: "/friendRoutes/:friend",
     component: FriendRoutes
   },
   {
     id: "seeRoutes",
     path: "/seeRoutes",
     component: RouteList
+  },
+  {
+    id:"createRoute",
+    path:"/createRoute",
+    component: CreateRoute
   }
 ];
 
 const Routes = () => (
-  <Router basename = {process.env.PUBLIC_URL}>
+  <Router>
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact/>
@@ -55,7 +61,7 @@ const Routes = () => (
           exact
         />
         <PublicLayout path="/404" component={PageNotFound} exact />
-        <Redirect from="/" to="/viade_en2a/#/welcome" exact />
+        <Redirect from="/" to="/welcome" exact />
         <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
       </Switch>

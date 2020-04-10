@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const ManageFriendsWrapper = styled.section`
+export const ManageFriendsWrapper = styled.div`
   width: 100%; 
-  background-color: #fff;
+  background-image: url('/img/concentric-hex-pattern_2x_black.png');
   background-repeat: repeat;
-  padding: 50px 0;
   flex-direction: row !important;
   h3 {
     color: #666666;
@@ -16,17 +15,38 @@ export const ManageFriendsWrapper = styled.section`
     }
   }
   
-  button {
-    margin-left: 0px;
+  .input {
+    width: 50em;
+    margin: 20px;
   }
+
+  form {
+    p {
+      margin: 20px 20px 0px 20px;
+      color: #FFFFFF;
+      span {
+        font-weight: bold;
+      }
+      font-size: 1.2rem;
+    }
+    input {
+      width: 50em;
+      margin: 20px 20px 0px 20px;
+    }
+    .addFriendButton {
+      width: 40em;
+    }
+  }
+
 `;
 
-export const ButtonFriend = styled.button`
-  min-width: 450px;
-  display: inline-block;
-  margin-left: 10px;
-  flex-direction: row !important;
-  &:first-child {
-    margin-right: 0px;
+export const ButtonFriend = styled.div`
+  margin-right: 5px;
+  .buttonFriend:hover{
+    color: #01C9EA;
+  }
+  .buttonFriend{
+    padding-left: 2px;
+    padding-right: 2px;
   }
 `;

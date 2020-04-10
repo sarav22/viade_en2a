@@ -3,9 +3,9 @@ import { media } from '../../utils';
 
 export const WelcomeWrapper = styled.section`
   width: 100%;
-  background-image: url('img/concentric-hex-pattern_2x.png');
+  background-image: url('/img/concentric-hex-pattern_2x_black.png');
   background-repeat: repeat;
-  padding: 50px 0;
+  padding: 20px 0;
 
   h3 {
     color: #666666;
@@ -20,12 +20,12 @@ export const WelcomeWrapper = styled.section`
 
 export const WelcomeCard = styled.div`
   background-color: #fff;
-  margin: 30px auto;
+  margin: 20px auto;
 
   //Overriding the style guide card flexbox settings
   max-width: 80% !important;
   flex-direction: row !important;
-  padding: 50px 0 !important; //temporary fix to a style guide bug
+  padding: 20px 0 !important; //temporary fix to a style guide bug
 
   align-items: center;
 
@@ -42,6 +42,7 @@ export const WelcomeCard = styled.div`
 `;
 
 export const WelcomeLogo = styled.div`
+  background-color: ##2E2E2E;
   width: 50%;
   height: 100%;
 

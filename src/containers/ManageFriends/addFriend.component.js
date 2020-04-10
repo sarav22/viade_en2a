@@ -6,9 +6,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
-  ManageFriendsWrapper,
+  ManageFriendsWrapper
 } from './manageFriends.style';
 import { relativeTimeRounding } from 'moment';
+import Row from 'react-bootstrap/Row';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -66,8 +67,11 @@ class AddFriendsContent extends Component<Props> {
         {
           <form>
               <p>Enter the webID of the person you want to add as friend: </p>
+              
               <input id="webId" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"/>
-              <input type="submit" value="Add friend" onClick={(event) => this.addFriend(event)}/>
+              <input id="addFriendButton" class="addFriendButton" type="submit" value="Add friend" onClick={(event) => this.addFriend(event)}/>
+              
+              
           </form>
           
         }

@@ -47,7 +47,7 @@ let beforeContext;
 class NavBarProfile extends Component<Props> {
   constructor(props) {
     super(props);
-    this.state = { image: 'img/icon/empty-profile.svg' };
+    this.state = { image: '/img/icon/empty-profile.svg' };
   }
 
   state = {
@@ -90,7 +90,7 @@ class NavBarProfile extends Component<Props> {
       // Remove localStorage
       localStorage.removeItem('solid-auth-client');
       // Redirect to login page
-      window.location = '/login';
+      window.location = '/viade_en2a/#/login';
     } catch (error) {
       errorToaster(error.message, 'Error');
     }
