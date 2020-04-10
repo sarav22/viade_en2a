@@ -57,35 +57,40 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      if(!ldflexHelper.resourceExists(inboxPath)){
-      await fc.createFolder(inboxPath, {createPath:true});
+      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
+      if(!inboxExists){
+        await fc.createFolder(inboxPath, {createPath:true});
 
-      // Check for CONTROL permissions to see if we can set permissions or not
-      const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
-        webId,
-        AccessControlList.MODES.CONTROL
-      );
-
-      // If the user has Write and Control permissions, check the inbox settings
-      if (hasControlPermissions) {
-        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
-        await permissionHelper.checkOrSetInboxAppendPermissions(
-          inboxPath,
-          webId
+        // Check for CONTROL permissions to see if we can set permissions or not
+        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+          webId,
+          AccessControlList.MODES.CONTROL
         );
-      }
 
-      if (!hasInboxLink) {
-        await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        // If the user has Write and Control permissions, check the inbox settings
+        if (hasControlPermissions) {
+          // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
+          await permissionHelper.checkOrSetInboxAppendPermissions(
+            inboxPath,
+            webId
+          );
+        }
+
+        if (!hasInboxLink) {
+          await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        }
       }
-    }
     
-    if(!ldflexHelper.resourceExists(groupsPath)){
-      await fc.createFolder(groupsPath, {createPath:true});
-    }
-    if(!ldflexHelper.resourceExists(sharedPath)){
-      await fc.createFolder(sharedPath, {createPath:true});
-    }
+      const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
+      if(!groupsFolderExists){
+        await fc.createFolder(groupsPath, {createPath:true});
+      }
+  
+      const sharedFolderExists = await ldflexHelper.resourceExists(sharedPath);
+      if(!sharedFolderExists){
+        await fc.createFolder(sharedPath, {createPath:true});
+      }
+      permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
     }
   }
 
