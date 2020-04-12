@@ -72,8 +72,8 @@ Viade --> User: Show a ok message to the user
 === Sharing a route with friends
 1. The user clicks on the "view routes" button of the navigation bar.
 2. The user clicks on the desired route name to be shared.
-3. Then the user clicks the "Share" button.
-4. Finally he writes the WebID of the user with which he wants to share the route.
+3. Then the user clicks the "Share Route" button.
+4. Finally he writes the WebID of the user or group with which he wants to share the route and clicks the "Share" button.
 [plantuml, "shareRouteWithFriendSequence", png]
 ----
 actor User
@@ -83,7 +83,11 @@ Pod --> Viade: Get all routes response
 Viade --> User: Shows a list with al the routes
 User ->  Viade: Clicks on a route name
 Viade --> User: Show the route information
-User --> Viade: Clicks on "Share"
+User --> Viade: Clicks on "Share Route"
+Viade --> User: Shows the sharing dialog
+User --> Viade: Writes the user or group WebID and clicks "Share"
+Viade --> POD: Send a notification to the user or group
+Viade --> POD: Give read permissions over the route to the user or group
 ----
 === View shared routes
 
