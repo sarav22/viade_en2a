@@ -149,13 +149,15 @@ export class RouteListComponent extends Component<Props> {
   buildElements(start, end) {
     var elements = [];
     for (var i = start; i < end; i++) {
-      elements.push(
-        <ListItem
-          key={i}
-          num={i}
-          url={this.state.routes[i]}
-        />
-      );
+      if(this.state.routes[i] !== undefined){
+        elements.push(
+          <ListItem
+            key={i}
+            num={i}
+            url={this.state.routes[i]}
+          />
+        );
+      }
     }
     return elements;
   }

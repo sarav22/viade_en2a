@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ManageFriendsContent } from './manageFriends.component';
 import { SearchFriendsContent } from './searchFriends.component';
+import  AddFriendsContent  from './addFriend.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
-import { ManageFriendsWrapper } from "./manageFriends.style";
+import { ManageFriendsWrapper, ButtonFriend } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
-
 
 
 /**
@@ -20,35 +20,35 @@ export class ManageFriendsComponent extends Component<Props> {
       searchResults:null,
     }
     this.handleChange = this.handleChange.bind(this);
-  }
-  
-
+	}
+ 
    componentDidMount() {
-     this.loadFriends(this.props.webId);
+     this.loadFriends();
      this.searchFriends("");
    }
-
-   async  loadFriends(webId) {
-    const profileDoc =  await fetchDocument(webId);
-    const profile = profileDoc.getSubject(webId);
-    const fs=profile.getAllRefs(foaf.knows);
-    this.setState({friends: fs});
-   } 
    
 
-  searchFriends(matchingString) {
-    if (matchingString!==""){
-      const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
-      this.setState({searchResults: filtered});
+    async loadFriends() {
+      const profileDoc =  await fetchDocument(this.props.webId);
+      const profile = profileDoc.getSubject(this.props.webId);
+      const fs=profile.getAllRefs(foaf.knows);
+      this.setState({friends: fs});
+   }
+
+    searchFriends(matchingString) {
+      if (matchingString!==""){
+        const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
+        this.setState({searchResults: filtered});
+      }
     }
-  }
-   
+
     handleChange(e) {
       const stringToSearch = e.target.value;
       if (stringToSearch !== "") {
         this.searchFriends(stringToSearch);
       }
     }
+
 
    render() {
     if (this.state.friends==null) {
@@ -65,6 +65,9 @@ export class ManageFriendsComponent extends Component<Props> {
           <Row>
             <ManageFriendsContent {...{ webId, friends}} />
           </Row>
+          <Row>
+            <AddFriendsContent webId={webId}/>
+          </Row>
           </ManageFriendsWrapper>
         );
       }
@@ -76,6 +79,9 @@ export class ManageFriendsComponent extends Component<Props> {
         </Row>
         <Row>
           <SearchFriendsContent {...{ webId, searchResults}} />
+        </Row>
+        <Row>
+            <AddFriendsContent webId={webId}/>
         </Row>
         </ManageFriendsWrapper>
       );

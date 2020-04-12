@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import { useTranslation } from 'react-i18next';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { FormWrapper } from "./lateralForm.style";
 
 
 export default class LateralForm extends Component<Props>{
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
+            <FormWrapper>
             <Form onSubmit={this.props.handleSubmit}>
                 <Form.Group controlId="formName">
-                    <Form.Label>Nombre de la ruta</Form.Label>
+                    <Form.Label className="label">Nombre de la ruta</Form.Label>
 
                     <Form.Control
                         required
@@ -29,7 +26,7 @@ export default class LateralForm extends Component<Props>{
                 </Form.Group>
 
                 <Form.Group controlId="formSurname">
-                    <Form.Label>Descripción</Form.Label>
+                    <Form.Label className="label">Descripción</Form.Label>
                     <Form.Control 
                         as="textarea"
                         rows="3"
@@ -43,6 +40,7 @@ export default class LateralForm extends Component<Props>{
                     Crear
                 </Button>
             </Form>
+            </FormWrapper>
         );
     }
 

@@ -1,6 +1,5 @@
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
-import { fax } from 'rdf-namespaces/dist/contact';
 import { v4 as uuidv4 } from 'uuid';
 const fc = new FC(auth);
 
