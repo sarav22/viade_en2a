@@ -7,7 +7,7 @@ background-repeat: repeat;
 padding: 50px 0;
 
 h3 {
-  color: #666666;
+  color: #18A9E6;
   span {
     font-weight: bold;
   }
@@ -45,6 +45,13 @@ export const MapCard = styled.div`
 
 
 export const MapRouteName = styled.span`
+  color: #18A9E6;
+  span {
+    font-weight: bold;
+  }
+  a {
+    font-size: 1.9rem;
+  }
   overflow-wrap: break-word;
   word-break: break-word;
 `;

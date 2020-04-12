@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { LoadScript, GoogleMap, Polyline, Marker } from "@react-google-maps/api";
 import { Loader } from '@util-components';
+import { MapRouteName } from './map.style.js';
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
@@ -13,9 +14,9 @@ const Map = props => {
 
   return (
     <div>
-      <h3>
+      <MapRouteName>
         {t("mapView.importedRoutesTitle")}
-      </h3>
+      </MapRouteName>
 
       <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
         <GoogleMap

@@ -7,7 +7,7 @@ background-repeat: repeat;
 padding: 50px 0;
 
 h3 {
-  color: #666666;
+  color: #18A9E6;
   span {
     font-weight: bold;
   }
