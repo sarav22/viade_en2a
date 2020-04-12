@@ -8,6 +8,17 @@
 2. The user types it's personal id and password
 3. The user clicks the log in button, if success, the application will redirect to the home view, otherwise, the current view will show an error
 
+[plantuml, "loginSequence", png]
+----
+actor User
+User -> Viade: Selects pod provider
+User -> Viade: Enters credentials
+User -> Viade: Clicks login button
+Viade -> Pod: login request
+Pod -> Viade: login response
+Viade -> User: redirects to the corresponding view
+----
+
 === View routes
 
 1. The user clicks on the "view routes" button of the nav bar
@@ -43,6 +54,20 @@ Viade --> POD: Uploads the route
 
 === Importing a routes
 
+1. The user clicks the "import route" button
+2. The user drags a .gpx file to the view. The routes are now displayed on the map
+3. The user clicks the "import" button
+
+[plantuml, "importRoutesSequence", png]
+----
+actor User
+User -> Viade: Clicks on "import routes"
+Viade --> User: Show the import routes view
+User -> Viade: Drags the .gpx file 
+User -> Viade: Clicks on the "import" button
+Viade -> Pod: Store routes
+Viade --> User: Show a ok message to the user
+----
 
 === Sharing a route with friends
 1. The user clicks on the "view routes" button of the navigation bar.
@@ -64,26 +89,3 @@ User --> Viade: Clicks on "Share"
 
 
 
-
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"test diagram",png]
-----
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-----
-=== <Runtime Scenario 2>
-
-=== ...
-
-=== <Runtime Scenario n>
