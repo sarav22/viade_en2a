@@ -8,6 +8,17 @@
 2. The user types it's personal id and password
 3. The user clicks the log in button, if success, the application will redirect to the home view, otherwise, the current view will show an error
 
+[plantuml, "loginSequence", png]
+----
+actor User
+User -> Viade: Selects pod provider
+User -> Viade: Enters credentials
+User -> Viade: Clicks login button
+Viade -> Pod: login request
+Pod -> Viade: login response
+Viade -> User: redirects to the corresponding view
+----
+
 === View routes
 
 1. The user clicks on the "view routes" button of the nav bar
