@@ -1,54 +1,117 @@
 [[section-runtime-view]]
+
 == Runtime View
 
+=== Login
 
-[role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
+1. The user selects its pod provider
+2. The user types its personal id and password
+3. The user clicks the log in button, if success, the application will redirect to the home view, otherwise, the current view will show an error
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-****
-
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"test diagram",png]
+[plantuml, "loginSequence", png]
 ----
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor User
+User -> Viade: Selects pod provider
+User -> Viade: Enters credentials
+User -> Viade: Clicks login button
+Viade -> Pod: login request
+Pod -> Viade: login response
+Viade -> User: redirects to the corresponding view
 ----
-=== <Runtime Scenario 2>
 
-=== ...
+=== View routes
 
-=== <Runtime Scenario n>
+1. The user clicks on the "view routes" button of the nav bar
+2. Then, the user clicks on the desired route name
+3. Finally, the application shows the route on a map with all the needed information.
+
+[plantuml, "viewRoutesSequence", png]
+----
+actor User
+User -> Viade: Clicks on "view routes"
+Viade -> Pod: Get all routes request
+Pod --> Viade: Get all routes response
+Viade --> User: Shows a list with al the routes
+User ->  Viade: Clicks on a route name
+Viade --> User: Show the route information
+----
+
+=== Create a new routes
+1. The user clicks on the "Create A Route" button on the navigation bar.
+2. The user writes the name and description of the route and creates the points which compose the route using the map at the right, clicking once creates a new point, clicking twice on the same point finishes the route (creating a loop also finishes the route).
+3. To finally create the route the user clicks on the "Create Route" button.
+
+[plantuml, "createRouteSequence", png]
+----
+actor User
+User -> Viade: Clicks on "Create A Route"
+Viade -> User: Shows the "Create A Route" view 
+User --> Viade: Gives a name to the route
+User --> Viade: Gives a description to the route
+User --> Viade: Creates the route as a list of points
+User --> Viade: Submits the route clicking on "Create Route"
+Viade --> POD: Uploads the route
+----
+
+=== Importing a routes
+
+1. The user clicks the "import route" button
+2. The user drags a .gpx file to the view. The routes are now displayed on the map
+3. The user clicks the "import" button
+
+[plantuml, "importRoutesSequence", png]
+----
+actor User
+User -> Viade: Clicks on "import routes"
+Viade --> User: Show the import routes view
+User -> Viade: Drags the .gpx file 
+User -> Viade: Clicks on the "import" button
+Viade -> Pod: Store routes
+Viade --> User: Show a ok message to the user
+----
+
+=== Sharing a route with friends
+1. The user clicks on the "view routes" button of the navigation bar.
+2. The user clicks on the desired route name to be shared.
+3. Then the user clicks the "Share Route" button.
+4. Finally he writes the WebID of the user or group with which he wants to share the route and clicks the "Share" button.
+
+[plantuml, "shareRouteWithFriendSequence", png]
+----
+actor User
+User -> Viade: Clicks on "view routes"
+Viade -> Pod: Get all routes request
+Pod --> Viade: Get all routes response
+Viade --> User: Shows a list with all the routes
+User ->  Viade: Clicks on a route name
+Viade --> User: Show the route information
+User --> Viade: Clicks on "Share Route"
+Viade --> User: Shows the sharing dialog
+User --> Viade: Writes the user or group WebID and clicks "Share"
+Viade --> POD: Send a notification to the user or group
+Viade --> POD: Give read permissions over the route to the user or group
+----
+
+=== View shared routes
+
+1. The user clicks in the "manage friends" button in the nav bar
+2. The user clicks on the friend that shared the route
+3. The user clicks on the route that wants to see.
+
+[plantuml, "viewSharedRouteSequence", png]
+----
+actor User
+User -> Viade: Clicks on "manage friend"
+Viade -> Pod: Get all friends request
+Pod --> Viade: Get all friends response
+Viade --> User: Shows a list with all the friends
+User ->  Viade: Clicks on a friend name
+Viade -> Pod: Get all friend's routes request
+Pod --> Viade: Get all friend's routes response
+Viade --> User: Shows a list with all the friends
+User ->  Viade: Clicks on a route name
+Viade --> User: Show the route information
+----
+
+
+
