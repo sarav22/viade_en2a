@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Map from "./Map";
 import MapEmpty from "./MapEmpty"
 import LateralMenu from "./LateralMenu";
+import {ImportWrapper} from './importRoute.style';
 
 export class ImportRoute extends Component<Props>{
     
@@ -23,7 +24,8 @@ export class ImportRoute extends Component<Props>{
 
     viewRoute = routeArray => {
         return (
-            <Container fluid>
+            <ImportWrapper>
+                            <Container fluid>
                 <Row>
                     <Col xs={6} md={4}>
                         <LateralMenu />
@@ -34,6 +36,7 @@ export class ImportRoute extends Component<Props>{
                      </Col>
                 </Row>
             </Container>
+            </ImportWrapper>
         );
     }
 
@@ -41,8 +44,9 @@ export class ImportRoute extends Component<Props>{
         const {importedRoute} = this.state;
         return (
             <Fragment>
-              {!importedRoute ?             
-              <Container fluid>
+              {!importedRoute ?          
+              <ImportWrapper>
+                <Container fluid>
                 <Row>
                     <Col xs={6} md={4}>
                         <LateralMenu setRoute={this.setRoute}/>
@@ -52,7 +56,8 @@ export class ImportRoute extends Component<Props>{
                         <MapEmpty centralLat={40.411104} centrarLong={-3.705367}></MapEmpty>
                      </Col>
                 </Row>
-            </Container> : this.viewRoute(this.state.route)}
+                </Container>
+              </ImportWrapper>    : this.viewRoute(this.state.route)}
             </Fragment>
           );
     }
