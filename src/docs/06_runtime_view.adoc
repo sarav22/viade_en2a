@@ -26,14 +26,40 @@ Viade --> User: Show the route information
 ----
 
 === Create a new routes
-
+1. The user clicks on the "Create A Route" button on the navigation bar.
+2. The user writes the name and description of the route and creates the points which compose the route using the map at the right, clicking once creates a new point, clicking twice on the same point finishes the route (creating a loop also finishes the route).
+3. To finally create the route the user clicks on the "Create Route" button.
+[plantuml, "createRouteSequence", png]
+----
+actor User
+User -> Viade: Clicks on "Create A Route"
+Viade -> User: Shows the "Create A Route" view 
+User --> Viade: Gives a name to the route
+User --> Viade: Gives a description to the route
+User --> Viade: Creates the route as a list of points
+User --> Viade: Submits the route clicking on "Create Route"
+Viade --> POD: Uploads the route
+----
 
 === Importing a routes
 
 
 === Sharing a route with friends
-
-
+1. The user clicks on the "view routes" button of the navigation bar.
+2. The user clicks on the desired route name to be shared.
+3. Then the user clicks the "Share" button.
+4. Finally he writes the WebID of the user with which he wants to share the route.
+[plantuml, "shareRouteWithFriendSequence", png]
+----
+actor User
+User -> Viade: Clicks on "view routes"
+Viade -> Pod: Get all routes request
+Pod --> Viade: Get all routes response
+Viade --> User: Shows a list with al the routes
+User ->  Viade: Clicks on a route name
+Viade --> User: Show the route information
+User --> Viade: Clicks on "Share"
+----
 === View shared routes
 
 
