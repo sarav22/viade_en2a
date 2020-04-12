@@ -14,11 +14,11 @@ const LateralMenu = props  => {
   return (
       <Tabs id="controlled-tab-example">
         <Tab eventKey="multimedia" title={t('mapView.menu.images')}>
-          <MultimediaTab resources={route.resources}/>
-        </Tab>
+        <MultimediaTab resources={route.resources}/>
+      </Tab>
         <Tab eventKey="comments" title={t('mapView.menu.comments')}>
-          <CommentsTab comments={route.comments} />
-        </Tab>
+        <CommentsTab routeObject={route} />
+      </Tab>
         <Tab eventKey="data" title={t('mapView.menu.data')} >
           <DataTab route={route}/>
         </Tab>

@@ -27,10 +27,6 @@ test('Dropdown works', () =>{
     ));
     friends.map(friend=>(
         expect(getByTestId(friend+'d')).toBeTruthy()));
-   
-    getByTestId('https://carlosmanrique.inrupt.net/profile/card#medropdown').click();
-  //should work
-  //expect(getByTestId('https://carlosmanrique.inrupt.net/profile/card#medropdownI1')).toBeTruthy();
           
           
 });

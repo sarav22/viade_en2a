@@ -7,6 +7,7 @@ import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
+import { Loader } from '@util-components';
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
@@ -28,7 +29,10 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
-    const img = route.resources.length !== 0 ? route.resources[0].resourceUrl : this.defaultImage;
+    const img =
+      route.resources.length !== 0
+        ? route.resources[0].resourceUrl
+        : this.defaultImage;
     return (
       <ItemWrapper className="card">
         <RouteImage>
@@ -42,9 +46,7 @@ export class ListItem extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <Fragment>
-        {loading ? null : this.viewContent(this.state.route)}
-      </Fragment>
+      <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
     );
   }
 }
@@ -184,7 +186,7 @@ export class RouteListComponent extends Component<Props> {
   render() {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
-      return <RouteListWrapper>Loading</RouteListWrapper>;
+      return <RouteListWrapper><Loader/></RouteListWrapper>;
     }
     return (
       <RouteListPageContent
