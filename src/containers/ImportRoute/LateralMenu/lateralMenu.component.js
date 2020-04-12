@@ -93,7 +93,7 @@ const LateralMenu = props  => {
             isDragReject
           ]);
         return (
-            <div {...getRootProps({style})}>
+            <div data-testid="dropMenu" {...getRootProps({style})}>
                 <input {...getInputProps()} />
                 <p>{t('import.dragAndDropMain')}</p>
                 <p>{t('import.dragAndDropSupported')}</p>
