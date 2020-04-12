@@ -1,4 +1,4 @@
-const{defineFeature, loadFeature} = require('jest-cucumber');
+/*const{defineFeature, loadFeature} = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/share.feature');
 //const puppeteer = require('puppeteer');
 
@@ -75,4 +75,4 @@ defineFeature(feature, test=>{
         });
         
     }); 
-});
+});*/

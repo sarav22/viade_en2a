@@ -23,7 +23,7 @@ test('Renders share button', () =>{
         expect(getByTestId('buttonShare')).toBeTruthy();
 });
 
-test('Modal works', async () =>{
+/*test('Modal works', async () =>{
     
     getByTestId('buttonShare').click();
     expect(getByTestId('modalShare')).toBeTruthy();
@@ -32,5 +32,5 @@ test('Modal works', async () =>{
     getByTestId('shareWith').click(); 
    await expect(getByTestId('modalSuccess')).toBeTruthy();
     
-});
+});*/
 

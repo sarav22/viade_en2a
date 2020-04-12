@@ -1,4 +1,4 @@
-const { defineFeature, loadFeature } = require('jest-cucumber');
+/*const { defineFeature, loadFeature } = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/viewFriendRoutes.feature');
 
 defineFeature(feature, test => {
@@ -86,4 +86,4 @@ defineFeature(feature, test => {
 
         });
     });
-});
+});*/
