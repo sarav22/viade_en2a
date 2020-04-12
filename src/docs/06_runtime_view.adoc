@@ -41,6 +41,20 @@ Viade --> User: Show the route information
 
 === Importing a routes
 
+1. The user clicks the "import route" button
+2. The user drags a .gpx file to the view. The routes are now displayed on the map
+3. The user clicks the "import" button
+
+[plantuml, "importRoutesSequence", png]
+----
+actor User
+User -> Viade: Clicks on "import routes"
+Viade --> User: Show the import routes view
+User -> Viade: Drags the .gpx file 
+User -> Viade: Clicks on the "import" button
+Viade -> Pod: Store routes
+Viade --> User: Show a ok message to the user
+----
 
 === Sharing a route with friends
 
@@ -49,26 +63,3 @@ Viade --> User: Show the route information
 
 
 
-
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"test diagram",png]
-----
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-----
-=== <Runtime Scenario 2>
-
-=== ...
-
-=== <Runtime Scenario n>
