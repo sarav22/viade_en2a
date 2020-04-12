@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { MapRouteName, MapCard, Button, Input  } from "./map.style";
+import { MapRouteName, MapCard } from "./map.style";
 import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
-import { Modal } from "react-bootstrap";
-import {
-  useNotification,
-  NotificationTypes
-} from "@inrupt/solid-react-components";
-import { storageHelper, permissionHelper, notification as helperNotification } from "@utils";
 
 /**
  * Map Page UI component, containing the styled components for the Map Page

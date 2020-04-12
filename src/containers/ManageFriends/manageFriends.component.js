@@ -7,7 +7,6 @@ import {deleteFriend, viewRoutes } from '../../services/friendsManager';
 import {
   ButtonFriend,
 } from './manageFriends.style';
-import { Base64 } from "js-base64";
 import Button from 'react-bootstrap/Button';
 
 /**

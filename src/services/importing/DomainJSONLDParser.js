@@ -41,7 +41,7 @@ function parseRouteJsonLD(routeSpec) {
                 "@id": "schema:latitude",
                 "@type": "xs:double"
             },
-            "latitude": {
+            "longitude": {
                 "@id": "schema:longitude",
                 "@type": "xs:double"
             },
