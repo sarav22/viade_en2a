@@ -13,6 +13,7 @@ export const ShareButton = props => {
     const { webId, routeUrl } = props;
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
     const [agent, setAgent] = useState("");
 
     const show = () => {
@@ -22,16 +23,26 @@ export const ShareButton = props => {
       const close = () => {
         setShowModal(false);
       };
+
+      const showSuccessModal = () => {
+        setShowSuccess(true);
+      };
+
+      const closeSuccess = () => {
+        setShowSuccess(false);
+      };
+    
     
       const { createNotification } = useNotification(webId);
     
       async function shareWith() {
         if(agent != null && agent.length!==0){
           permissionHelper.setReadPermissions(routeUrl,webId, agent);
+          var r = routeUrl.split("/");
           //Notification
           const content = {
-            title: "Notification Example",
-            summary: "This is a basic solid notification example.",
+            title:t("mapView.notificationTitle") ,
+            summary:  webId.substring(8, webId.length - 16) + t("mapView.notificationSummary")+ r[r.length-1],
             actor: webId
           };
           let appPath = "";
@@ -46,6 +57,7 @@ export const ShareButton = props => {
           const license = "https://creativecommons.org/licenses/by-sa/4.0/";
           createNotification(content, to.path, NotificationTypes.ANNOUNCE, license);
           close();
+          showSuccessModal();
         }
       }
     
@@ -87,6 +99,13 @@ export const ShareButton = props => {
                     {t("mapView.share")}
                 </Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal show={showSuccess} onHide={closeSuccess} centered 
+                data-testid={"modalSuccess"} key={"modalSuccess"}>
+                <Modal.Header closeButton key={"closeSuccess"} data-testid={"closeSuccess"}></Modal.Header>
+                <Modal.Body>
+                {t("mapView.shareSuccess")}
+                </Modal.Body>
             </Modal>
         </div>
     );

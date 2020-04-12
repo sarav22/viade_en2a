@@ -40,6 +40,8 @@ export const WelcomePageContent = props => {
     // Set inbox path relative to the existing app's path in the pod
     const settingsFilePath = `${path}settings.ttl`;
     let inboxPath = `${path}inbox/`;
+    let groupsPath = `${path}groups/`;
+    let sharedPath = `${path}shared/`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -55,28 +57,40 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      if(ldflexHelper.resourceExists(inboxPath)){
-      await fc.createFolder(inboxPath, {createPath:true});
+      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
+      if(!inboxExists){
+        await fc.createFolder(inboxPath, {createPath:true});
 
-      // Check for CONTROL permissions to see if we can set permissions or not
-      const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
-        webId,
-        AccessControlList.MODES.CONTROL
-      );
-
-      // If the user has Write and Control permissions, check the inbox settings
-      if (hasControlPermissions) {
-        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
-        await permissionHelper.checkOrSetInboxAppendPermissions(
-          inboxPath,
-          webId
+        // Check for CONTROL permissions to see if we can set permissions or not
+        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+          webId,
+          AccessControlList.MODES.CONTROL
         );
-      }
 
-      if (!hasInboxLink) {
-        await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        // If the user has Write and Control permissions, check the inbox settings
+        if (hasControlPermissions) {
+          // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
+          await permissionHelper.checkOrSetInboxAppendPermissions(
+            inboxPath,
+            webId
+          );
+        }
+
+        if (!hasInboxLink) {
+          await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        }
       }
-    }
+    
+      const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
+      if(!groupsFolderExists){
+        await fc.createFolder(groupsPath, {createPath:true});
+      }
+  
+      const sharedFolderExists = await ldflexHelper.resourceExists(sharedPath);
+      if(!sharedFolderExists){
+        await fc.createFolder(sharedPath, {createPath:true});
+      }
+      permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
     }
   }
 

@@ -8,7 +8,7 @@ import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
  * @param props
  */
 export const Map = props => {
-  const { route } = props;
+  const { route} = props;
   const { t } = useTranslation();
 
   const routePath = [];
@@ -19,6 +19,7 @@ export const Map = props => {
     });
   });
 
+ 
   return (
     <div>
       <h3>
@@ -42,6 +43,8 @@ export const Map = props => {
               lat: routePath[0].lat,
               lng: routePath[0].lng
             }}
+
+
           >
             <Polyline
               geodesic={true}
@@ -60,7 +63,7 @@ export const Map = props => {
             />
           </GoogleMap>
         </LoadScript>
-      </MapCard>
+      </MapCard> 
     </div>
   );
 };

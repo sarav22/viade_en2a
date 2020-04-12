@@ -3,17 +3,12 @@ Feature: View the routes of a friend
 Scenario: Listing the routes created by a friend
     Given I click on the "Manage Friends" navbar option
     When I click on one friend
-    Then A window with the name of that friend and a list of all his routes should appear
+    Then A window with the name of that friend and a list of all his shared routes should appear
 
 Scenario: Viewing a shared route
     Given I already clicked on one friend
     When I click on a route
-    Then If i have the right permissions I will see it displayed on the map
-
-Scenario: Viewing a non-shared route
-    Given I already clicked on one friend
-    When I click on a route
-    Then If i don't have the right permissions I won't see it displayed on a map
+    Then I see it displayed on the map
 
 Scenario: Clicking on the wrong friend
     Given I already clicked on one friend

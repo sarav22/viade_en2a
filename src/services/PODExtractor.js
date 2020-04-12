@@ -40,3 +40,10 @@ export const storeJSONToPOD = async (jsonLD, callback) => {
         }, err => { callback(false); });
     }
 }
+
+export const storeJSONshared = async (jsonLD, fileURI,  callback) => {
+        fc.createFile(fileURI, JSON.stringify(jsonLD), 'text/plain').then( fileCreated => {
+            callback(true);
+        }, err => { callback(false); });
+    
+}

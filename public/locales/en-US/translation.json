@@ -138,7 +138,10 @@
     },
     "shareButton":"Share route",
     "shareWith":"Choose a friend or group to share with: ",
-    "share":"Share"
+    "share":"Share",
+    "shareSuccess": "The route was shared successfully",
+    "notificationTitle": "Route shared",
+    "notificationSummary": " has shared a route with you: "
   },
   "friendsManagement":{
     "profile": "View Profile",
