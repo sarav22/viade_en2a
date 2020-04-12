@@ -4,6 +4,7 @@
 === Business Context
 
 image::SystemScopeDiagram.PNG[System scope diagram] 
+image::SystemScopeLegend.PNG[System scope diagram legend,250,250] 
 
 
 .Viade
@@ -39,25 +40,28 @@ image::technicalcontext.JPG[Technical context diagram]
 | Object | Description 
 
 | User
-| Users of the app
+| Users of the app.
 
 | App
-| Decentralised web application
+| Decentralised web application.
 
 | Web Server
-| The server that contains our web application
+| The server that contains our web application.
+
+| Client Browser
+| It runs on the user's local device. The user works with the app here, so that the information is always local and decentralized.
 
 | Https
-| Communication between the user and the application using the Https protocol
+| Communication between the user and the application using the Https protocol. There are https requests and responses.
 
 | Solid-auth-client
-| A library for reading and writing to solid PODs
+| A library for reading and writing to solid PODs.
 
 | Solid Server
-| Server provided by SOLID where PODs are stored
+| Server provided by SOLID where PODs are stored.
 
 | POD
-| Storage unit unique for each user
+| Storage unit unique for each user.
 
 |=========================================================
 
