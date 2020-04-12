@@ -28,7 +28,10 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
-    const img = route.resources.length !== 0 ? route.resources[0].resourceUrl : this.defaultImage;
+    const img =
+      route.resources.length !== 0
+        ? route.resources[0].resourceUrl
+        : this.defaultImage;
     return (
       <ItemWrapper className="card">
         <RouteImage>
@@ -42,9 +45,7 @@ export class ListItem extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <Fragment>
-        {loading ? null : this.viewContent(this.state.route)}
-      </Fragment>
+      <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
     );
   }
 }
@@ -149,13 +150,9 @@ export class RouteListComponent extends Component<Props> {
   buildElements(start, end) {
     var elements = [];
     for (var i = start; i < end; i++) {
-      elements.push(
-        <ListItem
-          key={i}
-          num={i}
-          url={this.state.routes[i]}
-        />
-      );
+      if (this.state.routes[i] !== undefined) {
+        elements.push(<ListItem key={i} num={i} url={this.state.routes[i]} />);
+      }
     }
     return elements;
   }
