@@ -45,15 +45,15 @@ class AddFriendsContent extends Component<Props> {
     if (friendToAdd.search("/profile/card#me") != -1){
       fetch(friendToAdd).then( response => {
         this.setState({status: response.status, done: true});
-        if (this.state.status == 200) {
-          this.ldflexAdder(friendToAdd);
-        } else if (this.state.status == 404) {
-          //El webId no existe
-          alert("This webId does not exist"); //Esto de poner alerts me parece un poco sucio, debería ser en un div o algo así en el propio código html
-        } else {
-          alert("An error occurred while trying to fetch this webId"); //Y lo mismo aquí
-        }
       });
+      if (this.state.status == 200) {
+        this.ldflexAdder(friendToAdd);
+      } else if (this.state.status == 404) {
+        //El webId no existe
+        alert("This webId does not exist"); //Esto de poner alerts me parece un poco sucio, debería ser en un div o algo así en el propio código html
+      } else {
+        alert("An error occurred while trying to fetch this webId"); //Y lo mismo aquí
+      }
     } else {
       alert("This is not a valid webId"); //Y lo mismo aquí
     }
