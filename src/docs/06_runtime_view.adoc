@@ -4,8 +4,8 @@
 
 === Login
 
-1. The user selects it's pod provider
-2. The user types it's personal id and password
+1. The user selects its pod provider
+2. The user types its personal id and password
 3. The user clicks the log in button, if success, the application will redirect to the home view, otherwise, the current view will show an error
 
 [plantuml, "loginSequence", png]
