@@ -34,10 +34,8 @@ export const saveSharedFile = (webId, notification) => {
               
                 storeJSONshared(jsonldfriend, jsonfile, function(success){
                   if(success){
-                      alert("Se ha guardado");
                   }
                   else{
-                      alert("Fail");
                   }
                 });
               
