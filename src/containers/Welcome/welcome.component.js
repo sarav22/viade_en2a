@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import data from "@solid/query-ldflex";
 import { namedNode } from "@rdfjs/data-model";
-import {
-  Uploader,
-  AccessControlList
-} from "@inrupt/solid-react-components";
+import { Uploader, AccessControlList } from "@inrupt/solid-react-components";
 import { Trans, useTranslation } from "react-i18next";
 import {
   WelcomeWrapper,
@@ -23,8 +20,8 @@ import {
   permissionHelper
 } from "@utils";
 
-import auth from 'solid-auth-client';
-import FC from 'solid-file-client';
+import auth from "solid-auth-client";
+import FC from "solid-file-client";
 const fc = new FC(auth);
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -58,8 +55,8 @@ export const WelcomePageContent = props => {
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
       const inboxExists = await ldflexHelper.resourceExists(inboxPath);
-      if(!inboxExists){
-        await fc.createFolder(inboxPath, {createPath:true});
+      if (!inboxExists) {
+        await fc.createFolder(inboxPath, { createPath: true });
 
         // Check for CONTROL permissions to see if we can set permissions or not
         const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
@@ -80,15 +77,15 @@ export const WelcomePageContent = props => {
           await data[settingsFilePath].inbox.set(namedNode(inboxPath));
         }
       }
-    
+
       const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
-      if(!groupsFolderExists){
-        await fc.createFolder(groupsPath, {createPath:true});
+      if (!groupsFolderExists) {
+        await fc.createFolder(groupsPath, { createPath: true });
       }
-  
+
       const sharedFolderExists = await ldflexHelper.resourceExists(sharedPath);
-      if(!sharedFolderExists){
-        await fc.createFolder(sharedPath, {createPath:true});
+      if (!sharedFolderExists) {
+        await fc.createFolder(sharedPath, { createPath: true });
       }
       permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
     }
@@ -100,7 +97,7 @@ export const WelcomePageContent = props => {
 
       // Fetch the game's path in the pod, based on user's storage settings
       await storageHelper.createInitialFiles(webId);
-      
+
       if (path) {
         await initializeOrRepairFiles(path);
       }
