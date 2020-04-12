@@ -40,6 +40,7 @@ Viade --> User: Show the route information
 1. The user clicks on the "Create A Route" button on the navigation bar.
 2. The user writes the name and description of the route and creates the points which compose the route using the map at the right, clicking once creates a new point, clicking twice on the same point finishes the route (creating a loop also finishes the route).
 3. To finally create the route the user clicks on the "Create Route" button.
+
 [plantuml, "createRouteSequence", png]
 ----
 actor User
@@ -74,13 +75,14 @@ Viade --> User: Show a ok message to the user
 2. The user clicks on the desired route name to be shared.
 3. Then the user clicks the "Share Route" button.
 4. Finally he writes the WebID of the user or group with which he wants to share the route and clicks the "Share" button.
+
 [plantuml, "shareRouteWithFriendSequence", png]
 ----
 actor User
 User -> Viade: Clicks on "view routes"
 Viade -> Pod: Get all routes request
 Pod --> Viade: Get all routes response
-Viade --> User: Shows a list with al the routes
+Viade --> User: Shows a list with all the routes
 User ->  Viade: Clicks on a route name
 Viade --> User: Show the route information
 User --> Viade: Clicks on "Share Route"
@@ -89,7 +91,27 @@ User --> Viade: Writes the user or group WebID and clicks "Share"
 Viade --> POD: Send a notification to the user or group
 Viade --> POD: Give read permissions over the route to the user or group
 ----
+
 === View shared routes
+
+1. The user clicks in the "manage friends" button in the nav bar
+2. The user clicks on the friend that shared the route
+3. The user clicks on the route that wants to see.
+
+[plantuml, "viewSharedRouteSequence", png]
+----
+actor User
+User -> Viade: Clicks on "manage friend"
+Viade -> Pod: Get all friends request
+Pod --> Viade: Get all friends response
+Viade --> User: Shows a list with all the friends
+User ->  Viade: Clicks on a friend name
+Viade -> Pod: Get all friend's routes request
+Pod --> Viade: Get all friend's routes response
+Viade --> User: Shows a list with all the friends
+User ->  Viade: Clicks on a route name
+Viade --> User: Show the route information
+----
 
 
 
