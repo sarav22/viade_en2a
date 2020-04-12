@@ -34,9 +34,9 @@ Some of the most important quality attributes of this application are listed bel
 |===
 |Role/Name|Contact|Expectations
 | Tim Berners-Lee | timbl@w3.org | Carry out his idea, SOLID, with the support of software developers creating applications using this technology and the Inrupt company.
-| ASW Subject Teachers | --------------------------------------------- | Quality software develop by their students.
-| Inrupt  | https://inrupt.com/contact-us | Wants to have applications developed using its technology, SOLID, to show how it works and expand the ecosystem around it
-| Developers | --------------------------------------------- | Expand their knowledge using new technologies and develop a rich SOLID application
-| Unexpirienced Users | --------------------------------------------- | Have a route managment application where all the details from SOLID, known only by expert users, are hidden
-| Expirienced Users | --------------------------------------------- | Have a route managment application where the work needed to work with SOLID is minimized |
+| ASW Subject Teachers | --------------------------------------------- | Quality software developed by their students.
+| Inrupt  | https://inrupt.com/contact-us | Wants to have applications developed using its technology, SOLID, to show how it works and expand the ecosystem around it.
+| Developers | --------------------------------------------- | Expand their knowledge using new technologies and develop a rich SOLID application.
+| Inexperienced Users | --------------------------------------------- | Have a route managment application where all the details from SOLID, known only by expert users, are hidden.
+| Experienced Users | --------------------------------------------- | Have a route managment application where the work needed to work with SOLID is minimized. |
 |===
