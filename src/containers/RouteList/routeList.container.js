@@ -7,6 +7,7 @@ import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
+import { Loader } from '@util-components';
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
@@ -184,7 +185,7 @@ export class RouteListComponent extends Component<Props> {
   render() {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
-      return <RouteListWrapper>Loading</RouteListWrapper>;
+      return <RouteListWrapper><Loader/></RouteListWrapper>;
     }
     return (
       <RouteListPageContent

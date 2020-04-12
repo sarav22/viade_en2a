@@ -1,43 +1,82 @@
-import GPX from 'gpx-parser-builder';
-import { RouteSpec, TrackPoint, Comment} from '../../../domain/domainClasses';
+import { parseGpx, parseGpxFromFile } from "viade-gpx-parse";
+import parseSuperString from "./gpxInput";
+import { tracks } from "rdf-namespaces/dist/schema";
+import {TrackPoint, Waypoint, Route} from "../../../domain/domainClasses";
 
-class GpxParser {
+export function gpxTest() {
+    let gpxString = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>'
+    gpxString += '<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="byHand" version="1.1" '
+    gpxString += 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+    gpxString += 'xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">'
 
-	/**
-	 * Receives s STRING representing the file, and returns a domain route object
-	 * @param {*} fileString the string representing the file.
-	 * @returns A RouteSpec instance, from domainClasses.js
-	 */
-	parse(fileString) {
-		const gpx = GPX.parse(fileString); //We get the gpx object with the library
-		const listaRutas = [];
-		const route = {};
+    gpxString += '<wpt lat="39.921055008" lon="3.054223107">'
+    gpxString += '<ele>12.863281</ele>'
+    gpxString += '<time>2005-05-16T11:49:06Z</time>'
+    gpxString += '<name>Cala Sant Vicenç - Mallorca</name>'
+    gpxString += '<sym>City</sym>'
+    gpxString += '</wpt>'
+    gpxString += '</gpx>'
 
-
-		gpx.trk.forEach(trk => {
-			route.name = trk.name;
-			route.waypoints = [];
-			trk.trkseg.forEach(trkseg => {
-				trkseg.trkpt.forEach(trkpt => {
-					route.waypoints.push(new TrackPoint(trkpt.name, trkpt.lat, trkpt.lng)
-                        /*{ 
-						"name":trkpt.name
-						"lat":trkpt.lat,
-						"lng":trkpt.lng,
-                    }*/
-					);
-				});
-			});
-			listaRutas.push(new RouteSpec({
-				name: route.name,
-				itineray: route.waypoints
-			}));
-		});
-
-		return listaRutas[0] //We are returning the first route, because of view problems. TECHNICAL DEBT
-	}
+    let string = parseSuperString()
+    parseGpxToRoutes(string, function (routes) {
+        console.log(routes);
+    })
 }
 
-module.exports = new GpxParser();
+export function parseGpxToRoutes(gpxString, callback){
+
+    parseGpx(gpxString, function (error, gpxData){
+        var routes = []
+        var routeWaypoints = []
+
+        var waypoints = gpxData.waypoints
+        var tracks = gpxData.tracks
+
+        waypoints.forEach( (gpxWpt) => {
+            routeWaypoints.push(new Waypoint(gpxWpt.name, gpxWpt.desc, gpxWpt.lat, gpxWpt.lon, gpxWpt.elevation))
+        })
+
+        tracks.forEach(track => {
+            let route = parseRouteFromTrack(track)
+            route.addWaypoints(routeWaypoints)            
+            routes.push(route)
+            
+        })
+
+        return callback(routes)
+        
+    })
+}
 
 
+function parseRouteFromTrack(track){
+    var points = parsePointsOfTrack(track)
+
+    let params = {
+        name: track.name,
+        description: track.description,
+        waypoints: track.waypoints,
+        itinerary: points
+    }
+    let testRoute = new Route(params)
+    return testRoute;
+}
+
+function parsePointsOfTrack(track){
+    var points = [];
+    track.segments.forEach( (segment) => {
+        segment.forEach(trackPoint => {
+            points.push(new TrackPoint(trackPoint.lat, trackPoint.lon, trackPoint.elevation))
+        })
+    })
+    return points;
+}
+
+function parseWaypointsOfGpx(Wpts){
+    var waypoints = []
+    Wpts.forEach( (gpxWpt) => {
+        waypoints.push(new Waypoint(gpxWpt.name, gpxWpt.desc, gpxWpt.lat, gpxWpt.lon, gpxWpt.elevation))
+    })
+    return waypoints;
+}
+export default gpxTest;

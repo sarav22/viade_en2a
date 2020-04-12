@@ -12,7 +12,8 @@ import {
   RouteList,
   FriendRoutes,
   ManageFriends,
-  CreateRoute
+  CreateRoute,
+  ImportRoute
 } from "./containers";
 
 const privateRoutes = [
@@ -46,6 +47,10 @@ const privateRoutes = [
     id:"createRoute",
     path:"/createRoute",
     component: CreateRoute
+  },{
+    id:"importRoute",
+    path:"/importRoute",
+    component: ImportRoute
   }
 ];
 
