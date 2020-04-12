@@ -13,22 +13,28 @@ const LateralMenu = props  => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
    
-          reader.onabort = () => console.log('file reading was aborted')
-          reader.onerror = () => console.log('file reading has failed')
+          reader.onabort = () => alert(t('error.fileReadError'))
+          reader.onerror = () => alert(t('error.fileReadError'))
           reader.onload = () => {
             const routeString = reader.result;
             try {
+              var importResult = true;
                 parseGpxToRoutes(routeString, function(routeArray) {
                   routeArray.forEach(route => {
                     saveRouteToPOD(route, function(result) {
-                      if(result) {
-                        alert('Everything ok');
-                      } else {
-                        alert('Everythin bad');
-                      }
+                      importResult = importResult && result;
                     });
                   });
-                  props.setRoute(routeArray);
+                  if(importResult && routeArray.length > 0) {
+                    alert(t('import.success'));
+                  } else {
+                    alert(t('import.failure'));
+                  }
+                  if(routeArray.length > 0) {
+                    props.setRoute(routeArray);
+                  } else {
+                    alert(t('error.gpxNotRoutes'));
+                  }
                 });
             } catch(error) {
               alert(t('error.importError'));
