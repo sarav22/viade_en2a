@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup} from 'react-testing-library';
 import { ManageFriendsContent } from '@containers/ManageFriends/manageFriends.component';
 import '@testing-library/jest-dom/';
 
@@ -13,10 +13,20 @@ afterAll(cleanup);
 
 test('Renders correctly', () => {
     expect(container).toBeTruthy();
-    expect(getByTestId('manageFriends-wrapper')).toBeTruthy();
+    expect(getByTestId('manageFriends-container')).toBeTruthy();
 });
 
 test('Renders friends buttons correctly', () =>{
     friends.map(friend=>(
         expect(getByTestId('buttonFriend'+friend)).toBeTruthy()));
+});
+
+test('Dropdown works', () =>{
+    friends.map(friend=>(
+        expect(getByTestId(friend+'dropdown')).toBeTruthy()
+    ));
+    friends.map(friend=>(
+        expect(getByTestId(friend+'d')).toBeTruthy()));
+          
+          
 });

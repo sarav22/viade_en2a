@@ -12,6 +12,14 @@ Object {
       "@id": "schema:description",
       "@type": "xs:string",
     },
+    "latitude": Object {
+      "@id": "schema:latitude",
+      "@type": "xs:double",
+    },
+    "longitude": Object {
+      "@id": "schema:longitude",
+      "@type": "xs:double",
+    },
     "media": Object {
       "@container": "@list",
       "@id": "viade:media",
@@ -62,48 +70,48 @@ Object {
   "name": "Route test 1",
   "points": Array [
     Object {
-      "schema:latitude": 45.123,
-      "schema:longitude": 34.121,
+      "latitude": 45.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 46.123,
-      "schema:longitude": 34.121,
+      "latitude": 46.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 47.123,
-      "schema:longitude": 34.121,
+      "latitude": 47.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 48.123,
-      "schema:longitude": 32.121,
+      "latitude": 48.123,
+      "longitude": 32.121,
     },
     Object {
-      "schema:latitude": 49.123,
-      "schema:longitude": 34.121,
+      "latitude": 49.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 40.123,
-      "schema:longitude": 32.121,
+      "latitude": 40.123,
+      "longitude": 32.121,
     },
     Object {
-      "schema:latitude": 50.123,
-      "schema:longitude": 33.121,
+      "latitude": 50.123,
+      "longitude": 33.121,
     },
     Object {
-      "schema:latitude": 53.123,
-      "schema:longitude": 34.121,
+      "latitude": 53.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 54.123,
-      "schema:longitude": 34.121,
+      "latitude": 54.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 55.123,
-      "schema:longitude": 35.121,
+      "latitude": 55.123,
+      "longitude": 35.121,
     },
     Object {
-      "schema:latitude": 55.123,
-      "schema:longitude": 34.121,
+      "latitude": 55.123,
+      "longitude": 34.121,
     },
   ],
 }
@@ -120,6 +128,14 @@ Object {
     "description": Object {
       "@id": "schema:description",
       "@type": "xs:string",
+    },
+    "latitude": Object {
+      "@id": "schema:latitude",
+      "@type": "xs:double",
+    },
+    "longitude": Object {
+      "@id": "schema:longitude",
+      "@type": "xs:double",
     },
     "media": Object {
       "@container": "@list",
@@ -177,64 +193,64 @@ Object {
   "name": "Route test 2",
   "points": Array [
     Object {
-      "schema:latitude": 45.123,
-      "schema:longitude": 34.121,
+      "latitude": 45.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 46.123,
-      "schema:longitude": 34.121,
+      "latitude": 46.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 47.123,
-      "schema:longitude": 34.121,
+      "latitude": 47.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 48.123,
-      "schema:longitude": 32.121,
+      "latitude": 48.123,
+      "longitude": 32.121,
     },
     Object {
-      "schema:latitude": 49.123,
-      "schema:longitude": 34.121,
+      "latitude": 49.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 40.123,
-      "schema:longitude": 32.121,
+      "latitude": 40.123,
+      "longitude": 32.121,
     },
     Object {
-      "schema:latitude": 50.123,
-      "schema:longitude": 33.121,
+      "latitude": 50.123,
+      "longitude": 33.121,
     },
     Object {
-      "schema:latitude": 53.123,
-      "schema:longitude": 34.121,
+      "latitude": 53.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 54.123,
-      "schema:longitude": 34.121,
+      "latitude": 54.123,
+      "longitude": 34.121,
     },
     Object {
-      "schema:latitude": 55.123,
-      "schema:longitude": 35.121,
+      "latitude": 55.123,
+      "longitude": 35.121,
     },
     Object {
-      "schema:latitude": 57.123,
-      "schema:longitude": 30.121,
+      "latitude": 57.123,
+      "longitude": 30.121,
     },
     Object {
-      "schema:latitude": 56.123,
-      "schema:longitude": 26.121,
+      "latitude": 56.123,
+      "longitude": 26.121,
     },
     Object {
-      "schema:latitude": 53.123,
-      "schema:longitude": 25.121,
+      "latitude": 53.123,
+      "longitude": 25.121,
     },
     Object {
-      "schema:latitude": 55.123,
-      "schema:longitude": 20.121,
+      "latitude": 55.123,
+      "longitude": 20.121,
     },
     Object {
-      "schema:latitude": 51.123,
-      "schema:longitude": 15.121,
+      "latitude": 51.123,
+      "longitude": 15.121,
     },
   ],
 }

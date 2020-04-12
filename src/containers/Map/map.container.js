@@ -4,9 +4,13 @@ import LateralMenu from "./LateralMenu";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import { Loader } from '@util-components';
 
 import { loadMapInfo } from "../../services/DomainJSONTranslator";
 import { Base64 } from "js-base64";
+import { MapWrapper } from "./Map/map.style";
+import { LateralMenuWrapper } from "./LateralMenu/lateralMenu.style";
+import ShareButton from "./ShareButton";
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
@@ -35,17 +39,27 @@ export class MapComponent extends Component<Props> {
 
   viewContent = route => {
     return (
-      <Container fluid>
-        <Row>
-          <Col xs={6} md={4}>
-            <LateralMenu route={route} />
-          </Col>
-
-          <Col xs={12} md={8}>
-            <Map route={route} />
-          </Col>
-        </Row>
-      </Container>
+      <MapWrapper>
+        <Container fluid>
+          <Row>
+            <Col xs={12} md={7} sm={8} xs={12}>
+              <Map route={route} />
+            </Col>
+            <Col xs={6} md={5} sm={4} xs={12}>
+              <Container fluid>
+                <Row>
+                  <LateralMenuWrapper>
+                    <LateralMenu route={route} />
+                  </LateralMenuWrapper>
+                </Row>
+                <Row>
+                  <ShareButton webId={this.props.webId} routeUrl={"https://" + Base64.decode(this.props.match.params.route)} />
+                </Row>
+              </Container>
+            </Col>
+          </Row>
+        </Container>
+      </MapWrapper>
     );
   };
 
@@ -53,7 +67,7 @@ export class MapComponent extends Component<Props> {
     const { loading } = this.state;
     return (
       <Fragment>
-        {loading ? "Loading..." : this.viewContent(this.state.route)}
+        {loading ? 	<Loader /> : this.viewContent(this.state.route)}
       </Fragment>
     );
   }

@@ -49,7 +49,8 @@
     "map": "Mapa",
     "welcome": "Bienvenida",
     "seeRoutes": "Ver Rutas",
-    "createRoutes":"Crear Una Ruta",
+    "createRoute":"Crear Una Ruta",
+    "importRoute":"Importar Una Ruta",
     "manageFriends":"Gestionar Amigos",
     "formModel": "Form Model",
     "logOut": "Cerrar Sesión",
@@ -131,11 +132,18 @@
   },
   "mapView":{
     "viewTitle":"Visualizando la ruta: ",
+    "importedRoutesTitle":"Visualizando rutas importadas",
     "menu":{
       "images":"Imágenes y vídeos",
       "comments": "Comentarios",
       "data":"Datos sobre la ruta"
-    }
+    },
+    "shareButton":"Share route",
+    "shareWith":"Choose a friend or group to share with: ",
+    "share":"Share",
+    "shareSuccess": "La ruta se compartió correctamente",
+    "notificationTitle": "Ruta compartida",
+    "notificationSummary": " ha compartido una ruta contigo: "
   },
   "friendsManagement":{
     "profile": "Ver Perfil",
@@ -156,5 +164,17 @@
   },
   "utils":{
     "back": "Atrás"
+  },
+  "error":{
+    "importError": "Un error ha ocurrido al importar la ruta, porfavor inténtelo de nuevo",
+    "sizeLimitImport": "El número máximo de archivos que se pueden importar es 1",
+    "gpxNotRoutes": "El archivo gpx no contiene ninguna ruta, quizás no tenga trks",
+    "fileReadError": "El sistema no pudo leer el archivo proporcionado"
+  },
+  "import": {
+    "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
+    "dragAndDropSupported": "Los archivos soportados son *.gpx",
+    "success": "Las rutas se han guardado correctamente en el POD",
+    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD"
   }
 }

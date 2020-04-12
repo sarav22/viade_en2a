@@ -1,23 +1,52 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import data from "@solid/query-ldflex";
 import Image from "react-bootstrap/Image";
 import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
-import { loadAllRoutes } from "/services/DomainJSONTranslator";
+import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
+import { RouteListWrapper } from "./routeList.style";
+import { Loader } from '@util-components';
 
-const defaultProfilePhoto = "img/icon/empty-profile.svg";
+const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
-class ListItem extends Component {
-  render() {
+export class ListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.defaultImage = "/img/defaultRouteImg.png";
+    this.state = {
+      loading: true,
+      route: "https://" + this.props.url,
+      title: null
+    };
+  }
+
+  componentDidMount() {
+    loadMapInfo(this.state.route).then(ruta => {
+      this.setState({ loading: false, route: ruta });
+    });
+  }
+
+  viewContent = route => {
+    const img =
+      route.resources.length !== 0
+        ? route.resources[0].resourceUrl
+        : this.defaultImage;
     return (
       <ItemWrapper className="card">
         <RouteImage>
-          <Image src={this.props.src} style={{ padding: "5px" }} />
+          <Image className="img" src={img} />
         </RouteImage>
-        <WelcomeProfile>{this.props.url} </WelcomeProfile>
+        <WelcomeProfile>{route.name} </WelcomeProfile>
       </ItemWrapper>
+    );
+  };
+
+  render() {
+    const { loading } = this.state;
+    return (
+      <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
     );
   }
 }
@@ -122,16 +151,15 @@ export class RouteListComponent extends Component<Props> {
   buildElements(start, end) {
     var elements = [];
     for (var i = start; i < end; i++) {
-      elements.push(
-        <ListItem
-          key={i}
-          num={i}
-          src={
-            "https://www.turismoasturias.es/documents/11022/90227/CARES.jpg/0520436c-748a-42ab-9e99-7703dd111d2c?t=1540901739869"
-          }
-          url={this.state.routes[i]}
-        />
-      );
+      if(this.state.routes[i] !== undefined){
+        elements.push(
+          <ListItem
+            key={i}
+            num={i}
+            url={this.state.routes[i]}
+          />
+        );
+      }
     }
     return elements;
   }
@@ -158,7 +186,7 @@ export class RouteListComponent extends Component<Props> {
   render() {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
-      return <div>Loading</div>;
+      return <RouteListWrapper><Loader/></RouteListWrapper>;
     }
     return (
       <RouteListPageContent

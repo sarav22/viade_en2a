@@ -1,9 +1,20 @@
 // TODO: Discuss if we should export every class or only the Route class.
 
 export class TrackPoint {
-    constructor(latitude, longitude) {
+    constructor(latitude, longitude, elevation) {
         this.latitude = latitude;
         this.longitude = longitude;
+        this.elevation = elevation;
+    }
+}
+
+export class Waypoint {
+    constructor(name, description, latitude, longitude, elevation) {
+        this.name = name; 
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.elevation = elevation;
     }
 }
 
@@ -18,6 +29,15 @@ export class Resource {
 export class Comment {
     constructor(resourceUrl) {
         this.resourceUrl = resourceUrl;
+    }
+}
+
+
+// TODO: Discuss and create comment structure
+export class CommentEntity {
+    constructor(text, dateCreated) {
+        this.text = text;
+        this.dateCreated = dateCreated;
     }
 }
 
@@ -51,12 +71,14 @@ export class Route {
         if (params.resources){
             this.resources = params.resources;
         }
+
+        if (params.commentList){
+            this.commentList=params.commentList; // Parsed Comments list
+        }
     }
-
-        
-
     
-
-
+    addWaypoints(waypoints) {
+        this.waypoints = waypoints
+    }  
 
 }

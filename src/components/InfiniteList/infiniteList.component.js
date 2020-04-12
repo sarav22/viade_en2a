@@ -22,21 +22,23 @@ export const InfiniteList = (props: Props) => {
   } = props;
 
   return (
-    <ListWrapper>
+    <ListWrapper data-testid="infiniteList-container">
       <Infinite
         elementHeight={200}
         useWindowAsScrollContainer={true}
         infiniteLoadBeginEdgeOffset={200}
         onInfiniteLoad={handleInfiniteLoad}
-        loadingSpinnerDelegate={elementInfiniteLoad()}
+        loadingSpinnerDelegate={elementInfiniteLoad}
         isInfiniteLoading={isInfiniteLoading}
       >
         {elements.map(element => (
           <ListItemWrapper>
             <Button
-              {...{ href: "/viade_en2a/#/map/" + Base64.encode(element.props.url) }}
-              style={{ height: 190 }}
-              variant="outline-primary"
+              data-testid={"route" + Base64.encode(element.props.url)}
+              {...{
+                href: "/viade_en2a/#/map/" + Base64.encode(element.props.url)
+              }}
+              variant="outline-light"
               block
             >
               {element}

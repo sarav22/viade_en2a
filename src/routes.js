@@ -11,7 +11,9 @@ import {
   Map,
   RouteList,
   FriendRoutes,
-  ManageFriends
+  ManageFriends,
+  CreateRoute,
+  ImportRoute
 } from "./containers";
 
 const privateRoutes = [
@@ -33,13 +35,22 @@ const privateRoutes = [
   },
   {
     id: "manageFriends",
-    path: "/friendRoutes/:f/:s/:n",
+    path: "/friendRoutes/:friend",
     component: FriendRoutes
   },
   {
     id: "seeRoutes",
     path: "/seeRoutes",
     component: RouteList
+  },
+  {
+    id:"createRoute",
+    path:"/createRoute",
+    component: CreateRoute
+  },{
+    id:"importRoute",
+    path:"/importRoute",
+    component: ImportRoute
   }
 ];
 
