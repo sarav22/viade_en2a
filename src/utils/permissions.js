@@ -1,12 +1,12 @@
 import {
   AccessControlList,
-  AppPermission,
+  AppPermission
 } from "@inrupt/solid-react-components";
 import { errorToaster } from "@utils";
 
 // Check that all permissions we need are set. If any are missing, this returns false
 const checkAppPermissions = (userAppPermissions, appPermissions) =>
-  appPermissions.every((permission) => userAppPermissions.includes(permission));
+  appPermissions.every(permission => userAppPermissions.includes(permission));
 
 // Function to check for a specific permission included in the app
 export const checkSpecificAppPermission = async (webId, permission) => {
@@ -37,7 +37,7 @@ export const checkPermissions = async (webId, errorMessage) => {
   ) {
     errorToaster(errorMessage.message, errorMessage.title, {
       label: errorMessage.label,
-      href: errorMessage.href,
+      href: errorMessage.href
     });
   }
 };
@@ -53,10 +53,10 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
   const inboxAcls = new AccessControlList(webId, inboxPath);
   const permissions = await inboxAcls.getPermissions();
   const inboxPublicPermissions = permissions.filter(
-    (perm) => perm.agents === null
+    perm => perm.agents === null
   );
 
-  const appendPermission = inboxPublicPermissions.filter((perm) =>
+  const appendPermission = inboxPublicPermissions.filter(perm =>
     perm.modes.includes(AccessControlList.MODES.APPEND)
   );
 
@@ -67,8 +67,8 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
       const permissions = [
         {
           agents: null,
-          modes: [AccessControlList.MODES.APPEND],
-        },
+          modes: [AccessControlList.MODES.APPEND]
+        }
       ];
       const ACLFile = new AccessControlList(webId, inboxPath);
       await ACLFile.createACL(permissions);
@@ -95,21 +95,28 @@ export const checkOrSetSettingsReadPermissions = async (
   const settingsAcls = new AccessControlList(webId, settingsPath);
   const permissions = await settingsAcls.getPermissions();
   const settingsPublicPermissions = permissions.filter(
-    (perm) => perm.agents === null
+    perm => perm.agents === null
   );
-  try {
-    // Permission object to add. A null agent means Everyone
-    const permissions = [
-      {
-        agents: null,
-        modes: [AccessControlList.MODES.READ],
-      },
-    ];
-    const ACLFile = new AccessControlList(webId, settingsPath);
-    await ACLFile.createACL(permissions);
-  } catch (error) {
-    // TODO: Better error handling here
-    throw error;
+
+  const readPermission = settingsPublicPermissions.filter(perm =>
+    perm.modes.includes(AccessControlList.MODES.READ)
+  );
+
+  if (readPermission.length <= 0) {
+    try {
+      // Permission object to add. A null agent means Everyone
+      const permissions = [
+        {
+          agents: null,
+          modes: [AccessControlList.MODES.READ]
+        }
+      ];
+      const ACLFile = new AccessControlList(webId, settingsPath);
+      await ACLFile.createACL(permissions);
+    } catch (error) {
+      // TODO: Better error handling here
+      throw error;
+    }
   }
 
   return true;
@@ -125,9 +132,9 @@ export const setReadPermissions = async (path, webId, agent) => {
   // Fetch app permissions for the inbox and see if Append is there
   const acls = new AccessControlList(webId, path);
   const permissions = await acls.getPermissions();
-  const publicPermissions = permissions.filter((perm) => perm.agents === agent);
+  const publicPermissions = permissions.filter(perm => perm.agents === agent);
 
-  const readPermission = publicPermissions.filter((perm) =>
+  const readPermission = publicPermissions.filter(perm =>
     perm.modes.includes(AccessControlList.MODES.READ)
   );
 
@@ -138,8 +145,8 @@ export const setReadPermissions = async (path, webId, agent) => {
       const permissions = [
         {
           agents: [agent],
-          modes: [AccessControlList.MODES.READ],
-        },
+          modes: [AccessControlList.MODES.READ]
+        }
       ];
       const ACLFile = new AccessControlList(webId, path);
       await ACLFile.createACL(permissions);
