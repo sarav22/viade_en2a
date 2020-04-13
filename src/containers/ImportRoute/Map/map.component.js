@@ -42,7 +42,7 @@ const Map = props => {
               return(                  
               <Marker
                 title={route.name}
-                position={{lat: route.itinerary[0].latitude, lng: route.itinerary[0].longitude}} />  )
+                position={{lat: route.itinerary[0].latitude, lng: route.itinerary[0].longitude}} />  );
             })
           }
           {
@@ -70,7 +70,7 @@ const Map = props => {
                         }
                       ]
                     }}
-                    />)
+                    />);
           })}
         </GoogleMap>
       </LoadScript>

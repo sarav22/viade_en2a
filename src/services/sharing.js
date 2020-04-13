@@ -30,7 +30,7 @@ export const saveSharedFile = (webId, notification) => {
 
                       }
                   ]
-                }
+                };
               
                 storeJSONshared(jsonldfriend, jsonfile, function(success){
                   if(success){
@@ -56,4 +56,4 @@ export const saveSharedFile = (webId, notification) => {
       }
     });
   
-  }
+  };

@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import Map from "./Map";
-import MapEmpty from "./MapEmpty"
+import MapEmpty from "./MapEmpty";
 import LateralMenu from "./LateralMenu";
 import {ImportWrapper} from './importRoute.style';
 

@@ -38,7 +38,7 @@ export async function addFriend(event, friend, webId) {
   
   const reload = () => {
     window.location.reload(true);
-  }
+  };
 
   export async function isFriend(webId, actor) {
     if(actor===undefined){
