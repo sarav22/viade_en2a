@@ -7,14 +7,14 @@ import {saveRouteToPOD} from '../../../services/DomainJSONTranslator.js';
 const LateralMenu = props  => {
     const { t } = useTranslation();
     const onDrop = useCallback((acceptedFiles) => {
-      if(acceptedFiles.length != 1) {
+      if(acceptedFiles.length !== 1) {
         alert(t('error.sizeLimitImport'));
       } else {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
    
-          reader.onabort = () => alert(t('error.fileReadError'))
-          reader.onerror = () => alert(t('error.fileReadError'))
+          reader.onabort = () => alert(t('error.fileReadError'));
+          reader.onerror = () => alert(t('error.fileReadError'));
           reader.onload = () => {
             const routeString = reader.result;
             try {
@@ -39,8 +39,8 @@ const LateralMenu = props  => {
             } catch(error) {
               alert(t('error.importError'));
             }
-          }
-          reader.readAsText(file)
+          };
+          reader.readAsText(file);
 
         });
       }

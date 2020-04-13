@@ -17,11 +17,11 @@ test('Renders correctly', () => {
     expect(container).toBeTruthy();
 });
 
-test('Renders share button', () =>{
+test('Renders share button', () => {
         expect(getByTestId('buttonShare')).toBeTruthy();
 });
 
-test('Modal works', () =>{
+test('Modal works', () => {
     
     getByTestId('buttonShare').click();
     expect(getByTestId('modalShare')).toBeTruthy();

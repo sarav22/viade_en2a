@@ -41,7 +41,7 @@ class CommentsTab extends Component<Props>{
             else{
                 alert("There was an error");
             }
-        })
+        });
         
         console.log(this.state.text);
         event.preventDefault();

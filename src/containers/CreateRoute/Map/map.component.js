@@ -10,7 +10,7 @@ import {TrackPoint} from '../../../domain/domainClasses.js';
 const center = {
     lat: 0,
     lng: -180,
-}
+};
 
 
 class Map extends Component<Props>{
@@ -29,7 +29,7 @@ class Map extends Component<Props>{
             return;
         }
         
-        const trackPointList = []
+        const trackPointList = [];
         polyline.getPath().forEach(latLng => {
             trackPointList.push(new TrackPoint(latLng.lat(), latLng.lng()));
         });

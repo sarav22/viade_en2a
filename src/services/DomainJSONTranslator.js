@@ -1,5 +1,5 @@
-import {Route, Resource, Comment, TrackPoint, CommentEntity} from '../domain/domainClasses.js'
-import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js'
+import {Route, Resource, Comment, TrackPoint, CommentEntity} from '../domain/domainClasses.js';
+import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js';
 import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
 import { comment } from 'rdf-namespaces/dist/cal';
 import { resultComment } from 'rdf-namespaces/dist/schema';
@@ -10,7 +10,7 @@ import { resultComment } from 'rdf-namespaces/dist/schema';
 export const loadMapInfo = async jsonUrl => {
     // Load JSON-LD from map
   
-    var routeJson = ""
+    var routeJson = "";
 
     //
     var commentsJson = {};
@@ -27,7 +27,7 @@ export const loadMapInfo = async jsonUrl => {
     var resourceList = [];
   
     for(var key in routeJson) {
-        var value = routeJson[key]
+        var value = routeJson[key];
   
         if(key === "name")
             routeName = value;
@@ -48,8 +48,8 @@ export const loadMapInfo = async jsonUrl => {
            await loadCommentsFromRouteCommentsProperty(commentsFile).then( (resultCommentList) => {
                 commentList = resultCommentList;
            })
-           console.log("La lista")
-           console.log(commentList)
+           console.log("La lista");
+           console.log(commentList);
            
         }
   
@@ -71,7 +71,7 @@ export const loadAllRoutes = async (personWebId) => {
   var filesObj = await retrieveAllRoutes(personWebId);
   if(filesObj.files)
     return filesObj.files.map(function(urlMap) {
-      return urlMap.url
+      return urlMap.url;
     });
   return filesObj;
 }
@@ -104,15 +104,15 @@ export const saveRouteToPOD = async (routeObj, callback) => {
 }
 
 export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
-    var commentList = []
+    var commentList = [];
     var commentsFileJson; 
     
     await retrieveJson(routeCommentsFile).then(function(result){
-        console.log(result)
+        console.log(result);
         try {
             commentsFileJson = JSON.parse(result);
-            console.log("El JSON")
-            console.log(commentsFileJson)
+            console.log("El JSON");
+            console.log(commentsFileJson);
         } catch(error) {
 
         }
@@ -121,13 +121,13 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
     let comentarios = [];
     if(commentsFileJson) {
         if(commentsFileJson.comments) {
-            comentarios = commentsFileJson.comments
+            comentarios = commentsFileJson.comments;
         }
     }
-    console.log("Comentarios")
-    console.log(comentarios)
+    console.log("Comentarios");
+    console.log(comentarios);
     for(var i = 0; i< comentarios.length; i++){
-       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated))
+       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated));
     }
 
     return commentList;

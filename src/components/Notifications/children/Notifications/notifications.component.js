@@ -80,7 +80,7 @@ const Notifications = ({ webId, inbox }: Props) => {
   }, [timestamp]);
 
 async function mark(path,id){
-  await markAsRead(path, id)
+  await markAsRead(path, id);
 }
   
   useEffect(() => {
