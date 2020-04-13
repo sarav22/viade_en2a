@@ -4,13 +4,13 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-import {Route} from '../../../../../domain/domainClasses'
+import {Route} from '../../../../../domain/domainClasses';
 
 
 
-import {postNewComment} from "../../../../../services/comments/commentsService"
-import CommentsList from "./CommentsList/commentsList.component"
-import CommentForm from "./CommentsForm/index"
+import {postNewComment} from "../../../../../services/comments/commentsService";
+import CommentsList from "./CommentsList/commentsList.component";
+import CommentForm from "./CommentsForm/index";
 class CommentsTab extends Component<Props>{
 
     constructor(props) {
@@ -18,8 +18,8 @@ class CommentsTab extends Component<Props>{
         this.state = {
             text: "",
         };
-        console.log("Comments Tab props")
-        console.log(this.props)
+        console.log("Comments Tab props");
+        console.log(this.props);
 
         this.handleSetText = this.handleSetText.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,7 +43,7 @@ class CommentsTab extends Component<Props>{
             }
         })
         
-        console.log(this.state.text)
+        console.log(this.state.text);
         event.preventDefault();
     }
 

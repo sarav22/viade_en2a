@@ -5,8 +5,8 @@ import { NotificationsWrapper } from './notifications.style';
 import { Bell, NotificationsPanel } from '../index';
 import { useOnClickOutside } from '@hooks';
 import { id } from 'rdf-namespaces/dist/sioc';
-import{saveSharedFile} from '../../../../services/sharing'
-import{isFriend} from '../../../../services/friendsManager'
+import{saveSharedFile} from '../../../../services/sharing';
+import{isFriend} from '../../../../services/friendsManager';
 let oldTimestamp;
 
 type Props = {
@@ -86,9 +86,9 @@ async function mark(path,id){
   useEffect(() => {
     initNotifications();
     for(var  i = 0; i< notifications.length ; i++){
-      if( notifications[i] !==undefined && notifications[i].read==="false"){
+      if( notifications[i] !==null && notifications[i].read==="false"){
         saveSharedFile(webId, notifications[i]);
-        mark(notifications[i].path, notifications[i].id)
+        mark(notifications[i].path, notifications[i].id);
         isFriend(webId,notifications[i].actor.webId).then(function(value) {
           if(value===false){
             //darle al usuario la opción de añadir el amigo
