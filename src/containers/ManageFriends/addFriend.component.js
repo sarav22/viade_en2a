@@ -42,13 +42,13 @@ class AddFriendsContent extends Component<Props> {
     event.preventDefault();
     let userId = document.getElementById("webId").value;
     var friendToAdd = userId;
-    if (friendToAdd.search("/profile/card#me") != -1){
+    if (friendToAdd.search("/profile/card#me") !== -1){
       fetch(friendToAdd).then( response => {
         this.setState({status: response.status, done: true});
       });
-      if (this.state.status == 200) {
+      if (this.state.status === 200) {
         this.ldflexAdder(friendToAdd);
-      } else if (this.state.status == 404) {
+      } else if (this.state.status === 404) {
         //El webId no existe
         alert("This webId does not exist"); //Esto de poner alerts me parece un poco sucio, debería ser en un div o algo así en el propio código html
       } else {

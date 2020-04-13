@@ -14,7 +14,7 @@ defineFeature(feature, test => {
         await expect(page).toClick('button', { name: 'login' })
         */
         //go to manage groups
-    })
+    });
 
     test('Alice wants to create a group', ({given, when, then}) => {
         

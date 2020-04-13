@@ -16,7 +16,7 @@ defineFeature(feature, test => {
         await expect(page).toClick('a', { href: 'manageFriends' })
         await expect(page).toClick({type:'xpath', value:'\\a'}, {href: 'manageFriends' })*/
 
-    })
+    });
 
     test('Alice wants to delete a friend', ({given, when, then}) => {
         given('Alice has Bob as a friend', async () => {

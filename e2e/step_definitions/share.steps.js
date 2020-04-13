@@ -19,7 +19,7 @@ defineFeature(feature, test=> {
         await expect(page).toClick({type:'xpath', value:'\\a'}, {href: 'viewRoutes' })
         route= 'https://hayquecrearunpod.inrupt.net/viade/routes/ruta.txt';
         */
-    })
+    });
 
     test('Alice wants to share a route with Bob', ({given, when, then}) => {
       //  let bob;

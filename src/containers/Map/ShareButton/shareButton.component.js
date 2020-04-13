@@ -44,7 +44,7 @@ export const ShareButton = (props) => {
 
   async function shareWith() {
     if (agent.endsWith("me")) {
-      if (agent != null && agent.length !== 0) {
+      if (agent !== undefined && agent.length !== 0) {
         permissionHelper.setReadPermissions(routeUrl, webId, agent);
         var r = routeUrl.split("/");
         //Notification

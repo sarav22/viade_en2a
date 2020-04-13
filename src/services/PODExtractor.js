@@ -9,20 +9,20 @@ const commentsNamePrefix = "/comments_";
 
 export const retrieveJson = async (jsonUrl) => {
     if(await fc.itemExists(jsonUrl)) {
-        return await fc.readFile(jsonUrl)
+        return await fc.readFile(jsonUrl);
     }
 }
 
 export const retrieveAllRoutes = async (personWebId) => {
-    var routeURI = personWebId
-    var routeURIExtended = routeURI.substring(0, routeURI.length - 16) + '/viade/routes'
-    var res = []
+    var routeURI = personWebId;
+    var routeURIExtended = routeURI.substring(0, routeURI.length - 16) + '/viade/routes';
+    var res = [];
     if(await fc.itemExists(routeURIExtended)) {
         res = await fc.readFolder(routeURIExtended);
-        return res
+        return res;
     } else {
-        await fc.createFolder(routeURIExtended)
-        return res
+        await fc.createFolder(routeURIExtended);
+        return res;
     }
 }
 
@@ -30,7 +30,7 @@ export const storeJSONToPOD = async (jsonLD, callback) => {
     let session = await auth.currentSession();
     let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
     let formattedName = jsonLD.name.replace(/ /g, "_");
-    console.log(formattedName + " "+jsonLD.name)
+    console.log(formattedName + " "+jsonLD.name);
     let fileName = formattedName + '_' + uuidv4() + '.jsonld';
     let fileURI = userWebIdRoute + '/' + fileName;
 
@@ -66,12 +66,12 @@ export const storeJSONshared = async (jsonLD, fileURI,  callback) => {
 
 async function createCommentsFileForNewRoute(podURI, routeFileName){
 
-    let commentsFolder = podURI + '/viade/comments'  //add routeComments
-    let commentsFileURI = commentsFolder + commentsNamePrefix + routeFileName
+    let commentsFolder = podURI + '/viade/comments';  //add routeComments
+    let commentsFileURI = commentsFolder + commentsNamePrefix + routeFileName;
     if (!(await fc.itemExists(commentsFolder))){
-        await fc.createFolder(commentsFolder)
+        await fc.createFolder(commentsFolder);
     }
-    await fc.createFile(commentsFileURI, JSON.stringify(getEmptyCommentsJsonString()), 'text/plain')
+    await fc.createFile(commentsFileURI, JSON.stringify(getEmptyCommentsJsonString()), 'text/plain');
     return commentsFileURI;
 }
 
@@ -80,12 +80,12 @@ async function createCommentsFileForNewRoute(podURI, routeFileName){
 export async function postCommentInPod(commentJson, routeComments, callback){
 
 
-    var routeCommentsFile = {}
+    var routeCommentsFile = {};
     await retrieveJson(routeComments).then(function(result) {
         routeCommentsFile = JSON.parse(result);
     }) 
 
-    routeCommentsFile.comments.push({"text" : commentJson.text, "dateCreated" : commentJson.dateCreated})
+    routeCommentsFile.comments.push({"text" : commentJson.text, "dateCreated" : commentJson.dateCreated});
 
     //Overwrite the file.
 
@@ -106,20 +106,20 @@ export async function postCommentInPod(commentJson, routeComments, callback){
     let fileURI = folder + '/' + fileName;
 
     if (!(await fc.itemExists(folder))){
-        await fc.createFolder(folder)
+        await fc.createFolder(folder);
     }
     await fc.createFile(fileURI, JSON.stringify(commentJson), 'text/plain').then(fileCreated => {
-        console.log("Created file: " + fileCreated)
+        console.log("Created file: " + fileCreated);
     })
 
     // Link it with the route comments file.
 
-    var routeCommentsFile = ""
+    var routeCommentsFile = "";
     await retrieveJson(routeComments).then(function(result) {
         routeCommentsFile = JSON.parse(result);
     }) 
 
-    routeCommentsFile.comments.push({"@id" : fileURI})
+    routeCommentsFile.comments.push({"@id" : fileURI});
 
     //Overwrite the file.
 
