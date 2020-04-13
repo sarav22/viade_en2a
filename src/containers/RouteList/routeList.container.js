@@ -9,12 +9,12 @@ import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
 import { Loader } from '@util-components';
 
-const defaultProfilePhoto = "/img/icon/empty-profile.svg";
+const defaultProfilePhoto = "img/icon/empty-profile.svg";
 
 export class ListItem extends Component {
   constructor(props) {
     super(props);
-    this.defaultImage = "/img/defaultRouteImg.png";
+    this.defaultImage = "img/defaultRouteImg.png";
     this.state = {
       loading: true,
       route: "https://" + this.props.url,

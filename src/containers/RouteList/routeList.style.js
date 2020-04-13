@@ -3,7 +3,7 @@ import { media } from "../../utils";
 
 export const RouteListWrapper = styled.section`
   width: 100%;
-  background-image: url("/img/concentric-hex-pattern_2x_black.png");
+  background-image: url("img/concentric-hex-pattern_2x_black.png");
   background-repeat: repeat;
   padding: 20px 0;
 
