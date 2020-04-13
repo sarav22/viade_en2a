@@ -53,5 +53,3 @@ function parsePointsOfTrack(track){
     });
     return points;
 }
-
-export default gpxTest;
