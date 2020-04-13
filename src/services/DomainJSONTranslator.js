@@ -109,14 +109,19 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
     
     await retrieveJson(routeCommentsFile).then(function(result){
         console.log(result)
-        commentsFileJson = JSON.parse(result);
+        try {
+            commentsFileJson = JSON.parse(result);
+        } catch(error) {
+
+        }
     })
     
-    
-    console.log("El array")
-    console.log(commentsFileJson.comments)
-
-    let comentarios = commentsFileJson.comments
+    let comentarios = [];
+    if(commentsFileJson) {
+        if(commentsFileJson.comments) {
+            let comentarios = commentsFileJson.comments
+        }
+    }
 
     for(var i = 0; i< comentarios.length; i++){
        commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated))
