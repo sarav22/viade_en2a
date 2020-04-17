@@ -11,6 +11,7 @@ import {
 import { relativeTimeRounding } from 'moment';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -64,14 +65,16 @@ class AddFriendsContent extends Component<Props> {
 
   render(){
     return (
-      <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-        <h5>Enter the webID of the person you want to add as friend: </h5>
-        <input id="webId" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"/>
-        <Button id="addFriendButton" className="addFriendButton" variant="light" onClick={(event) => this.addFriend(event)} 
-          style={{'paddingLeft': '1px'}} data-testid="addFriendButton" >
-          Add friend
-        </Button>
-      </ManageFriendsWrapper>
+      <Form>
+        <Form.Group>
+          <Form.Label className="label">Enter the webID of the person you want to add as friend: </Form.Label>
+          <Form.Control className="inputAdd" id="webId" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me" />
+        </Form.Group>
+          <Button id="addFriendButton" className="addFriendButton" variant="light" onClick={(event) => this.addFriend(event)} 
+            style={{'paddingLeft': '1px'}} data-testid="addFriendButton" >
+            Add friend
+          </Button>
+      </Form>
     )
   }
 

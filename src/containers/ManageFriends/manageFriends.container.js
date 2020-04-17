@@ -8,6 +8,7 @@ import { ManageFriendsWrapper, ButtonFriend } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 
 
 /**
@@ -63,12 +64,16 @@ export class ManageFriendsComponent extends Component<Props> {
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
           <Container fluid>
             <Row>
-              <Col xs={9} md={6} sm={6} xs={12}>
-                <h5>List of Friends:</h5>
-                <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+              <Col xs={9} md={8} sm={6} xs={12}>
+                <Form>
+                  <Form.Group>
+                    <Form.Label className="label">List of Friends</Form.Label>
+                    <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+                  </Form.Group>
+                </Form>
                 <ManageFriendsContent {...{ webId, friends}} />
               </Col>
-              <Col xs={9} md={6} sm={4} xs={12}>
+              <Col xs={6} md={4} sm={4} xs={12} align="right">
                 <AddFriendsContent webId={webId}/>
               </Col>
             </Row>
@@ -82,11 +87,15 @@ export class ManageFriendsComponent extends Component<Props> {
         <Container fluid>
           <Row>
             <Col xs={9} md={6} sm={6} xs={12}>
-              <h5>List of Friends:</h5>
-              <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+              <Form>
+                <Form.Group>
+                  <Form.Label className="label">List of Friends</Form.Label>
+                  <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+                </Form.Group>
+              </Form>
               <SearchFriendsContent {...{ webId, searchResults}} />
             </Col>
-            <Col xs={9} md={6} sm={6} xs={12}>
+            <Col xs={9} md={6} sm={6} xs={12} align="right">
               <AddFriendsContent webId={webId}/>
             </Col>
           </Row>
