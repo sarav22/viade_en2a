@@ -23,8 +23,5 @@ test('Renders friends buttons correctly', () => {
 
 test('Dropdown works', () => {
     friends.map(friend=>(
-        expect(getByTestId(friend+'dropdown')).toBeTruthy()
-    ));
-    friends.map(friend=>(
         expect(getByTestId(friend+'d')).toBeTruthy()));
 });
