@@ -58,13 +58,14 @@ export class ManageFriendsComponent extends Component<Props> {
       return <div/>
     } else{
       const friends=this.state.friends;
+      const friendNames=this.state.friendNames;
       const webId=this.props.webId;
       if (this.state.searchResults==null){
         return (
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
           <Container fluid>
             <Row>
-              <Col xs={9} md={8} sm={6} xs={12}>
+              <Col xs={9} md={6} sm={6} xs={12}>
                 <Form>
                   <Form.Group>
                     <Form.Label className="label">List of Friends</Form.Label>
@@ -73,7 +74,7 @@ export class ManageFriendsComponent extends Component<Props> {
                 </Form>
                 <ManageFriendsContent {...{ webId, friends}} />
               </Col>
-              <Col xs={6} md={4} sm={4} xs={12} align="right">
+              <Col xs={9} md={6} sm={6} xs={12} align="right">
                 <AddFriendsContent webId={webId}/>
               </Col>
             </Row>

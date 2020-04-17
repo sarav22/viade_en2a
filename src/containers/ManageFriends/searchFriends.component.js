@@ -1,14 +1,12 @@
 import React from 'react';
-import ldflex from '@solid/query-ldflex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
-import {browserHistory} from 'react-router';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import {deleteFriend, viewRoutes } from '../../services/friendsManager';
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -18,28 +16,6 @@ import Row from 'react-bootstrap/Row';
 export const SearchFriendsContent = props => {
   const { webId,searchResults} = props;
   const { t } = useTranslation();
-
-  async function ldflexDeleter(friend){
-     return ldflex[webId].knows.delete(ldflex[friend]);
-  }
-  async function deleteFriend(event, friend) {
-    event.preventDefault();
-    ldflexDeleter(friend);
-    await reload();
-  }
-
-  const reload = () => {
-    window.location.reload(true);
-  }
-  
-  async function viewRoutes(event, friend) {
-    event.preventDefault();
-    const f = friend.toString().substring(8).split(".")[0];
-    const s = friend.toString().substring(8).split(".")[1];
-    const n = friend.toString().substring(8).split(".")[2].split("/")[0];
-    browserHistory.push('/viade_en2a/#/friendRoutes/'+ f +'/'+s + '/'+n);
-    await reload();
-  }  
 
   return (
     <div data-testid="manageFriends-container">
