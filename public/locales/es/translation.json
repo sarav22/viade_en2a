@@ -145,6 +145,15 @@
     "notificationTitle": "Ruta compartida",
     "notificationSummary": " ha compartido una ruta contigo: "
   },
+  "createRouteView":{
+    "form":{
+      "name":"Nombre de la ruta",
+      "namePlaceholder":"El nombre de la ruta",
+      "description":"Descripción",
+      "descriptionPlaceholder":"La descripcion de la ruta",
+      "createButton":"Crear"
+    }
+  },
   "friendsManagement":{
     "profile": "Ver Perfil",
     "delete": "Eliminar Amigo"

@@ -144,6 +144,15 @@
     "notificationTitle": "Route shared",
     "notificationSummary": " has shared a route with you: "
   },
+  "createRouteView":{
+    "form":{
+      "name":"Name of the route",
+      "namePlaceholder":"The name of the route",
+      "description":"Description",
+      "descriptionPlaceholder":"The description of the route",
+      "createButton":"Create"
+    }
+  },
   "friendsManagement":{
     "profile": "View Profile",
     "delete": "Delete Friend"
