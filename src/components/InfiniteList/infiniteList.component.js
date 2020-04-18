@@ -10,7 +10,7 @@ type Props = {
   isInfiniteLoading: Boolean,
   buildElements: () => void,
   handleInfiniteLoad: () => void,
-  elementInfiniteLoad: () => void
+  elementInfiniteLoad: () => void,
 };
 
 export const InfiniteList = (props: Props) => {
@@ -18,7 +18,7 @@ export const InfiniteList = (props: Props) => {
     elements,
     isInfiniteLoading,
     handleInfiniteLoad,
-    elementInfiniteLoad
+    elementInfiniteLoad,
   } = props;
 
   return (
@@ -31,12 +31,12 @@ export const InfiniteList = (props: Props) => {
         loadingSpinnerDelegate={elementInfiniteLoad}
         isInfiniteLoading={isInfiniteLoading}
       >
-        {elements.map(element => (
+        {elements.map((element) => (
           <ListItemWrapper>
             <Button
               data-testid={"route" + Base64.encode(element.props.url)}
               {...{
-                href: "/viade_en2a/#/map/" + Base64.encode(element.props.url)
+                href: "/viade_en2a/#/map/" + Base64.encode(element.props.url),
               }}
               variant="outline-light"
               block
