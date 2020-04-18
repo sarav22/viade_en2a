@@ -1,14 +1,12 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import ldflex from "@solid/query-ldflex";
 import { useTranslation } from 'react-i18next';
-import {browserHistory} from 'react-router';
-import {deleteFriend, viewRoutes } from '../../../../../services/friendsManager';
+import {deleteFriend } from '../../../../../services/friendsManager';
 
 const FriendDropdown = props => {
 
-    const { webId, friendWebId } = props;
+    const { friendWebId } = props;
     const { t } = useTranslation();
     
     return (

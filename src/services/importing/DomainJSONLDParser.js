@@ -1,18 +1,26 @@
 
 function parseRouteJsonLD(routeSpec) {
 
+    var comments = [];
+    if(routeSpec.comments) {
+        comments = routeSpec.comments.map(function (comment) {
+            return { "@id": comment.resourceUrl };
+        });
+    }
 
-    const comments = routeSpec.comments.map(function (comment) {
-        return { "@id": comment.resourceUrl };
-    });
+    var media = [];
+    if(routeSpec.resources) {
+        media = routeSpec.resources.map(function (media) {
+            return { "@id": media.resourceUrl };
+        });
+    }
 
-    const media = routeSpec.resources.map(function (media) {
-        return { "@id": media.resourceUrl };
-    });
-
-    const points = routeSpec.itinerary.map(function (trackPoint) {
-        return { "latitude": trackPoint.latitude, "longitude": trackPoint.longitude }
-    });
+    var points = [];
+    if(routeSpec.itinerary) {
+        points = routeSpec.itinerary.map(function (trackPoint) {
+            return { "latitude": trackPoint.latitude, "longitude": trackPoint.longitude };
+        });
+    }
 
     const routeJsonLD = {
         "@context": {
@@ -41,7 +49,7 @@ function parseRouteJsonLD(routeSpec) {
                 "@id": "schema:latitude",
                 "@type": "xs:double"
             },
-            "latitude": {
+            "longitude": {
                 "@id": "schema:longitude",
                 "@type": "xs:double"
             },
@@ -58,7 +66,7 @@ function parseRouteJsonLD(routeSpec) {
         "comments": comments,
         "media": media
 
-    }
+    };
     return routeJsonLD;
 
 }

@@ -1,6 +1,8 @@
-import {Route, Resource, Comment, TrackPoint} from '../domain/domainClasses.js'
-import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js'
+import {Route, Resource, Comment, TrackPoint, CommentEntity} from '../domain/domainClasses.js';
+import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js';
 import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
+import { comment } from 'rdf-namespaces/dist/cal';
+import { resultComment } from 'rdf-namespaces/dist/schema';
 
 
 // TODO: Discuss if async makes sense here
@@ -8,22 +10,24 @@ import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
 export const loadMapInfo = async jsonUrl => {
     // Load JSON-LD from map
   
-    var routeJson = ""
-    
+    var routeJson = "";
+
+    //
+    var commentsJson = {};
+    var commentList = [];
+    var commentsFile = "";
+    //
     await retrieveJson(jsonUrl).then(function(result) {
       routeJson = JSON.parse(result);
     }) 
     
-
-
     var routeName = "";
     var routeDescription = "";
     var trackPointList = [];
     var resourceList = [];
-    var commentList = [];
   
     for(var key in routeJson) {
-        var value = routeJson[key]
+        var value = routeJson[key];
   
         if(key === "name")
             routeName = value;
@@ -38,9 +42,15 @@ export const loadMapInfo = async jsonUrl => {
         }
   
         if(key === "comments") {
-            for(var comment in value) {
-                commentList.push(new Comment(value[comment]["@id"]));
-            }
+       
+           commentsFile = value;
+           
+           await loadCommentsFromRouteCommentsProperty(commentsFile).then( (resultCommentList) => {
+                commentList = resultCommentList;
+           })
+           console.log("La lista");
+           console.log(commentList);
+           
         }
   
         if(key === "media") {
@@ -49,7 +59,11 @@ export const loadMapInfo = async jsonUrl => {
             }
         }
     }
-    var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentList});
+
+
+    var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentsFile, //});
+     "commentList" : commentList});
+
     return route;
 };
 
@@ -57,12 +71,102 @@ export const loadAllRoutes = async (personWebId) => {
   var filesObj = await retrieveAllRoutes(personWebId);
   if(filesObj.files)
     return filesObj.files.map(function(urlMap) {
-      return urlMap.url
+      return urlMap.url;
     });
   return filesObj;
-}
+};
+
+export const loadFriendRoutes = async (webId, filename) => {
+    var routeUri = webId.substring(0, webId.length - 16) + "/viade/shared/" + filename + ".jsonld";
+    
+    var json = "";
+    await retrieveJson(routeUri).then(function(result) {
+        json = JSON.parse(result);
+    });
+
+    var routes = [];
+
+    for(var key in json){
+        if(key === "routes"){
+            var value = json[key];
+            for(var route in value){
+                routes.push(value[route]["@id"]);
+            }
+        }
+    }
+
+    return routes;
+};
 
 export const saveRouteToPOD = async (routeObj, callback) => {
     var jsonLD = parseRouteJsonLD(routeObj);
     storeJSONToPOD(jsonLD, callback);
+};
+
+export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
+    var commentList = [];
+    var commentsFileJson; 
+    
+    await retrieveJson(routeCommentsFile).then(function(result){
+        console.log(result);
+        try {
+            commentsFileJson = JSON.parse(result);
+            console.log("El JSON");
+            console.log(commentsFileJson);
+        } catch(error) {
+
+        }
+    })
+    
+    let comentarios = [];
+    if(commentsFileJson) {
+        if(commentsFileJson.comments) {
+            comentarios = commentsFileJson.comments;
+        }
+    }
+    console.log("Comentarios");
+    console.log(comentarios);
+    for(var i = 0; i< comentarios.length; i++){
+       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated));
+    }
+
+    return commentList;
 }
+
+/*
+export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
+    var commentList = []
+    var commentsFileJson; 
+    
+    await retrieveJson(routeCommentsFile).then(function(result){
+        console.log(result)
+        commentsFileJson = JSON.parse(result);
+    })
+    
+    
+    console.log("El array")
+    console.log(commentsFileJson.comments)
+
+    let comentarios = commentsFileJson.comments
+
+    for(var i = 0; i< comentarios.length; i++){
+        /*
+        console.log("El comentario")
+        console.log(comentarios[i])
+
+        console.log("El comentario, con [@id]")
+        console.log(comentarios[i]["@id"])
+        //
+
+       var commentJson = {}
+       await retrieveJson(comentarios[i]["@id"]).then(function(commentFile){
+           console.log(commentFile)
+           commentJson = JSON.parse(commentFile);
+       })
+       commentList.push(new CommentEntity(commentJson.text, commentJson.dateCreated));
+
+    }
+
+    return commentList;
+}
+*/

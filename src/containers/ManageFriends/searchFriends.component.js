@@ -61,4 +61,4 @@ export const SearchFriendsContent = props => {
       }
     </div>
   );
-}
+};

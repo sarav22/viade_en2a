@@ -16,21 +16,15 @@ test('Renders correctly', () => {
     expect(getByTestId('manageFriends-container')).toBeTruthy();
 });
 
-test('Renders friends buttons correctly', () =>{
-    friends.map(friend=>(
+test('Renders friends buttons correctly', () => {
+    friends.map(friend => (
         expect(getByTestId('buttonFriend'+friend)).toBeTruthy()));
 });
 
-test('Dropdown works', () =>{
+test('Dropdown works', () => {
     friends.map(friend=>(
         expect(getByTestId(friend+'dropdown')).toBeTruthy()
     ));
     friends.map(friend=>(
         expect(getByTestId(friend+'d')).toBeTruthy()));
-   
-    getByTestId('https://carlosmanrique.inrupt.net/profile/card#medropdown').click();
-  //should work
-  //expect(getByTestId('https://carlosmanrique.inrupt.net/profile/card#medropdownI1')).toBeTruthy();
-          
-          
 });

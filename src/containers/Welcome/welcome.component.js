@@ -10,14 +10,14 @@ import {
   WelcomeProfile,
   WelcomeDetail,
   WelcomeName,
-  ImageWrapper,
+  ImageWrapper
 } from "./welcome.style";
 import { ImageProfile } from "@components";
 import {
   errorToaster,
   storageHelper,
   ldflexHelper,
-  permissionHelper,
+  permissionHelper
 } from "@utils";
 
 import auth from "solid-auth-client";
@@ -28,7 +28,7 @@ const fc = new FC(auth);
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const WelcomePageContent = (props) => {
+export const WelcomePageContent = props => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
@@ -54,7 +54,8 @@ export const WelcomePageContent = (props) => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      if (ldflexHelper.resourceExists(inboxPath)) {
+      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
+      if (!inboxExists) {
         await fc.createFolder(inboxPath, { createPath: true });
 
         // Check for CONTROL permissions to see if we can set permissions or not
@@ -77,16 +78,20 @@ export const WelcomePageContent = (props) => {
         }
       }
 
-      if (ldflexHelper.resourceExists(groupsPath)) {
+      const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
+      if (!groupsFolderExists) {
         await fc.createFolder(groupsPath, { createPath: true });
       }
-      if (ldflexHelper.resourceExists(sharedPath)) {
+
+      const sharedFolderExists = await ldflexHelper.resourceExists(sharedPath);
+      if (!sharedFolderExists) {
         await fc.createFolder(sharedPath, { createPath: true });
       }
+      permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
     }
   }
 
-  const init = async (document) => {
+  const init = async document => {
     try {
       const path = await storageHelper.getAppStorage(webId);
 
@@ -104,7 +109,7 @@ export const WelcomePageContent = (props) => {
       if (e.name === "Inbox Error") {
         return errorToaster(e.message, "Error", {
           label: t("errorCreateInbox.link.label"),
-          href: t("errorCreateInbox.link.href"),
+          href: t("errorCreateInbox.link.href")
         });
       }
 
@@ -120,7 +125,7 @@ export const WelcomePageContent = (props) => {
     <WelcomeWrapper data-testid="welcome-wrapper">
       <WelcomeCard className="card">
         <WelcomeLogo data-testid="welcome-logo">
-          <img src="/img/LogoViadeEn2a.svg" alt="ViaDe En2A" />
+          <img src="img/LogoViadeEn2a.svg" alt="ViaDe En2A" />
         </WelcomeLogo>
         <WelcomeProfile data-testid="welcome-profile">
           <h3>
@@ -135,34 +140,34 @@ export const WelcomePageContent = (props) => {
                 accept: "jpg,jpeg,png",
                 errorsText: {
                   sizeLimit: t("welcome.errors.sizeLimit", {
-                    limit: `${limit / 1000000}Mbs`,
+                    limit: `${limit / 1000000}Mbs`
                   }),
                   unsupported: t("welcome.errors.unsupported"),
-                  maximumFiles: t("welcome.errors.maximumFiles"),
+                  maximumFiles: t("welcome.errors.maximumFiles")
                 },
-                onError: (error) => {
+                onError: error => {
                   if (error && error.statusText) {
                     errorToaster(error.statusText, t("welcome.errorTitle"));
                   }
                 },
-                onComplete: (uploadedFiles) => {
+                onComplete: uploadedFiles => {
                   updatePhoto(
                     uploadedFiles[uploadedFiles.length - 1].uri,
                     t("welcome.uploadSuccess"),
                     t("welcome.successTitle")
                   );
                 },
-                render: (props) => (
+                render: props => (
                   <ImageProfile
                     {...{
                       ...props,
                       webId,
                       photo: image,
                       text: t("welcome.upload"),
-                      uploadingText: t("welcome.uploadingText"),
+                      uploadingText: t("welcome.uploadingText")
                     }}
                   />
-                ),
+                )
               }}
             />
           </ImageWrapper>

@@ -4,14 +4,9 @@ import { useNotification, useLiveUpdate } from '@inrupt/solid-react-components';
 import { NotificationsWrapper } from './notifications.style';
 import { Bell, NotificationsPanel } from '../index';
 import { useOnClickOutside } from '@hooks';
-import {foaf} from 'rdf-namespaces';
-import { fetchDocument } from 'tripledoc';
-import{storeJSONshared} from '../../../../services/PODExtractor'
-import { id } from 'rdf-namespaces/dist/sioc';import {
-  ldflexHelper,
-  storageHelper
-} from "@utils";
-
+import { id } from 'rdf-namespaces/dist/sioc';
+import{saveSharedFile} from '../../../../services/sharing';
+import{isFriend} from '../../../../services/friendsManager';
 let oldTimestamp;
 
 type Props = {
@@ -62,22 +57,7 @@ const Notifications = ({ webId, inbox }: Props) => {
     }
   };
         
-    async function isFriend(webId, actor) {
-      if(actor===undefined){
-        return false
-      }
-      const profileDoc =  await fetchDocument(webId);
-      const profile = profileDoc.getSubject(webId);
-      const fs=profile.getAllRefs(foaf.knows);
-      let found = false;
-      fs.forEach(f => {if(f===actor)found=true});
-      if(found ===true){
-        return true;
-      }else{
-        return false;
-      }
-     } 
-
+   
 
   /**
    * If webId and notify instance exist we will init notifications, similar to componentDidMount
@@ -99,51 +79,24 @@ const Notifications = ({ webId, inbox }: Props) => {
     }
   }, [timestamp]);
 
-
+async function mark(path,id){
+  await markAsRead(path, id);
+}
   
   useEffect(() => {
     initNotifications();
-    if( notifications[0]!==undefined){
-    let namefile= notifications[0].actor.webId.substring(8, webId.length - 16)
-    let path= webId.substring(0, webId.length - 16)
-    let jsonfile = `${path}/viade/shared/${namefile}.jsonld`;
-    const jsonldfriend = 
-      {
-        "@context": {
-            "@version": 1.1,
-            "routes": {
-                "@container": "@list",
-                "@id": "viade:routes"
-            },
-            "viade": "http://arquisoft.github.io/viadeSpec/"
-        },
-        "routes": [
-            {
-                "@id": "http://podejemplo2.inrupt.net/viade/routes/route1.jsonld"
-            }
-        ]
-    
-    } 
-  
-  
-    if(ldflexHelper.resourceExists(jsonfile)){
-      storeJSONshared(jsonldfriend, jsonfile, function(success){
-        if(success){
-            alert("Se ha guardado");
-        }
-        else{
-            alert("Fail");
-        }
-      });
-    }
-      //meter la ruta en la file
-      isFriend(webId, notifications[0].actor.webId).then(function(value) {
-        if(value===true){
-          console.log("SI AMIGO");
-      }else{
-          console.log("NO AMIGO");
-      }}
-      );
+    for(var  i = 0; i< notifications.length ; i++){
+      if( notifications[i] !==null && notifications[i].read==="false"){
+        saveSharedFile(webId, notifications[i]);
+        mark(notifications[i].path, notifications[i].id);
+        isFriend(webId,notifications[i].actor.webId).then(function(value) {
+          if(value===false){
+            //darle al usuario la opción de añadir el amigo
+        }else{
+            //no hacer nada porque ya son amigos, está aquí para pruebas, luego borrar el else
+        }}
+        );
+      }
     }
   }, [unread]);
 

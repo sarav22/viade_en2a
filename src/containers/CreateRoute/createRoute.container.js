@@ -8,7 +8,7 @@ import Map from "./Map";
 import LateralForm from "./LateralForm";
 import {Route} from '../../domain/domainClasses.js'
 
-import {saveRouteToPOD} from '../../services/DomainJSONTranslator.js'
+import {saveRouteToPOD} from '../../services/DomainJSONTranslator.js';
 
 export class CreateRoute extends Component<Props>{
 

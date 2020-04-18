@@ -2,6 +2,9 @@ import data from "@solid/query-ldflex";
 import { AccessControlList } from "@inrupt/solid-react-components";
 import { resourceExists, createDoc, createDocument } from "./ldflex-helper";
 import { storageHelper, errorToaster, permissionHelper } from "@utils";
+import auth from 'solid-auth-client';
+import FC from 'solid-file-client';
+const fc = new FC(auth);
 
 const appPath = "viade/";
 
@@ -70,13 +73,15 @@ export const createInitialFiles = async webId => {
     if (!hasWritePermission) return;
 
     // Get the default app storage location from the user's pod and append our path to it
-    const gameUrl = await storageHelper.getAppStorage(webId);
+    const path = await storageHelper.getAppStorage(webId);
 
-    // Set up various paths relative to the game URL
-    const settingsFilePath = `${gameUrl}settings.ttl`;
+    // Set up various paths relative to the app URL
+    const settingsFilePath = `${path}settings.ttl`;
+    const groupsPath = `${path}groups/`;
+    const sharedPath = `${path}shared/`;
 
     // Check if the tictactoe folder exists, if not then create it. This is where game files, the game inbox, and settings files are created by default
-    const gameFolderExists = await resourceExists(gameUrl);
+    const gameFolderExists = await resourceExists(path);
     if (!gameFolderExists) {
       await createDoc(data, {
         method: "PUT",
@@ -86,6 +91,15 @@ export const createInitialFiles = async webId => {
       });
     }
 
+    const groupsFolderExists = await resourceExists(groupsPath);
+    if(!groupsFolderExists){
+      await fc.createFolder(groupsPath, {createPath:true});
+    }
+
+    const sharedFolderExists = await resourceExists(sharedPath);
+    if(!sharedFolderExists){
+      await fc.createFolder(sharedPath, {createPath:true});
+    }
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {

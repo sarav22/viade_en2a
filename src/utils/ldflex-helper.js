@@ -90,9 +90,7 @@ export const discoverInbox = async document => {
     if (!documentExists) return false;
 
     const inboxDocument = await ldflex[document]["ldp:inbox"];
-    console.log(inboxDocument);
     const inbox = inboxDocument ? await inboxDocument.value : false;
-    console.log(inbox);
     return inbox;
   } catch (error) {
     throw error;
