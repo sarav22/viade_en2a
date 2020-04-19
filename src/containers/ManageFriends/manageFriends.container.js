@@ -6,6 +6,9 @@ import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
 import { ManageFriendsWrapper, ButtonFriend } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 
 
 /**
@@ -55,34 +58,49 @@ export class ManageFriendsComponent extends Component<Props> {
       return <div/>
     } else{
       const friends=this.state.friends;
+      const friendNames=this.state.friendNames;
       const webId=this.props.webId;
       if (this.state.searchResults==null){
         return (
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-          <Row>
-            <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-          </Row>
-          <Row>
-            <ManageFriendsContent {...{ webId, friends}} />
-          </Row>
-          <Row>
-            <AddFriendsContent webId={webId}/>
-          </Row>
+          <Container fluid>
+            <Row>
+              <Col xs={9} md={6} sm={6} xs={12}>
+                <Form>
+                  <Form.Group>
+                    <Form.Label className="label">List of Friends</Form.Label>
+                    <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+                  </Form.Group>
+                </Form>
+                <ManageFriendsContent {...{ webId, friends}} />
+              </Col>
+              <Col xs={9} md={6} sm={6} xs={12} align="right">
+                <AddFriendsContent webId={webId}/>
+              </Col>
+            </Row>
+          </Container>
           </ManageFriendsWrapper>
         );
       }
       const searchResults = this.state.searchResults;
       return (
         <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-        <Row>
-          <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-        </Row>
-        <Row>
-          <SearchFriendsContent {...{ webId, searchResults}} />
-        </Row>
-        <Row>
-            <AddFriendsContent webId={webId}/>
-        </Row>
+        <Container fluid>
+          <Row>
+            <Col xs={9} md={6} sm={6} xs={12}>
+              <Form>
+                <Form.Group>
+                  <Form.Label className="label">List of Friends</Form.Label>
+                  <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+                </Form.Group>
+              </Form>
+              <SearchFriendsContent {...{ webId, searchResults}} />
+            </Col>
+            <Col xs={9} md={6} sm={6} xs={12} align="right">
+              <AddFriendsContent webId={webId}/>
+            </Col>
+          </Row>
+        </Container>
         </ManageFriendsWrapper>
       );
     }
