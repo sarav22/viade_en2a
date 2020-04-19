@@ -10,18 +10,32 @@ import {
 import {
   storageHelper,
   permissionHelper,
-  notification as helperNotification,
+  notification as helperNotification
 } from "@utils";
 import {
   retrieveAllGroups,
   parseGroup,
 } from "./../../../services/groupManager";
+import { successToaster, errorToaster } from '@utils';
+import styled from 'styled-components';
+export const Img = styled.img`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+`;
+export const ImageContainer = styled.div`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-size: cover;
+  overflow: hidden;
+  display: inline-table;
+`;
 
 export const ShareButton = (props) => {
-  const { webId, routeUrl } = props;
+  const { webId, routeUrl, friends, images} = props;
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const [agent, setAgent] = useState("");
 
   const show = () => {
@@ -32,52 +46,61 @@ export const ShareButton = (props) => {
     setShowModal(false);
   };
 
-  const showSuccessModal = () => {
-    setShowSuccess(true);
-  };
-
-  const closeSuccess = () => {
-    setShowSuccess(false);
-  };
-
   const { createNotification } = useNotification(webId);
+
+  function getName(friendWebId){
+    return friendWebId.toString().substring(8).split(".")[0];
+  }
+
+  function getImgByWebId(friendWebId){
+      for(let i=0; i<images.length; i++){
+        if(images[i].id === friendWebId){
+          return images[i].img;
+        }
+      }
+  }
 
   async function shareWith() {
     if (agent.endsWith("me")) {
       if (agent !== undefined && agent.length !== 0) {
-        permissionHelper.setReadPermissions(routeUrl, webId, agent);
-        var r = routeUrl.split("/");
-        //Notification
-        const content = {
-          title: t("mapView.notificationTitle"),
-          summary:
-            webId.substring(8, webId.length - 16) +
-            t("mapView.notificationSummary") +
-            r[r.length - 1],
-          actor: webId,
-        };
-        let appPath = "";
-        appPath = await storageHelper.getAppStorage(agent);
-        const viadeSettings = `${appPath}settings.ttl`;
+        if(checkViadeRegistered(agent)){
+          permissionHelper.setReadPermissions(routeUrl, webId, agent);
+          var r = routeUrl.split("/");
+          //Notification
+          const content = {
+            title: t("mapView.notificationTitle"),
+            summary:
+              webId.substring(8, webId.length - 16) +
+              t("mapView.notificationSummary") +
+              r[r.length - 1],
+            actor: webId,
+          };
+          let appPath = "";
+          appPath = await storageHelper.getAppStorage(agent);
+          const viadeSettings = `${appPath}settings.ttl`;
 
-        const inboxes = await helperNotification.findUserInboxes([
-          { path: agent, name: "Global" },
-          { path: viadeSettings, name: "Viade" },
-        ]);
-        const to = helperNotification.getDefaultInbox(
-          inboxes,
-          "Viade",
-          "Global"
-        );
-        const license = "https://creativecommons.org/licenses/by-sa/4.0/";
-        createNotification(
-          content,
-          to.path,
-          NotificationTypes.ANNOUNCE,
-          license
-        );
-        close();
-        showSuccessModal();
+          const inboxes = await helperNotification.findUserInboxes([
+            { path: agent, name: "Global" },
+            { path: viadeSettings, name: "Viade" },
+          ]);
+          const to = helperNotification.getDefaultInbox(
+            inboxes,
+            "Viade",
+            "Global"
+          );
+          const license = "https://creativecommons.org/licenses/by-sa/4.0/";
+          createNotification(
+            content,
+            to.path,
+            NotificationTypes.ANNOUNCE,
+            license
+          );
+          close();
+          successToaster(t("mapView.shareSuccess"));
+        }else{
+          close();
+          errorToaster( "The route could not be shared with " + agent);
+        }
       }
     } else {
       parseGroup(agent).then(function(result) {
@@ -87,6 +110,15 @@ export const ShareButton = (props) => {
         });
       });
     }
+  }
+
+  function checkViadeRegistered(agentWebId){
+    
+  }
+
+  function handleInputFriend(event, friend) {
+    event.preventDefault();
+    setAgent(friend);
   }
 
   function handleInputChange(event) {
@@ -128,6 +160,14 @@ export const ShareButton = (props) => {
             data-testid={"inputShare"}
             key={"inputShare"}
           />
+          { friends.map(friend => (
+            <div><Button className="buttonFriend" variant="light"  onClick={(event) => handleInputFriend(event,friend)} style={{'paddingLeft': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+                
+                  <ImageContainer>
+          <Img src={getImgByWebId(friend)} alt="profile"/>
+        </ImageContainer>{getName(friend)}
+          </Button></div>
+          ))}
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -139,20 +179,6 @@ export const ShareButton = (props) => {
             {t("mapView.share")}
           </Button>
         </Modal.Footer>
-      </Modal>
-      <Modal
-        show={showSuccess}
-        onHide={closeSuccess}
-        centered
-        data-testid={"modalSuccess"}
-        key={"modalSuccess"}
-      >
-        <Modal.Header
-          closeButton
-          key={"closeSuccess"}
-          data-testid={"closeSuccess"}
-        ></Modal.Header>
-        <Modal.Body>{t("mapView.shareSuccess")}</Modal.Body>
       </Modal>
     </div>
   );
