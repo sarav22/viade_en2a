@@ -18,7 +18,7 @@ export const SearchFriendsContent = props => {
   const { t } = useTranslation();
 
   return (
-    <div data-testid="manageFriends-container">
+    <div data-testid="searchFriends-component">
       {
         searchResults.map(friend => (
         <Row className="friend">
