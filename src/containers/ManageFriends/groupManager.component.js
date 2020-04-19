@@ -44,8 +44,14 @@ class GroupManager extends Component<Props> {
       this.setState({ currentURLS: result })
     );
   };
+  addToGroupa(e) {
+    this.addToGroupb(e);
+    let x = this.state.currentGroup;
 
-  addToGroup(e) {
+    this.updateGroupState(x);
+  }
+
+  addToGroupb(e) {
     e.preventDefault();
     const webIDinput = document.getElementById("webIdGroupAdd").value;
     if (webIDinput !== "") {
@@ -103,7 +109,7 @@ class GroupManager extends Component<Props> {
                   class="addToGroupButton"
                   type="submit"
                   value="Add to group"
-                  onClick={(event) => this.addToGroup(event)}
+                  onClick={(event) => this.addToGroupa(event)}
                 />
               </form>
             </div>
