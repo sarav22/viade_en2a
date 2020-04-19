@@ -169,7 +169,8 @@
     "webIDExample": "WebId example: https://mariaflorez.solid.community/profile/card#me",
     "addFriend": "Add friend",
     "searchPlaceholder": "Search...",
-    "listOfFriends": "List of Friends"
+    "listOfFriends": "List of Friends",
+    "addFriendSucess": "The user has been added as a friend successfully"
   },
   "utils":{
     "back": "Back"

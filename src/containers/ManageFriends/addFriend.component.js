@@ -12,6 +12,10 @@ import { relativeTimeRounding } from 'moment';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {
+  errorToaster,
+  successToaster
+} from "@utils";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -51,14 +55,15 @@ class AddFriendsContent extends Component<Props> {
       });
       if (this.state.status === 200) {
         this.ldflexAdder(friendToAdd);
+        successToaster(t('manageFriends.addFriendSucess'));
       } else if (this.state.status === 404) {
         //El webId no existe
-        alert(t('manageFriends.error.nonexistentWebID')); //WebID does not exist
+        errorToaster(t('manageFriends.error.nonexistentWebID')); //WebID does not exist
       } else {
-        alert(t('manageFriends.error.defaultErrorMessage'));
+        errorToaster(t('manageFriends.error.defaultErrorMessage'));
       }
     } else {
-      alert(t('manageFriends.error.notValidWebID')); //The inputted webID doesn't have a valid format
+      errorToaster(t('manageFriends.error.notValidWebID')); //The inputted webID doesn't have a valid format
     }
     await this.reload();
   }
