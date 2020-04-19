@@ -97,7 +97,9 @@
       "sizeLimit": "File size exceeds the allowable limit ({{limit}})",
       "unsupported": "Unsupported media type",
       "maximumFiles": "Sorry, you have exceeded the maximum number of files allowed per upload"
-    }
+    },
+    "useGuideTitle": "Use guide",
+    "useGuide": "<0>Viade route management system will allow you to create, import and visualize all your routes. Moreover, you will be able to share any route with your friends and see all the routes they share with you.<1>See routes: Shows a list with all the routes stored in your POD. By clicking in any of them, a new screen will show up where the route is displayed on a map. Each route has its own comments, multimedia and info sections. From this screen you will also be able to share the route with any friend you want by clicking the share button and selecting the corresponding friend or group.</1><1>Create a route: The route creation process has two steps. The first one consists of clicking the points of the map which the route will go through. Once done, the edit mode is deactivated by double clicking the last route point or by clicking again the starting point in the case of the route being cyclic. Lastly, a form must be filled with the name and a description for the route, being this last field optional.</1><1>Import a route: Once selected the file with GPX extension, the stored routes will be displayed on the map and will automatically be stored in your POD.</1><1>Friends management: From this screen you can add friends to your POD by inserting their Web ID. You can also access the list of routes that each of your friends has shared with you. Moreover, clicking the dropdown buttonassigned to each person you are able to view their respective profiles or to delete them as friends.</1></0>"
   },
   "profile": {
     "successCallback": "Pod updated successfully",
