@@ -32,7 +32,27 @@ export const checkWebId = async (webId) => {
 export const addWebIdToGroup = async (webId, group) => {
   let file = await fc.readFile(group);
   let json = JSON.parse(file);
+  for (var prop in json.users) {
+    if (json.users.hasOwnProperty(prop)) {
+      if (json.users[prop].url === webId) {
+        return;
+      }
+    }
+  }
   json.users[json.users.length] = { url: webId };
-  await fc.createFile(group, JSON.stringify(json), "text/plain");
-  console.log("asd");
+  return await fc.createFile(group, JSON.stringify(json), "text/plain");
+};
+
+export const removeFromGroup = async (webId, group) => {
+  let file = await fc.readFile(group);
+  let json = JSON.parse(file);
+  for (var prop in json.users) {
+    if (json.users.hasOwnProperty(prop)) {
+      if (json.users[prop].url === webId) {
+        delete json.users[prop];
+        json.users.length--;
+      }
+    }
+  }
+  return await fc.createFile(group, JSON.stringify(json), "text/plain");
 };

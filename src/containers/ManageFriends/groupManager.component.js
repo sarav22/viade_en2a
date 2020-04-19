@@ -7,6 +7,7 @@ import {
   parseGroup,
   checkWebId,
   addWebIdToGroup,
+  removeFromGroup,
 } from "@services/groupManager";
 
 type Props = {
@@ -28,10 +29,14 @@ class GroupManager extends Component<Props> {
   handleClick = (e) => {
     let selected = e.target.innerHTML;
     selected = selected.replace(/<\/?[^>]+(>|$)/g, "");
+    this.updateGroupState(selected);
+  };
+
+  updateGroupState = (group) => {
     this.setState({
-      currentGroup: selected,
+      currentGroup: group,
     });
-    this.getCurrentURLS(selected);
+    this.getCurrentURLS(group);
   };
 
   getCurrentURLS = (selected) => {
@@ -49,7 +54,12 @@ class GroupManager extends Component<Props> {
           addWebIdToGroup(webIDinput, this.state.currentGroup);
         }
       });
+      this.updateGroupState(this.state.currentGroup);
     }
+  }
+
+  deleteFromGroup(event, url) {
+    removeFromGroup(url, this.state.currentGroup);
   }
 
   render() {
@@ -67,7 +77,16 @@ class GroupManager extends Component<Props> {
             </Dropdown>
             <div id="groupManager">
               {rows.map((url) => (
-                <Row id="group">{url}</Row>
+                <Row id="group">
+                  {url}
+                  <Button
+                    variant="light"
+                    onClick={(event) => this.deleteFromGroup(event, url)}
+                    width="20"
+                  >
+                    Eliminar
+                  </Button>
+                </Row>
               ))}
               ;
               <form>
