@@ -160,7 +160,17 @@
   "manageFriends": {
     "viewProfile": "Ver perfil",
     "delete": "Eliminar",
-    "viewRoutes": "Ver rutas"
+    "viewRoutes": "Ver rutas",
+    "error":{
+      "nonexistentWebID": "El WebID introducido no existe",
+      "defaultErrorMessage": "Se ha producido un error al intentar encontrar este webID",
+      "notValidWebID": "El webID introducido no tiene un formato válido"
+    },
+    "addFriendExplanation": "Introduzca el webID de la persona a la que quiere agregar como amigo: ",
+    "webIDExample": "Ejemplo de webID válido: https://mariaflorez.solid.community/profile/card#me",
+    "addFriend": "Agregar amigo",
+    "searchPlaceholder": "Buscar...",
+    "listOfFriends": "Lista de amigos"
   },
   "utils":{
     "back": "Atrás"
