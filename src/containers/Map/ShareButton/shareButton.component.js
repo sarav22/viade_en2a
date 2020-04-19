@@ -13,10 +13,9 @@ import {
   notification as helperNotification
 } from "@utils";
 import {
-  retrieveAllGroups,
   parseGroup,
 } from "./../../../services/groupManager";
-import { successToaster, errorToaster } from '@utils';
+import { successToaster, errorToaster,ldflexHelper } from '@utils';
 import styled from 'styled-components';
 export const Img = styled.img`
   box-sizing: border-box;
@@ -53,17 +52,20 @@ export const ShareButton = (props) => {
   }
 
   function getImgByWebId(friendWebId){
+    if(images!== undefined){
       for(let i=0; i<images.length; i++){
         if(images[i].id === friendWebId){
           return images[i].img;
         }
       }
+    }
   }
 
   async function shareWith() {
     if (agent.endsWith("me")) {
       if (agent !== undefined && agent.length !== 0) {
-        if(checkViadeRegistered(agent)){
+        const isRegistered =await checkViadeRegistered(agent);
+        if(isRegistered===true){
           permissionHelper.setReadPermissions(routeUrl, webId, agent);
           var r = routeUrl.split("/");
           //Notification
@@ -99,9 +101,9 @@ export const ShareButton = (props) => {
           successToaster(t("mapView.shareSuccess"));
         }else{
           close();
-          errorToaster( "The route could not be shared with " + agent);
+          errorToaster(t("mapView.errorSuccess")+ agent);
         }
-      }
+      } 
     } else {
       parseGroup(agent).then(function(result) {
         result.forEach((url) => {
@@ -112,8 +114,17 @@ export const ShareButton = (props) => {
     }
   }
 
-  function checkViadeRegistered(agentWebId){
-    
+  async function checkViadeRegistered(agentWebId){
+    let appPath = "";
+    let a =await ldflexHelper.resourceExists(agentWebId);
+    if(a=== true){
+      appPath = await storageHelper.getAppStorage(agent);
+      const inboxPath = `${appPath}inbox`;
+      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
+      return inboxExists;
+    } else{
+      return a;
+    }
   }
 
   function handleInputFriend(event, friend) {
@@ -161,12 +172,13 @@ export const ShareButton = (props) => {
             key={"inputShare"}
           />
           { friends.map(friend => (
-            <div><Button className="buttonFriend" variant="light"  onClick={(event) => handleInputFriend(event,friend)} style={{'paddingLeft': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
-                
-                  <ImageContainer>
-          <Img src={getImgByWebId(friend)} alt="profile"/>
-        </ImageContainer>{getName(friend)}
-          </Button></div>
+            <div>
+            <Button className="buttonFriend" variant="light"  onClick={(event) => handleInputFriend(event,friend)} style={{'paddingLeft': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
+              <ImageContainer data-testid={"ImageContainer"+friend}  key={"ImageContainer"+friend}>
+                <Img src={getImgByWebId(friend)} alt="profile" data-testid={"img"+friend}  key={"img"+friend}/>
+              </ImageContainer>{getName(friend)}
+            </Button>
+            </div>
           ))}
         </Modal.Body>
         <Modal.Footer>

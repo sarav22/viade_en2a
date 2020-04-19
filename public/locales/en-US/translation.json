@@ -142,6 +142,7 @@
     "shareWith":"Choose a friend or group to share with: ",
     "share":"Share",
     "shareSuccess": "The route was shared successfully",
+    "errorSuccess": "The route could not be shared with ",
     "notificationTitle": "Route shared",
     "notificationSummary": " has shared a route with you: "
   },

@@ -5,10 +5,11 @@ import '@testing-library/jest-dom/';
 
 const webId =  "https://saravg.inrupt.net/profile/card#me";
 const friends =["https://raulpemol.inrupt.net/profile/card#me", "https://carlosmanrique.inrupt.net/profile/card#me"];
+const images =["img/icon/empty-profile.svg", "img/icon/empty-profile.svg"];
 
 afterAll(cleanup);
     const { container, getByTestId } = render(
-    <ManageFriendsContent {...{webId, friends}} />
+    <ManageFriendsContent {...{webId, friends, images}} />
 );
 
 test('Renders correctly', () => {
