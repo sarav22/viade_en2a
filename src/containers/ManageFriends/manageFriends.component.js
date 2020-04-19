@@ -2,7 +2,7 @@ import React from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
-import {deleteFriend, viewRoutes } from '../../services/friendsManager';
+import {deleteFriend, viewRoutes , getImgByWebId, getName} from '../../services/friendsManager';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -31,21 +31,6 @@ export const ManageFriendsContent = props => {
   const { webId, friends, images} = props;
   const { t } = useTranslation();
 
-  
-  function getName(friendWebId){
-    return friendWebId.toString().substring(8).split(".")[0];
-  }
-
-  function getImgByWebId(friendWebId){
-    if(images!== undefined){
-      for(let i=0; i<images.length; i++){
-        if(images[i].id === friendWebId){
-          return images[i].img;
-        }
-      }
-    }
-  }
-
   return (
     <div data-testid="manageFriends-container">
       {
@@ -54,8 +39,8 @@ export const ManageFriendsContent = props => {
           <Col>
             <Button variant="light" className="buttonFriend" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
             <ImageContainer data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
-          <Img src={getImgByWebId(friend)} alt="profile"  data-testid={"img"+friend}  key={"img"+friend}/>
-        </ImageContainer>{getName(friend)} 
+              <Img src={getImgByWebId(friend, images)} alt="profile"  data-testid={"img"+friend}  key={"img"+friend}/>
+            </ImageContainer>{getName(friend)} 
             </Button>
           </Col>
           <Col>

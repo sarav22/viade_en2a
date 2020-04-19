@@ -117,7 +117,7 @@ export class ManageFriendsComponent extends Component<Props> {
                   <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
                 </Form.Group>
               </Form>
-              <SearchFriendsContent {...{ webId, searchResults}} />
+              <SearchFriendsContent {...{ webId, searchResults, images}} />
             </Col>
             <Col xs={9} md={6} sm={6} xs={12} align="right">
               <AddFriendsContent webId={webId}/>

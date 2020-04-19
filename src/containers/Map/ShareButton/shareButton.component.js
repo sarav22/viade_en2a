@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ButtonWrapper, Input } from "../Map/map.style";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
+import { getImgByWebId, getName} from '../../../services/friendsManager';
 import {
   useNotification,
   NotificationTypes,
@@ -46,20 +47,6 @@ export const ShareButton = (props) => {
   };
 
   const { createNotification } = useNotification(webId);
-
-  function getName(friendWebId){
-    return friendWebId.toString().substring(8).split(".")[0];
-  }
-
-  function getImgByWebId(friendWebId){
-    if(images!== undefined){
-      for(let i=0; i<images.length; i++){
-        if(images[i].id === friendWebId){
-          return images[i].img;
-        }
-      }
-    }
-  }
 
   async function shareWith() {
     if (agent.endsWith("me")) {
@@ -138,8 +125,8 @@ export const ShareButton = (props) => {
   }
 
   return (
-    <div>
-      <ButtonWrapper>
+    <div data-testid={"shareButton-container"}>
+      <ButtonWrapper data-testid={"buttonWrapper"}>
         <Button
           variant="success"
           onClick={show}
@@ -174,8 +161,8 @@ export const ShareButton = (props) => {
           { friends.map(friend => (
             <div>
             <Button className="buttonFriend" variant="light"  onClick={(event) => handleInputFriend(event,friend)} style={{'paddingLeft': '1px'}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
-              <ImageContainer data-testid={"ImageContainer"+friend}  key={"ImageContainer"+friend}>
-                <Img src={getImgByWebId(friend)} alt="profile" data-testid={"img"+friend}  key={"img"+friend}/>
+              <ImageContainer data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
+                <Img src={getImgByWebId(friend, images)} alt="profile" data-testid={"img"+friend}  key={"img"+friend}/>
               </ImageContainer>{getName(friend)}
             </Button>
             </div>

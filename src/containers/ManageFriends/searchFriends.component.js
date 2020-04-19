@@ -1,12 +1,27 @@
 import React from 'react';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import {deleteFriend, viewRoutes } from '../../services/friendsManager';
+import {deleteFriend, viewRoutes , getImgByWebId, getName} from '../../services/friendsManager';
+import styled from 'styled-components';
+
+export const Img = styled.img`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+`;
+export const ImageContainer = styled.div`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-size: cover;
+  overflow: hidden;
+  display: inline-table;
+`;
+
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -14,7 +29,7 @@ import {deleteFriend, viewRoutes } from '../../services/friendsManager';
  * @param props
  */
 export const SearchFriendsContent = props => {
-  const { webId,searchResults} = props;
+  const { webId,searchResults, images} = props;
   const { t } = useTranslation();
 
   return (
@@ -24,7 +39,9 @@ export const SearchFriendsContent = props => {
         <Row className="friend">
           <Col>
             <Button variant="light" className="buttonFriend" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
-              {friend}
+              <ImageContainer data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
+                <Img src={getImgByWebId(friend, images)} alt="profile"  data-testid={"img"+friend}  key={"img"+friend}/>
+              </ImageContainer>{getName(friend)} 
             </Button>
           </Col>
           <Col>
