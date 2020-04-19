@@ -3,7 +3,11 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import { ManageFriendsWrapper } from "./manageFriends.style";
 import { Dropdown } from "@util-components";
-import { parseGroup } from "@services/groupManager";
+import {
+  parseGroup,
+  checkWebId,
+  addWebIdToGroup,
+} from "@services/groupManager";
 
 type Props = {
   webId: String,
@@ -36,6 +40,18 @@ class GroupManager extends Component<Props> {
     );
   };
 
+  addToGroup(e) {
+    e.preventDefault();
+    const webIDinput = document.getElementById("webIdGroupAdd").value;
+    if (webIDinput !== "") {
+      checkWebId(webIDinput).then((result) => {
+        if (result) {
+          addWebIdToGroup(webIDinput, this.state.currentGroup);
+        }
+      });
+    }
+  }
+
   render() {
     if (this.state.groups) {
       const profileOpts = this.state.groups.map((g) => ({
@@ -43,7 +59,7 @@ class GroupManager extends Component<Props> {
         onClick: this.handleClick,
       }));
       const rows = this.state.currentURLS;
-      if (rows) {
+      if (rows && rows.length > 0) {
         return (
           <ManageFriendsWrapper>
             <Dropdown actions={profileOpts} hover>
@@ -54,6 +70,23 @@ class GroupManager extends Component<Props> {
                 <Row id="group">{url}</Row>
               ))}
               ;
+              <form>
+                <p>
+                  Enter the webID of the person you want to add to the group:{" "}
+                </p>
+                <input
+                  id="webIdGroupAdd"
+                  type="text"
+                  placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"
+                />
+                <input
+                  id="addToGroupButton"
+                  class="addToGroupButton"
+                  type="submit"
+                  value="Add to group"
+                  onClick={(event) => this.addToGroup(event)}
+                />
+              </form>
             </div>
           </ManageFriendsWrapper>
         );

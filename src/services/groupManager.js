@@ -24,3 +24,15 @@ export const parseGroup = async (url) => {
   });
   return urls;
 };
+
+export const checkWebId = async (webId) => {
+  return await fc.itemExists(webId);
+};
+
+export const addWebIdToGroup = async (webId, group) => {
+  let file = await fc.readFile(group);
+  let json = JSON.parse(file);
+  json.users[json.users.length] = { url: webId };
+  await fc.createFile(group, JSON.stringify(json), "text/plain");
+  console.log("asd");
+};
