@@ -16,7 +16,7 @@ class CommentsList extends Component<Props> {
 
     render() {
     return (
-        <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
+        <Modal.Dialog className="commentsList" scrollable centered style={{ "max-width": "100%" }}>
             <Modal.Body style={{ 'max-height': 'calc(100vh - 220px)', 'overflow-y': 'auto', 'width': '100%',"scrollbar-width":"thin"}}>
                 <Container>
                     {this.props.comments.map((comment) => {

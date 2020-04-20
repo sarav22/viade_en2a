@@ -54,7 +54,7 @@ export const ManageFriendsWrapper = styled.div`
     text-align: center;
   }
 
-  .dSNtUm{
+  .picture{
     overflow: visible;
     padding-right: 10px;
     padding-left: 10px;

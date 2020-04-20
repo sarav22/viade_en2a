@@ -38,7 +38,7 @@ export const ManageFriendsContent = props => {
         <Row className="friend" data-testid={friend+"d"}>
           <Col xs={10} md={10} sm={10} xs={10}>
             <Button variant="light" className="buttonFriend" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
-            <ImageContainer data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
+            <ImageContainer className="picture" data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
               <Img style={{"border-radius": "50%"}} src={getImgByWebId(friend, images)} alt="profile"  data-testid={"img"+friend}  key={"img"+friend}/>
             </ImageContainer>{getName(friend)} 
             </Button>
