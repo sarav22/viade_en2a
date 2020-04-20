@@ -51,6 +51,7 @@ export const ManageFriendsWrapper = styled.div`
     padding-right: 10px;
     width: 52px;
     height: 42px;
+    border-radius: 50%;
   }
 
 `;
