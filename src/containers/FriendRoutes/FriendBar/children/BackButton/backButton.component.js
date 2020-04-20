@@ -15,13 +15,13 @@ const BackButton = props => {
 
     const reload = () => {
         window.location.reload(true);
-    }
+    };
 
     return (
         <ButtonWrapper>
             <Button className="backButton" variant="light" onClick={(event) => goBack(event)} data-testid="friend-backButton">{t("utils.back")}</Button>
         </ButtonWrapper>
     );
-}
+};
 
 export default BackButton;

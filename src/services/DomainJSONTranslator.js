@@ -74,7 +74,7 @@ export const loadAllRoutes = async (personWebId) => {
       return urlMap.url;
     });
   return filesObj;
-}
+};
 
 export const loadFriendRoutes = async (webId, filename) => {
     var routeUri = webId.substring(0, webId.length - 16) + "/viade/shared/" + filename + ".jsonld";
@@ -96,12 +96,12 @@ export const loadFriendRoutes = async (webId, filename) => {
     }
 
     return routes;
-}
+};
 
 export const saveRouteToPOD = async (routeObj, callback) => {
     var jsonLD = parseRouteJsonLD(routeObj);
     storeJSONToPOD(jsonLD, callback);
-}
+};
 
 export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
     var commentList = [];

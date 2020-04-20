@@ -1,5 +1,5 @@
-import {postCommentInPod} from "../../services/PODExtractor"
-const dateFormat = require('dateformat')
+import {postCommentInPod} from "../../services/PODExtractor";
+const dateFormat = require('dateformat');
 
 export function getEmptyCommentsJsonString(){
     let emptyCommentsFile = {
@@ -26,24 +26,24 @@ export function getEmptyCommentsJsonString(){
         },
         "comments": []
     
-    }
+    };
     return emptyCommentsFile;
 }
 
 function getCommentJson(){
-    let date = new Date()
+    let date = new Date();
     date = dateFormat(date, "yyyy-mm-dd h:MM:ss TT");
     let comment = {
         "text": "This is just a example !!",
         "dateCreated": date
-    }
+    };
     return comment;
 }
 
 export function postNewComment(text, routeCommentsFileURI, callback){
     let jsonSkeleton = getCommentJson();
     jsonSkeleton.text = text;
-    postCommentInPod(jsonSkeleton, routeCommentsFileURI, callback)
+    postCommentInPod(jsonSkeleton, routeCommentsFileURI, callback);
 
 
     

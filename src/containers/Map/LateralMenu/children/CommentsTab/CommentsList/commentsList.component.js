@@ -10,7 +10,7 @@ class CommentsList extends Component<Props> {
 
         //const { comments } = props;
         const {commentsList} = props;
-        const comments = []     
+        const comments = [];
     }
     
 
