@@ -40,8 +40,7 @@ class CommentsTab extends Component<Props>{
         postNewComment(this.state.text, routeObject.comments, function(success) {
             if(success){
                 alert("Comment saved");
-                Comments[] comments = loadComments()
-                CommentsList.setState({comments : comments})
+            
             }
             else{
                 alert("There was an error");
