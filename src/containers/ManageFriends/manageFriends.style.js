@@ -44,7 +44,14 @@ export const ManageFriendsWrapper = styled.div`
     margin-right: 2px;
     width: 100%;
     overflow-wrap: break-word;
+  }
+
+  .buttonFriend{
     text-align: left;
+  }
+
+  .addFriendButton{
+    text-align: center;
   }
 
   .dSNtUm{
