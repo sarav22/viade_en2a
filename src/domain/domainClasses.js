@@ -35,9 +35,10 @@ export class Comment {
 
 // TODO: Discuss and create comment structure
 export class CommentEntity {
-    constructor(text, dateCreated) {
+    constructor(text, dateCreated, author) {
         this.text = text;
         this.dateCreated = dateCreated;
+        this.author = author;
     }
 }
 
