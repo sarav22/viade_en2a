@@ -44,12 +44,14 @@ export const ManageFriendsWrapper = styled.div`
     margin-right: 2px;
     width: 100%;
     overflow-wrap: break-word;
+    text-align: left;
   }
 
   .dSNtUm{
     overflow: visible;
     padding-right: 10px;
-    width: 52px;
+    padding-left: 10px;
+    width: 62px;
     height: 42px;
     border-radius: 50%;
   }

@@ -160,8 +160,9 @@ export const ShareButton = (props) => {
           />
           { friends.map(friend => (
             <div>
-            <Button className="buttonFriend" variant="light"  onClick={(event) => handleInputFriend(event,friend)} style={{'paddingLeft': '1px', width: "100%", margin:"5px"}} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
-              <ImageContainer style={{height: "42px", width: "52px", overflow: "visible", "padding-right": "10px"}} 
+            <Button className="buttonFriend" variant="light"  onClick={(event) => handleInputFriend(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}
+                style={{'paddingLeft': '1px', width: "100%", margin:"5px", "text-align": "left"}}>
+              <ImageContainer style={{height: "42px", "padding-left": "10px", width: "62px", overflow: "visible", "padding-right": "10px"}} 
                   data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
                 <Img style={{"border-radius": "50%"}} src={getImgByWebId(friend, images)} alt="profile" data-testid={"img"+friend}  key={"img"+friend}/>
               </ImageContainer>{getName(friend)}
