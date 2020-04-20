@@ -6,14 +6,9 @@ import Container from 'react-bootstrap/Container';
 class CommentsList extends React.Component {
 
     constructor(props){
-        super(props)
-
-        console.log(props)
-        //const { comments } = props;
+        super(props);
         const {comments} = props;
-     
-        
-        this.state = {comments : comments}
+        this.state = {comments : comments};
         
     }
     
