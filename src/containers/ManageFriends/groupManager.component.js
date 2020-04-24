@@ -40,32 +40,37 @@ class GroupManager extends Component<Props> {
   };
 
   getCurrentURLS = (selected) => {
-    parseGroup(selected).then((result) =>
-      this.setState({ currentURLS: result })
+    parseGroup(selected).then(
+      function(result) {
+        this.setState({ currentURLS: result });
+      }.bind(this)
     );
   };
-  addToGroupa(e) {
-    this.addToGroupb(e);
-    let x = this.state.currentGroup;
 
-    this.updateGroupState(x);
-  }
-
-  addToGroupb(e) {
+  addToGroup(e) {
     e.preventDefault();
     const webIDinput = document.getElementById("webIdGroupAdd").value;
     if (webIDinput !== "") {
-      checkWebId(webIDinput).then((result) => {
-        if (result) {
-          addWebIdToGroup(webIDinput, this.state.currentGroup);
-        }
-      });
-      this.updateGroupState(this.state.currentGroup);
+      checkWebId(webIDinput).then(
+        function(result) {
+          if (result) {
+            addWebIdToGroup(webIDinput, this.state.currentGroup);
+            this.setState({
+              currentURLS: this.state.currentURLS.concat(webIDinput),
+            });
+          }
+        }.bind(this)
+      );
     }
   }
 
   deleteFromGroup(event, url) {
-    removeFromGroup(url, this.state.currentGroup);
+    event.preventDefault();
+    removeFromGroup(url, this.state.currentGroup).then(
+      function() {
+        this.updateGroupState(this.state.currentGroup);
+      }.bind(this)
+    );
   }
 
   render() {
@@ -109,7 +114,7 @@ class GroupManager extends Component<Props> {
                   class="addToGroupButton"
                   type="submit"
                   value="Add to group"
-                  onClick={(event) => this.addToGroupa(event)}
+                  onClick={(event) => this.addToGroup(event)}
                 />
               </form>
             </div>
