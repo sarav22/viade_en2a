@@ -22,6 +22,8 @@ import {
 
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
+
+import{storeJSONshared} from '../../services/PODExtractor';  
 const fc = new FC(auth);
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -39,6 +41,7 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let groupsPath = `${path}groups/`;
     let sharedPath = `${path}shared/`;
+    let notificationPath =`${path}/notification.json`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -88,6 +91,25 @@ export const WelcomePageContent = props => {
         await fc.createFolder(sharedPath, { createPath: true });
       }
       permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
+
+      let jsonldfriend ={};
+        jsonldfriend["@context"]={
+          "@version": 1.1,
+          "routes": {
+              "@container": "@list",
+              "@id": "viade:routes"
+          },
+          "viade": "http://arquisoft.github.io/viadeSpec/"
+      };
+      ldflexHelper.resourceExists(notificationPath).then(function(result) {
+        if (result === false) {
+          
+            storeJSONshared(jsonldfriend, notificationPath, function(success){
+              if(success){
+              }
+            });
+        }
+      });
     }
   }
 

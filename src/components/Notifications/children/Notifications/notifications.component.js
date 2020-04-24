@@ -4,8 +4,7 @@ import { useNotification, useLiveUpdate } from '@inrupt/solid-react-components';
 import { NotificationsWrapper } from './notifications.style';
 import { Bell, NotificationsPanel } from '../index';
 import { useOnClickOutside } from '@hooks';
-import { id } from 'rdf-namespaces/dist/sioc';
-import{saveSharedFile} from '../../../../services/sharing';
+import{notificationsFile} from '../../../../services/sharing';
 import{isFriend} from '../../../../services/friendsManager';
 let oldTimestamp;
 
@@ -79,25 +78,20 @@ const Notifications = ({ webId, inbox }: Props) => {
     }
   }, [timestamp]);
 
-async function mark(path,id){
-  await markAsRead(path, id);
-}
-  
+
+
   useEffect(() => {
     initNotifications();
-    for(var  i = 0; i< notifications.length ; i++){
-      if( notifications[i] !==null && notifications[i].read==="false"){
-        saveSharedFile(webId, notifications[i]);
-        mark(notifications[i].path, notifications[i].id);
-        isFriend(webId,notifications[i].actor.webId).then(function(value) {
+    notificationsFile(webId, notifications);
+      /*  isFriend(webId,notifications[i].actor.webId).then(function(value) {
           if(value===false){
             //darle al usuario la opción de añadir el amigo
         }else{
             //no hacer nada porque ya son amigos, está aquí para pruebas, luego borrar el else
         }}
-        );
-      }
-    }
+        );*/
+      
+    
   }, [unread]);
 
 
