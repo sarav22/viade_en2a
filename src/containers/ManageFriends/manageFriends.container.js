@@ -12,6 +12,7 @@ import {
   ListWrapper,
 } from "./manageFriends.style";
 import Row from "react-bootstrap/Row";
+import { getGroupName } from "@services/groupManager";
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
@@ -30,7 +31,11 @@ export class ManageFriendsComponent extends Component<Props> {
   componentDidMount() {
     this.loadFriends();
     this.searchFriends("");
-    this.loadGroups().then((result) => this.setState({ groups: result }));
+    this.loadGroups().then(
+      function(result) {
+        this.setState({ groups: result });
+      }.bind(this)
+    );
   }
 
   async loadFriends() {
@@ -42,11 +47,15 @@ export class ManageFriendsComponent extends Component<Props> {
 
   async loadGroups() {
     var filesObj = await retrieveGroups(this.props.webId);
-    if (filesObj.files)
-      return filesObj.files.map(function(urlMap) {
-        return urlMap.url;
+    if (filesObj.files) {
+      let result = filesObj.files.map(async (urlMap) => ({
+        name: await getGroupName(urlMap.url),
+        url: urlMap.url,
+      }));
+      return Promise.all(result).then(function(rs) {
+        return rs;
       });
-    return filesObj;
+    }
   }
 
   searchFriends(matchingString) {

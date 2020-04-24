@@ -8,6 +8,8 @@ import {
   checkWebId,
   addWebIdToGroup,
   removeFromGroup,
+  renameGroupTo,
+  createNewGroup,
 } from "@services/groupManager";
 
 type Props = {
@@ -26,10 +28,8 @@ class GroupManager extends Component<Props> {
     };
   }
 
-  handleClick = (e) => {
-    let selected = e.target.innerHTML;
-    selected = selected.replace(/<\/?[^>]+(>|$)/g, "");
-    this.updateGroupState(selected);
+  handleClick = (value) => {
+    this.updateGroupState(value);
   };
 
   updateGroupState = (group) => {
@@ -73,32 +73,89 @@ class GroupManager extends Component<Props> {
     );
   }
 
+  rename(e) {
+    e.preventDefault();
+    const nameInput = document.getElementById("groupName").value;
+    if (nameInput !== "") {
+      if (this.state.currentGroup === "new") {
+        createNewGroup(this.state.webId, nameInput).then(
+          function(givenUrl) {
+            this.setState({
+              currentGroup: givenUrl,
+              groups: this.state.groups.concat({
+                name: nameInput,
+                url: givenUrl,
+              }),
+            });
+          }.bind(this)
+        );
+        return;
+      }
+      renameGroupTo(this.state.currentGroup, nameInput);
+    }
+  }
+
+  newGroup(e) {
+    e.preventDefault();
+    this.setState({ currentGroup: "new", currentURLS: [] });
+  }
+
   render() {
     if (this.state.groups) {
       const profileOpts = this.state.groups.map((g) => ({
-        label: g,
-        onClick: this.handleClick,
+        label: g.name,
+        onClick: function() {
+          this.handleClick(g.url);
+        }.bind(this),
       }));
+      let currentName = this.state.groups.find(
+        (g) => g.url === this.state.currentGroup
+      );
+      if (this.state.currentGroup === "new") {
+        currentName = { name: "Write a new Name" };
+      }
+      profileOpts.push({
+        label: "newGroup",
+        onClick: function(event) {
+          this.newGroup(event);
+        }.bind(this),
+      });
       const rows = this.state.currentURLS;
-      if (rows && rows.length > 0) {
+      if (this.state.currentGroup) {
         return (
           <ManageFriendsWrapper>
             <Dropdown actions={profileOpts} hover>
               Seleccionar Grupo
             </Dropdown>
+            <form>
+              <p>Group Name: </p>
+              <input
+                id="groupName"
+                type="text"
+                placeholder={currentName.name}
+              />
+              <input
+                id="updateGroupName"
+                type="submit"
+                value="Update Name"
+                onClick={(event) => this.rename(event)}
+              />
+            </form>
             <div id="groupManager">
-              {rows.map((url) => (
-                <Row id="group">
-                  {url}
-                  <Button
-                    variant="light"
-                    onClick={(event) => this.deleteFromGroup(event, url)}
-                    width="20"
-                  >
-                    Eliminar
-                  </Button>
-                </Row>
-              ))}
+              {rows &&
+                rows.length > 0 &&
+                rows.map((url) => (
+                  <Row id="group">
+                    {url}
+                    <Button
+                      variant="light"
+                      onClick={(event) => this.deleteFromGroup(event, url)}
+                      width="20"
+                    >
+                      Eliminar
+                    </Button>
+                  </Row>
+                ))}
               ;
               <form>
                 <p>
@@ -130,9 +187,18 @@ class GroupManager extends Component<Props> {
         );
       }
     }
+    const profileOpts = [];
+    profileOpts.push({
+      label: "newGroup",
+      onClick: function(event) {
+        this.newGroup(event);
+      }.bind(this),
+    });
     return (
       <ManageFriendsWrapper>
-        {" "}
+        <Dropdown actions={profileOpts} hover>
+          Seleccionar Grupo
+        </Dropdown>{" "}
         <div id="groupManager">No groups found</div>{" "}
       </ManageFriendsWrapper>
     );
