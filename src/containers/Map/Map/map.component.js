@@ -21,11 +21,11 @@ export const Map = props => {
 
  
   return (
-    <div>
+    <div >
       <h3>
-        <MapRouteName>{t("mapView.viewTitle")}{route.name}</MapRouteName>
+        <MapRouteName data-testid={"routeName"}>{t("mapView.viewTitle")}{route.name}</MapRouteName>
       </h3>
-      <MapCard>
+      <MapCard data-testid={"map"}>
         <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
           <GoogleMap
             id="mapView"

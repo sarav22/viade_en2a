@@ -12,14 +12,14 @@ const LateralMenu = props  => {
   const { t } = useTranslation();
   const { route } = props;
   return (
-      <Tabs id="controlled-tab-example">
-        <Tab eventKey="multimedia" title={t('mapView.menu.images')}>
+      <Tabs id="controlled-tab-example" data-testid={"tabs"} >
+        <Tab data-testid={"multimediaTab"} eventKey="multimedia" title={t('mapView.menu.images')}>
         <MultimediaTab resources={route.resources}/>
       </Tab>
-        <Tab eventKey="comments" title={t('mapView.menu.comments')}>
+        <Tab data-testid={"commentsTab"} eventKey="comments" title={t('mapView.menu.comments')}>
         <CommentsTab routeObject={route} />
       </Tab>
-        <Tab eventKey="data" title={t('mapView.menu.data')} >
+        <Tab data-testid={"dataTab"} eventKey="data" title={t('mapView.menu.data')} >
           <DataTab route={route}/>
         </Tab>
       </Tabs>

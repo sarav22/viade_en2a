@@ -3,7 +3,11 @@ import Media from 'react-bootstrap/Media';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 
+let theComments = [];
+
 class CommentsList extends Component<Props> {
+
+
 
     constructor(props){
         super(props)
@@ -11,6 +15,10 @@ class CommentsList extends Component<Props> {
         //const { comments } = props;
         const {commentsList} = props;
         const comments = [];
+
+        theComments = this.props.comments;
+        if(theComments == undefined)
+        theComments = [];
     }
     
 
@@ -19,7 +27,7 @@ class CommentsList extends Component<Props> {
         <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
             <Modal.Body style={{ 'max-height': 'calc(100vh - 220px)', 'overflow-y': 'auto', 'width': '100%',"scrollbar-width":"thin"}}>
                 <Container>
-                    {this.props.comments.map((comment) => {
+                    {theComments.map((comment) => {
                         console.log(comment)
                         return (
                             <Media>
