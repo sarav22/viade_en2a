@@ -161,6 +161,7 @@ class GroupManager extends Component<Props> {
                   <Row id="group">
                     {url}
                     <Button
+                      style={{ margin: 10 }}
                       variant="light"
                       onClick={(event) => this.deleteFromGroup(event, url)}
                       width="20"
@@ -170,26 +171,26 @@ class GroupManager extends Component<Props> {
                   </Row>
                 ))}
               ;
-              <form>
-                <p>
-                  Enter the webID of the person you want to add to the group:{" "}
-                </p>
-                <input
-                  id="webIdGroupAdd"
-                  type="text"
-                  placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"
-                />
-                <input
-                  id="addToGroupButton"
-                  class="addToGroupButton"
-                  type="submit"
-                  value="Add to group"
-                  onClick={(event) => this.addToGroup(event)}
-                />
-              </form>
             </div>
+            <form id="addToGroupForm">
+              <p>
+                Enter the webID of the person you want to add to the group:{" "}
+              </p>
+              <input
+                id="webIdGroupAdd"
+                type="text"
+                placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"
+              />
+              <input
+                id="addToGroupButton"
+                class="addToGroupButton"
+                type="submit"
+                value="Add to group"
+                onClick={(event) => this.addToGroup(event)}
+              />
+            </form>
             <input
-              id="updateGroupName"
+              id="deleteGroup"
               type="submit"
               value="Delete group"
               onClick={(event) => this.deleteGroup(event)}

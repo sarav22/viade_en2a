@@ -33,6 +33,11 @@ export const ManageFriendsWrapper = styled.div`
     margin: 20px;
   }
 
+  #deleteGroup {
+    with: 80em;
+    margin: 10px;
+  }
+
   form {
     p {
       margin: 20px 20px 0px 20px;
@@ -46,8 +51,12 @@ export const ManageFriendsWrapper = styled.div`
       width: 50em;
       margin: 20px 20px 0px 20px;
     }
-    .addFriendButton {
+    .addFriendButton .updateGroupName .addToGroupButton {
       width: 40em;
+    }
+
+    .deleteUserFromGroup {
+      border: 10px;
     }
   }
 
