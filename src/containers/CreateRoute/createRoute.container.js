@@ -77,6 +77,7 @@ export class CreateRoute extends Component<Props>{
                 <Container fluid>
                     <Row>
                         <Col xs={12} md={7} sm={8} xs={12}>
+                            <div data-testid={"map"}></div>
                             <Map 
                                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0&libraries=drawing"
                                 loadingElement={<div style={{ height: `100%` }} />}

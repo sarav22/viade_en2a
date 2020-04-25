@@ -57,6 +57,7 @@ class Map extends Component<Props>{
                     onLoad={() => console.log("map loaded")}
                     loadingElement={<div>Loading...</div>}
                     center={center}
+                    
 
                 >
                     <DrawingManager

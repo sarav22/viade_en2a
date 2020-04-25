@@ -9,8 +9,10 @@ export default class LateralForm extends Component<Props>{
     render() {
         return (
             <FormWrapper>
-            <Form onSubmit={this.props.handleSubmit}>
-                <Form.Group controlId="formName">
+            <Form onSubmit={this.props.handleSubmit}
+                                            data-testid={"lateralForm"}
+                                            >
+                <Form.Group controlId="formName" data-testid={"formName"}>
                     <Form.Label className="label">Nombre de la ruta</Form.Label>
 
                     <Form.Control
@@ -25,7 +27,7 @@ export default class LateralForm extends Component<Props>{
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="formSurname">
+                <Form.Group controlId="formSurname" data-testid={"formSurname"}>
                     <Form.Label className="label">Descripción</Form.Label>
                     <Form.Control 
                         as="textarea"
@@ -36,7 +38,7 @@ export default class LateralForm extends Component<Props>{
                          } }                    />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" data-testid={"submitButton"}>
                     Crear
                 </Button>
             </Form>
