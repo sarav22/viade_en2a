@@ -10,6 +10,7 @@ import {
   removeFromGroup,
   renameGroupTo,
   createNewGroup,
+  deleteGroupWithURL,
 } from "@services/groupManager";
 
 type Props = {
@@ -72,7 +73,19 @@ class GroupManager extends Component<Props> {
       }.bind(this)
     );
   }
-
+  deleteGroup(event) {
+    event.preventDefault();
+    deleteGroupWithURL(this.state.currentGroup).then(
+      function() {
+        this.setState({
+          groups: this.state.groups.filter(
+            (g) => g.url !== this.state.currentGroup
+          ),
+          currentGroup: null,
+        });
+      }.bind(this)
+    );
+  }
   rename(e) {
     e.preventDefault();
     const nameInput = document.getElementById("groupName").value;
@@ -121,7 +134,7 @@ class GroupManager extends Component<Props> {
         }.bind(this),
       });
       const rows = this.state.currentURLS;
-      if (this.state.currentGroup) {
+      if (this.state.currentGroup != null) {
         return (
           <ManageFriendsWrapper>
             <Dropdown actions={profileOpts} hover>
@@ -175,6 +188,12 @@ class GroupManager extends Component<Props> {
                 />
               </form>
             </div>
+            <input
+              id="updateGroupName"
+              type="submit"
+              value="Delete group"
+              onClick={(event) => this.deleteGroup(event)}
+            />
           </ManageFriendsWrapper>
         );
       } else {

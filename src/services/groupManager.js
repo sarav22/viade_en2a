@@ -49,6 +49,10 @@ export const addWebIdToGroup = async (webId, group) => {
   return await fc.createFile(group, JSON.stringify(json), "text/plain");
 };
 
+export const deleteGroupWithURL = async (group) => {
+  return await fc.deleteFile(group);
+};
+
 export const removeFromGroup = async (webId, group) => {
   let file = await fc.readFile(group);
   let json = JSON.parse(file);
