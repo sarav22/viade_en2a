@@ -18,6 +18,7 @@ export const ManageFriendsContent = props => {
   const { webId, friends} = props;
   const { t } = useTranslation();
 
+
   return (
     <div data-testid="manageFriends-container">
       {
@@ -30,8 +31,8 @@ export const ManageFriendsContent = props => {
           </Col>
           <Col>
             <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
-              <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
-              <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
+              <Dropdown.Item as="button" target="_blank" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
+              <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>
               <Dropdown.Item as="button"  onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
             </DropdownButton>
           </Col>
