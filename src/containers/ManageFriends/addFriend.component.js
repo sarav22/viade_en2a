@@ -44,6 +44,14 @@ class AddFriendsContent extends Component<Props> {
     window.location.reload(true);
   }
 
+  resumeExecutionAfter3Seconds(){
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('resolved');
+        }, 3000);
+      } );
+  }
+
   async addFriend(event) {
     const { t } = this.props;
     event.preventDefault();
@@ -52,20 +60,23 @@ class AddFriendsContent extends Component<Props> {
     if (friendToAdd.search("/profile/card#me") !== -1){
       fetch(friendToAdd).then( response => {
         this.setState({status: response.status, done: true});
-      });
-      if (this.state.status === 200) {
-        this.ldflexAdder(friendToAdd);
-        successToaster(t('manageFriends.addFriendSucess'));
-      } else if (this.state.status === 404) {
-        //El webId no existe
-        errorToaster(t('manageFriends.error.nonexistentWebID')); //WebID does not exist
-      } else {
-        errorToaster(t('manageFriends.error.defaultErrorMessage'));
-      }
+      }).then((response) => {
+        if (this.state.status === 200) {
+          this.ldflexAdder(friendToAdd);
+          successToaster(t('manageFriends.addFriendSucess'));
+          var promise = this.resumeExecutionAfter3Seconds();
+          promise.then( response => this.reload());
+          
+        } else if (this.state.status === 404) {
+          //El webId no existe
+          errorToaster(t('manageFriends.error.nonexistentWebID')); //WebID does not exist
+        } else {
+          errorToaster(t('manageFriends.error.defaultErrorMessage'));
+        }
+      } )
     } else {
       errorToaster(t('manageFriends.error.notValidWebID')); //The inputted webID doesn't have a valid format
     }
-    await this.reload();
   }
 
 
