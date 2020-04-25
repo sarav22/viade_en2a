@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    viade:
+        build: .
+        ports:
+            - "3000:3000"
+    solidserver:
+        image: nodesolidserver/node-solid-server
+        volumes:
+            - ./volumes/soliddata:/usrUsrc/app/data
+            - ./volumes/soliddb:/usr/src/app/.db
+        ports:
+            - "8443:8443"
+    gatling:
+        image: denvazh/gatling
+        command: -s profileviewer.LoadTestLoginExample
+        depends_on:
+            - solidserver
+            - viade
+        volumes:
+            - ./gatling/conf:/opt/gatling/conf
+            - ./gatling/user-files:/opt/gatling/user-files
+            - ./gatling/results:/opt/gatling/results
+        network_mode: "host"
+
+volumes:
+    soliddata:
+        external: false
+    soliddb:
+        external: false
+        
