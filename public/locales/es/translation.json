@@ -145,6 +145,23 @@
     "notificationTitle": "Ruta compartida",
     "notificationSummary": " ha compartido una ruta contigo: "
   },
+  "createRouteView":{
+    "defaultFormValues":{
+      "name":"El nombre de la ruta",
+      "description":"La descripción de la ruta"
+    },
+    "errors":{
+      "nameEmpty":"El nombre de la ruta no puede estar vacio",
+      "routeEmpty":"La ruta tiene que contener al menos un punto en el mapa",
+      "error":"Hubo un problema y no se pudo guardar"
+    },
+    "success":"La ruta se ha guardado en el pod: OK!",
+    "lateralForm":{
+      "routeName":"Nombre de la ruta",
+      "routeDescription":"Descripción de la ruta",
+      "createButton":"Crear"
+    }
+  },
   "friendsManagement":{
     "profile": "Ver Perfil",
     "delete": "Eliminar Amigo"
