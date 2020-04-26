@@ -1,4 +1,4 @@
-Feature: Manage friends
+Feature: Add friends
 
 	Scenario: Alice wants to add an existing user as a friend
 		Given Alice does not have Bob as a friend and Bob's webID exists
