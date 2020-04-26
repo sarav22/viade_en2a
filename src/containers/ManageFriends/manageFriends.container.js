@@ -70,8 +70,8 @@ export class ManageFriendsComponent extends Component<Props> {
               <Col xs={9} md={6} sm={6} xs={12}>
                 <Form>
                   <Form.Group>
-                    <Form.Label className="label">{t('manageFriends.listOfFriends')}</Form.Label>
-                    <Form.Control type="text" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} />
+                    <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                    <Form.Control type="text" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
                   </Form.Group>
                 </Form>
                 <ManageFriendsContent {...{ webId, friends}} />
@@ -92,8 +92,8 @@ export class ManageFriendsComponent extends Component<Props> {
             <Col xs={9} md={6} sm={6} xs={12}>
               <Form>
                 <Form.Group>
-                  <Form.Label className="label">{t('manageFriends.listOfFriends')}</Form.Label>
-                  <Form.Control type="text" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} />
+                  <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                  <Form.Control type="text" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
                 </Form.Group>
               </Form>
               <SearchFriendsContent {...{ webId, searchResults}} />

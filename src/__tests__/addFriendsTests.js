@@ -16,3 +16,16 @@ test('Renders correctly', () => {
     expect(container).toBeTruthy();
     expect(getByTestId('addFriendForm')).toBeTruthy();
 });
+
+test('Renders button correctly', () => {
+    expect(getByTestId('addFriendButton')).toBeTruthy();
+});
+
+test('Renders label correctly', () => {
+    expect(getByTestId('addFriendLabel')).toBeTruthy();
+});
+
+test('Renders input field correctly', () => {
+    expect(getByTestId('webIdFriend')).toBeTruthy();
+});
+

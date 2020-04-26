@@ -79,14 +79,14 @@ class AddFriendsContent extends Component<Props> {
     }
   }
 
-
+  
   render(){
     const { t } = this.props;
     return (
       <Form data-testid="addFriendForm">
         <Form.Group>
-          <Form.Label className="label">{t('manageFriends.addFriendExplanation')}</Form.Label>
-          <Form.Control className="inputAdd" id="webId" type="text" placeholder={t('manageFriends.webIDExample')}/>
+          <Form.Label className="label" data-testid="addFriendLabel">{t('manageFriends.addFriendExplanation')}</Form.Label>
+          <Form.Control className="inputAdd" id="webId" type="text" placeholder={t('manageFriends.webIDExample')} data-testid="webIdFriend"/>
         </Form.Group>
           <Button id="addFriendButton" className="addFriendButton" variant="light" onClick={(event) => this.addFriend(event)} 
             style={{'paddingLeft': '1px'}} data-testid="addFriendButton" >
