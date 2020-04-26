@@ -4,12 +4,13 @@ import { SearchFriendsContent } from './searchFriends.component';
 import  AddFriendsContent  from './addFriend.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
-import { ManageFriendsWrapper, ButtonFriend } from "./manageFriends.style";
+import { ManageFriendsWrapper } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { withTranslation } from 'react-i18next';
+import data from '@solid/query-ldflex';
 
 
 /**
@@ -22,6 +23,7 @@ export class ManageFriendsComponent extends Component<Props> {
 		this.state={
       friends:null,
       searchResults:null,
+      images: []
     }
     this.handleChange = this.handleChange.bind(this);
 	}
@@ -37,7 +39,28 @@ export class ManageFriendsComponent extends Component<Props> {
       const profile = profileDoc.getSubject(this.props.webId);
       const fs=profile.getAllRefs(foaf.knows);
       this.setState({friends: fs});
-   }
+      await this.loadImage(this.state.friends)
+  }
+
+  async loadImage(friends){
+    friends.forEach(friendWebId=> {
+      const user = data[friendWebId];
+      const i = user.vcard_hasPhoto;
+      i.then(response=>
+        {
+        if(response && response.value){
+          let array = this.state.images;
+          array.push({id: friendWebId, img:response.value});
+          this.setState({images:array});
+        }else{
+          let array = this.state.images;
+          array.push({id: friendWebId, img:"img/icon/empty-profile.svg"});
+          this.setState({images:array});
+        }})
+      
+    })
+  }
+   
 
     searchFriends(matchingString) {
       if (matchingString!==""){
@@ -60,7 +83,7 @@ export class ManageFriendsComponent extends Component<Props> {
       return <div/>
     } else{
       const friends=this.state.friends;
-      const friendNames=this.state.friendNames;
+      const images=this.state.images;
       const webId=this.props.webId;
       if (this.state.searchResults==null){
         return (
@@ -74,7 +97,7 @@ export class ManageFriendsComponent extends Component<Props> {
                     <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
                   </Form.Group>
                 </Form>
-                <ManageFriendsContent {...{ webId, friends}} />
+                <ManageFriendsContent {...{ webId, friends, images}} />
               </Col>
               <Col xs={9} md={6} sm={6} xs={12} align="right">
                 <AddFriendsContent webId={webId}/>
@@ -96,7 +119,7 @@ export class ManageFriendsComponent extends Component<Props> {
                   <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
                 </Form.Group>
               </Form>
-              <SearchFriendsContent {...{ webId, searchResults}} />
+              <SearchFriendsContent {...{ webId, searchResults, images}} />
             </Col>
             <Col xs={9} md={6} sm={6} xs={12} align="right">
               <AddFriendsContent webId={webId}/>

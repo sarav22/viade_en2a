@@ -1,13 +1,26 @@
 import React from 'react';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
-import {deleteFriend, viewRoutes } from '../../services/friendsManager';
+import {deleteFriend, viewRoutes , getImgByWebId, getName} from '../../services/friendsManager';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import styled from 'styled-components';
+
+export const Img = styled.img`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+`;
+export const ImageContainer = styled.div`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-size: cover;
+  overflow: hidden;
+  display: inline-table;
+`;
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -15,21 +28,23 @@ import Col from 'react-bootstrap/Col';
  * @param props
  */
 export const ManageFriendsContent = props => {
-  const { webId, friends} = props;
+  const { webId, friends, images} = props;
   const { t } = useTranslation();
 
 
   return (
-    <div data-testid="manageFriends-container">
+    <div fluid data-testid="manageFriends-container">
       {
         friends.map(friend => (
         <Row className="friend" data-testid={friend+"d"}>
-          <Col>
+          <Col xs={10} md={10} sm={10} xs={10}>
             <Button variant="light" className="buttonFriend" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend}>
-              {friend}
+            <ImageContainer className="picture" data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
+              <Img style={{"border-radius": "50%"}} src={getImgByWebId(friend, images)} alt="profile"  data-testid={"img"+friend}  key={"img"+friend}/>
+            </ImageContainer>{getName(friend)} 
             </Button>
           </Col>
-          <Col>
+          <Col xs={2} md={2} sm={2} xs={2}>
             <DropdownButton variant="light" key={friend+"dropdown"} title=""> 
               <Dropdown.Item as="button"  href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
               <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"}>{t('manageFriends.delete')}</Dropdown.Item>

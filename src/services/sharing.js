@@ -46,10 +46,10 @@ export const saveSharedFile = (webId, notification) => {
             routeJson.routes.push({"@id": ruta});
             storeJSONshared(routeJson, jsonfile, function(success){
               if(success){
-                  alert("Se ha actualizado");
+                 //
               }
               else{
-                  alert("Fail");
+                  //
               }
             });
           }) ;
