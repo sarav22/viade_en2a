@@ -149,6 +149,11 @@
       "commentButton" : "Comment",
       "commentPlaceholder" : "What a cool route!",
       "fieldName": "Post here the comment"
+    },
+    "resources":{
+      "pictures": "Pictures",
+      "videos": "Videos",
+      "audios": "Audios"
     }
   },
   "friendsManagement":{
@@ -182,5 +187,18 @@
     "dragAndDropSupported": "Supported extension files *.gpx",
     "success": "Routes correctly saved to POD",
     "failure": "Some or any routes could not be saved to POD"
+  },
+  "resourceUpload" :{
+    "dragAndDropMain": "Drag n' drop the resource file you want to upload",
+    "dragAndDropSupported": "Supported extensions files *.jpg, *.png *.gif *.mp4 *.mp3",
+    "success": "Resource succeessfully saved to POD",
+    "failure": "Some or any resources could not be saved to POD",
+    "button": "Upload"
+  },
+  "resourceVinculation" :{
+    "success": "El recurso se ha vinculado correctamente en el POD",
+    "failure": "Algun o ningun recurso no pudo ser vinculado en el POD",
+    "button": "Vincular",
+    "label":"resourceWebId:"
   }
 }

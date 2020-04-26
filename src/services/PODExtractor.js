@@ -30,7 +30,6 @@ export const storeJSONToPOD = async (jsonLD, callback) => {
     let session = await auth.currentSession();
     let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
     let formattedName = jsonLD.name.replace(/ /g, "_");
-    console.log(formattedName + " "+jsonLD.name);
     let fileName = formattedName + '_' + uuidv4() + '.jsonld';
     let fileURI = userWebIdRoute + '/' + fileName;
 
@@ -96,4 +95,39 @@ export async function postCommentInPod(commentJson, routeComments, callback){
         callback(true);
     }, err => {callback(false);});
 
+}
+
+
+export async function uploadResourceToPod(resource, callback) {
+    let session = await auth.currentSession();
+    let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/resources';
+
+
+    let aux = resource.name.split(".")
+
+    let extension = "." + aux[aux.length - 1]
+
+
+    let fileName = uuidv4() + extension;
+    let fileURI = userWebIdRoute + '/' + fileName;
+
+    
+
+    if(await fc.itemExists(userWebIdRoute)) {
+        fc.createFile(fileURI, resource, resource.type).then( response => {
+            callback(response.url)
+        }, err => { callback(null); });
+    } else {
+        await fc.createFolder(userWebIdRoute);
+        fc.createFile(fileURI, resource, resource.type).then( response => {
+            callback(response.url);
+        }, err => { callback(null); });
+    }
+}
+
+
+export async function saveJsonLdWithId(jsonLd, Id, callback){
+    fc.createFile(Id, JSON.stringify(jsonLd), 'application/json').then(response => {
+        callback(true);
+    }, err => callback(false))
 }

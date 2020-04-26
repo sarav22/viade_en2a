@@ -22,6 +22,20 @@ export class Resource {
     
     constructor(resourceUrl) {
         this.resourceUrl = resourceUrl;
+
+        let aux= resourceUrl.split(".")
+        this.extension = aux[aux.length -1].toLowerCase()
+
+    }
+
+    isAudio(){
+        return this.extension == "mp3"
+    }
+    isImage(){
+        return this.extension == "jpg" || this.extension == "png" || this.extension == "gif" || this.extension == "jpeg"
+    }
+    isVideo(){
+        return this.extension == "mp4"
     }
 }
 
