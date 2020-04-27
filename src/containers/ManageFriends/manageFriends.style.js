@@ -59,6 +59,15 @@ export const ManageFriendsWrapper = styled.div`
     min-width: 30%;
   }
 
+  #updateName{
+    width: 100%;
+    margin: 0px;
+  }
+
+  #inputGroupName{
+    max-width: 100%;
+  }
+
   .picture{
     overflow: visible;
     padding-right: 10px;

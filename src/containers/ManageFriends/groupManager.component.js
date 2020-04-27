@@ -145,20 +145,18 @@ class GroupManager extends Component<Props> {
             <Dropdown actions={profileOpts} hover style={{width:"50%"}}>
               Seleccionar Grupo
             </Dropdown>
-            <form>
-              <p className="label" style={{"font-size":"18px", "marginBottom":"10px", "marginTop":"22px"}}>Group Name: </p>
-              <input
-                id="groupName"
-                type="text"
-                placeholder={currentName.name}
-              />
-              <input
-                id="updateGroupName"
-                type="submit"
-                value="Update Name"
-                onClick={(event) => this.rename(event)}
-              />
-            </form>
+            <Form>
+              <Form.Group>
+                <Form.Label className="label" style={{"font-size":"18px", "marginBottom":"10px", "marginTop":"15px"}}>
+                  Group Name: 
+                </Form.Label>
+                <Form.Control id="inputGroupName" className="inputAdd" type="text" placeholder={currentName.name} />
+              </Form.Group>
+              <Button id="updateName" className="addFriendButton" variant="light" onClick={(event) => this.rename(event)}
+                data-testid="updateName">
+                Update Name
+              </Button>
+            </Form>
             <div id="groupManager">
               {rows &&
                 rows.length > 0 &&
