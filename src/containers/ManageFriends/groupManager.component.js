@@ -12,6 +12,8 @@ import {
   createNewGroup,
   deleteGroupWithURL,
 } from "@services/groupManager";
+import Form from "react-bootstrap/Form";
+import Card from 'react-bootstrap/Card';
 
 type Props = {
   webId: String,
@@ -137,11 +139,14 @@ class GroupManager extends Component<Props> {
       if (this.state.currentGroup != null) {
         return (
           <ManageFriendsWrapper>
-            <Dropdown actions={profileOpts} hover>
+            <Form>
+              <Form.Label className="label">GROUP MANAGER</Form.Label>
+            </Form>
+            <Dropdown actions={profileOpts} hover style={{width:"50%"}}>
               Seleccionar Grupo
             </Dropdown>
             <form>
-              <p>Group Name: </p>
+              <p className="label" style={{"font-size":"18px", "marginBottom":"10px", "marginTop":"22px"}}>Group Name: </p>
               <input
                 id="groupName"
                 type="text"
@@ -159,12 +164,14 @@ class GroupManager extends Component<Props> {
                 rows.length > 0 &&
                 rows.map((url) => (
                   <Row id="group">
-                    {url}
-                    <Button
-                      style={{ margin: 10 }}
+                    <Card style={{ width:'60%', margin:'20px 10px 0px 20px', 'padding':'2px'}} text="dark" data-testid={"member"+url}>
+                      {url.replace("https://", "").replace("/profile/card#me", "")}
+                    </Card>
+                    <Button align="right"
+                      style={{ 'margin-top':'20px'}}
                       variant="light"
                       onClick={(event) => this.deleteFromGroup(event, url)}
-                      width="20"
+                      width="100%"
                     >
                       Eliminar
                     </Button>
@@ -173,7 +180,7 @@ class GroupManager extends Component<Props> {
               ;
             </div>
             <form id="addToGroupForm">
-              <p>
+              <p className="label" style={{"font-size":"18px", "marginBottom":"10px"}}>
                 Enter the webID of the person you want to add to the group:{" "}
               </p>
               <input
@@ -200,6 +207,9 @@ class GroupManager extends Component<Props> {
       } else {
         return (
           <ManageFriendsWrapper>
+            <Form>
+              <Form.Label className="label">GROUP MANAGER</Form.Label>
+            </Form>
             <Dropdown actions={profileOpts} hover>
               Seleccionar Grupo
             </Dropdown>

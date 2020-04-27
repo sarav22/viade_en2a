@@ -135,6 +135,7 @@ export class ManageFriendsComponent extends Component<Props> {
           <Container fluid>
             <Row>
               <Col xs={9} md={6} sm={6} xs={12}>
+                <AddFriendsContent webId={webId} />
                 <Form>
                   <Form.Group>
                     <Form.Label className="label">List of Friends</Form.Label>
@@ -148,11 +149,8 @@ export class ManageFriendsComponent extends Component<Props> {
                 </Form>
                 <SearchFriendsContent {...{ webId, searchResults, images }} />
               </Col>
-              <Col xs={9} md={4} sm={4} xs={12}>
+              <Col xs={9} md={6} sm={6} xs={12}>
                 <GroupManager webId={webId} groups={this.state.groups} />
-              </Col>
-              <Col xs={9} md={6} sm={6} xs={12} align="right">
-                <AddFriendsContent webId={webId} />
               </Col>
             </Row>
           </Container>

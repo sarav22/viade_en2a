@@ -16,8 +16,9 @@ export const ManageFriendsWrapper = styled.div`
     }
   }
   
-  .inputAdd {
+  .inputAdd{
     width: 100%;
+    max-width: 65em;
   }
 
   .label{
@@ -25,6 +26,8 @@ export const ManageFriendsWrapper = styled.div`
     margin: 20px 20px 0px 0px;
     font-size: 20px;
     line-height: 20px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
   }
 
   .friend{
@@ -42,16 +45,18 @@ export const ManageFriendsWrapper = styled.div`
     padding-left: 2px;
     padding-right: 2px;
     margin-right: 2px;
-    width: 100%;
     overflow-wrap: break-word;
   }
 
   .buttonFriend{
     text-align: left;
+    width: 100%;
   }
 
   .addFriendButton{
     text-align: center;
+    max-width: 65em;
+    min-width: 30%;
   }
 
   .picture{
