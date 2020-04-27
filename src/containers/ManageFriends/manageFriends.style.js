@@ -38,7 +38,7 @@ export const ManageFriendsWrapper = styled.div`
     max-width: 65em;
   }
 
-  .buttonFriend:hover, .addFriendButton:hover{
+  .buttonFriend:hover, .addFriendButton:hover, .buttonDelete:hover{
     color: #01C9EA;
   }
   .buttonFriend, .addFriendButton{
@@ -59,12 +59,19 @@ export const ManageFriendsWrapper = styled.div`
     min-width: 30%;
   }
 
-  #updateName{
+  #updateName, #addToGroupButton, #deleteGroup{
     width: 100%;
-    margin: 0px;
   }
 
-  #inputGroupName{
+  #deleteGroup{
+    margin-top: 5px;
+  }
+
+  #addToGroupButton{
+    margin-bottom: 20px;
+  }
+
+  #groupName, #webIdGroupAdd{
     max-width: 100%;
   }
 

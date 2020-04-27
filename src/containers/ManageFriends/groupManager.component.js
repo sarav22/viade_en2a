@@ -147,29 +147,37 @@ class GroupManager extends Component<Props> {
             </Dropdown>
             <Form>
               <Form.Group>
-                <Form.Label className="label" style={{"font-size":"18px", "marginBottom":"10px", "marginTop":"15px"}}>
+                <Form.Label className="label" style={{"font-size":"16px", "marginBottom":"10px", "marginTop":"15px"}}>
                   Group Name: 
                 </Form.Label>
-                <Form.Control id="inputGroupName" className="inputAdd" type="text" placeholder={currentName.name} />
+                <Form.Control id="groupName" className="inputAdd" type="text" placeholder={currentName.name} />
               </Form.Group>
               <Button id="updateName" className="addFriendButton" variant="light" onClick={(event) => this.rename(event)}
                 data-testid="updateName">
                 Update Name
               </Button>
             </Form>
+            <Button id="deleteGroup" className="addFriendButton" variant="light" onClick={(event) => this.deleteGroup(event)}
+                data-testid="addToGroupButton">
+                Delete group
+            </Button>
             <div id="groupManager">
+              <Form.Label className="label" style={{"font-size":"16px"}}>
+                GROUP MEMBERS:
+              </Form.Label>
               {rows &&
                 rows.length > 0 &&
                 rows.map((url) => (
                   <Row id="group">
-                    <Card style={{ width:'60%', margin:'20px 10px 0px 20px', 'padding':'2px'}} text="dark" data-testid={"member"+url}>
+                    <Card style={{ width:'60%', margin:'10px 10px 10px 15px', 'padding':'5px'}} text="dark" data-testid={"member"+url}>
                       {url.replace("https://", "").replace("/profile/card#me", "")}
                     </Card>
                     <Button align="right"
-                      style={{ 'margin-top':'20px'}}
+                      style={{ 'margin':'10px 0px 10px 0px'}}
                       variant="light"
                       onClick={(event) => this.deleteFromGroup(event, url)}
                       width="100%"
+                      className="buttonDelete"
                     >
                       Eliminar
                     </Button>
@@ -177,29 +185,18 @@ class GroupManager extends Component<Props> {
                 ))}
               ;
             </div>
-            <form id="addToGroupForm">
-              <p className="label" style={{"font-size":"18px", "marginBottom":"10px"}}>
-                Enter the webID of the person you want to add to the group:{" "}
-              </p>
-              <input
-                id="webIdGroupAdd"
-                type="text"
-                placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"
-              />
-              <input
-                id="addToGroupButton"
-                class="addToGroupButton"
-                type="submit"
-                value="Add to group"
-                onClick={(event) => this.addToGroup(event)}
-              />
-            </form>
-            <input
-              id="deleteGroup"
-              type="submit"
-              value="Delete group"
-              onClick={(event) => this.deleteGroup(event)}
-            />
+            <Form>
+              <Form.Group>
+                <Form.Label className="label" style={{"font-size":"16px", "marginBottom":"10px"}}>
+                  Enter the webID of the person you want to add to the group:{" "}
+                </Form.Label>
+                <Form.Control id="webIdGroupAdd" className="inputAdd" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me" />
+              </Form.Group>
+              <Button id="addToGroupButton" className="addFriendButton" variant="light" onClick={(event) => this.addToGroup(event)}
+                data-testid="addToGroupButton">
+                Add to group
+              </Button>
+            </Form>
           </ManageFriendsWrapper>
         );
       } else {
