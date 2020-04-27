@@ -166,14 +166,17 @@
   },
   "error":{
     "importError": "An error happened while importing the route, please try again",
-    "sizeLimitImport": "The maximum number of files that can be accepted is 1",
+    "sizeLimitImport": "Tried to import more than one file or tried to import a file that is not .gpx",
     "gpxNotRoutes": "The gpx contains no route, maybe the gpx has no trk",
+    "gpxNotRoutesTitle": "No Route",
     "fileReadError": "The system could not read the file"
   },
   "import": {
     "dragAndDropMain": "Drag n' drop the route file you want to import",
     "dragAndDropSupported": "Supported extension files *.gpx",
     "success": "Routes correctly saved to POD",
-    "failure": "Some or any routes could not be saved to POD"
+    "successTitle": "Imported",
+    "failure": "Some or any routes could not be saved to POD",
+    "failureTitle": "Not Imorted"
   }
 }

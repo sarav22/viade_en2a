@@ -1,20 +1,22 @@
 import React, { useCallback, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import {useDropzone} from 'react-dropzone';
-import {parseGpxToRoutes} from '../../../services/importing/gpx/gpxParser.js';
-import {saveRouteToPOD} from '../../../services/DomainJSONTranslator.js';
- 
+import { useDropzone } from 'react-dropzone';
+import { parseGpxToRoutes } from '../../../services/importing/gpx/gpxParser.js';
+import { saveRouteToPOD } from '../../../services/DomainJSONTranslator.js';
+import { errorToaster } from "@utils";
+import { successToaster } from "@utils";
+
 const LateralMenu = props  => {
     const { t } = useTranslation();
     const onDrop = useCallback((acceptedFiles) => {
       if(acceptedFiles.length !== 1) {
-        alert(t('error.sizeLimitImport'));
+        errorToaster(t('error.sizeLimitImport'), "Error");
       } else {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
    
-          reader.onabort = () => alert(t('error.fileReadError'));
-          reader.onerror = () => alert(t('error.fileReadError'));
+          reader.onabort = () => errorToaster(t('error.fileReadError'), "Error");
+          reader.onerror = () => errorToaster(t('error.fileReadError'), "Error");
           reader.onload = () => {
             const routeString = reader.result;
             try {
@@ -26,18 +28,18 @@ const LateralMenu = props  => {
                     });
                   });
                   if(importResult && routeArray.length > 0) {
-                    alert(t('import.success'));
+                    successToaster(t('import.success'), t('import.successTitle'));
                   } else {
-                    alert(t('import.failure'));
+                    errorToaster(t('import.failure'), t('import.failureTitle'));
                   }
                   if(routeArray.length > 0) {
                     props.setRoute(routeArray);
                   } else {
-                    alert(t('error.gpxNotRoutes'));
+                    errorToaster(t('error.gpxNotRoutes'), t('error.gpxNotRoutesTitle'));
                   }
                 });
             } catch(error) {
-              alert(t('error.importError'));
+              errorToaster(t('error.importError'), "Error");
             }
           };
           reader.readAsText(file);

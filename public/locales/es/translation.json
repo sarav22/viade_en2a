@@ -167,14 +167,17 @@
   },
   "error":{
     "importError": "Un error ha ocurrido al importar la ruta, porfavor inténtelo de nuevo",
-    "sizeLimitImport": "El número máximo de archivos que se pueden importar es 1",
+    "sizeLimitImport": "Se ha intentado importar más de un archivo o el archivo importado no es .gpx",
     "gpxNotRoutes": "El archivo gpx no contiene ninguna ruta, quizás no tenga trks",
+    "gpxNotRoutesTitle": "Sin Rutas",
     "fileReadError": "El sistema no pudo leer el archivo proporcionado"
   },
   "import": {
     "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
     "dragAndDropSupported": "Los archivos soportados son *.gpx",
     "success": "Las rutas se han guardado correctamente en el POD",
-    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD"
+    "successTitle": "Importado",
+    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD",
+    "failureTitle": "No Importado"
   }
 }
