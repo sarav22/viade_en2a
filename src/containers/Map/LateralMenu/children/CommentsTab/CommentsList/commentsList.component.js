@@ -23,7 +23,8 @@ class CommentsList extends React.Component {
                         return (
                             <Media>
                                 <Media.Body>
-                                    <p style = {{"font-size": "15px", "font-weight" : "bold"}}> {comment.author} - {comment.dateCreated}</p>
+                                    <p style = {{"font-size": "15px", "font-weight" : "bold"}}> 
+                                        {comment.author.replace("https://", "").replace("/profile/card#me", "")} - {comment.dateCreated}</p>
                                     <p> {comment.text} </p>
                                 </Media.Body>
                             </Media>

@@ -108,17 +108,6 @@ async function createCommentsFileForNewRoute(podURI, routeFileName) {
   return commentsFileURI;
 }
 
-export async function postCommentInPod(commentJson, routeComments, callback) {
-  var routeCommentsFile = {};
-  await retrieveJson(routeComments).then(function(result) {
-    routeCommentsFile = JSON.parse(result);
-  });
-
-  routeCommentsFile.comments.push({
-    text: commentJson.text,
-    dateCreated: commentJson.dateCreated,
-  });
-
 export async function postCommentInPod(commentJson, routeComments, callback){
     let session = await auth.currentSession();
     let author = session.webId;
@@ -145,4 +134,3 @@ export async function postCommentInPod(commentJson, routeComments, callback){
       }
     );
   }
-}
