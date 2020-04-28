@@ -192,7 +192,7 @@
     "failure": "Algunas o ninguna ruta no pudo ser guardada en el POD"
   },
   "resourceUpload" :{
-    "dragAndDropMain": "Arrastre el archivo de imagen que desea añadir",
+    "dragAndDropMain": "Arrastre el archivo que desea añadir",
     "dragAndDropSupported": "Los archivos soportados son *.jpg, *.png *.gif *.mp4 *.mp3",
     "success": "El recurso se han guardado correctamente en el POD",
     "failure": "Algun o ningun recurso no pudo ser guardado en el POD",

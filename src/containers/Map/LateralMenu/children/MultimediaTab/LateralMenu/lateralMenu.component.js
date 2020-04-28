@@ -4,6 +4,7 @@ import {useDropzone} from 'react-dropzone';
 import { setJestCucumberConfiguration } from "jest-cucumber";
 import {uploadResourceToRoute } from "../../../../../../services/uploadResources/resourcesService"
 import {successToaster, errorToaster} from "../../../../../../utils/toaster"
+import Button from "react-bootstrap/Button";
  
 const LateralMenu = props  => {
   const {routeObject} = props;
@@ -79,13 +80,13 @@ const LateralMenu = props  => {
           ]);
         return (
           <div>
-            <div data-testid="dropMenu" {...getRootProps({style})}>
+            <div style = "margin: 20px;" data-testid="dropMenu" {...getRootProps({style})}>
                 <input {...getInputProps()} />
                 <p>{t('resourceUpload.dragAndDropMain')}</p>
                 <p>{t('resourceUpload.dragAndDropSupported')}</p>
             </div>
-            <button onClick = {() => uploadFiles()}>{t('resourceUpload.button')} </button>
-            </div>
+            <Button onClick = {() => uploadFiles()}> {t('resourceUpload.button')} </Button>
+          </div>
         );  
   };
   export default LateralMenu;

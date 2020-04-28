@@ -53,8 +53,6 @@ export const loadMapInfo = async jsonUrl => {
            await loadCommentsFromRouteCommentsProperty(commentsFile).then( (resultCommentList) => {
                 commentList = resultCommentList;
            })
-           console.log("La lista");
-           console.log(commentList);
            
         }
   
