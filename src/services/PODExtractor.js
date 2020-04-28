@@ -119,7 +119,20 @@ export async function postCommentInPod(commentJson, routeComments, callback) {
     dateCreated: commentJson.dateCreated,
   });
 
-  //Overwrite the file.
+export async function postCommentInPod(commentJson, routeComments, callback){
+    let session = await auth.currentSession();
+    let author = session.webId;
+
+    
+
+    var routeCommentsFile = {};
+    await retrieveJson(routeComments).then(function(result) {
+        routeCommentsFile = JSON.parse(result);
+    }) 
+
+    routeCommentsFile.comments.push({"text" : commentJson.text, "dateCreated" : commentJson.dateCreated, "author" : author});
+
+    //Overwrite the file.
 
   await fc
     .createFile(routeComments, JSON.stringify(routeCommentsFile), "text/plain")
@@ -131,36 +144,5 @@ export async function postCommentInPod(commentJson, routeComments, callback) {
         callback(false);
       }
     );
+  }
 }
-
-/*
-export async function postCommentInPod(commentJson, routeComments, callback){
-
-    // Create the comment
-    let session = await auth.currentSession();
-    let folder = session.webId.substring(0, session.webId.length - 16) + '/viade/comments/myComments';
-    let fileName = uuidv4() + '.jsonld';
-    let fileURI = folder + '/' + fileName;
-
-    if (!(await fc.itemExists(folder))){
-        await fc.createFolder(folder);
-    }
-    await fc.createFile(fileURI, JSON.stringify(commentJson), 'text/plain').then(fileCreated => {
-        console.log("Created file: " + fileCreated);
-    })
-
-    // Link it with the route comments file.
-
-    var routeCommentsFile = "";
-    await retrieveJson(routeComments).then(function(result) {
-        routeCommentsFile = JSON.parse(result);
-    }) 
-
-    routeCommentsFile.comments.push({"@id" : fileURI});
-
-    //Overwrite the file.
-
-    await fc.createFile(routeComments, JSON.stringify(routeCommentsFile), 'text/plain').then(fileCreated => {
-        callback(true);
-    }, err => {callback(false);});
-} */

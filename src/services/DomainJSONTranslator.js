@@ -111,8 +111,6 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
         console.log(result);
         try {
             commentsFileJson = JSON.parse(result);
-            console.log("El JSON");
-            console.log(commentsFileJson);
         } catch(error) {
 
         }
@@ -124,10 +122,9 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
             comentarios = commentsFileJson.comments;
         }
     }
-    console.log("Comentarios");
-    console.log(comentarios);
+
     for(var i = 0; i< comentarios.length; i++){
-       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated));
+       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated, comentarios[i].author));
     }
 
     return commentList;

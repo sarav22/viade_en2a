@@ -144,7 +144,14 @@
     "shareSuccess": "The route was shared successfully",
     "errorSuccess": "The route could not be shared with ",
     "notificationTitle": "Route shared",
-    "notificationSummary": " has shared a route with you: "
+    "notificationSummary": " has shared a route with you: ",
+    "comment": {
+      "commentSuccess" : "The comment was successfully added",
+      "commentFailure" : "There was an error when posting the comment, try again",
+      "commentButton" : "Comment",
+      "commentPlaceholder" : "What a cool route!",
+      "fieldName": "Post here the comment"
+    }
   },
   "friendsManagement":{
     "profile": "View Profile",

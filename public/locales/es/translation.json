@@ -144,7 +144,15 @@
     "shareSuccess": "La ruta se compartió correctamente",
     "errorSuccess": "La ruta no se pudo compartir con ",
     "notificationTitle": "Ruta compartida",
-    "notificationSummary": " ha compartido una ruta contigo: "
+    "notificationSummary": " ha compartido una ruta contigo: ",
+    "comment": {
+      "commentSuccess" : "El comentario se ha añadido correctamente",
+      "commentFailure" : "Se ha producido un error al añadir el comentario, intentelo de nuevo",
+      "commentButton" : "Comentar",
+      "commentPlaceholder" : "Que ruta tan guay!",
+      "fieldName": "Introduce to comentario"
+    }
+    
   },
   "friendsManagement":{
     "profile": "Ver Perfil",
