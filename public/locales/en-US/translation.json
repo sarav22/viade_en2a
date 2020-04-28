@@ -200,6 +200,6 @@
     "success": "El recurso se ha vinculado correctamente en el POD",
     "failure": "Algun o ningun recurso no pudo ser vinculado en el POD",
     "button": "Vincular",
-    "label":"resourceWebId:"
+    "label":"Resource's URI:"
   }
 }

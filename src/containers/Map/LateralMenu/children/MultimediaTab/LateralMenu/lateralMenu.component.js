@@ -2,8 +2,10 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import {useDropzone} from 'react-dropzone';
 import { setJestCucumberConfiguration } from "jest-cucumber";
-import {uploadResourceToRoute } from "../../../../../../services/uploadResources/resourcesService"
-import {successToaster, errorToaster} from "../../../../../../utils/toaster"
+import {uploadResourceToRoute } from "../../../../../../services/uploadResources/resourcesService";
+import {successToaster, errorToaster} from "../../../../../../utils/toaster";
+import Button from "react-bootstrap/Button";
+import { FormWrapper } from "./lateralMenu.style";
  
 const LateralMenu = props  => {
   const {routeObject} = props;
@@ -78,14 +80,14 @@ const LateralMenu = props  => {
             isDragReject
           ]);
         return (
-          <div>
+          <FormWrapper>
             <div data-testid="dropMenu" {...getRootProps({style})}>
                 <input {...getInputProps()} />
                 <p>{t('resourceUpload.dragAndDropMain')}</p>
                 <p>{t('resourceUpload.dragAndDropSupported')}</p>
             </div>
-            <button onClick = {() => uploadFiles()}>{t('resourceUpload.button')} </button>
-            </div>
+            <Button className="button" variant="primary" onClick = {() => uploadFiles()}>{t('resourceUpload.button')} </Button>
+          </FormWrapper>
         );  
   };
   export default LateralMenu;

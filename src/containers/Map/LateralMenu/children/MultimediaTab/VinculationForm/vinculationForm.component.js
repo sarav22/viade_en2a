@@ -27,20 +27,21 @@ const VinculationForm = props => {
 
     return (
         <FormWrapper>
-        <Form onSubmit={vinculate}>
-            <Form.Group controlId="formName">
-                <Form.Label className="label"> {t('resourceVinculation.label')}</Form.Label>
-                <Form.Control
-                    required
-                    type="text"
-                    placeholder={t('https://luispresacollada.solid.community/viade/resources/holi.jpg')}
-                    onChange={(x: React.FormEvent<FormControl & HTMLInputElement>) => { 
-                        setResourceId(x.currentTarget.value);
-                     } }
-                />
-            </Form.Group>
-            <Button variant="primary" type="submit"> {t('resourceVinculation.button')} </Button>
-        </Form>
+            <Form onSubmit={vinculate}>
+                <Form.Group controlId="formName">
+                    <Form.Label className="label"> {t('resourceVinculation.label')}</Form.Label>
+                    <Form.Control
+                        className="input"
+                        required
+                        type="text"
+                        placeholder={t('https://luispresacollada.solid.community/viade/resources/holi.jpg')}
+                        onChange={(x: React.FormEvent<FormControl & HTMLInputElement>) => { 
+                            setResourceId(x.currentTarget.value);
+                        } }
+                    />
+                </Form.Group>
+                <Button variant="primary" type="submit"> {t('resourceVinculation.button')} </Button>
+            </Form>
         </FormWrapper>
 
     )
