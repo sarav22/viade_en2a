@@ -98,7 +98,8 @@ export const loadFriendRoutes = async (webId, filename) => {
     
     var json = "";
     await retrieveJson(routeUri).then(function(result) {
-        json = JSON.parse(result);
+        if(result != null)
+            json = JSON.parse(result);
     });
 
     var routes = [];

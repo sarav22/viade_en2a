@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import {useDropzone} from 'react-dropzone';
-import { setJestCucumberConfiguration } from "jest-cucumber";
 import {uploadResourceToRoute } from "../../../../../../services/uploadResources/resourcesService";
 import {successToaster, errorToaster} from "../../../../../../utils/toaster";
 import Button from "react-bootstrap/Button";
@@ -29,8 +28,8 @@ const LateralMenu = props  => {
       if(acceptedFiles.length !== 1) {
         errorToaster(t('error.sizeLimitImport'));
       } else {
-        setFiles(currentFile => acceptedFiles)
-        
+        setFiles(currentFile => acceptedFiles);
+        uploadFiles();
       }
       }, []);
       const baseStyle = {
