@@ -24,8 +24,13 @@ export const loadMapInfo = async jsonUrl => {
     var routeName = "";
     var routeDescription = "";
     var trackPointList = [];
+
+
     var resourceList = [];
-  
+    var imagesToDisplay = []
+    var videosToDisplay = []
+    var audiosToDisplay = []
+
     for(var key in routeJson) {
         var value = routeJson[key];
   
@@ -55,15 +60,27 @@ export const loadMapInfo = async jsonUrl => {
   
         if(key === "media") {
             for(var media in value) {
-                resourceList.push(new Resource(value[media]["@id"]));
+                let resource = new Resource(value[media]["@id"]);
+                resourceList.push(resource);
+
+                if(resource.isAudio()) audiosToDisplay.push(resource);
+                if(resource.isImage()) imagesToDisplay.push(resource);
+                if(resource.isVideo()) videosToDisplay.push(resource);
+                
             }
         }
     }
 
 
+
+
     var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentsFile, //});
      "commentList" : commentList});
 
+     route.fileWebId = jsonUrl;
+     route.imagesToDisplay = imagesToDisplay;
+     route.videosToDisplay = videosToDisplay;
+     route.audiosToDisplay = audiosToDisplay;
     return route;
 };
 

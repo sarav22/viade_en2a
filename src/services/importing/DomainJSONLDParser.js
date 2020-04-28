@@ -1,12 +1,7 @@
 
 function parseRouteJsonLD(routeSpec) {
 
-    var comments = [];
-    if(routeSpec.comments) {
-        comments = routeSpec.comments.map(function (comment) {
-            return { "@id": comment.resourceUrl };
-        });
-    }
+    var comments = routeSpec.comments;
 
     var media = [];
     if(routeSpec.resources) {
