@@ -47,7 +47,7 @@ export const ManageFriendsContent = props => {
           <Col>
             <DropdownButton variant="light" key={friend+"dropdown"} id={friend+"dropdown"} title=""> 
               <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
-              <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend)} key={friend+"dropdownI2"} id={friend+"dropdownDelete"}>{t('manageFriends.delete')}</Dropdown.Item>
+              <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"} id={friend+"dropdownDelete"}>{t('manageFriends.delete')}</Dropdown.Item>
               <Dropdown.Item as="button"  onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
             </DropdownButton>
           </Col>

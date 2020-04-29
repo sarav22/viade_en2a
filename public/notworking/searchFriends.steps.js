@@ -1,6 +1,5 @@
-const expect = require('expect-puppeteer');
 const{defineFeature, loadFeature} = require('jest-cucumber');
-const feature = loadFeature('./e2e/features/share.feature');
+const feature = loadFeature('./e2e/features/searchFriends.feature');
 const puppeteer = require('puppeteer');
 
 jest.setTimeout(100000);
@@ -13,6 +12,12 @@ function delay(time) {
 }
 
 defineFeature(feature, test => {
+
+    
+    let bob;
+    let page;
+
+
     beforeEach(async () => {
         const browser = await puppeteer.launch({
             headless: false,
@@ -46,47 +51,40 @@ defineFeature(feature, test => {
 
     });
 
-    test('Alice wants to share a route with Bob', ({given, when, then}) => {
-
-        given('Alice has a route', async () => {
-            //await expect(page).toClick('button', { text: route })
+    
+    test("Alice wants to search for a specific friend", ({given, when, then}) => {
+        given("Given Alice has Bob as a friend", async () => {
+            bob = "https://mariaflorez.solid.community/profile/card#me"; //problem with the way the user name is displayed?
+            await expect(page).toMatch(bob); //it's supposed that the user is among alice's friends
+      
         });
-
-        when('Alice shares the route with Bob', async () => {
-            /*
-            await expect(page).toClick('button', { text: 'Share route' });
-            await expect(page).toFill('input[name="inputShare"]', bob );
-            */
-        });
-
-        then('a message appears saying that the route was shared', async () => {
-            //await expect(page).toMatch('The route was shared succesfully');
-        });
-                
-    });
-
-
-    test('Alice wants to share a route with a group', ({given, when, then}) => {
-
-        given('Alice has a route and Alice has the group created', async () => {
-            /*
-            await expect(page).toClick('button', { text: route });
-            */
-        });
-
-        when('Alice shares the route with the group', async () => {
-            /* 
-            await expect(page).toClick('button', { text: 'Share route' });
-            await expect(page).toFill('input[name="inputShare"]', group );
-            */
-        });
-
-        then('a message appears saying that the route was shared', async () => {
-          //  await expect(page).toMatch('The route was shared succesfully');
-        });
-               
         
+        when("When Alice writes a string which matches Bob's user", async () => {
+            await expect(page).toFill('input[id="inputSearch"]', bob);
+        });
+        
+        then("Then only Bob's friend button is displayed", async () => {
+            await expect(page).toMatch(bob); //make sure that he is the only button that is displayed?
+        });
     });
 
 
+    test("Alice wants to search for all friends which match a certain substring", ({given, when, then}) => {
+        given("Alice wants to search for all friends whose user contains a certain substring", async () => {
+            bob = "maria";
+            await expect(page).toMatch(bob);
+      
+        });
+        
+        when("Alice writes that substring", async () => {
+            await expect(page).toFill('input[id="inputSearch"]', bob);
+        });
+        
+        then("the buttons for all friends whose user match that substring are displayed", async () => {
+            await expect(page).toMatch(bob);
+        });
+    });
+
+
+ 
 });
