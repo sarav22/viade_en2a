@@ -1,14 +1,30 @@
-  
-import { setDefaultOptions } from 'expect-puppeteer';
+
 const expect = require('expect-puppeteer');
 const{defineFeature, loadFeature} = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/manageFriends.feature');
-setDefaultOptions({ timeout: 100000 }) 
+const puppeteer = require('puppeteer');
+
+jest.setTimeout(100000);
+let page = null;
+
+function delay(time) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time);
+    });
+}
 
 defineFeature(feature, test => {
-
     beforeEach(async () => {
+        const browser = await puppeteer.launch({
+            headless: false,
+            defaultViewport: null
+        });
+        
+        await delay(5000);
+        page = await browser.newPage();
         await page.goto('http://localhost:3000');
+        
+        await delay(5000);
         await page.waitForSelector('input[name="idp"]');
         const firstpage = await expect(page).toMatchElement('input[name="idp"]');
         if(firstpage!==null){
@@ -23,14 +39,17 @@ defineFeature(feature, test => {
                 await page.click('[type="submit"]');
             }
         } 
-     //   await page.waitForSelector('a[id="manageFriends"]');
-    //    await page.click('a[id="manageFriends"]');
+        await page.waitForSelector('a[href="#/manageFriends"]');
+        await page.click('a[href="#/manageFriends"]');
+        
+        await delay(5000);
         
 
     });
 
     test('Alice wants to delete a friend', ({given, when, then}) => {
         given('Alice has Bob as a friend', async () => {
+        await page.waitForSelector('button[id="buttonFriendhttps://podejemplo2.inrupt.net/profile/card#me"]');
             await expect(page).toMatchElement('button[id="buttonFriendhttps://podejemplo2.inrupt.net/profile/card#me"]');
       
         });
@@ -38,7 +57,8 @@ defineFeature(feature, test => {
         when('Alice clicks the button delete', async () => {
             await page.waitForSelector('button[id="https://podejemplo2.inrupt.net/profile/card#medropdown"]');
             await page.click('button[id="https://podejemplo2.inrupt.net/profile/card#medropdown"]');
-            await page.click('button[text="Delete"]');
+            await page.waitForSelector('button[id="https://podejemplo2.inrupt.net/profile/card#medropdownDelete"]');
+            await page.click('button[id="https://podejemplo2.inrupt.net/profile/card#medropdownDelete"]');
             
         });
         

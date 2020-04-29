@@ -1,30 +1,54 @@
+const expect = require('expect-puppeteer');
 const{defineFeature, loadFeature} = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/share.feature');
 const puppeteer = require('puppeteer');
 
-defineFeature(feature, test=> {
+jest.setTimeout(100000);
+let page = null;
 
-   // let route;
-    beforeEach(async()=> {
-        /*
+function delay(time) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time);
+    });
+}
+
+defineFeature(feature, test => {
+    beforeEach(async () => {
+        const browser = await puppeteer.launch({
+            headless: false,
+            defaultViewport: null
+        });
+        
+        await delay(5000);
+        page = await browser.newPage();
         await page.goto('http://localhost:3000');
-        let alice = "https://hayquecrearunpod.inrupt.net/profile/card#me";
-        await expect(page).toFill('input[name="idp"]', alice )
-        //submit
-        await page.evaluate(()=>document.querySelector('#root > div.sc-hrWEMg.dyHRcO > div.sc-bdVaJa.jOKaIj.sc-bsbRJL.eGaoon > section > div > div > div > div > form > button.sc-gzVnrw.isbeaB.ids-link').click())
-        await expect(page).toFill('input[name="username"]', alice )
-        await expect(page).toFill('input[name="password"]', "hayquecrearunpod" )
-        await expect(page).toClick('button', { name: 'login' })
-        await expect(page).toClick('a', { href: 'viewRoutes' })
-        await expect(page).toClick({type:'xpath', value:'\\a'}, {href: 'viewRoutes' })
-        route= 'https://hayquecrearunpod.inrupt.net/viade/routes/ruta.txt';
-        */
+        
+        await delay(5000);
+        await page.waitForSelector('input[name="idp"]');
+        const firstpage = await expect(page).toMatchElement('input[name="idp"]');
+        if(firstpage!==null){
+            await page.click('input[name="idp"]');
+            await expect(page).toFill('input[name="idp"]', 'https://en2aviade.inrupt.net/profile/card#me')
+            await page.click('[type="submit"]');         
+            await page.waitForSelector('input[name="username"]');
+            const loggedin = await expect(page).toMatchElement('input[name="username"]');
+            if(loggedin!==null){
+                await expect(page).toFill('input[name="username"]', 'en2aviade' )
+                await expect(page).toFill('input[name="password"]', 'Viadeen2aasw!' )
+                await page.click('[type="submit"]');
+            }
+        } 
+        await page.waitForSelector('a[href="#/manageFriends"]');
+        await page.click('a[href="#/manageFriends"]');
+        
+        await delay(5000);
+        
+
     });
 
     test('Alice wants to share a route with Bob', ({given, when, then}) => {
-      //  let bob;
+
         given('Alice has a route', async () => {
-         //   bob = '';
             //await expect(page).toClick('button', { text: route })
         });
 
@@ -42,11 +66,10 @@ defineFeature(feature, test=> {
     });
 
 
-    test('Alice wants to share a route with a group that exists', ({given, when, then}) => {
-       // let group ='';
+    test('Alice wants to share a route with a group', ({given, when, then}) => {
+
         given('Alice has a route and Alice has the group created', async () => {
             /*
-           group ='';
             await expect(page).toClick('button', { text: route });
             */
         });
@@ -65,25 +88,5 @@ defineFeature(feature, test=> {
         
     });
 
-    test('Alice wants to share a route with a group that does not exist', ({given, when, then}) => {
-      //  let group;
-        given('Alice has a route and Alice doesn\'t have the group created', async () => {
-           /* group='';
-            await expect(page).toClick('button', { text: route });
-            */
-        });
 
-        when('Alice shares the route with the group', async () => {
-            /*
-            await expect(page).toClick('button', { text: 'Share route' });
-            await expect(page).toFill('input[name="inputShare"]', group );
-            */
-         
-        });
-
-        then('a message appears warning such group does not exist', async () => {
-            //await expect(page).toMatch('The group does not exist');
-        });
-        
-    }); 
 });
