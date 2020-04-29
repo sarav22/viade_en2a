@@ -3,7 +3,7 @@ import ldflex from '@solid/query-ldflex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import {browserHistory} from 'react-router';
 import {
   ManageFriendsWrapper
@@ -12,6 +12,10 @@ import { relativeTimeRounding } from 'moment';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {
+  errorToaster,
+  successToaster
+} from "@utils";
 
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -40,39 +44,53 @@ class AddFriendsContent extends Component<Props> {
     window.location.reload(true);
   }
 
+  resumeExecutionAfter3Seconds(){
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('resolved');
+        }, 3000);
+      } );
+  }
+
   async addFriend(event) {
+    const { t } = this.props;
     event.preventDefault();
     let userId = document.getElementById("webId").value;
     var friendToAdd = userId;
     if (friendToAdd.search("/profile/card#me") !== -1){
       fetch(friendToAdd).then( response => {
         this.setState({status: response.status, done: true});
-      });
-      if (this.state.status === 200) {
-        this.ldflexAdder(friendToAdd);
-      } else if (this.state.status === 404) {
-        //El webId no existe
-        alert("This webId does not exist"); //Esto de poner alerts me parece un poco sucio, debería ser en un div o algo así en el propio código html
-      } else {
-        alert("An error occurred while trying to fetch this webId"); //Y lo mismo aquí
-      }
+      }).then((response) => {
+        if (this.state.status === 200) {
+          this.ldflexAdder(friendToAdd);
+          successToaster(t('manageFriends.addFriendSucess'));
+          var promise = this.resumeExecutionAfter3Seconds();
+          promise.then( response => this.reload());
+          
+        } else if (this.state.status === 404) {
+          //El webId no existe
+          errorToaster(t('manageFriends.error.nonexistentWebID')); //WebID does not exist
+        } else {
+          errorToaster(t('manageFriends.error.defaultErrorMessage'));
+        }
+      } )
     } else {
-      alert("This is not a valid webId"); //Y lo mismo aquí
+      errorToaster(t('manageFriends.error.notValidWebID')); //The inputted webID doesn't have a valid format
     }
-    await this.reload();
   }
 
-
+  
   render(){
+    const { t } = this.props;
     return (
-      <Form>
+      <Form data-testid="addFriendForm">
         <Form.Group>
-          <Form.Label className="label">Enter the webID of the person you want to add as friend: </Form.Label>
-          <Form.Control className="inputAdd" id="webId" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me" />
+          <Form.Label className="label" data-testid="addFriendLabel">{t('manageFriends.addFriendExplanation')}</Form.Label>
+          <Form.Control className="inputAdd" id="webId" type="text" placeholder={t('manageFriends.webIDExample')} data-testid="webIdFriend"/>
         </Form.Group>
           <Button id="addFriendButton" className="addFriendButton" variant="light" onClick={(event) => this.addFriend(event)} 
             style={{'paddingLeft': '1px'}} data-testid="addFriendButton" >
-            Add friend
+            {t('manageFriends.addFriend')}
           </Button>
       </Form>
     )
@@ -81,4 +99,4 @@ class AddFriendsContent extends Component<Props> {
   
 }
 
-export default AddFriendsContent;
+export default withTranslation()(AddFriendsContent);

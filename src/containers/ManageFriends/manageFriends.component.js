@@ -31,12 +31,13 @@ export const ManageFriendsContent = props => {
   const { webId, friends, images} = props;
   const { t } = useTranslation();
 
+
   return (
-    <div data-testid="manageFriends-container">
+    <div fluid data-testid="manageFriends-container">
       {
         friends.map(friend => (
         <Row className="friend" data-testid={friend+"d"}>
-          <Col>
+          <Col xs={10} md={10} sm={10} xs={10}>
             <Button variant="light" className="buttonFriend" onClick={(event) => viewRoutes(event,friend)} data-testid={"buttonFriend"+friend}  key={"buttonFriend"+friend} id={"buttonFriend"+friend}>
             <ImageContainer data-testid={"imageContainer"+friend}  key={"imageContainer"+friend}>
               <Img src={getImgByWebId(friend, images)} alt="profile"  data-testid={"img"+friend}  key={"img"+friend}/>

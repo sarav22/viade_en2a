@@ -11,6 +11,7 @@ import {Route} from '../../../../../domain/domainClasses';
 import {postNewComment} from "../../../../../services/comments/commentsService";
 import CommentsList from "./CommentsList/commentsList.component";
 import CommentForm from "./CommentsForm/index";
+import { CommentsTabWrapper } from "./commentsTab.style";
 class CommentsTab extends Component<Props>{
 
     constructor(props) {
@@ -51,7 +52,7 @@ class CommentsTab extends Component<Props>{
         const { routeObject } = this.props;
         return (
             <Container fluid>
-            
+                <CommentsTabWrapper>
                         <CommentForm
                             setText={this.handleSetText} 
                             handleSubmit={this.handleSubmit}
@@ -61,7 +62,7 @@ class CommentsTab extends Component<Props>{
                         <CommentsList
                             comments = {routeObject.commentList}
                         />
-              
+                </CommentsTabWrapper>
             </Container>
         );
     }

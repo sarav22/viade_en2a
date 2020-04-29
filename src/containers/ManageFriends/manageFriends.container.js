@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import { withTranslation } from 'react-i18next';
 import data from '@solid/query-ldflex';
 
 
@@ -77,6 +78,7 @@ export class ManageFriendsComponent extends Component<Props> {
 
 
    render() {
+    const{ t } = this.props;
     if (this.state.friends==null) {
       return <div/>
     } else{
@@ -91,8 +93,8 @@ export class ManageFriendsComponent extends Component<Props> {
               <Col xs={9} md={6} sm={6} xs={12}>
                 <Form>
                   <Form.Group>
-                    <Form.Label className="label">List of Friends</Form.Label>
-                    <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+                    <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                    <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
                   </Form.Group>
                 </Form>
                 <ManageFriendsContent {...{ webId, friends, images}} />
@@ -113,8 +115,8 @@ export class ManageFriendsComponent extends Component<Props> {
             <Col xs={9} md={6} sm={6} xs={12}>
               <Form>
                 <Form.Group>
-                  <Form.Label className="label">List of Friends</Form.Label>
-                  <Form.Control type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
+                  <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                  <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
                 </Form.Group>
               </Form>
               <SearchFriendsContent {...{ webId, searchResults, images}} />

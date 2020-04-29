@@ -32,7 +32,7 @@ export const ManageFriendsWrapper = styled.div`
   }
 
   .input{
-    max-width: 50em;
+    max-width: 65em;
   }
 
   .buttonFriend:hover, .addFriendButton:hover{
@@ -44,6 +44,23 @@ export const ManageFriendsWrapper = styled.div`
     margin-right: 2px;
     width: 100%;
     overflow-wrap: break-word;
+  }
+
+  .buttonFriend{
+    text-align: left;
+  }
+
+  .addFriendButton{
+    text-align: center;
+  }
+
+  .picture{
+    overflow: visible;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 62px;
+    height: 42px;
+    border-radius: 50%;
   }
 
 `;
