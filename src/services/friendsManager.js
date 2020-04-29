@@ -56,4 +56,19 @@ export async function addFriend(event, friend, webId) {
     }
    } 
 
+  export function getName(friendWebId){
+    return friendWebId.toString().substring(8).split(".")[0];
+  }
+
+  export function getImgByWebId(friendWebId, images){
+    if(images!== undefined){
+      for(let i=0; i<images.length; i++){
+        if(images[i].id === friendWebId){
+          return images[i].img;
+        }
+      }
+    }
+  }
+
+
 

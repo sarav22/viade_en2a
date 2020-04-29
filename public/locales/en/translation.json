@@ -143,6 +143,7 @@
     "shareWith":"Choose a friend or group to share with: ",
     "share":"Share",
     "shareSuccess": "The route was shared successfully",
+    "errorSuccess": "The route could not be shared with ",
     "notificationTitle": "Route shared",
     "notificationSummary": " has shared a route with you: "
   },
@@ -178,7 +179,18 @@
   "manageFriends": {
     "viewProfile": "View profile",
     "delete": "Delete",
-    "viewRoutes": "View routes"
+    "viewRoutes": "View routes",
+    "error":{
+      "nonexistentWebID": "This webId does not exist",
+      "defaultErrorMessage": "An error occurred while trying to fetch this webId",
+      "notValidWebID": "This is not a valid webId"
+    },
+    "addFriendExplanation": "Enter the webID of the person you want to add as friend: ",
+    "webIDExample": "WebId example: https://mariaflorez.solid.community/profile/card#me",
+    "addFriend": "Add friend",
+    "searchPlaceholder": "Search...",
+    "listOfFriends": "List of Friends",
+    "addFriendSucess": "The user has been added as a friend successfully"
   },
   "utils":{
     "back": "Back"

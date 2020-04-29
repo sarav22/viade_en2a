@@ -4,8 +4,13 @@ import { SearchFriendsContent } from './searchFriends.component';
 import  AddFriendsContent  from './addFriend.component';
 import {foaf} from 'rdf-namespaces';
 import { fetchDocument } from 'tripledoc';
-import { ManageFriendsWrapper, ButtonFriend } from "./manageFriends.style";
+import { ManageFriendsWrapper } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import { withTranslation } from 'react-i18next';
+import data from '@solid/query-ldflex';
 
 
 /**
@@ -18,6 +23,7 @@ export class ManageFriendsComponent extends Component<Props> {
 		this.state={
       friends:null,
       searchResults:null,
+      images: []
     }
     this.handleChange = this.handleChange.bind(this);
 	}
@@ -33,7 +39,28 @@ export class ManageFriendsComponent extends Component<Props> {
       const profile = profileDoc.getSubject(this.props.webId);
       const fs=profile.getAllRefs(foaf.knows);
       this.setState({friends: fs});
-   }
+      await this.loadImage(this.state.friends)
+  }
+
+  async loadImage(friends){
+    friends.forEach(friendWebId=> {
+      const user = data[friendWebId];
+      const i = user.vcard_hasPhoto;
+      i.then(response=>
+        {
+        if(response && response.value){
+          let array = this.state.images;
+          array.push({id: friendWebId, img:response.value});
+          this.setState({images:array});
+        }else{
+          let array = this.state.images;
+          array.push({id: friendWebId, img:"img/icon/empty-profile.svg"});
+          this.setState({images:array});
+        }})
+      
+    })
+  }
+   
 
     searchFriends(matchingString) {
       if (matchingString!==""){
@@ -51,38 +78,54 @@ export class ManageFriendsComponent extends Component<Props> {
 
 
    render() {
+    const{ t } = this.props;
     if (this.state.friends==null) {
       return <div/>
     } else{
       const friends=this.state.friends;
+      const images=this.state.images;
       const webId=this.props.webId;
       if (this.state.searchResults==null){
         return (
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-          <Row>
-            <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-          </Row>
-          <Row>
-            <ManageFriendsContent {...{ webId, friends}} />
-          </Row>
-          <Row>
-            <AddFriendsContent webId={webId}/>
-          </Row>
+          <Container fluid>
+            <Row>
+              <Col xs={9} md={6} sm={6} xs={12}>
+                <Form>
+                  <Form.Group>
+                    <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                    <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
+                  </Form.Group>
+                </Form>
+                <ManageFriendsContent {...{ webId, friends, images}} />
+              </Col>
+              <Col xs={9} md={6} sm={6} xs={12} align="right">
+                <AddFriendsContent webId={webId}/>
+              </Col>
+            </Row>
+          </Container>
           </ManageFriendsWrapper>
         );
       }
       const searchResults = this.state.searchResults;
       return (
         <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-        <Row>
-          <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-        </Row>
-        <Row>
-          <SearchFriendsContent {...{ webId, searchResults}} />
-        </Row>
-        <Row>
-            <AddFriendsContent webId={webId}/>
-        </Row>
+        <Container fluid>
+          <Row>
+            <Col xs={9} md={6} sm={6} xs={12}>
+              <Form>
+                <Form.Group>
+                  <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                  <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
+                </Form.Group>
+              </Form>
+              <SearchFriendsContent {...{ webId, searchResults, images}} />
+            </Col>
+            <Col xs={9} md={6} sm={6} xs={12} align="right">
+              <AddFriendsContent webId={webId}/>
+            </Col>
+          </Row>
+        </Container>
         </ManageFriendsWrapper>
       );
     }
