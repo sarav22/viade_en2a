@@ -146,6 +146,23 @@
     "notificationTitle": "Route shared",
     "notificationSummary": " has shared a route with you: "
   },
+  "createRouteView":{
+    "defaultFormValues":{
+      "name":"The name of the route",
+      "description":"The description of the route"
+    },
+    "errors":{
+      "nameEmpty":"The name can't be empty",
+      "routeEmpty":"The route must hace at least one point in the map",
+      "error":"There was a problem while storing the route"
+    },
+    "success":"The route has been stored: OK!",
+    "lateralForm":{
+      "routeName":"Name of the route",
+      "routeDescription":"Description of the route",
+      "createButton":"Create"
+    }
+  },
   "friendsManagement":{
     "profile": "View Profile",
     "delete": "Delete Friend"
