@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { LoadScript, GoogleMap, Polyline, Marker } from "@react-google-maps/api";
 import { Loader } from '@util-components';
 import { MapRouteName } from './map.style.js';
+import { MapCard } from './map.style';
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
@@ -18,6 +19,7 @@ const Map = props => {
         {t("mapView.importedRoutesTitle")}
       </MapRouteName>
 
+      <MapCard>
       <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
         <GoogleMap
           id="mapView"
@@ -74,6 +76,7 @@ const Map = props => {
           })}
         </GoogleMap>
       </LoadScript>
+      </MapCard>
     </div>
   );
 };

@@ -3,14 +3,13 @@ import Media from 'react-bootstrap/Media';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 
-class CommentsList extends Component<Props> {
+class CommentsList extends React.Component {
 
     constructor(props){
-        super(props)
-
-        //const { comments } = props;
-        const {commentsList} = props;
-        const comments = [];
+        super(props);
+        const {comments} = props;
+        this.state = {comments : comments};
+        
     }
     
 
@@ -24,7 +23,8 @@ class CommentsList extends Component<Props> {
                         return (
                             <Media>
                                 <Media.Body>
-                                    <h1> {comment.dateCreated} </h1>
+                                    <p style = {{"font-size": "15px", "font-weight" : "bold"}}> 
+                                        {comment.author.replace("https://", "").replace("/profile/card#me", "")} - {comment.dateCreated}</p>
                                     <p> {comment.text} </p>
                                 </Media.Body>
                             </Media>
