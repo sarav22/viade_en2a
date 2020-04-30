@@ -79,6 +79,7 @@ export const createInitialFiles = async webId => {
     const settingsFilePath = `${path}settings.ttl`;
     const groupsPath = `${path}groups/`;
     const sharedPath = `${path}shared/`;
+    let inboxPath = `${path}inbox/`;
 
     // Check if the tictactoe folder exists, if not then create it. This is where game files, the game inbox, and settings files are created by default
     const gameFolderExists = await resourceExists(path);
@@ -91,6 +92,10 @@ export const createInitialFiles = async webId => {
       });
     }
 
+    const inboxExists = await resourceExists(inboxPath);
+    if (!inboxExists) {
+      await fc.createFolder(inboxPath, { createPath: true });
+    }
     const groupsFolderExists = await resourceExists(groupsPath);
     if(!groupsFolderExists){
       await fc.createFolder(groupsPath, {createPath:true});
@@ -105,15 +110,14 @@ export const createInitialFiles = async webId => {
     if (!settingsFileExists) {
       await createDocument(settingsFilePath);
     }
+    
        // Check for CONTROL permissions to see if we can set permissions or not
        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
         webId,
         AccessControlList.MODES.CONTROL
       );
 
-      // If the user has Write and Control permissions, check the inbox settings
       if (hasControlPermissions) {
-        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
         await permissionHelper.checkOrSetSettingsReadPermissions(
           settingsFilePath,
           webId

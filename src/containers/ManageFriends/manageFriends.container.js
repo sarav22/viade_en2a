@@ -5,11 +5,12 @@ import AddFriendsContent from "./addFriend.component";
 import { foaf } from "rdf-namespaces";
 import { fetchDocument } from "tripledoc";
 import { ManageFriendsWrapper } from "./manageFriends.style";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import data from "@solid/query-ldflex";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import { withTranslation } from 'react-i18next';
+import data from '@solid/query-ldflex';
 import GroupManager from "./groupManager.component";
 import { retrieveGroups } from "@services/PODExtractor";
 import { getGroupName } from "@services/groupManager";
@@ -95,6 +96,7 @@ export class ManageFriendsComponent extends Component<Props> {
   }
 
   render() {
+    const{ t } = this.props;
     if (this.state.friends == null || !this.state.groups) {
       return <div />;
     } else {

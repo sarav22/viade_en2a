@@ -18,6 +18,7 @@ import {
 } from "./../../../services/groupManager";
 import { successToaster, errorToaster,ldflexHelper } from '@utils';
 import styled from 'styled-components';
+import {retrieveJson } from "../../../services/PODExtractor";
 export const Img = styled.img`
   box-sizing: border-box;
   width: 100%;
@@ -53,7 +54,13 @@ export const ShareButton = (props) => {
       if (agent !== undefined && agent.length !== 0) {
         const isRegistered =await checkViadeRegistered(agent);
         if(isRegistered===true){
+          console.log("registered")
           permissionHelper.setReadPermissions(routeUrl, webId, agent);
+          retrieveJson(routeUrl).then(function(result) {
+            let routeJson = JSON.parse(result);
+            let commentsUrl=routeJson.comments; 
+            permissionHelper.setReadWritePermissions(commentsUrl, webId, agent); 
+          });
           var r = routeUrl.split("/");
           //Notification
           const content = {
@@ -126,7 +133,7 @@ export const ShareButton = (props) => {
 
   return (
     <div data-testid={"shareButton-container"}>
-      <ButtonWrapper data-testid={"buttonWrapper"}>
+      <ButtonWrapper data-testid={"buttonWrapper"} key={"buttonWrapper"}>
         <Button
           variant="success"
           onClick={show}
@@ -149,7 +156,7 @@ export const ShareButton = (props) => {
           key={"closeShare"}
           data-testid={"closeShare"}
         ></Modal.Header>
-        <Modal.Body>
+        <Modal.Body key={"modalbody"}>
           {t("mapView.shareWith")}
           <Input
             type="text"
@@ -172,7 +179,7 @@ export const ShareButton = (props) => {
             </div>
           ))}
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer key={"modalFooter"}>
           <Button
             variant="primary"
             onClick={shareWith}
