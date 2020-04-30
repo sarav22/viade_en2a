@@ -14,13 +14,3 @@ Scenario: Clicking on the wrong friend
     Given I already clicked on one friend
     When I click the 'Back' button
     Then The 'Manage Friends' view should be shown
-
-Scenario: Viewing the profile of a friend
-    Given I already clicked on one friend
-    When I click on the dropdown menu and select 'View Profile'
-    Then A new window with its Solid profile should appear on the browser
-
-Scenario: Deleting a friend
-    Given I already clicked on one friend
-    When I click on the dropdown menu and select 'Delete Friend'
-    Then The 'Manage Friends' view should be shown, and the deleted friend will no longer appear there

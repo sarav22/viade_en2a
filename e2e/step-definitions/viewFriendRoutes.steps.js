@@ -3,7 +3,6 @@ import { setDefaultOptions } from 'expect-puppeteer';
 const { defineFeature, loadFeature } = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/viewFriendRoutes.feature');
 const expect = require('expect-puppeteer');
-const{defineFeature, loadFeature} = require('jest-cucumber');
 const puppeteer = require('puppeteer');
 
 jest.setTimeout(100000);
@@ -55,16 +54,23 @@ defineFeature(feature, test => {
         given("I click on the 'Manage Friends' navbar option", async () => {
             await page.waitForSelector('a[href="#/manageFriends"]');
             await page.click('a[href="#/manageFriends"]');
-    
             await delay(5000);
         });
 
         when("I click on one friend", async () => {
-            //await expect(page).toClick('button', { text: 'https://raulpemol.inrupt.net/profile/card#me' })
+            await page.waitForSelector(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
+            await page.click(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
+            await delay(10000);
         });
 
         then("A window with the name of that friend and a list of all his shared routes should appear", async () => {
-            
+            await expect(page).toMatchElement(
+                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9UZXN0X3JvdXRlXzJfMjgxMzYxOTMtNGU4ZC00MzBlLTgxY2YtNTM3NWQ3YzNlYWNjLmpzb25sZA=="]'
+            );
         });
     });
 
@@ -72,16 +78,30 @@ defineFeature(feature, test => {
         given("I already clicked on one friend", async () => {
             await page.waitForSelector('a[href="#/manageFriends"]');
             await page.click('a[href="#/manageFriends"]');
-    
             await delay(5000);
+            await page.waitForSelector(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
+            await page.click(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
+            await delay(10000);
         });
 
         when("I click on a route", async () => {
-            await expect(page).toClick('button', { text: 'Test Route' });
+            await page.waitForSelector(
+                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9UZXN0X3JvdXRlXzJfMjgxMzYxOTMtNGU4ZC00MzBlLTgxY2YtNTM3NWQ3YzNlYWNjLmpzb25sZA=="]'
+            );
+            await page.click(
+                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9UZXN0X3JvdXRlXzJfMjgxMzYxOTMtNGU4ZC00MzBlLTgxY2YtNTM3NWQ3YzNlYWNjLmpzb25sZA=="]'
+            );
+            await delay(10000);
         });
 
         then("I see it displayed on the map", async () => {
-
+            await expect(page).toMatchElement(
+                'div[id="mapView"]'
+            );
         });
     });
 
@@ -89,50 +109,30 @@ defineFeature(feature, test => {
         given("I already clicked on one friend", async () => {
             await page.waitForSelector('a[href="#/manageFriends"]');
             await page.click('a[href="#/manageFriends"]');
-    
             await delay(5000);
+            await page.waitForSelector(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
+            await page.click(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
+            await delay(10000);
         });
 
         when("I click the 'Back' button", async () => {
-            await expect(page).toClick('button', { id: 'back' });
+            await page.waitForSelector(
+                'button[class="backButton btn btn-light"]'
+            );
+            await page.click(
+                'button[class="backButton btn btn-light"]'
+            );
+            await delay(5000);
         });
 
         then("The 'Manage Friends' view should be shown", async () => {
-
-        });
-    });
-
-    test("Viewing the profile of a friend", ({given, when, then}) => {
-        given("I already clicked on one friend", async () => {
-            await page.waitForSelector('a[href="#/manageFriends"]');
-            await page.click('a[href="#/manageFriends"]');
-    
-            await delay(5000);
-        });
-
-        when("I click on the dropdown menu and select 'View Profile'", async () => {
-            
-        });
-
-        then("A new window with its Solid profile should appear on the browser", async () => {
-
-        });
-    });
-
-    test("Deleting a friend", ({given, when, then}) => {
-        given("I already clicked on one friend", async () => {
-            await page.waitForSelector('a[href="#/manageFriends"]');
-            await page.click('a[href="#/manageFriends"]');
-    
-            await delay(5000);
-        });
-
-        when("I click on the dropdown menu and select 'Delete Friend'", async () => {
-            
-        });
-
-        then("The 'Manage Friends' view should be shown, and the deleted friend will no longer appear there", async () => {
-
+            await expect(page).toMatchElement(
+                'button[id="buttonFriendhttps://en2aviade2.inrupt.net/profile/card#me"]'
+            );
         });
     });
 });
