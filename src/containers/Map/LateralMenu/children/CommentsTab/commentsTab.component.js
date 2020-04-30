@@ -23,6 +23,9 @@ class CommentsTab extends Component<Props>{
 
         this.handleSetText = this.handleSetText.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.commentsListReference = React.createRef();
+
     }
 
 
@@ -37,12 +40,15 @@ class CommentsTab extends Component<Props>{
         postNewComment(this.state.text, routeObject.comments, function(success) {
             if(success){
                 alert("Comment saved");
+            
             }
             else{
                 alert("There was an error");
             }
         });
         
+
+
         console.log(this.state.text);
         event.preventDefault();
     }
@@ -55,12 +61,11 @@ class CommentsTab extends Component<Props>{
                         <CommentForm
                             setText={this.handleSetText} 
                             handleSubmit={this.handleSubmit}
-                         />
+                         /> 
 
-
-                        <CommentsList
-                            comments = {routeObject.commentList}
-                        />
+                        <CommentsList ref = {this.commentsListReference}
+                            comments = {routeObject.commentsLit}
+                        /> 
               
             </Container>
         );
