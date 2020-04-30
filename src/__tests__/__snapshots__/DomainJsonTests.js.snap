@@ -13,6 +13,10 @@ Object {
       "@type": "xs:string",
     },
     "latitude": Object {
+      "@id": "schema:latitude",
+      "@type": "xs:double",
+    },
+    "longitude": Object {
       "@id": "schema:longitude",
       "@type": "xs:double",
     },
@@ -126,6 +130,10 @@ Object {
       "@type": "xs:string",
     },
     "latitude": Object {
+      "@id": "schema:latitude",
+      "@type": "xs:double",
+    },
+    "longitude": Object {
       "@id": "schema:longitude",
       "@type": "xs:double",
     },

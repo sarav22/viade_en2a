@@ -6,8 +6,10 @@ before_install:
   - sudo apt-get -y install ruby openjdk-8-jre
   - sudo gem install asciidoctor asciidoctor-diagram
   - sudo apt-get -y install graphviz
+  - npm install -g codecov
   - npm install
 script:
+  - npm test && codecov
   - CI=false npm run build
   - npm run docs
 deploy:

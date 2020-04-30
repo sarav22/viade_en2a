@@ -38,22 +38,37 @@ export async function addFriend(event, friend, webId) {
   
   const reload = () => {
     window.location.reload(true);
-  }
+  };
 
   export async function isFriend(webId, actor) {
     if(actor===undefined){
-      return false
+      return false;
     }
     const profileDoc =  await fetchDocument(webId);
     const profile = profileDoc.getSubject(webId);
     const fs=profile.getAllRefs(foaf.knows);
     let found = false;
-    fs.forEach(f => {if(f===actor)found=true});
+    fs.forEach(f => {if(f===actor)found=true;});
     if(found ===true){
       return true;
     }else{
       return false;
     }
    } 
+
+  export function getName(friendWebId){
+    return friendWebId.toString().substring(8).split(".")[0];
+  }
+
+  export function getImgByWebId(friendWebId, images){
+    if(images!== undefined){
+      for(let i=0; i<images.length; i++){
+        if(images[i].id === friendWebId){
+          return images[i].img;
+        }
+      }
+    }
+  }
+
 
 

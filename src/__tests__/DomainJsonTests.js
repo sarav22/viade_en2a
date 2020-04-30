@@ -3,8 +3,8 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/';
-import parseRouteJsonLD from '../services/importing/DomainJSONLDParser.js'
-import {TrackPoint, Resource, Comment, Route} from "../domain/domainClasses.js"
+import parseRouteJsonLD from '../services/importing/DomainJSONLDParser.js';
+import {TrackPoint, Resource, Comment, Route} from "../domain/domainClasses.js";
 
 
 const comments = [
@@ -12,7 +12,7 @@ const comments = [
     new Comment("http://inrupt.angelixus/routeComments/<comentarioConSuTipo>"),
     new Comment("http://inrupt.raupemol/routeComments/<comentarioConSuTipo>"),
     new Comment("http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>")
-]
+];
 
 
 const media = [
@@ -20,7 +20,7 @@ const media = [
     new Resource("http://inrupt.angelixus/routeMedia/image/<comentarioConSuTipo>"),
     new Resource("http://inrupt.raupemol/routeMedia/video/<comentarioConSuTipo>"),
     new Resource("http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>")
-]
+];
 
 const points = [
     new TrackPoint(45.123, 34.121),
@@ -34,7 +34,7 @@ const points = [
     new TrackPoint(54.123, 34.121),
     new TrackPoint(55.123, 35.121),
     new TrackPoint(55.123, 34.121)
-]
+];
 
 const params = {
     name:"Route test 1",
@@ -43,15 +43,15 @@ const params = {
     comments:comments,
     resources:media
 
-}
+};
 
-const route = new Route(params)
+const route = new Route(params);
 
 
 
-test("Parsing example data", () =>{
+test("Parsing example data", () => {
     expect(parseRouteJsonLD(route)).toMatchSnapshot()
-})
+});
 
 
 
@@ -62,7 +62,7 @@ const media2 = [
     new Resource("http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>"),
     new Resource("http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>"),
     new Resource("http://inrupt.luispc1998/routeMedia/video/<comentarioConSuTipo>")
-]
+];
 
 const points2 = [
     new TrackPoint(45.123, 34.121),
@@ -80,7 +80,7 @@ const points2 = [
     new TrackPoint(53.123, 25.121),
     new TrackPoint(55.123, 20.121),
     new TrackPoint(51.123, 15.121)
-]
+];
 
 const params2 = {
     name:"Route test 2",
@@ -89,13 +89,13 @@ const params2 = {
     comments:comments,
     resources:media2
 
-}
+};
 
 
-const route2 = new Route(params2)
+const route2 = new Route(params2);
 
 
 
-test("Parsing example data2", () =>{
+test("Parsing example data2", () => {
     expect(parseRouteJsonLD(route2)).toMatchSnapshot()
-})
+});

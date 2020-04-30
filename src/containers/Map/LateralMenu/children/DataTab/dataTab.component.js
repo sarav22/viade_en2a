@@ -19,18 +19,18 @@ const DataTab = props => {
                                 <li>
                                     
                                     {    
-                                        point.name!=null &&
+                                        point.name!==null &&
                                         <p>name:{point.name}</p>
                                     }
                                     {    
-                                        point.description!=null &&
+                                        point.description!==null &&
                                         <p>description:{point.description}</p>
                                     }                                    
                                     
                                     <p>latitude:{point.latitude}</p>
                                     <p>longitude:{point.longitude}</p>
                                     {    
-                                        point.elevation!=null &&
+                                        point.elevation!==null &&
                                         <p>elevation:{point.elevation}</p>
                                     }
                                 </li>

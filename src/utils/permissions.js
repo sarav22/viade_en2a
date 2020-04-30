@@ -1,5 +1,8 @@
-import { AccessControlList, AppPermission } from '@inrupt/solid-react-components';
-import { errorToaster } from '@utils';
+import {
+  AccessControlList,
+  AppPermission
+} from "@inrupt/solid-react-components";
+import { errorToaster } from "@utils";
 
 // Check that all permissions we need are set. If any are missing, this returns false
 const checkAppPermissions = (userAppPermissions, appPermissions) =>
@@ -49,7 +52,9 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
   // Fetch app permissions for the inbox and see if Append is there
   const inboxAcls = new AccessControlList(webId, inboxPath);
   const permissions = await inboxAcls.getPermissions();
-  const inboxPublicPermissions = permissions.filter(perm => perm.agents === null);
+  const inboxPublicPermissions = permissions.filter(
+    perm => perm.agents === null
+  );
 
   const appendPermission = inboxPublicPermissions.filter(perm =>
     perm.modes.includes(AccessControlList.MODES.APPEND)
@@ -76,26 +81,28 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
   return true;
 };
 
-
-
 /**
  * Helper function to fetch permissions for the game inbox, and if permissions are not set
  * correctly, then add them. This repairs a broken inbox.
  * @param inboxPath
  * @returns {Promise<void>}
  */
-export const checkOrSetSettingsReadPermissions = async (settingsPath, webId) => {
+export const checkOrSetSettingsReadPermissions = async (
+  settingsPath,
+  webId
+) => {
   // Fetch app permissions for the inbox and see if Append is there
   const settingsAcls = new AccessControlList(webId, settingsPath);
   const permissions = await settingsAcls.getPermissions();
-  const settingsPublicPermissions = permissions.filter(perm => perm.agents === null);
+  const settingsPublicPermissions = permissions.filter(
+    perm => perm.agents === null
+  );
 
   const readPermission = settingsPublicPermissions.filter(perm =>
     perm.modes.includes(AccessControlList.MODES.READ)
   );
 
   if (readPermission.length <= 0) {
-    // What do we do when the permission is missing? Add it!
     try {
       // Permission object to add. A null agent means Everyone
       const permissions = [
@@ -114,8 +121,6 @@ export const checkOrSetSettingsReadPermissions = async (settingsPath, webId) => 
 
   return true;
 };
-
-
 
 /**
  * Helper function to fetch permissions for the game inbox, and if permissions are not set
@@ -153,4 +158,3 @@ export const setReadPermissions = async (path, webId, agent) => {
 
   return true;
 };
-

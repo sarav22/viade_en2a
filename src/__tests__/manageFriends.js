@@ -5,10 +5,11 @@ import '@testing-library/jest-dom/';
 
 const webId =  "https://saravg.inrupt.net/profile/card#me";
 const friends =["https://raulpemol.inrupt.net/profile/card#me", "https://carlosmanrique.inrupt.net/profile/card#me"];
+const images =["img/icon/empty-profile.svg", "img/icon/empty-profile.svg"];
 
 afterAll(cleanup);
     const { container, getByTestId } = render(
-    <ManageFriendsContent {...{webId, friends}} />
+    <ManageFriendsContent {...{webId, friends, images}} />
 );
 
 test('Renders correctly', () => {
@@ -16,21 +17,16 @@ test('Renders correctly', () => {
     expect(getByTestId('manageFriends-container')).toBeTruthy();
 });
 
-test('Renders friends buttons correctly', () =>{
-    friends.map(friend=>(
+test('Renders friends buttons correctly', () => {
+    friends.map(friend => (
         expect(getByTestId('buttonFriend'+friend)).toBeTruthy()));
+    friends.map(friend => (
+        expect(getByTestId('imageContainer'+friend)).toBeTruthy()));
+    friends.map(friend => (
+        expect(getByTestId('img'+friend)).toBeTruthy()));
 });
 
-test('Dropdown works', () =>{
-    friends.map(friend=>(
-        expect(getByTestId(friend+'dropdown')).toBeTruthy()
-    ));
-    friends.map(friend=>(
+test('Dropdown works', () => {
+    friends.map(friend => (
         expect(getByTestId(friend+'d')).toBeTruthy()));
-   
-    getByTestId('https://carlosmanrique.inrupt.net/profile/card#medropdown').click();
-  //should work
-  //expect(getByTestId('https://carlosmanrique.inrupt.net/profile/card#medropdownI1')).toBeTruthy();
-          
-          
 });

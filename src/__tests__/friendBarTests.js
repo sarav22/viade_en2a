@@ -21,10 +21,10 @@ test('Renders component', () => {
     }, 5000);
 });
 
-test('Renders back button', () =>{
+test('Renders back button', () => {
     expect(getByTestId('friend-backButton')).toBeTruthy();
 });
 
-test('Renders dropdown', () =>{
+test('Renders dropdown', () => {
     expect(getByTestId('friend-dropdown')).toBeTruthy();
 });

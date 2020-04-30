@@ -1,35 +1,24 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
 [options="header"]
 |===
 | Term              | Definition
-| User               | Users of the app
-| Web Server        | The server that contains our web application
-| Https             | Communication between the user and the application using the Https protocol
-| Solid-auth-client | A library for reading and writing to solid PODs
-| Solid Server      | Server provided by SOLID where PODs are stored
-| POD               | Storage unit unique for each user
+| SOLID             | Technology focused on decentralizing data and giving each user ownership of it.
+| Solid Server      | Server provided by SOLID where PODs are stored.
+| POD               | Storage unit unique for each user.
+| Decentralized system | The control does not belong to a single entity, but to the end users.
+| Https             | Communication between the user and the application using the Https protocol.
+| GPX | An XML schema used to describe GPS data and to be common between software applications.
+| Waypoint | Intermediate point on a route.
+| Trackpoint | Points that compose a track and define a path.
+| JSON-LD | A JSON file format that contains linked data.
+| Turtle or ttl | A syntax and file format aimed to represent RDF.
+| RDF | A family of specifications used for conceptual description or modeling of information used in web resources.
+| Agile methodology | It is a people-focused and result-focused methodology that adapts to changes and short delivery times. It is very flexible.
+| Aceptance tests | Tests conducted to see if the specifications and requirements are met.
+| Browser tests | Tests conducted to assure quality in web applications. They are made to ensure they work among different browsers.
+| Load tests | A type of performance test that simulates the different loads of users that the application can have.
+| Stress tests | Tests that determine the stability and robustness of the system.
+| TDD               | Acronym for Test Driven Development.
 |===
