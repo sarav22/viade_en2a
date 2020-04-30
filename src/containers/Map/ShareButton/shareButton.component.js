@@ -131,6 +131,7 @@ export const ShareButton = (props) => {
           variant="success"
           onClick={show}
           data-testid={"buttonShare"}
+          id={"buttonShare"}
           key={"buttonShare"}
         >
           {t("mapView.shareButton")}
@@ -157,6 +158,7 @@ export const ShareButton = (props) => {
             onChange={handleInputChange}
             data-testid={"inputShare"}
             key={"inputShare"}
+            id={"inputShare"}
           />
           { friends.map(friend => (
             <div>
@@ -176,6 +178,7 @@ export const ShareButton = (props) => {
             onClick={shareWith}
             data-testid={"shareWith"}
             key={"shareWith"}
+            id={"shareWith"}
           >
             {t("mapView.share")}
           </Button>

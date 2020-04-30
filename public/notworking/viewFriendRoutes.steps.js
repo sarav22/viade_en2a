@@ -1,17 +1,52 @@
-/*const { defineFeature, loadFeature } = require('jest-cucumber');
+
 const feature = loadFeature('./e2e/features/viewFriendRoutes.feature');
+const expect = require('expect-puppeteer');
+const{defineFeature, loadFeature} = require('jest-cucumber');
+const puppeteer = require('puppeteer');
+
+jest.setTimeout(100000);
+let page = null;
+
+function delay(time) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, time);
+    });
+}
 
 defineFeature(feature, test => {
     beforeEach(async () => {
+        const browser = await puppeteer.launch({
+            headless: false,
+            defaultViewport: null
+        });
+        
+        await delay(5000);
+        page = await browser.newPage();
         await page.goto('http://localhost:3000');
-        let alice = "https://hayquecrearunpod.inrupt.net/profile/card#me";
-        await expect(page).toFill('input[name="idp"]', alice )
-        //submit
-        await page.evaluate(()=>document.querySelector('#root > div.sc-hrWEMg.dyHRcO > div.sc-bdVaJa.jOKaIj.sc-bsbRJL.eGaoon > section > div > div > div > div > form > button.sc-gzVnrw.isbeaB.ids-link').click());
-        await expect(page).toFill('input[name="username"]', alice );
-        await expect(page).toFill('input[name="password"]', "hayquecrearunpod" );
-        await expect(page).toClick('button', { name: 'login' });
+        
+        await delay(5000);
+        await page.waitForSelector('input[name="idp"]');
+        const firstpage = await expect(page).toMatchElement('input[name="idp"]');
+        if(firstpage!==null){
+            await page.click('input[name="idp"]');
+            await expect(page).toFill('input[name="idp"]', 'https://en2aviade.inrupt.net/profile/card#me')
+            await page.click('[type="submit"]');         
+            await page.waitForSelector('input[name="username"]');
+            const loggedin = await expect(page).toMatchElement('input[name="username"]');
+            if(loggedin!==null){
+                await expect(page).toFill('input[name="username"]', 'en2aviade' )
+                await expect(page).toFill('input[name="password"]', 'Viadeen2aasw!' )
+                await page.click('[type="submit"]');
+            }
+        } 
+        await page.waitForSelector('a[href="#/manageFriends"]');
+        await page.click('a[href="#/manageFriends"]');
+        
+        await delay(5000);
+        
+
     });
+
 
     test("Listing the routes created by a friend", ({given, when, then}) => {
         given("I click on the 'Manage Friends' navbar option", async () => {
@@ -86,4 +121,4 @@ defineFeature(feature, test => {
 
         });
     });
-});*/
+});
