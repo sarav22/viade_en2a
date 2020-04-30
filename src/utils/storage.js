@@ -4,8 +4,9 @@ import { resourceExists, createDoc, createDocument } from "./ldflex-helper";
 import { storageHelper, errorToaster, permissionHelper } from "@utils";
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
-const fc = new FC(auth);
 
+import { namedNode } from "@rdfjs/data-model";
+const fc = new FC(auth);
 const appPath = "viade/";
 
 /**
@@ -94,7 +95,19 @@ export const createInitialFiles = async webId => {
 
     const inboxExists = await resourceExists(inboxPath);
     if (!inboxExists) {
-      await fc.createFolder(inboxPath, { createPath: true });
+      await fc.createFolder(inboxPath, { createPath: true }).then(async ()=>{
+        const settingsFileExists = await resourceExists(settingsFilePath);
+        if (!settingsFileExists) {
+          await createDocument(settingsFilePath).then(()=>{
+             permissionHelper.checkOrSetSettingsReadPermissions(
+              settingsFilePath,
+              webId
+            );
+            
+            data[settingsFilePath].inbox.set(namedNode(inboxPath));
+          });
+        }
+      });
     }
     const groupsFolderExists = await resourceExists(groupsPath);
     if(!groupsFolderExists){
@@ -108,7 +121,14 @@ export const createInitialFiles = async webId => {
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
-      await createDocument(settingsFilePath);
+      await createDocument(settingsFilePath).then(()=>{
+         permissionHelper.checkOrSetSettingsReadPermissions(
+          settingsFilePath,
+          webId
+        );
+        
+        data[settingsFilePath].inbox.set(namedNode(inboxPath));
+      });
     }
     
        // Check for CONTROL permissions to see if we can set permissions or not
