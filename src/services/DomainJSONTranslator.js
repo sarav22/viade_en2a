@@ -84,6 +84,9 @@ export const loadMapInfo = async jsonUrl => {
     return route;
 };
 
+
+
+
 export const loadAllRoutes = async (personWebId) => {
   var filesObj = await retrieveAllRoutes(personWebId);
   if(filesObj.files)
@@ -148,7 +151,54 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
     return commentList;
 }
 
+
+export const loadListInfo = async jsonUrl => {
+    // Load JSON-LD from map
+  
+    var routeJson = "";
+    await retrieveJson(jsonUrl).then(function(result) {
+      routeJson = JSON.parse(result);
+    }) 
+    
+    var routeName = "";
+    var routeDescription = "";
+
+
+    var resourceList = [];
+    var imagesToDisplay = []
+
+    for(var key in routeJson) {
+        var value = routeJson[key];
+  
+        if(key === "name")
+            routeName = value;
+  
+        if(key === "description")
+            routeDescription = value;           
+  
+        if(key === "media") {
+            for(var media in value) {
+                let resource = new Resource(value[media]["@id"]);
+                resourceList.push(resource);
+
+                if(resource.isImage()) imagesToDisplay.push(resource);
+            }
+        }
+    }
+
+    var route = new Route({"name" : routeName, "description" : routeDescription, "resources" : resourceList });
+
+     route.fileWebId = jsonUrl;
+     route.imagesToDisplay = imagesToDisplay;
+    return route;
+};
+
+
+
 /*
+
+https://luispresacollada.solid.community/viade/comments/comments_Barrett_Spur_1_cf6a6323-26a6-44b4-ac92-663f1d0ab448.jsonld
+
 export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
     var commentList = []
     var commentsFileJson; 
