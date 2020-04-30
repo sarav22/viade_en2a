@@ -57,9 +57,7 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
-      if (!inboxExists) {
-        await fc.createFolder(inboxPath, { createPath: true });
+     
 
         // Check for CONTROL permissions to see if we can set permissions or not
         const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
@@ -79,7 +77,7 @@ export const WelcomePageContent = props => {
         if (!hasInboxLink) {
           await data[settingsFilePath].inbox.set(namedNode(inboxPath));
         }
-      }
+      
 
       const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
       if (!groupsFolderExists) {
@@ -90,7 +88,13 @@ export const WelcomePageContent = props => {
       if (!sharedFolderExists) {
         await fc.createFolder(sharedPath, { createPath: true });
       }
-      permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
+      
+      
+      const settingsExist = await ldflexHelper.resourceExists(settingsFilePath);
+      if (settingsExist) {
+         data[settingsFilePath].inbox.set(namedNode(inboxPath));
+         permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
+      }
 
       let jsonldfriend ={};
         jsonldfriend["@context"]={

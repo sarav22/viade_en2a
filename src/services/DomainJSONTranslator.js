@@ -24,8 +24,13 @@ export const loadMapInfo = async jsonUrl => {
     var routeName = "";
     var routeDescription = "";
     var trackPointList = [];
+
+
     var resourceList = [];
-  
+    var imagesToDisplay = []
+    var videosToDisplay = []
+    var audiosToDisplay = []
+
     for(var key in routeJson) {
         var value = routeJson[key];
   
@@ -55,15 +60,27 @@ export const loadMapInfo = async jsonUrl => {
   
         if(key === "media") {
             for(var media in value) {
-                resourceList.push(new Resource(value[media]["@id"]));
+                let resource = new Resource(value[media]["@id"]);
+                resourceList.push(resource);
+
+                if(resource.isAudio()) audiosToDisplay.push(resource);
+                if(resource.isImage()) imagesToDisplay.push(resource);
+                if(resource.isVideo()) videosToDisplay.push(resource);
+                
             }
         }
     }
 
 
+
+
     var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentsFile, //});
      "commentList" : commentList});
 
+     route.fileWebId = jsonUrl;
+     route.imagesToDisplay = imagesToDisplay;
+     route.videosToDisplay = videosToDisplay;
+     route.audiosToDisplay = audiosToDisplay;
     return route;
 };
 
@@ -81,7 +98,8 @@ export const loadFriendRoutes = async (webId, filename) => {
     
     var json = "";
     await retrieveJson(routeUri).then(function(result) {
-        json = JSON.parse(result);
+        if(result != null)
+            json = JSON.parse(result);
     });
 
     var routes = [];
@@ -111,8 +129,6 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
         console.log(result);
         try {
             commentsFileJson = JSON.parse(result);
-            console.log("El JSON");
-            console.log(commentsFileJson);
         } catch(error) {
 
         }
@@ -124,10 +140,9 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile){
             comentarios = commentsFileJson.comments;
         }
     }
-    console.log("Comentarios");
-    console.log(comentarios);
+
     for(var i = 0; i< comentarios.length; i++){
-       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated));
+       commentList.push(new CommentEntity(comentarios[i].text, comentarios[i].dateCreated, comentarios[i].author));
     }
 
     return commentList;

@@ -4,8 +4,9 @@ import { resourceExists, createDoc, createDocument } from "./ldflex-helper";
 import { storageHelper, errorToaster, permissionHelper } from "@utils";
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client';
-const fc = new FC(auth);
 
+import { namedNode } from "@rdfjs/data-model";
+const fc = new FC(auth);
 const appPath = "viade/";
 
 /**
@@ -79,6 +80,7 @@ export const createInitialFiles = async webId => {
     const settingsFilePath = `${path}settings.ttl`;
     const groupsPath = `${path}groups/`;
     const sharedPath = `${path}shared/`;
+    let inboxPath = `${path}inbox/`;
 
     // Check if the tictactoe folder exists, if not then create it. This is where game files, the game inbox, and settings files are created by default
     const gameFolderExists = await resourceExists(path);
@@ -91,6 +93,22 @@ export const createInitialFiles = async webId => {
       });
     }
 
+    const inboxExists = await resourceExists(inboxPath);
+    if (!inboxExists) {
+      await fc.createFolder(inboxPath, { createPath: true }).then(async ()=>{
+        const settingsFileExists = await resourceExists(settingsFilePath);
+        if (!settingsFileExists) {
+          await createDocument(settingsFilePath).then(()=>{
+             permissionHelper.checkOrSetSettingsReadPermissions(
+              settingsFilePath,
+              webId
+            );
+            
+            data[settingsFilePath].inbox.set(namedNode(inboxPath));
+          });
+        }
+      });
+    }
     const groupsFolderExists = await resourceExists(groupsPath);
     if(!groupsFolderExists){
       await fc.createFolder(groupsPath, {createPath:true});
@@ -103,17 +121,23 @@ export const createInitialFiles = async webId => {
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
-      await createDocument(settingsFilePath);
+      await createDocument(settingsFilePath).then(()=>{
+         permissionHelper.checkOrSetSettingsReadPermissions(
+          settingsFilePath,
+          webId
+        );
+        
+        data[settingsFilePath].inbox.set(namedNode(inboxPath));
+      });
     }
+    
        // Check for CONTROL permissions to see if we can set permissions or not
        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
         webId,
         AccessControlList.MODES.CONTROL
       );
 
-      // If the user has Write and Control permissions, check the inbox settings
       if (hasControlPermissions) {
-        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
         await permissionHelper.checkOrSetSettingsReadPermissions(
           settingsFilePath,
           webId

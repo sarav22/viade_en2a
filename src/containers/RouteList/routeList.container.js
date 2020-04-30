@@ -187,7 +187,18 @@ export class RouteListComponent extends Component<Props> {
   render() {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
-      return <RouteListWrapper><Loader/></RouteListWrapper>;
+      return <RouteListWrapper><RouteListPageContent
+      {...{
+        name,
+        image,
+        isLoading,
+        updatePhoto: this.updatePhoto,
+        handleInfiniteLoad: this.handleInfiniteLoad,
+        elementInfiniteLoad: this.elementInfiniteLoad,
+        elements: [],
+        isInfiniteLoading: this.state.isInfiniteLoading
+      }}
+    /></RouteListWrapper>;
     }
     return (
       <RouteListPageContent
