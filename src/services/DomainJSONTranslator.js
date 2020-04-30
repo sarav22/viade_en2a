@@ -4,8 +4,8 @@ import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
 import { comment } from 'rdf-namespaces/dist/cal';
 import { resultComment } from 'rdf-namespaces/dist/schema';
 
+const ttl2jsonld = require('@frogcat/ttl2jsonld').parse;
 
-// TODO: Discuss if async makes sense here
 
 export const loadMapInfo = async jsonUrl => {
     // Load JSON-LD from map
@@ -17,55 +17,139 @@ export const loadMapInfo = async jsonUrl => {
     var commentList = [];
     var commentsFile = "";
     //
-    await retrieveJson(jsonUrl).then(function(result) {
-      routeJson = JSON.parse(result);
-    }) 
-    
-    var routeName = "";
-    var routeDescription = "";
-    var trackPointList = [];
-    var resourceList = [];
-  
-    for(var key in routeJson) {
-        var value = routeJson[key];
-  
-        if(key === "name")
-            routeName = value;
-  
-        if(key === "description")
-            routeDescription = value;
-  
-        if(key === "points") {
-            for(var latLong in value) {
-                trackPointList.push(new TrackPoint(value[latLong]["latitude"], value[latLong]["longitude"]));
+
+    var foundErrorOnParse = false;
+    if(jsonUrl.substring(jsonUrl.length - 3) === "ttl") {
+        await retrieveJson(jsonUrl).then(function(result) {
+            try {
+                routeJson = parseJsonFromTtl(result);
+            } catch(e) {
+                foundErrorOnParse = true;
             }
-        }
-  
-        if(key === "comments") {
-       
-           commentsFile = value;
-           
-           await loadCommentsFromRouteCommentsProperty(commentsFile).then( (resultCommentList) => {
-                commentList = resultCommentList;
-           })
-           console.log("La lista");
-           console.log(commentList);
-           
-        }
-  
-        if(key === "media") {
-            for(var media in value) {
-                resourceList.push(new Resource(value[media]["@id"]));
+        });
+    } else {
+        await retrieveJson(jsonUrl).then(function(result) {
+            try {
+                routeJson = JSON.parse(result);
+            } catch(e) {
+                foundErrorOnParse = true;
             }
-        }
+          });
     }
-
-
-    var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentsFile, //});
-     "commentList" : commentList});
-
-    return route;
+    
+    if(!foundErrorOnParse) {
+        var routeName = "";
+        var routeDescription = "";
+        var trackPointList = [];
+        var resourceList = [];
+      
+        for(var key in routeJson) {
+            var value = routeJson[key];
+      
+            if(key === "name")
+                routeName = value;
+      
+            if(key === "description")
+                routeDescription = value;
+      
+            if(key === "points") {
+                for(var latLong in value) {
+                    trackPointList.push(new TrackPoint(value[latLong]["latitude"], value[latLong]["longitude"]));
+                }
+            }
+      
+            if(key === "comments") {
+           
+               commentsFile = value;
+               
+               await loadCommentsFromRouteCommentsProperty(commentsFile).then( (resultCommentList) => {
+                    commentList = resultCommentList;
+               })
+               console.log("La lista");
+               console.log(commentList);
+               
+            }
+      
+            if(key === "media") {
+                for(var media in value) {
+                    resourceList.push(new Resource(value[media]["@id"]));
+                }
+            }
+        }
+    
+    
+        var route = new Route({"name" : routeName, "description" : routeDescription, "itinerary" : trackPointList, "resources" : resourceList, "comments" : commentsFile, //});
+         "commentList" : commentList});
+    
+        return route;
+    }
 };
+
+const parseJsonFromTtl = (ttlSource) => {
+    var jsonFromLib = ttl2jsonld(ttlSource);
+    var jsonRouteName = jsonFromLib["@graph"][0]["schema:name"]
+    var jsonRouteDescription = jsonFromLib["@graph"][0]["schema:description"]
+    var jsonRoutePoints = jsonFromLib["@graph"][0]["viade:point"].map(function(each) {
+        return{"latitude": parseFloat(each["schema:latitude"]["@value"]), "longitude": parseFloat(each["schema:longitude"]["@value"])};
+    });
+
+    var jsonRouteMedia = jsonFromLib["@graph"].filter(each =>  {
+        return each["@id"].includes("media");
+    });
+
+    jsonRouteMedia = jsonRouteMedia.map(each => {
+        return { "@id": each["schema:contentUrl"]["@id"] };
+    });
+
+    var jsonRouteComments = [];
+
+    const routeJsonLD = {
+        "@context": {
+            "@version": 1.1,
+            "comments": {
+                "@container": "@list",
+                "@id": "viade:comments"
+            },
+            "description": {
+                "@id": "schema:description",
+                "@type": "xs:string"
+            },
+            "media": {
+                "@container": "@list",
+                "@id": "viade:media"
+            },
+            "name": {
+                "@id": "schema:name",
+                "@type": "xs:string"
+            },
+            "points": {
+                "@container": "@list",
+                "@id": "viade:points"
+            },
+            "latitude": {
+                "@id": "schema:latitude",
+                "@type": "xs:double"
+            },
+            "longitude": {
+                "@id": "schema:longitude",
+                "@type": "xs:double"
+            },
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+            "schema": "http://schema.org/",
+            "viade": "http://arquisoft.github.io/viadeSpec/",
+            "xsd": "http://www.w3.org/2001/XMLSchema#"
+        },
+
+        "name": jsonRouteName,
+        "description": jsonRouteDescription,
+        "points": jsonRoutePoints,
+        "comments": jsonRouteComments,
+        "media": jsonRouteMedia
+    };
+
+    return routeJsonLD;
+} 
 
 export const loadAllRoutes = async (personWebId) => {
   var filesObj = await retrieveAllRoutes(personWebId);

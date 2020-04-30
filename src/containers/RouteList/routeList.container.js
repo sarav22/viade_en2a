@@ -30,7 +30,8 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
-    const img =
+    if(route !== undefined) {
+      const img =
       route.resources.length !== 0
         ? route.resources[0].resourceUrl
         : this.defaultImage;
@@ -42,6 +43,7 @@ export class ListItem extends Component {
         <WelcomeProfile>{route.name} </WelcomeProfile>
       </ItemWrapper>
     );
+    }
   };
 
   render() {
