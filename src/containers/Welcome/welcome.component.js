@@ -41,7 +41,7 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let groupsPath = `${path}groups/`;
     let sharedPath = `${path}shared/`;
-    let notificationPath =`${path}/notification.json`;
+    let notificationPath =`${path}notification.json`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -57,9 +57,7 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
-      if (!inboxExists) {
-        await fc.createFolder(inboxPath, { createPath: true });
+     
 
         // Check for CONTROL permissions to see if we can set permissions or not
         const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
@@ -74,12 +72,19 @@ export const WelcomePageContent = props => {
             inboxPath,
             webId
           );
+          await permissionHelper.checkOrSetSettingsReadPermissions(
+              settingsFilePath,
+              webId
+            );
+          
+         
+          
         }
 
         if (!hasInboxLink) {
           await data[settingsFilePath].inbox.set(namedNode(inboxPath));
         }
-      }
+      
 
       const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
       if (!groupsFolderExists) {
@@ -90,8 +95,7 @@ export const WelcomePageContent = props => {
       if (!sharedFolderExists) {
         await fc.createFolder(sharedPath, { createPath: true });
       }
-      permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
-
+      
       let jsonldfriend ={};
         jsonldfriend["@context"]={
           "@version": 1.1,
@@ -110,6 +114,8 @@ export const WelcomePageContent = props => {
             });
         }
       });
+      
+     
     }
   }
 

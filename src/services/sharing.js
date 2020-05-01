@@ -42,14 +42,22 @@ const saveSharedFile = (webId, notification) => {
       let routeJson = "";
       retrieveJson(jsonfile).then(function(result) {
         routeJson = JSON.parse(result);
-        routeJson.routes.push({ "@id": ruta });
-        storeJSONshared(routeJson, jsonfile, function(success) {
-          if (success) {
-            //
-          } else {
-            //
+        let routeExists = false;
+        routeJson.routes.forEach((route)=>{
+          if(route["@id"]===ruta){
+            routeExists=true;
           }
         });
+        if(routeExists===false){
+          routeJson.routes.push({ "@id": ruta });
+          storeJSONshared(routeJson, jsonfile, function(success) {
+            if (success) {
+              //
+            } else {
+              //
+            }
+          });
+        }
       });
     }
   });
@@ -74,6 +82,7 @@ const insertNotificationsFile = (path, webId, n) => {
       if (routeJson.notifications == null) {
         routeJson.notifications = [];
         routeJson.notifications.push({ "@id": notification.id });
+        saveSharedFile(webId, notification);
       } else {
         routeJson.notifications.forEach((jsonNotification) => {
           if (jsonNotification["@id"] === notification.id) {

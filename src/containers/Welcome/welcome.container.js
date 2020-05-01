@@ -3,19 +3,15 @@ import data from '@solid/query-ldflex';
 import { namedNode } from '@rdfjs/data-model';
 import { WelcomePageContent } from './welcome.component';
 import { successToaster, errorToaster } from '@utils';
-import { loadCommentsFromRouteCommentsProperty} from "../../services/DomainJSONTranslator";
 
 const defaultProfilePhoto = 'img/icon/empty-profile.svg';
-const test = "https://luispresacollada.solid.community/viade/comments/routeComments/comments_NuevaRuta_2a6645b8-039b-4d29-bb2b-93375b2be9a0.jsonld";
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
 export class WelcomeComponent extends Component<Props> {
   constructor(props) {
     super(props);
-
-    //console.log(loadCommentsFromRouteCommentsProperty(test))
-    
+  
 
     this.state = {
       name: '',

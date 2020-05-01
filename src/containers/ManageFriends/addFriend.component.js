@@ -1,15 +1,6 @@
 import React, {Component} from 'react';
 import ldflex from '@solid/query-ldflex';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { withTranslation } from 'react-i18next';
-import {browserHistory} from 'react-router';
-import {
-  ManageFriendsWrapper
-} from './manageFriends.style';
-import { relativeTimeRounding } from 'moment';
-import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {
