@@ -29,10 +29,6 @@ const DataTab = props => {
                                     
                                     <p>latitude:{point.latitude}</p>
                                     <p>longitude:{point.longitude}</p>
-                                    {    
-                                        point.elevation!==null &&
-                                        <p>elevation:{point.elevation}</p>
-                                    }
                                 </li>
                             );
                         }
