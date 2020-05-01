@@ -1,0 +1,10 @@
+{
+  "simulation": "viadeGatling.LoginTest",
+  "simulationId": "logintest",
+  "start": 1588371484821,
+  "description": "",
+  "scenarios": ["LoginTest"],
+  "assertions": [
+
+  ]
+}
