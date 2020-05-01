@@ -1,12 +1,10 @@
 import React from 'react';
 import { render, cleanup} from 'react-testing-library';
-import { ManageFriendsContent } from '@containers/ManageFriends/manageFriends.component';
-import { ManageFriendsComponent } from '@containers/ManageFriends/manageFriends.container';
 import { SearchFriendsContent } from '@containers/ManageFriends/searchFriends.component';
 import '@testing-library/jest-dom/';
 
 const webId =  "https://mariaflorez.solid.community/profile/card#me";
-var friends =["https://raulpemol.inrupt.net/profile/card#me", "https://carlosmanrique.inrupt.net/profile/card#me", "https://carlosmanrique.inrupt.net/profile/card#me"];
+
 var searchResults = ["https://raulpemol.inrupt.net/profile/card#me"]
 
 afterAll(cleanup);

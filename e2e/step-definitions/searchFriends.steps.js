@@ -12,8 +12,6 @@ function delay(time) {
 }
 
 defineFeature(feature, test => {
-    let bob;
-    let page;
 
 
     beforeEach(async () => {
