@@ -143,7 +143,7 @@ class GroupManager extends Component<Props> {
               <Form.Label className="label">GROUP MANAGER</Form.Label>
             </Form>
             <Dropdown actions={profileOpts} hover style={{ width: "50%" }}>
-              Seleccionar Grupo
+              <div id="seleccionarGrupo">Seleccionar Grupo</div>
             </Dropdown>
             <Form>
               <Form.Group>
@@ -197,13 +197,14 @@ class GroupManager extends Component<Props> {
                   rows.map((url) => (
                     <Row id="group">
                       <Card
+                        id={url}
                         style={{
                           width: "60%",
                           margin: "10px 10px 10px 15px",
                           padding: "5px",
                         }}
                         text="dark"
-                        data-testid={"member" + url}
+                        data-testid={url}
                       >
                         {url
                           .replace("https://", "")
@@ -260,7 +261,7 @@ class GroupManager extends Component<Props> {
               <Form.Label className="label">GROUP MANAGER</Form.Label>
             </Form>
             <Dropdown actions={profileOpts} hover>
-              Seleccionar Grupo
+              <div id="seleccionarGrupo">Seleccionar Grupo</div>
             </Dropdown>
           </ManageFriendsWrapper>
         );
@@ -276,7 +277,7 @@ class GroupManager extends Component<Props> {
     return (
       <ManageFriendsWrapper>
         <Dropdown actions={profileOpts} hover>
-          Seleccionar Grupo
+          <div id="seleccionarGrupo">Seleccionar Grupo</div>
         </Dropdown>{" "}
         <div id="groupManager">No groups found</div>{" "}
       </ManageFriendsWrapper>
