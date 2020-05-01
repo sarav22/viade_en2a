@@ -15,6 +15,7 @@ services:
   gatling:
     image: denvazh/gatling
     command: -s viadeGatling.LoginTest
+    command: -s viadeGatling.CreateTest
     depends_on:
       - solidserver
       - viade
