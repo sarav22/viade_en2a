@@ -146,7 +146,20 @@
     "shareSuccess": "La ruta se compartió correctamente",
     "errorSuccess": "La ruta no se pudo compartir con ",
     "notificationTitle": "Ruta compartida",
-    "notificationSummary": " ha compartido una ruta contigo: "
+    "notificationSummary": " ha compartido una ruta contigo: ",
+    "comment": {
+      "commentSuccess" : "El comentario se ha añadido correctamente",
+      "commentFailure" : "Se ha producido un error al añadir el comentario, intentelo de nuevo",
+      "commentButton" : "Comentar",
+      "commentPlaceholder" : "Que ruta tan guay!",
+      "fieldName": "Introduce to comentario"
+    },
+    "resources":{
+      "pictures": "Imagenes",
+      "videos": "Videos",
+      "audios": "Audios"
+    }
+    
   },
   "createRouteView":{
     "defaultFormValues":{
@@ -200,12 +213,26 @@
     "importError": "Un error ha ocurrido al importar la ruta, porfavor inténtelo de nuevo",
     "sizeLimitImport": "El número máximo de archivos que se pueden importar es 1",
     "gpxNotRoutes": "El archivo gpx no contiene ninguna ruta, quizás no tenga trks",
-    "fileReadError": "El sistema no pudo leer el archivo proporcionado"
+    "fileReadError": "El sistema no pudo leer el archivo proporcionado",
+    "resourceUploadError":"Se ha producido un error al añadir el recurso"
   },
   "import": {
     "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
     "dragAndDropSupported": "Los archivos soportados son *.gpx",
     "success": "Las rutas se han guardado correctamente en el POD",
-    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD"
+    "failure": "Algunas o ninguna ruta no pudo ser guardada en el POD"
+  },
+  "resourceUpload" :{
+    "dragAndDropMain": "Arrastre el archivo de imagen que desea añadir",
+    "dragAndDropSupported": "Los archivos soportados son *.jpg, *.png *.gif *.mp4 *.mp3",
+    "success": "El recurso se han guardado correctamente en el POD",
+    "failure": "Algun o ningun recurso no pudo ser guardado en el POD",
+    "button": "Subir"
+  },
+  "resourceVinculation" :{
+    "success": "El recurso se ha vinculado correctamente en el POD",
+    "failure": "Algun o ningun recurso no pudo ser vinculado en el POD",
+    "button": "Vincular",
+    "label":"URI del recurso:"
   }
 }

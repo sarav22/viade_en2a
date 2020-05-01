@@ -21,6 +21,11 @@ export function getEmptyCommentsJsonString(){
                 "@id": "viade:text",
                 "@type": "xsd:string"
             },
+            "author": {
+                "@id" : "schema:person",
+                "@type": "@id"
+            },
+            "schema": "https://schema.org/",
             "viade": "http://arquisoft.github.io/viadeSpec/",
             "xsd": "http://www.w3.org/2001/XMLSchema#"
         },

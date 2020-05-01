@@ -1,0 +1,705 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parsing just one track snapshot 1`] = `
+Array [
+  Route {
+    "description": "Uy como esto funcione xD",
+    "itinerary": Array [
+      TrackPoint {
+        "elevation": 1777,
+        "latitude": 45.4431641,
+        "longitude": -121.7295456,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4428615,
+        "longitude": -121.72908,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4425697,
+        "longitude": -121.7279085,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4424274,
+        "longitude": -121.726736,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4422017,
+        "longitude": -121.7260429,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4416576,
+        "longitude": -121.7252347,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4406144,
+        "longitude": -121.7241181,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4398193,
+        "longitude": -121.722489,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4387649,
+        "longitude": -121.7226112,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4383933,
+        "longitude": -121.7224328,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.437785,
+        "longitude": -121.7224159,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4372204,
+        "longitude": -121.7226603,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4347837,
+        "longitude": -121.7226007,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4332,
+        "longitude": -121.721648,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4334576,
+        "longitude": -121.7223143,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.432173,
+        "longitude": -121.7222102,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4316609,
+        "longitude": -121.7219974,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4303068,
+        "longitude": -121.7220616,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4270753,
+        "longitude": -121.7209685,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.426761,
+        "longitude": -121.7211872,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4260133,
+        "longitude": -121.7212623,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4257683,
+        "longitude": -121.7214738,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.42574,
+        "longitude": -121.7217762,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4259485,
+        "longitude": -121.7226009,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4249972,
+        "longitude": -121.7223672,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4246035,
+        "longitude": -121.7219816,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4238682,
+        "longitude": -121.721983,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4226721,
+        "longitude": -121.7216494,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.422412,
+        "longitude": -121.7217998,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4211497,
+        "longitude": -121.7218767,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4193319,
+        "longitude": -121.720865,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4186435,
+        "longitude": -121.7202956,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4185934,
+        "longitude": -121.7200745,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4178963,
+        "longitude": -121.7196035,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4171101,
+        "longitude": -121.7198115,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4166827,
+        "longitude": -121.719325,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4161855,
+        "longitude": -121.7190778,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4159291,
+        "longitude": -121.7193146,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4153644,
+        "longitude": -121.7193939,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4151268,
+        "longitude": -121.7191578,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4148071,
+        "longitude": -121.7191043,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.414631,
+        "longitude": -121.7187962,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4142524,
+        "longitude": -121.7187236,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4142844,
+        "longitude": -121.7185595,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.413352,
+        "longitude": -121.7180429,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4131406,
+        "longitude": -121.7181383,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4130356,
+        "longitude": -121.7179036,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4118436,
+        "longitude": -121.7168789,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4109205,
+        "longitude": -121.7156569,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4104523,
+        "longitude": -121.714525,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.410493,
+        "longitude": -121.7143814,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4102075,
+        "longitude": -121.7140608,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4099806,
+        "longitude": -121.7134527,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4099792,
+        "longitude": -121.713461,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4091489,
+        "longitude": -121.7134937,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4086133,
+        "longitude": -121.7132504,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4080616,
+        "longitude": -121.712767,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4076426,
+        "longitude": -121.7126047,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4075043,
+        "longitude": -121.7122301,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4070652,
+        "longitude": -121.711898,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4068712,
+        "longitude": -121.7114766,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4067987,
+        "longitude": -121.7108634,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4064528,
+        "longitude": -121.7106934,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4057286,
+        "longitude": -121.7110326,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4056813,
+        "longitude": -121.710828,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4055566,
+        "longitude": -121.7109216,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4047244,
+        "longitude": -121.7093884,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4039059,
+        "longitude": -121.7083824,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4037176,
+        "longitude": -121.7077738,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4034533,
+        "longitude": -121.7074489,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4026499,
+        "longitude": -121.7071945,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4019737,
+        "longitude": -121.7067004,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4018086,
+        "longitude": -121.7067477,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4014084,
+        "longitude": -121.7063918,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4013177,
+        "longitude": -121.7059701,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4011965,
+        "longitude": -121.7058914,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4010688,
+        "longitude": -121.7053257,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4008116,
+        "longitude": -121.7054978,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4006075,
+        "longitude": -121.7053495,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4005546,
+        "longitude": -121.7054856,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3991622,
+        "longitude": -121.7049765,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.398556,
+        "longitude": -121.7042976,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3981831,
+        "longitude": -121.704226,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3973151,
+        "longitude": -121.7036992,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3967974,
+        "longitude": -121.703637,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3963985,
+        "longitude": -121.7033742,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3945456,
+        "longitude": -121.7029688,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3920595,
+        "longitude": -121.7015918,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3907614,
+        "longitude": -121.7012029,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3906454,
+        "longitude": -121.7010483,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3906726,
+        "longitude": -121.7008185,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3909774,
+        "longitude": -121.7008263,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3911315,
+        "longitude": -121.70043,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3909963,
+        "longitude": -121.6998193,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3908688,
+        "longitude": -121.6997923,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3917895,
+        "longitude": -121.6994679,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3926205,
+        "longitude": -121.6994847,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3925915,
+        "longitude": -121.6992485,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3928117,
+        "longitude": -121.6995661,
+      },
+    ],
+    "name": "Barrett Spur 1",
+    "waypoints": Array [
+      Waypoint {
+        "description": undefined,
+        "elevation": 1374,
+        "latitude": 45.44283,
+        "longitude": -121.72904,
+        "name": "Vista Ridge Trailhead ",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 1777,
+        "latitude": 45.41,
+        "longitude": -121.71349,
+        "name": "Wy East Basin",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 1823,
+        "latitude": 45.41124,
+        "longitude": -121.70404,
+        "name": "Dollar Lake",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 2394,
+        "latitude": 45.3926,
+        "longitude": -121.69937,
+        "name": "Barrett Spur",
+      },
+    ],
+  },
+]
+`;
+
+exports[`Parsing no track snapshot 1`] = `Array []`;
+
+exports[`Parsing two tracks snapshot 1`] = `
+Array [
+  Route {
+    "description": "Uy como esto funcione xD",
+    "itinerary": Array [
+      TrackPoint {
+        "elevation": 1777,
+        "latitude": 45.4431641,
+        "longitude": -121.7295456,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4428615,
+        "longitude": -121.72908,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4425697,
+        "longitude": -121.7279085,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4424274,
+        "longitude": -121.726736,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4422017,
+        "longitude": -121.7260429,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4416576,
+        "longitude": -121.7252347,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4406144,
+        "longitude": -121.7241181,
+      },
+    ],
+    "name": "Barrett Spur 1",
+    "waypoints": Array [
+      Waypoint {
+        "description": undefined,
+        "elevation": 1374,
+        "latitude": 45.44283,
+        "longitude": -121.72904,
+        "name": "Vista Ridge Trailhead ",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 1777,
+        "latitude": 45.41,
+        "longitude": -121.71349,
+        "name": "Wy East Basin",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 1823,
+        "latitude": 45.41124,
+        "longitude": -121.70404,
+        "name": "Dollar Lake",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 2394,
+        "latitude": 45.3926,
+        "longitude": -121.69937,
+        "name": "Barrett Spur",
+      },
+    ],
+  },
+  Route {
+    "itinerary": Array [
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3928201,
+        "longitude": -121.6995658,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3935449,
+        "longitude": -121.6998805,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.3937897,
+        "longitude": -121.699771,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4055556,
+        "longitude": -121.7058619,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4057016,
+        "longitude": -121.7055424,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4064672,
+        "longitude": -121.7058247,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.406555,
+        "longitude": -121.705649,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4099747,
+        "longitude": -121.7134529,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4110685,
+        "longitude": -121.7158641,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4121873,
+        "longitude": -121.717194,
+      },
+      TrackPoint {
+        "elevation": -1,
+        "latitude": 45.4131063,
+        "longitude": -121.7179663,
+      },
+    ],
+    "name": "Barrett Spur 2",
+    "waypoints": Array [
+      Waypoint {
+        "description": undefined,
+        "elevation": 1374,
+        "latitude": 45.44283,
+        "longitude": -121.72904,
+        "name": "Vista Ridge Trailhead ",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 1777,
+        "latitude": 45.41,
+        "longitude": -121.71349,
+        "name": "Wy East Basin",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 1823,
+        "latitude": 45.41124,
+        "longitude": -121.70404,
+        "name": "Dollar Lake",
+      },
+      Waypoint {
+        "description": undefined,
+        "elevation": 2394,
+        "latitude": 45.3926,
+        "longitude": -121.69937,
+        "name": "Barrett Spur",
+      },
+    ],
+  },
+]
+`;

@@ -158,3 +158,38 @@ export const setReadPermissions = async (path, webId, agent) => {
 
   return true;
 };
+
+
+export const setReadWritePermissions = async (path, webId, agent) => {
+  // Fetch app permissions for the inbox and see if Append is there
+  const acls = new AccessControlList(webId, path);
+  const permissions = await acls.getPermissions();
+  const publicPermissions = permissions.filter(perm => perm.agents === agent);
+
+  const readPermission = publicPermissions.filter(perm =>
+    perm.modes.includes(AccessControlList.MODES.READ, AccessControlList.MODES.WRITE)
+  );
+
+  if (readPermission.length <= 0) {
+    // What do we do when the permission is missing? Add it!
+    try {
+      // Permission object to add. A null agent means Everyone
+      const permissions = [
+        {
+          agents: [agent],
+          modes: [AccessControlList.MODES.READ, AccessControlList.MODES.WRITE]
+        }
+      ];
+      const ACLFile = new AccessControlList(webId, path);
+      await ACLFile.createACL(permissions);
+    } catch (error) {
+      // TODO: Better error handling here
+      throw error;
+    }
+  }
+
+  return true;
+};
+
+
+
