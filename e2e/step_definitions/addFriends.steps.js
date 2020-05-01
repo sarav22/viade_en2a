@@ -62,7 +62,7 @@ defineFeature(feature, test => {
         });
         
         when("Alice writes Bob's webID and clicks the button Add Friend", async () => {
-            await delay(5000);
+            await delay(10000);
             await page.waitForSelector('input[id="webId"]');
             await expect(page).toFill(
                 'input[id="webId"]',
@@ -102,12 +102,12 @@ defineFeature(feature, test => {
         given("Alice wants to add NonExistingUser as a friend", async () => {
             await delay(10000);
             await expect(page).not.toMatchElement(
-                'button[id="https://ldufhuerfhffbveiluv.solid.community/profile/card#me"]'
+                'button[id="buttonFriendhttps://ldufhuerfhffbveiluv.solid.community/profile/card#me"]'
             );
         });
         
         when("Alice writes NonExistingUser's webID and clicks the button Add Friend", async () => {
-            await delay(5000);
+            await delay(10000);
             await page.waitForSelector('input[id="webId"]');
             await expect(page).toFill(
                 'input[id="webId"]',
@@ -119,7 +119,7 @@ defineFeature(feature, test => {
         then("an alert indicating the error is shown and the user is not added as a friend", async () => {
             await delay(10000);
             await expect(page).not.toMatchElement(
-                'button[id="https://ldufhuerfhffbveiluv.solid.community/profile/card#me"]'
+                'button[id="buttonFriendhttps://ldufhuerfhffbveiluv.solid.community/profile/card#me"]'
               );
             
         });

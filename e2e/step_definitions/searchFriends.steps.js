@@ -2,7 +2,7 @@ const{defineFeature, loadFeature} = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/searchFriends.feature');
 const puppeteer = require('puppeteer');
 
-jest.setTimeout(500000);
+jest.setTimeout(100000);
 let page = null;
 
 function delay(time) {
