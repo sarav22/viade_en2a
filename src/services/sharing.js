@@ -82,6 +82,7 @@ const insertNotificationsFile = (path, webId, n) => {
       if (routeJson.notifications == null) {
         routeJson.notifications = [];
         routeJson.notifications.push({ "@id": notification.id });
+        saveSharedFile(webId, notification);
       } else {
         routeJson.notifications.forEach((jsonNotification) => {
           if (jsonNotification["@id"] === notification.id) {
