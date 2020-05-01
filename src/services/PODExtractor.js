@@ -163,3 +163,13 @@ export async function saveJsonLdWithId(jsonLd, Id, callback) {
     callback(true);
   }, err => callback(false))
 }
+
+export async function isRouteOwner(webId) {
+  let session = await auth.currentSession();
+  
+  //https://
+  let aux = webId.slice(8)
+  let splited = aux.split("/")
+
+  return session.webId.includes(splited[0])
+}
