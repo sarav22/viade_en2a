@@ -174,35 +174,51 @@ export const loadAllRoutes = async (personWebId) => {
   var filesObj = await retrieveAllRoutes(personWebId);
   if(filesObj.files) {
     var onlyJson = filesObj.files.filter(function(urlMap) {
-        return urlMap.url.split("routes")[1].split('.')[1] === "jsonld";
+        var splitted = urlMap.url.split("routes")[1].split('.')
+        return splitted[splitted.length - 1] === "jsonld";
+    }).map(function(urlJson) {
+        return urlJson.url;
     });
 
-    var onlyTtl = filesObj.files.filter(function(urlMap) {
-        return urlMap.url.split("routes")[1].split('.')[1] === "ttl";
-    });
+    asyncParseTtl(onlyJson, filesObj.files);
 
-    var ttlToParse = [];
-    for(var urlObjJson in onlyJson) {
-        for(var urlObjTtl in onlyTtl) {
-            var urlJsonSplitted = urlObjJson.url
-            var urlTtlSplitted = urlObjJson.url
-        }
-    }
-
-    asyncParseTtl(onlyTtl);
-
-    return onlyJson.map(function(urlMap) {
-        return urlMap.url;
-      });
+    return onlyJson;
   }
   return filesObj;
 };
 
-const asyncParseTtl = async (ttlUrls) => {
-    ttlUrls.forEach(ttlUrl => {
-        retrieveJson(ttlUrl.url).then(function(result) {
+const asyncParseTtl = async (jsonUrls, files) => {
+
+    var webId = "";
+    jsonUrls = jsonUrls.map(function(url) {
+        var splitted = url.split("routes")[1].split('.')
+        if(webId === "") {
+            webId = url.split(splitted[0])[0]
+        }
+        return splitted[0]
+    })
+
+    var onlyTtl = files.filter(function(urlMap) {
+        var splitted = urlMap.url.split("routes")[1].split('.')
+        return splitted[splitted.length - 1] === "ttl";
+    }).map(function(urlJson) {
+        return urlJson.url
+    }).map(function(urlJson) {
+        var splitted = urlJson.split("routes")[1].split('.')
+        if(webId === "") {
+            webId = urlJson.split(splitted[0])[0]
+        }
+        return splitted[0]
+    });
+
+    var toParse = onlyTtl.filter(element => jsonUrls.indexOf(element) === -1)
+
+    toParse = toParse.map(element => webId + element + ".ttl");
+
+    toParse.forEach(ttlUrl => {
+        retrieveJson(ttlUrl).then(function(result) {
             try {
-                let partiallySplitted = ttlUrl.url.split("routes")[1];
+                let partiallySplitted = ttlUrl.split("routes")[1];
                 parseJsonFromTtl(result, partiallySplitted.substring(1, partiallySplitted.length - 4));
             } catch(e) {
             }
