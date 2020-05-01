@@ -149,3 +149,16 @@ export async function saveJsonLdWithId(jsonLd, Id, callback){
         callback(true);
     }, err => callback(false))
 }
+
+export async function isRouteOwner(routeId){
+
+  let session = await auth.currentSession();
+
+  //We erase the https://
+  let aux = routeId.slice(9);
+
+  let division = aux.split('/');
+
+  return session.webId.includes(division[0]);
+
+}
