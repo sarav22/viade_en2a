@@ -112,7 +112,7 @@ export const WelcomePageContent = props => {
         }
       });
       
-      await permissionHelper.checkOrSetInboxAppendPermissions(
+      await permissionHelper.checkOrSetSettingsReadPermissions(
         settingsFilePath,
         webId
       );
