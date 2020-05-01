@@ -1,12 +1,12 @@
 import {
   AccessControlList,
-  AppPermission
+  AppPermission,
 } from "@inrupt/solid-react-components";
 import { errorToaster } from "@utils";
 
 // Check that all permissions we need are set. If any are missing, this returns false
 const checkAppPermissions = (userAppPermissions, appPermissions) =>
-  appPermissions.every(permission => userAppPermissions.includes(permission));
+  appPermissions.every((permission) => userAppPermissions.includes(permission));
 
 // Function to check for a specific permission included in the app
 export const checkSpecificAppPermission = async (webId, permission) => {
@@ -37,7 +37,7 @@ export const checkPermissions = async (webId, errorMessage) => {
   ) {
     errorToaster(errorMessage.message, errorMessage.title, {
       label: errorMessage.label,
-      href: errorMessage.href
+      href: errorMessage.href,
     });
   }
 };
@@ -53,10 +53,10 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
   const inboxAcls = new AccessControlList(webId, inboxPath);
   const permissions = await inboxAcls.getPermissions();
   const inboxPublicPermissions = permissions.filter(
-    perm => perm.agents === null
+    (perm) => perm.agents === null
   );
 
-  const appendPermission = inboxPublicPermissions.filter(perm =>
+  const appendPermission = inboxPublicPermissions.filter((perm) =>
     perm.modes.includes(AccessControlList.MODES.APPEND)
   );
 
@@ -67,8 +67,8 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
       const permissions = [
         {
           agents: null,
-          modes: [AccessControlList.MODES.APPEND]
-        }
+          modes: [AccessControlList.MODES.APPEND],
+        },
       ];
       const ACLFile = new AccessControlList(webId, inboxPath);
       await ACLFile.createACL(permissions);
@@ -81,41 +81,39 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
   return true;
 };
 
+export const checkOrSetSettingsReadPermissions = async (inboxPath, webId) => {
+  // Fetch app permissions for the inbox and see if Append is there
+  console.log("permissions");
+  const inboxAcls = new AccessControlList(webId, inboxPath);
+  const permissions = await inboxAcls.getPermissions();
+  const inboxPublicPermissions = permissions.filter(
+    (perm) => perm.agents === null
+  );
 
+  const appendPermission = inboxPublicPermissions.filter((perm) =>
+    perm.modes.includes(AccessControlList.MODES.READ)
+  );
 
-  export const checkOrSetSettingsReadPermissions = async (inboxPath, webId) => {
-    // Fetch app permissions for the inbox and see if Append is there
-    console.log("permissions")
-    const inboxAcls = new AccessControlList(webId, inboxPath);
-    const permissions = await inboxAcls.getPermissions();
-    const inboxPublicPermissions = permissions.filter(
-      perm => perm.agents === null
-    );
-  
-    const appendPermission = inboxPublicPermissions.filter(perm =>
-      perm.modes.includes(AccessControlList.MODES.READ)
-    );
-  
-    if (appendPermission.length <= 0) {
-      // What do we do when the permission is missing? Add it!
-      try {
-        // Permission object to add. A null agent means Everyone
-        const permissions = [
-          {
-            agents: null,
-            modes: [AccessControlList.MODES.READ]
-          }
-        ];
-        const ACLFile = new AccessControlList(webId, inboxPath);
-        await ACLFile.createACL(permissions);
-      } catch (error) {
-        // TODO: Better error handling here
-        throw error;
-      }
+  if (appendPermission.length <= 0) {
+    // What do we do when the permission is missing? Add it!
+    try {
+      // Permission object to add. A null agent means Everyone
+      const permissions = [
+        {
+          agents: null,
+          modes: [AccessControlList.MODES.READ],
+        },
+      ];
+      const ACLFile = new AccessControlList(webId, inboxPath);
+      await ACLFile.createACL(permissions);
+    } catch (error) {
+      // TODO: Better error handling here
+      throw error;
     }
-  
-    return true;
-  };
+  }
+
+  return true;
+};
 
 /**
  * Helper function to fetch permissions for the game inbox, and if permissions are not set
@@ -127,64 +125,105 @@ export const setReadPermissions = async (path, webId, agent) => {
   // Fetch app permissions for the inbox and see if Append is there
   const acls = new AccessControlList(webId, path);
   const permissions = await acls.getPermissions();
-  const publicPermissions = permissions.filter(perm => perm.agents === agent);
+  const publicPermissions = permissions.filter((perm) => perm.agents === agent);
 
-  const readPermission = publicPermissions.filter(perm =>
+  const readPermission = publicPermissions.filter((perm) =>
     perm.modes.includes(AccessControlList.MODES.READ)
   );
-
+  const allPermissions = permissions.filter((perm) =>
+    perm.modes.includes(AccessControlList.MODES.READ)
+  );
+  const ACLFile = new AccessControlList(webId, path);
   if (readPermission.length <= 0) {
     // What do we do when the permission is missing? Add it!
-    try {
-      // Permission object to add. A null agent means Everyone
-      const permissions = [
-        {
-          agents: [agent],
-          modes: [AccessControlList.MODES.READ]
+    for (let i = 0; i < allPermissions.length; i++) {
+      if (allPermissions[i].modes.length === 1) {
+        if (allPermissions[i].agents === null) {
+          try {
+            // Permission object to add. A null agent means Everyone
+            const permissions = [
+              {
+                agents: [agent],
+                modes: [AccessControlList.MODES.READ],
+              },
+            ];
+            await ACLFile.createACL(permissions);
+          } catch (error) {
+            // TODO: Better error handling here
+            throw error;
+          }
+        } else {
+          let newAgents = allPermissions[i].agents;
+          newAgents.push(agent);
+          const newPermissions = [
+            {
+              agents: newAgents,
+              modes: [AccessControlList.MODES.READ],
+            },
+          ];
+          await ACLFile.createACL(newPermissions);
         }
-      ];
-      const ACLFile = new AccessControlList(webId, path);
-      await ACLFile.createACL(permissions);
-    } catch (error) {
-      // TODO: Better error handling here
-      throw error;
+      }
     }
   }
 
   return true;
 };
-
 
 export const setReadWritePermissions = async (path, webId, agent) => {
   // Fetch app permissions for the inbox and see if Append is there
   const acls = new AccessControlList(webId, path);
   const permissions = await acls.getPermissions();
-  const publicPermissions = permissions.filter(perm => perm.agents === agent);
+  const publicPermissions = permissions.filter((perm) => perm.agents === agent);
 
-  const readPermission = publicPermissions.filter(perm =>
-    perm.modes.includes(AccessControlList.MODES.WRITE)
+  const readPermission = publicPermissions.filter((perm) =>
+    perm.modes.includes(AccessControlList.MODES.READ)
   );
-
+  const allPermissions = permissions.filter((perm) =>
+    perm.modes.includes(AccessControlList.MODES.READ)
+  );
+  const ACLFile = new AccessControlList(webId, path);
   if (readPermission.length <= 0) {
     // What do we do when the permission is missing? Add it!
-    try {
-      // Permission object to add. A null agent means Everyone
-      const permissions = [
-        {
-          agents: [agent],
-          modes: [AccessControlList.MODES.WRITE, AccessControlList.MODES.READ]
+    for (let i = 0; i < allPermissions.length; i++) {
+      if (
+        allPermissions[i].modes.length === 2 ||
+        allPermissions[i].modes.length === 1
+      ) {
+        if (allPermissions[i].agents === null) {
+          try {
+            // Permission object to add. A null agent means Everyone
+            const permissions = [
+              {
+                agents: [agent],
+                modes: [
+                  AccessControlList.MODES.READ,
+                  AccessControlList.MODES.WRITE,
+                ],
+              },
+            ];
+            await ACLFile.createACL(permissions);
+          } catch (error) {
+            // TODO: Better error handling here
+            throw error;
+          }
+        } else {
+          let newAgents = allPermissions[i].agents;
+          newAgents.push(agent);
+          const newPermissions = [
+            {
+              agents: newAgents,
+              modes: [
+                AccessControlList.MODES.READ,
+                AccessControlList.MODES.WRITE,
+              ],
+            },
+          ];
+          await ACLFile.createACL(newPermissions);
         }
-      ];
-      const ACLFile = new AccessControlList(webId, path);
-      await ACLFile.createACL(permissions);
-    } catch (error) {
-      // TODO: Better error handling here
-      throw error;
+      }
     }
   }
 
   return true;
 };
-
-
-
