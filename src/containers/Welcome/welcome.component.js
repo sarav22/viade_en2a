@@ -41,7 +41,7 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let groupsPath = `${path}groups/`;
     let sharedPath = `${path}shared/`;
-    let notificationPath =`${path}/notification.json`;
+    let notificationPath =`${path}notification.json`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -72,6 +72,13 @@ export const WelcomePageContent = props => {
             inboxPath,
             webId
           );
+          await permissionHelper.checkOrSetSettingsReadPermissions(
+              settingsFilePath,
+              webId
+            );
+          
+         
+          
         }
 
         if (!hasInboxLink) {
@@ -89,13 +96,6 @@ export const WelcomePageContent = props => {
         await fc.createFolder(sharedPath, { createPath: true });
       }
       
-      
-      const settingsExist = await ldflexHelper.resourceExists(settingsFilePath);
-      if (settingsExist) {
-         data[settingsFilePath].inbox.set(namedNode(inboxPath));
-         permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
-      }
-
       let jsonldfriend ={};
         jsonldfriend["@context"]={
           "@version": 1.1,
@@ -114,6 +114,8 @@ export const WelcomePageContent = props => {
             });
         }
       });
+      
+     
     }
   }
 

@@ -75,10 +75,10 @@ export class MapComponent extends Component<Props> {
       <MapWrapper>
         <Container fluid>
           <Row>
-            <Col xs={12} md={7} sm={8} xs={12}>
+            <Col xs={12} md={7} sm={8}>
               <Map route={route} />
             </Col>
-            <Col xs={6} md={5} sm={4} xs={12}>
+            <Col xs={12} md={5} sm={4}>
               <Container fluid>
                 <Row>
                   <LateralMenuWrapper>

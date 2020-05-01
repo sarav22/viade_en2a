@@ -9,7 +9,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import { withTranslation } from 'react-i18next';
 import data from '@solid/query-ldflex';
 import GroupManager from "./groupManager.component";
 import { retrieveGroups } from "@services/PODExtractor";
@@ -108,7 +107,7 @@ export class ManageFriendsComponent extends Component<Props> {
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
             <Container fluid>
               <Row>
-                <Col xs={9} md={6} sm={6} xs={12}>
+                <Col md={6} sm={6} xs={12}>
                   <AddFriendsContent webId={webId} />
                   <Form>
                     <Form.Group>
@@ -123,7 +122,7 @@ export class ManageFriendsComponent extends Component<Props> {
                   </Form>
                   <ManageFriendsContent {...{ webId, friends, images }} />
                 </Col>
-                <Col xs={9} md={6} sm={6} xs={12}>
+                <Col md={6} sm={6} xs={12}>
                   <GroupManager webId={webId} groups={this.state.groups} />
                 </Col>
               </Row>
@@ -136,7 +135,7 @@ export class ManageFriendsComponent extends Component<Props> {
         <ManageFriendsWrapper data-testid="manageFriends-wrapper">
           <Container fluid>
             <Row>
-              <Col xs={9} md={6} sm={6} xs={12}>
+              <Col md={6} sm={6} xs={12}>
                 <AddFriendsContent webId={webId} />
                 <Form>
                   <Form.Group>
@@ -146,7 +145,7 @@ export class ManageFriendsComponent extends Component<Props> {
                 </Form>
                 <SearchFriendsContent {...{ webId, searchResults, images }} />
               </Col>
-              <Col xs={9} md={6} sm={6} xs={12}>
+              <Col md={6} sm={6} xs={12}>
                 <GroupManager webId={webId} groups={this.state.groups} />
               </Col>
             </Row>

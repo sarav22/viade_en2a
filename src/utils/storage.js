@@ -95,19 +95,25 @@ export const createInitialFiles = async webId => {
 
     const inboxExists = await resourceExists(inboxPath);
     if (!inboxExists) {
-      await fc.createFolder(inboxPath, { createPath: true }).then(async ()=>{
+        await fc.createFolder(inboxPath, { createPath: true });
         const settingsFileExists = await resourceExists(settingsFilePath);
         if (!settingsFileExists) {
-          await createDocument(settingsFilePath).then(()=>{
-             permissionHelper.checkOrSetSettingsReadPermissions(
+           createDocument(settingsFilePath).then((response)=>{
+            permissionHelper.checkOrSetInboxAppendPermissions(
               settingsFilePath,
               webId
-            );
+            ).then(()=>{
+              permissionHelper.checkOrSetSettingsReadPermissions(
+                settingsFilePath,
+                webId
+              );
+            });
             
-            data[settingsFilePath].inbox.set(namedNode(inboxPath));
+              console.log("INBOX+SETTINGS")
+              data[settingsFilePath].inbox.set(namedNode(inboxPath));
           });
         }
-      });
+    
     }
     const groupsFolderExists = await resourceExists(groupsPath);
     if(!groupsFolderExists){
@@ -121,13 +127,18 @@ export const createInitialFiles = async webId => {
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
-      await createDocument(settingsFilePath).then(()=>{
-         permissionHelper.checkOrSetSettingsReadPermissions(
+      await createDocument(settingsFilePath).then(async()=>{
+        await permissionHelper.checkOrSetInboxAppendPermissions(
           settingsFilePath,
           webId
-        );
-        
-        data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        ).then(()=>{
+          permissionHelper.checkOrSetSettingsReadPermissions(
+            settingsFilePath,
+            webId
+          );
+        });
+        console.log("SETTINGS SOLO")
+        await data[settingsFilePath].inbox.set(namedNode(inboxPath));
       });
     }
     

@@ -5,9 +5,8 @@ import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
-import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
+import { loadAllRoutes, loadListInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
-import { Loader } from '@util-components';
 
 const defaultProfilePhoto = "img/icon/empty-profile.svg";
 
@@ -24,15 +23,15 @@ export class ListItem extends Component {
 
   componentDidMount() {
     console.log(this.state.route);
-    loadMapInfo(this.state.route).then(ruta => {
+    loadListInfo(this.state.route).then(ruta => {
       this.setState({ loading: false, route: ruta });
     });
   }
 
   viewContent = route => {
     const img =
-      route.resources.length !== 0
-        ? route.resources[0].resourceUrl
+      route.imagesToDisplay.length !== 0
+        ? route.imagesToDisplay[0].resourceUrl
         : this.defaultImage;
     return (
       <ItemWrapper className="card">

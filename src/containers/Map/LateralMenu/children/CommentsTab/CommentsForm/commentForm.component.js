@@ -8,11 +8,6 @@ import Button from "react-bootstrap/Button";
 
 class CommentForm extends Component<Props>{
 
-    constructor(props) {
-        super(props);
-        
-    }
-
     render() {
         const { t } = this.props;
         return (

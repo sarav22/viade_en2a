@@ -1,3 +1,4 @@
+/*
 const{defineFeature, loadFeature} = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/searchFriends.feature');
 const puppeteer = require('puppeteer');
@@ -87,4 +88,4 @@ defineFeature(feature, test => {
 
 
  
-});
+});*/
