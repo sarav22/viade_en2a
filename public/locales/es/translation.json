@@ -134,7 +134,7 @@
   },
   "mapView":{
     "viewTitle":"Visualizando la ruta: ",
-    "importedRoutesTitle":"Visualizando rutas importadas",
+    "importedRoutesTitle":"Visualizando rutas a importar",
     "menu":{
       "images":"Imágenes y vídeos",
       "comments": "Comentarios",
@@ -211,16 +211,21 @@
   },
   "error":{
     "importError": "Un error ha ocurrido al importar la ruta, porfavor inténtelo de nuevo",
-    "sizeLimitImport": "El número máximo de archivos que se pueden importar es 1",
+    "importVisualizeError": "Un error ha ocurrido al parsear la ruta a visualizar, use otro gpx o inténtelo de nuevo",
+    "sizeLimitImport": "Se ha intentado importar más de un archivo o el archivo importado no es .gpx",
     "gpxNotRoutes": "El archivo gpx no contiene ninguna ruta, quizás no tenga trks",
-    "fileReadError": "El sistema no pudo leer el archivo proporcionado",
-    "resourceUploadError":"Se ha producido un error al añadir el recurso"
+    "gpxNotRoutesTitle": "Sin Rutas",
+    "fileReadError": "El sistema no pudo leer el archivo proporcionado"
   },
   "import": {
     "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
     "dragAndDropSupported": "Los archivos soportados son *.gpx",
-    "success": "Las rutas se han guardado correctamente en el POD",
-    "failure": "Algunas o ninguna ruta no pudo ser guardada en el POD"
+    "dragAndDropCurrentFiles": "Archivo de ruta a importar:",
+    "success": "Las rutas se han guardado correctamente en el POD", 
+    "successTitle": "Importado",
+    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD",
+    "failureTitle": "No Importado",
+    "submitButton": "Importar"
   },
   "resourceUpload" :{
     "dragAndDropMain": "Arrastre el archivo de imagen que desea añadir",
@@ -234,5 +239,6 @@
     "failure": "Algun o ningun recurso no pudo ser vinculado en el POD",
     "button": "Vincular",
     "label":"URI del recurso:"
+   
   }
 }
