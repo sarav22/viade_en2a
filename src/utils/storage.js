@@ -99,10 +99,10 @@ export const createInitialFiles = async webId => {
         const settingsFileExists = await resourceExists(settingsFilePath);
         if (!settingsFileExists) {
            createDocument(settingsFilePath).then((response)=>{
-              permissionHelper.checkOrSetSettingsReadPermissions(
+             permissionHelper.checkOrSetInboxAppendPermissions(
               settingsFilePath,
               webId
-              );
+            );
               console.log("INBOX+SETTINGS")
               data[settingsFilePath].inbox.set(namedNode(inboxPath));
           });
@@ -122,7 +122,7 @@ export const createInitialFiles = async webId => {
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
       await createDocument(settingsFilePath).then(async()=>{
-        await permissionHelper.checkOrSetSettingsReadPermissions(
+        await permissionHelper.checkOrSetInboxAppendPermissions(
           settingsFilePath,
           webId
         );

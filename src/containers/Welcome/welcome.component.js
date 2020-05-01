@@ -72,10 +72,11 @@ export const WelcomePageContent = props => {
             inboxPath,
             webId
           );
-          await permissionHelper.checkOrSetInboxAppendPermissions(
+          await permissionHelper.checkOrSetSettingsReadPermissions(
             settingsFilePath,
             webId
           );
+          
         }
 
         if (!hasInboxLink) {
@@ -112,10 +113,7 @@ export const WelcomePageContent = props => {
         }
       });
       
-      await permissionHelper.checkOrSetSettingsReadPermissions(
-        settingsFilePath,
-        webId
-      );
+     
     }
   }
 
