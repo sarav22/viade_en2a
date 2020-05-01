@@ -10,6 +10,8 @@ import {Route} from '../../domain/domainClasses.js'
 
 import {saveRouteToPOD} from '../../services/DomainJSONTranslator.js';
 
+import { successToaster, errorToaster } from '@utils';
+
 export class CreateRoute extends Component<Props>{
 
     constructor(props) {
@@ -61,10 +63,10 @@ export class CreateRoute extends Component<Props>{
         console.log(route.name);
         saveRouteToPOD(route, function(success){
             if(success){
-                alert("La ruta se ha guardado en el pod: OK!");
+                successToaster("La ruta se ha guardado en el pod: OK!");
             }
             else{
-                alert("Mierda, hubo un problema y no se pudo guardar");
+                errorToaster("Mierda, hubo un problema y no se pudo guardar");
             }
         });
 
