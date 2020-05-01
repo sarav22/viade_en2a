@@ -73,7 +73,7 @@ export const ShareButton = (props) => {
           };
           let appPath = "";
           appPath = await storageHelper.getAppStorage(agent);
-          const viadeSettings = `${appPath}settings/settings.ttl`;
+          const viadeSettings = `${appPath}settings.ttl`;
 
           const inboxes = await helperNotification.findUserInboxes([
             { path: agent, name: "Global" },
