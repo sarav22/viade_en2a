@@ -1,3 +1,4 @@
+/*
 const expect = require('expect-puppeteer');
 const{defineFeature, loadFeature} = require('jest-cucumber');
 const feature = loadFeature('./e2e/features/manageGroups.feature');
@@ -80,3 +81,4 @@ defineFeature(feature, test => {
     });
 });
 
+*/

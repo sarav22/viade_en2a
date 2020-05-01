@@ -1,6 +1,4 @@
-import { parseGpx, parseGpxFromFile } from "viade-gpx-parse";
-import parseSuperString from "./gpxInput";
-import { tracks } from "rdf-namespaces/dist/schema";
+import { parseGpx } from "viade-gpx-parse";
 import {TrackPoint, Waypoint, Route} from "../../../domain/domainClasses";
 
 

@@ -1,12 +1,6 @@
 
 import React, { Component } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
-import {Route} from '../../../../../domain/domainClasses';
-
-
 
 import {postNewComment} from "../../../../../services/comments/commentsService";
 import CommentsList from "./CommentsList/commentsList.component";
@@ -25,7 +19,7 @@ class CommentsTab extends Component<Props>{
     constructor(props) {
         super(props);
         
-        const { routeObject, t } = this.props;
+        const { routeObject } = this.props;
         console.log(props)
         
         this.state = {
