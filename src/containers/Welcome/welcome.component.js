@@ -72,7 +72,7 @@ export const WelcomePageContent = props => {
             inboxPath,
             webId
           );
-          await permissionHelper.checkOrSetSettingsReadPermissions(
+          await permissionHelper.checkOrSetInboxAppendPermissions(
             settingsFilePath,
             webId
           );
@@ -111,6 +111,11 @@ export const WelcomePageContent = props => {
             });
         }
       });
+      
+      await permissionHelper.checkOrSetInboxAppendPermissions(
+        settingsFilePath,
+        webId
+      );
     }
   }
 

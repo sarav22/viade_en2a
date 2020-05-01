@@ -67,7 +67,7 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
       const permissions = [
         {
           agents: null,
-          modes: [AccessControlList.MODES.READ]
+          modes: [AccessControlList.MODES.APPEND]
         }
       ];
       const ACLFile = new AccessControlList(webId, inboxPath);
@@ -103,7 +103,7 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
         const permissions = [
           {
             agents: null,
-            modes: [AccessControlList.MODES.READ, AccessControlList.MODES.WRITE]
+            modes: [AccessControlList.MODES.READ]
           }
         ];
         const ACLFile = new AccessControlList(webId, inboxPath);
