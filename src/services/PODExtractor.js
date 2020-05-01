@@ -41,7 +41,7 @@ export const retrieveGroups = async (personWebId) => {
     return res;
   }
 };
-export const storeJSONToPOD = async (jsonLD, callback, fileNamePossible) => {
+export const storeJSONToPOD = async (jsonLD, callback, fileNamePossible="") => {
     let session = await auth.currentSession();
     let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
     let formattedName = jsonLD.name.replace(/ /g, "_");
