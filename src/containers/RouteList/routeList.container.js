@@ -7,7 +7,6 @@ import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
-import { Loader } from '@util-components';
 
 const defaultProfilePhoto = "img/icon/empty-profile.svg";
 

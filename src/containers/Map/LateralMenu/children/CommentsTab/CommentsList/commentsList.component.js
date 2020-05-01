@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Media from 'react-bootstrap/Media';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';

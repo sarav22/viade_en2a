@@ -29,13 +29,13 @@ export class Resource {
     }
 
     isAudio(){
-        return this.extension == "mp3"
+        return this.extension === "mp3"
     }
     isImage(){
-        return this.extension == "jpg" || this.extension == "png" || this.extension == "gif" || this.extension == "jpeg"
+        return this.extension === "jpg" || this.extension === "png" || this.extension === "gif" || this.extension === "jpeg"
     }
     isVideo(){
-        return this.extension == "mp4"
+        return this.extension === "mp4"
     }
 }
 

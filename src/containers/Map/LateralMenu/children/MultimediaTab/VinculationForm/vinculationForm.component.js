@@ -1,7 +1,5 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from 'react-i18next';
-import {useDropzone} from 'react-dropzone';
-import { setJestCucumberConfiguration } from "jest-cucumber";
 import {vinculateResourceIdToRouteFile } from "../../../../../../services/uploadResources/resourcesService"
 import {successToaster, errorToaster} from "../../../../../../utils/toaster"
 import Form from "react-bootstrap/Form";

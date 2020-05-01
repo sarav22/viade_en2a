@@ -5,7 +5,6 @@ import { NotificationsWrapper } from './notifications.style';
 import { Bell, NotificationsPanel } from '../index';
 import { useOnClickOutside } from '@hooks';
 import{notificationsFile} from '../../../../services/sharing';
-import{isFriend} from '../../../../services/friendsManager';
 let oldTimestamp;
 
 type Props = {

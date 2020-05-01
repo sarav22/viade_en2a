@@ -1,8 +1,6 @@
-import {Route, Resource, Comment, TrackPoint, CommentEntity} from '../domain/domainClasses.js';
+import {Route, Resource, TrackPoint, CommentEntity} from '../domain/domainClasses.js';
 import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js';
 import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
-import { comment } from 'rdf-namespaces/dist/cal';
-import { resultComment } from 'rdf-namespaces/dist/schema';
 
 
 // TODO: Discuss if async makes sense here
@@ -13,7 +11,6 @@ export const loadMapInfo = async jsonUrl => {
     var routeJson = "";
 
     //
-    var commentsJson = {};
     var commentList = [];
     var commentsFile = "";
     //
