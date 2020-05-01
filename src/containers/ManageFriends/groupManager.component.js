@@ -171,7 +171,9 @@ class GroupManager extends Component<Props> {
                 onClick={(event) => this.rename(event)}
                 data-testid="updateName"
               >
-                Update Name
+                {this.state.currentGroup !== "new"
+                  ? "Update Name"
+                  : "Create Group"}
               </Button>
             </Form>
             {this.state.currentGroup !== "new" && (
