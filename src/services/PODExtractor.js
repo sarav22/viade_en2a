@@ -26,12 +26,20 @@ export const retrieveAllRoutes = async (personWebId) => {
     }
 }
 
-export const storeJSONToPOD = async (jsonLD, callback) => {
+export const storeJSONToPOD = async (jsonLD, fileNamePossible, callback) => {
     let session = await auth.currentSession();
     let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
     let formattedName = jsonLD.name.replace(/ /g, "_");
     console.log(formattedName + " "+jsonLD.name);
-    let fileName = formattedName + '_' + uuidv4() + '.jsonld';
+    
+    let fileName = ""
+
+    console.log(fileNamePossible)
+    if(!fileNamePossible) {
+        fileName = formattedName + '_' + uuidv4() + '.jsonld';
+    } else {
+        fileName = fileNamePossible + '.jsonld'
+    }
     let fileURI = userWebIdRoute + '/' + fileName;
 
 

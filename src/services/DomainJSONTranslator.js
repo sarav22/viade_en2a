@@ -3,6 +3,7 @@ import {retrieveJson, retrieveAllRoutes, storeJSONToPOD} from './PODExtractor.js
 import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
 import { comment } from 'rdf-namespaces/dist/cal';
 import { resultComment } from 'rdf-namespaces/dist/schema';
+import { getEmptyCommentsJsonString } from './comments/commentsService.js';
 
 const ttl2jsonld = require('@frogcat/ttl2jsonld').parse;
 
@@ -22,7 +23,8 @@ export const loadMapInfo = async jsonUrl => {
     if(jsonUrl.substring(jsonUrl.length - 3) === "ttl") {
         await retrieveJson(jsonUrl).then(function(result) {
             try {
-                routeJson = parseJsonFromTtl(result);
+                let partiallySplitted = jsonUrl.split("routes")[1];
+                routeJson = parseJsonFromTtl(result, partiallySplitted.substring(1, partiallySplitted.length - 4));
             } catch(e) {
                 foundErrorOnParse = true;
             }
@@ -85,13 +87,13 @@ export const loadMapInfo = async jsonUrl => {
     }
 };
 
-const parseJsonFromTtl = (ttlSource) => {
+const parseJsonFromTtl = (ttlSource, fileName) => {
     var jsonFromLib = ttl2jsonld(ttlSource);
     var jsonRouteName = "";
     var jsonRouteDescription = "";
     var jsonRoutePoints = "";
     var jsonRouteMedia = [];
-    var jsonRouteComments = [];
+    var jsonRouteComments = "";
 
     if(jsonFromLib["@graph"]) {
         jsonRouteName = jsonFromLib["@graph"][0]["schema:name"]
@@ -161,17 +163,52 @@ const parseJsonFromTtl = (ttlSource) => {
         "media": jsonRouteMedia
     };
 
+    storeJSONToPOD(routeJsonLD, fileName, function(res) {
+
+    });
+
     return routeJsonLD;
 } 
 
 export const loadAllRoutes = async (personWebId) => {
   var filesObj = await retrieveAllRoutes(personWebId);
-  if(filesObj.files)
-    return filesObj.files.map(function(urlMap) {
-      return urlMap.url;
+  if(filesObj.files) {
+    var onlyJson = filesObj.files.filter(function(urlMap) {
+        return urlMap.url.split("routes")[1].split('.')[1] === "jsonld";
     });
+
+    var onlyTtl = filesObj.files.filter(function(urlMap) {
+        return urlMap.url.split("routes")[1].split('.')[1] === "ttl";
+    });
+
+    var ttlToParse = [];
+    for(var urlObjJson in onlyJson) {
+        for(var urlObjTtl in onlyTtl) {
+            var urlJsonSplitted = urlObjJson.url
+            var urlTtlSplitted = urlObjJson.url
+        }
+    }
+
+    asyncParseTtl(onlyTtl);
+
+    return onlyJson.map(function(urlMap) {
+        return urlMap.url;
+      });
+  }
   return filesObj;
 };
+
+const asyncParseTtl = async (ttlUrls) => {
+    ttlUrls.forEach(ttlUrl => {
+        retrieveJson(ttlUrl.url).then(function(result) {
+            try {
+                let partiallySplitted = ttlUrl.url.split("routes")[1];
+                parseJsonFromTtl(result, partiallySplitted.substring(1, partiallySplitted.length - 4));
+            } catch(e) {
+            }
+        });
+    })
+}
 
 export const loadFriendRoutes = async (webId, filename) => {
     var routeUri = webId.substring(0, webId.length - 16) + "/viade/shared/" + filename + ".jsonld";
