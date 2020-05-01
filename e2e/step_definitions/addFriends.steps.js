@@ -54,8 +54,9 @@ defineFeature(feature, test => {
 
     test("Alice wants to add an existing user as a friend", ({given, when, then}) => {
         given("Alice does not have Bob as a friend and Bob's webID exists", async () => {
-            await delay(10000);
-            await expect(page).not.toMatchElement(
+            
+              await delay(10000);
+              await expect(page).not.toMatchElement(
                 'button[id="buttonFriendhttps://podejemplo2.inrupt.net/profile/card#me"]'
             );
         });
