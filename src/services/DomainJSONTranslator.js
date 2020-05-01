@@ -301,16 +301,18 @@ export const loadListInfo = async jsonUrl => {
     // Load JSON-LD from map
 
     var routeJson = "";
-    await retrieveJson(jsonUrl).then(function (result) {
+
+    try{
+        await retrieveJson(jsonUrl).then(function(result) {
         routeJson = JSON.parse(result);
-    })
+        }) 
+        
+        var routeName = "";
+        var routeDescription = "";
 
-    var routeName = "";
-    var routeDescription = "";
 
-
-    var resourceList = [];
-    var imagesToDisplay = []
+        var resourceList = [];
+        var imagesToDisplay = []
 
     for (var key in routeJson) {
         var value = routeJson[key];
@@ -327,15 +329,19 @@ export const loadListInfo = async jsonUrl => {
                 resourceList.push(resource);
 
                 if (resource.isImage()) imagesToDisplay.push(resource);
+
             }
         }
     }
+        var route = new Route({"name" : routeName, "description" : routeDescription, "resources" : resourceList });
 
-    var route = new Route({ "name": routeName, "description": routeDescription, "resources": resourceList });
-
-    route.fileWebId = jsonUrl;
-    route.imagesToDisplay = imagesToDisplay;
-    return route;
+        route.fileWebId = jsonUrl;
+        route.imagesToDisplay = imagesToDisplay;
+        return route;
+    }
+    catch(e){
+        return "error"
+    }
 };
 
 

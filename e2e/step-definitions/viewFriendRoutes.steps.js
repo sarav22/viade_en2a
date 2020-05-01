@@ -69,7 +69,7 @@ defineFeature(feature, test => {
 
         then("A window with the name of that friend and a list of all his shared routes should appear", async () => {
             await expect(page).toMatchElement(
-                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9UZXN0X3JvdXRlXzJfMjgxMzYxOTMtNGU4ZC00MzBlLTgxY2YtNTM3NWQ3YzNlYWNjLmpzb25sZA=="]'
+                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9BdXN0cmFsaWFfMTQzN2NjNDEtMTcyOS00ODZlLTliNDAtNTcwZWE0ZGViODgwLmpzb25sZA=="]'
             );
         });
     });
@@ -90,11 +90,11 @@ defineFeature(feature, test => {
 
         when("I click on a route", async () => {
             await page.waitForSelector(
-                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9UZXN0X3JvdXRlXzJfMjgxMzYxOTMtNGU4ZC00MzBlLTgxY2YtNTM3NWQ3YzNlYWNjLmpzb25sZA=="]'
+                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9BdXN0cmFsaWFfMTQzN2NjNDEtMTcyOS00ODZlLTliNDAtNTcwZWE0ZGViODgwLmpzb25sZA=="]'
             );
             await page.click(
-                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9UZXN0X3JvdXRlXzJfMjgxMzYxOTMtNGU4ZC00MzBlLTgxY2YtNTM3NWQ3YzNlYWNjLmpzb25sZA=="]'
-            );
+                'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlMi5pbnJ1cHQubmV0L3ZpYWRlL3JvdXRlcy9BdXN0cmFsaWFfMTQzN2NjNDEtMTcyOS00ODZlLTliNDAtNTcwZWE0ZGViODgwLmpzb25sZA=="]'
+           );
             await delay(10000);
         });
 

@@ -29,11 +29,12 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
-    if (route !== undefined) {
+
+    if(route !== undefined || route !== "error"){
       const img =
-        route.imagesToDisplay.length !== 0
-          ? route.imagesToDisplay[0].resourceUrl
-          : this.defaultImage;
+      route.imagesToDisplay.length !== 0
+        ? route.imagesToDisplay[0].resourceUrl
+        : this.defaultImage;
       return (
         <ItemWrapper className="card">
           <RouteImage>
@@ -43,16 +44,19 @@ export class ListItem extends Component {
         </ItemWrapper>
       );
     }
+    else{
+      return null;
+    }
+  };
+
+  render() {
+    const { loading } = this.state;
+    return (
+      <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
+    );
   }
 };
 
-render() {
-  const { loading } = this.state;
-  return (
-    <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
-  );
-}
-}
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
