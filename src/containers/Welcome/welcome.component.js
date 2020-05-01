@@ -73,9 +73,11 @@ export const WelcomePageContent = props => {
             webId
           );
           await permissionHelper.checkOrSetSettingsReadPermissions(
-            settingsFilePath,
-            webId
-          );
+              settingsFilePath,
+              webId
+            );
+          
+         
           
         }
 

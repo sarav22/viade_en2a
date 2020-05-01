@@ -172,7 +172,7 @@ export const setReadWritePermissions = async (path, webId, agent) => {
       const permissions = [
         {
           agents: [agent],
-          modes: [AccessControlList.MODES.WRITE]
+          modes: [AccessControlList.MODES.WRITE, AccessControlList.MODES.READ]
         }
       ];
       const ACLFile = new AccessControlList(webId, path);
