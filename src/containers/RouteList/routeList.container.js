@@ -29,18 +29,23 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
-    const img =
+    if(route !== "error"){
+      const img =
       route.imagesToDisplay.length !== 0
         ? route.imagesToDisplay[0].resourceUrl
         : this.defaultImage;
-    return (
-      <ItemWrapper className="card">
-        <RouteImage>
-          <Image className="img" src={img} />
-        </RouteImage>
-        <WelcomeProfile>{route.name} </WelcomeProfile>
-      </ItemWrapper>
-    );
+      return (
+        <ItemWrapper className="card">
+          <RouteImage>
+            <Image className="img" src={img} />
+          </RouteImage>
+          <WelcomeProfile>{route.name} </WelcomeProfile>
+        </ItemWrapper>
+      );
+    }
+    else{
+      return null;
+    }
   };
 
   render() {
