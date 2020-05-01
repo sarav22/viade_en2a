@@ -41,13 +41,21 @@ export const retrieveGroups = async (personWebId) => {
     return res;
   }
 };
+export const storeJSONToPOD = async (jsonLD, callback, fileNamePossible="") => {
+    let session = await auth.currentSession();
+    let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
+    let formattedName = jsonLD.name.replace(/ /g, "_");
+    console.log(formattedName + " "+jsonLD.name);
+    
+    let fileName = ""
+    console.log(fileNamePossible)
+    if(!fileNamePossible) {
+        fileName = formattedName + '_' + uuidv4() + '.jsonld';
+    } else {
+        fileName = fileNamePossible + '.jsonld'
+    }
+    let fileURI = userWebIdRoute + '/' + fileName;
 
-export const storeJSONToPOD = async (jsonLD, callback) => {
-  let session = await auth.currentSession();
-  let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
-  let formattedName = jsonLD.name.replace(/ /g, "_");
-  let fileName = formattedName + '_' + uuidv4() + '.jsonld';
-  let fileURI = userWebIdRoute + '/' + fileName;
 
 
   // Mirar si existe la carpeta de comentarios, crearla sino

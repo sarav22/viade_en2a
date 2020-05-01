@@ -29,7 +29,8 @@ export class ListItem extends Component {
   }
 
   viewContent = route => {
-    if(route !== "error"){
+
+    if(route !== undefined && route !== "error"){
       const img =
       route.imagesToDisplay.length !== 0
         ? route.imagesToDisplay[0].resourceUrl
@@ -54,7 +55,8 @@ export class ListItem extends Component {
       <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
     );
   }
-}
+};
+
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
@@ -156,7 +158,7 @@ export class RouteListComponent extends Component<Props> {
   buildElements(start, end) {
     var elements = [];
     for (var i = start; i < end; i++) {
-      if(this.state.routes[i] !== undefined){
+      if (this.state.routes[i] !== undefined) {
         elements.push(
           <ListItem
             key={i}
@@ -174,7 +176,7 @@ export class RouteListComponent extends Component<Props> {
     this.setState({
       isInfiniteLoading: true
     });
-    setTimeout(function() {
+    setTimeout(function () {
       var elemLength = that.state.elements.length,
         newElements = that.buildElements(elemLength, elemLength + 10);
       that.setState({
@@ -192,17 +194,17 @@ export class RouteListComponent extends Component<Props> {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
       return <RouteListWrapper><RouteListPageContent
-      {...{
-        name,
-        image,
-        isLoading,
-        updatePhoto: this.updatePhoto,
-        handleInfiniteLoad: this.handleInfiniteLoad,
-        elementInfiniteLoad: this.elementInfiniteLoad,
-        elements: [],
-        isInfiniteLoading: this.state.isInfiniteLoading
-      }}
-    /></RouteListWrapper>;
+        {...{
+          name,
+          image,
+          isLoading,
+          updatePhoto: this.updatePhoto,
+          handleInfiniteLoad: this.handleInfiniteLoad,
+          elementInfiniteLoad: this.elementInfiniteLoad,
+          elements: [],
+          isInfiniteLoading: this.state.isInfiniteLoading
+        }}
+      /></RouteListWrapper>;
     }
     return (
       <RouteListPageContent
