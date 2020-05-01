@@ -37,7 +37,7 @@ export const loadMapInfo = async jsonUrl => {
             }
         });
     }
-    
+
     if (!foundErrorOnParse) {
         var routeName = "";
         var routeDescription = "";
@@ -304,11 +304,12 @@ export const loadListInfo = async jsonUrl => {
 
     var routeJson = "";
 
-    try{
-        await retrieveJson(jsonUrl).then(function(result) {
-        routeJson = JSON.parse(result);
-        }) 
-        
+    try {
+        await retrieveJson(jsonUrl).then(function (result) {
+            routeJson = JSON.parse(result);
+        })
+
+
         var routeName = "";
         var routeDescription = "";
 
@@ -316,32 +317,35 @@ export const loadListInfo = async jsonUrl => {
         var resourceList = [];
         var imagesToDisplay = []
 
-    for (var key in routeJson) {
-        var value = routeJson[key];
+        for (var key in routeJson) {
+            var value = routeJson[key];
 
-        if (key === "name")
-            routeName = value;
+            if (key === "name")
+                routeName = value;
 
-        if (key === "description")
-            routeDescription = value;
+            if (key === "description")
+                routeDescription = value;
 
-        if (key === "media") {
-            for (var media in value) {
-                let resource = new Resource(value[media]["@id"]);
-                resourceList.push(resource);
+            if (key === "media") {
+                for (var media in value) {
+                    let resource = new Resource(value[media]["@id"]);
+                    resourceList.push(resource);
 
-                if (resource.isImage()) imagesToDisplay.push(resource);
+                    if (resource.isImage()) imagesToDisplay.push(resource);
 
+                }
             }
         }
-    }
-        var route = new Route({"name" : routeName, "description" : routeDescription, "resources" : resourceList });
+        var route = new Route({ "name": routeName, "description": routeDescription, "resources": resourceList });
 
         route.fileWebId = jsonUrl;
         route.imagesToDisplay = imagesToDisplay;
+
+
         return route;
     }
-    catch(e){
+    catch (e) {
+  
         return "error"
     }
 };

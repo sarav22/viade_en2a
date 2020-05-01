@@ -30,7 +30,7 @@ export class ListItem extends Component {
 
   viewContent = route => {
 
-    if(route !== undefined || route !== "error"){
+    if(route !== undefined && route !== "error"){
       const img =
       route.imagesToDisplay.length !== 0
         ? route.imagesToDisplay[0].resourceUrl
