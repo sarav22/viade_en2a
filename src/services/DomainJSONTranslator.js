@@ -87,21 +87,34 @@ export const loadMapInfo = async jsonUrl => {
 
 const parseJsonFromTtl = (ttlSource) => {
     var jsonFromLib = ttl2jsonld(ttlSource);
-    var jsonRouteName = jsonFromLib["@graph"][0]["schema:name"]
-    var jsonRouteDescription = jsonFromLib["@graph"][0]["schema:description"]
-    var jsonRoutePoints = jsonFromLib["@graph"][0]["viade:point"].map(function(each) {
-        return{"latitude": parseFloat(each["schema:latitude"]["@value"]), "longitude": parseFloat(each["schema:longitude"]["@value"])};
-    });
-
-    var jsonRouteMedia = jsonFromLib["@graph"].filter(each =>  {
-        return each["@id"].includes("media");
-    });
-
-    jsonRouteMedia = jsonRouteMedia.map(each => {
-        return { "@id": each["schema:contentUrl"]["@id"] };
-    });
-
+    var jsonRouteName = "";
+    var jsonRouteDescription = "";
+    var jsonRoutePoints = "";
+    var jsonRouteMedia = [];
     var jsonRouteComments = [];
+
+    if(jsonFromLib["@graph"]) {
+        jsonRouteName = jsonFromLib["@graph"][0]["schema:name"]
+        jsonRouteDescription = jsonFromLib["@graph"][0]["schema:description"]
+        jsonRoutePoints = jsonFromLib["@graph"][0]["viade:point"].map(function(each) {
+            return{"latitude": parseFloat(each["schema:latitude"]["@value"]), "longitude": parseFloat(each["schema:longitude"]["@value"])};
+        });
+    
+        jsonRouteMedia = jsonFromLib["@graph"].filter(each =>  {
+            return each["@id"].includes("media");
+        });
+    
+        jsonRouteMedia = jsonRouteMedia.map(each => {
+            return { "@id": each["schema:contentUrl"]["@id"] };
+        });
+    
+    } else {
+        jsonRouteName = jsonFromLib["schema:name"]
+        jsonRouteDescription = jsonFromLib["schema:description"]
+        jsonRoutePoints = jsonFromLib["viade:point"].map(function(each) {
+            return{"latitude": parseFloat(each["schema:latitude"]["@value"]), "longitude": parseFloat(each["schema:longitude"]["@value"])};
+        });
+    }
 
     const routeJsonLD = {
         "@context": {
