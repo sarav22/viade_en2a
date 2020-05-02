@@ -235,9 +235,9 @@
     "button": "Upload"
   },
   "resourceVinculation" :{
-    "success": "El recurso se ha vinculado correctamente en el POD",
-    "failure": "Algun o ningun recurso no pudo ser vinculado en el POD",
-    "button": "Vincular",
+    "success": "The resourse has been successfully linked to the POD",
+    "failure": "Some or any resource could not be linked to the POD",
+    "button": "Link",
     "label":"Resource's URI:"
     
   }

@@ -19,7 +19,6 @@ const { container, getByTestId } = render(
 test("Renders correctly", () => {
   expect(container).toBeTruthy();
   setTimeout(() => {
-    expect(getByTestId("shareButton-fragment")).toBeTruthy();
     expect(getByTestId("shareButton-container")).toBeTruthy();
   }, 10000);
 });
