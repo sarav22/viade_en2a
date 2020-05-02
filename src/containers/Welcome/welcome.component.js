@@ -256,6 +256,26 @@ export const WelcomePageContent = props => {
               .
             </p>
           </Trans>
+          <h3>{t("welcome.useGuideTitle")}</h3>
+          <Trans i18nKey="welcome.useGuide">
+            <p>
+              text
+            <ul>
+              <li>
+                view
+              </li>
+              <li>
+                create
+              </li>
+              <li>
+                import
+              </li>
+              <li>
+                friends
+              </li>
+            </ul>
+            </p>
+          </Trans>
         </WelcomeDetail>
       </WelcomeCard>
     </WelcomeWrapper>
