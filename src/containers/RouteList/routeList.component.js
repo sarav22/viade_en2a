@@ -86,10 +86,10 @@ export const RouteListPageContent = (props) => {
       <RouteListCard className="card">
         <InfiniteList
           {...{
-            elements: elements,
-            isInfiniteLoading: isInfiniteLoading,
-            handleInfiniteLoad: handleInfiniteLoad,
-            elementInfiniteLoad: elementInfiniteLoad,
+            elements,
+            isInfiniteLoading,
+            handleInfiniteLoad,
+            elementInfiniteLoad,
           }}
         />
       </RouteListCard>
