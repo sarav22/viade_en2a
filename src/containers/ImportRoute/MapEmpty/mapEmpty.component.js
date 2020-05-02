@@ -1,5 +1,5 @@
 import React from "react";
-import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
+import {  GoogleMap, Polyline } from "@react-google-maps/api";
 import { MapCard } from "./map.style";
 
 /**
@@ -13,10 +13,7 @@ const MapEmpty = (props) => {
   return (
     <div>
       <MapCard>
-        <LoadScript
-          id="script-loader"
-          googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0"
-        >
+       
           <GoogleMap
             id="mapView"
             zoom={12}
@@ -48,7 +45,6 @@ const MapEmpty = (props) => {
               }}
             />
           </GoogleMap>
-        </LoadScript>
       </MapCard>
     </div>
   );

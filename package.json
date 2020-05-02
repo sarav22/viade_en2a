@@ -50,6 +50,7 @@
     "react-dom": "^16.13.0",
     "react-dropzone": "^10.2.2",
     "react-google-maps": "^9.4.5",
+    "react-helmet": "^6.0.0",
     "react-i18next": "^10.1.2",
     "react-infinite": "^0.13.0",
     "react-list": "^0.8.13",
