@@ -3,7 +3,7 @@
 
 We have identified the risk or technical debts we might encounter during the project. They are ordered by priority from higher risk to lower.
 
-.Risk and Technical Debt Table
+.Risks Table
 |=========================================================
 | Risk | Explanation | Solution 
 
@@ -29,10 +29,21 @@ We have identified the risk or technical debts we might encounter during the pro
 
 |=========================================================
 
+
+.Technical Debts Table
 |=========================================================
 | Technical Debt | Explanation 
 
-| Only one track per Gpm file considered
-| At this very momment in the develpment we are only consider one tag "track" inside a gpx, this may be mean afterwards a group of route or some kind of complex route.
+| Can only see shared routes from someone added as friend
+| At this very momment a user B who receives a route from a share action from user A, can only see the route if adds the route A first as friend. 
+
+| We are not using Solid Addresses Books
+| Currently we are handling the groups in our own way, because couldn't find enough documentation about that.
+
+| Ttl parser ignores comment
+| We didn't find a group that was implementing the comments in TTL, so we are ignoring them when parsing to JSON-LD.
+
+| Corrupted Routes
+| Given the case that the route file gets erased, corrupted and so on, then in the route list and in the friend routes views will appear an option for such a route telling that you cannot click, intead of showing nothing.
 
 |=========================================================

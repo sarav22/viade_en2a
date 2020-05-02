@@ -53,6 +53,7 @@ image::images/08-Crosscutting-Concepts-Structure-EN.png["Possible topics for cro
 
 === Domain concepts and model
 
+image::08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
 
 [plantuml,"Domain diagram",png]
 ----
