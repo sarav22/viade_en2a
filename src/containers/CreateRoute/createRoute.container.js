@@ -70,7 +70,7 @@ export class CreateRoute extends Component<Props> {
 
     let poly = this.state.polyline;
     poly.setMap(null);
-    this.setState({ polyline: null });
+    this.setState({ polyline: poly });
     saveRouteToPOD(route, function(success) {
       if (success) {
         successToaster(t("createRouteView.success"));
