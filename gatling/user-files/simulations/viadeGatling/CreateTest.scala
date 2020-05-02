@@ -436,5 +436,5 @@ class CreateTest extends Simulation {
 			.get(uri3)
 			.headers(headers_26)))
 
-	setUp(scn.inject(atOnceUsers(10))).protocols(httpProtocol)
+	setUp(scn.inject(atOnceUsers(1000))).protocols(httpProtocol)
 }
