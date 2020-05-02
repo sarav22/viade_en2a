@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import LateralMenu from "@containers/Map/LateralMenu/LateralMenu.component.js";
-import Map from "@containers/Map/Map/map.component.js";
+import LateralMenu from "../containers/Map/LateralMenu/lateralMenu.component.js";
 
 import '@testing-library/jest-dom/';
 import {TrackPoint, Resource, Comment, Route} from "../domain/domainClasses.js";
