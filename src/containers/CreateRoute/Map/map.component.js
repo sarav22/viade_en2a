@@ -7,7 +7,7 @@ const center = {
   lat: 0,
   lng: -180,
 };
-
+/*eslint no-undef: "error"*/
 class Map extends Component<Props> {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class Map extends Component<Props> {
   }
 
   completePolyline(polyline) {
-    if (this.props.getPolyline() != null) {
+    if (this.props.getPolyline() !== null) {
       this.props.getPolyline().setMap(null);
       return;
     }

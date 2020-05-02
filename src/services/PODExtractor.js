@@ -128,7 +128,7 @@ export async function postCommentInPod(commentJson, routeComments, callback) {
   routeCommentsFile.comments.push({
     text: commentJson.text,
     dateCreated: commentJson.dateCreated,
-    author: author,
+    author,
   });
 
   //Overwrite the file.

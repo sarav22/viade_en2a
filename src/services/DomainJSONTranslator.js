@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-loop-func */
 import {
   Route,
   Resource,
@@ -22,7 +24,6 @@ export const loadMapInfo = async (jsonUrl) => {
   var commentList = [];
   var commentsFile = "";
   //
-
   var foundErrorOnParse = false;
   if (jsonUrl.substring(jsonUrl.length - 3) === "ttl") {
     await retrieveJson(jsonUrl).then(function(result) {
@@ -101,8 +102,8 @@ export const loadMapInfo = async (jsonUrl) => {
       description: routeDescription,
       itinerary: trackPointList,
       resources: resourceList,
-      comments: commentsFile, //});
-      commentList: commentList,
+      comments: commentsFile,
+      commentList,
     });
 
     route.fileWebId = jsonUrl;
@@ -259,7 +260,9 @@ const asyncParseTtl = async (jsonUrls, files) => {
           result,
           partiallySplitted.substring(1, partiallySplitted.length - 4)
         );
-      } catch (e) {}
+      } catch (e) {
+          void 0;
+      }
     });
   });
 };
@@ -273,7 +276,7 @@ export const loadFriendRoutes = async (webId, filename) => {
 
   var json = "";
   await retrieveJson(routeUri).then(function(result) {
-    if (result != null) json = JSON.parse(result);
+    if (result !== null) json = JSON.parse(result);
   });
 
   var routes = [];
@@ -302,7 +305,9 @@ export async function loadCommentsFromRouteCommentsProperty(routeCommentsFile) {
   await retrieveJson(routeCommentsFile).then(function(result) {
     try {
       commentsFileJson = JSON.parse(result);
-    } catch (error) {}
+    } catch (error) {
+      void 0;
+    }
   });
 
   let comentarios = [];

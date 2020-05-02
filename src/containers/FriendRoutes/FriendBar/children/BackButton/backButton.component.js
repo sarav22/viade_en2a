@@ -7,15 +7,15 @@ import { ButtonWrapper } from "./backButton.style";
 const BackButton = (props) => {
   const { t } = useTranslation();
 
+  const reload = () => {
+    window.location.reload(true);
+  };
+  
   async function goBack(event) {
     event.preventDefault();
     browserHistory.push("/viade_en2a/#/manageFriends");
     await reload();
   }
-
-  const reload = () => {
-    window.location.reload(true);
-  };
 
   return (
     <ButtonWrapper>

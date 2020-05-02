@@ -90,7 +90,7 @@ const LateralMenu = (props) => {
         variant="primary"
         onClick={() => uploadFiles()}
       >
-        {t("resourceUpload.button")}{" "}
+        {t("resourceUpload.button")}
       </Button>
     </FormWrapper>
   );
