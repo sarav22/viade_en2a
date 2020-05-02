@@ -60,10 +60,12 @@ export const removeFromGroup = async (webId, group) => {
     if (json.users.hasOwnProperty(prop)) {
       if (json.users[prop].url === webId) {
         delete json.users[prop];
-        json.users.length--;
       }
     }
   }
+  json.users = json.users.filter(function(user) {
+    return user;
+  });
   return await fc.createFile(group, JSON.stringify(json), "text/plain");
 };
 
