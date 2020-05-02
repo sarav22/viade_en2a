@@ -13,7 +13,7 @@ import {
   deleteGroupWithURL,
 } from "@services/groupManager";
 import Form from "react-bootstrap/Form";
-import Card from 'react-bootstrap/Card';
+import Card from "react-bootstrap/Card";
 
 type Props = {
   webId: String,
@@ -142,61 +142,116 @@ class GroupManager extends Component<Props> {
             <Form>
               <Form.Label className="label">GROUP MANAGER</Form.Label>
             </Form>
-            <Dropdown actions={profileOpts} hover style={{width:"50%"}}>
-              Seleccionar Grupo
+            <Dropdown actions={profileOpts} hover style={{ width: "50%" }}>
+              <div id="seleccionarGrupo">Seleccionar Grupo</div>
             </Dropdown>
             <Form>
               <Form.Group>
-                <Form.Label className="label" style={{"font-size":"16px", "marginBottom":"10px", "marginTop":"15px"}}>
-                  Group Name: 
+                <Form.Label
+                  className="label"
+                  style={{
+                    "font-size": "16px",
+                    marginBottom: "10px",
+                    marginTop: "15px",
+                  }}
+                >
+                  Group Name:
                 </Form.Label>
-                <Form.Control id="groupName" className="inputAdd" type="text" placeholder={currentName.name} />
+                <Form.Control
+                  id="groupName"
+                  className="inputAdd"
+                  type="text"
+                  placeholder={currentName.name}
+                />
               </Form.Group>
-              <Button id="updateName" className="addFriendButton" variant="light" onClick={(event) => this.rename(event)}
-                data-testid="updateName">
-                Update Name
+              <Button
+                id="updateName"
+                className="addFriendButton"
+                variant="light"
+                onClick={(event) => this.rename(event)}
+                data-testid="updateName"
+              >
+                {this.state.currentGroup !== "new"
+                  ? "Update Name"
+                  : "Create Group"}
               </Button>
             </Form>
-            <Button id="deleteGroup" className="addFriendButton" variant="light" onClick={(event) => this.deleteGroup(event)}
-                data-testid="addToGroupButton">
+            {this.state.currentGroup !== "new" && (
+              <Button
+                id="deleteGroup"
+                className="addFriendButton"
+                variant="light"
+                onClick={(event) => this.deleteGroup(event)}
+                data-testid="addToGroupButton"
+              >
                 Delete group
-            </Button>
-            <div id="groupManager">
-              <Form.Label className="label" style={{"font-size":"16px"}}>
-                GROUP MEMBERS:
-              </Form.Label>
-              {rows &&
-                rows.length > 0 &&
-                rows.map((url) => (
-                  <Row id="group">
-                    <Card style={{ width:'60%', margin:'10px 10px 10px 15px', 'padding':'5px'}} text="dark" data-testid={"member"+url}>
-                      {url.replace("https://", "").replace("/profile/card#me", "")}
-                    </Card>
-                    <Button align="right"
-                      style={{ 'margin':'10px 0px 10px 0px'}}
-                      variant="light"
-                      onClick={(event) => this.deleteFromGroup(event, url)}
-                      width="100%"
-                      className="buttonDelete"
-                    >
-                      Eliminar
-                    </Button>
-                  </Row>
-                ))}
-              ;
-            </div>
-            <Form>
-              <Form.Group>
-                <Form.Label className="label" style={{"font-size":"16px", "marginBottom":"10px"}}>
-                  Enter the webID of the person you want to add to the group:{" "}
-                </Form.Label>
-                <Form.Control id="webIdGroupAdd" className="inputAdd" type="text" placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me" />
-              </Form.Group>
-              <Button id="addToGroupButton" className="addFriendButton" variant="light" onClick={(event) => this.addToGroup(event)}
-                data-testid="addToGroupButton">
-                Add to group
               </Button>
-            </Form>
+            )}
+            {this.state.currentGroup !== "new" && (
+              <div id="groupManager">
+                <Form.Label className="label" style={{ "font-size": "16px" }}>
+                  GROUP MEMBERS:
+                </Form.Label>
+                {rows &&
+                  rows.length > 0 &&
+                  rows.map((url) => (
+                    <Row id="group">
+                      <Card
+                        id={url}
+                        style={{
+                          width: "60%",
+                          margin: "10px 10px 10px 15px",
+                          padding: "5px",
+                        }}
+                        text="dark"
+                        data-testid={url}
+                      >
+                        {url
+                          .replace("https://", "")
+                          .replace("/profile/card#me", "")}
+                      </Card>
+                      <Button
+                        align="right"
+                        style={{ margin: "10px 0px 10px 0px" }}
+                        variant="light"
+                        onClick={(event) => this.deleteFromGroup(event, url)}
+                        width="100%"
+                        className="buttonDelete"
+                      >
+                        Eliminar
+                      </Button>
+                    </Row>
+                  ))}
+                ;
+              </div>
+            )}
+            {this.state.currentGroup !== "new" && (
+              <Form>
+                <Form.Group>
+                  <Form.Label
+                    className="label"
+                    style={{ "font-size": "16px", marginBottom: "10px" }}
+                  >
+                    Enter the webID of the person you want to add to the group:{" "}
+                  </Form.Label>
+                  <Form.Control
+                    id="webIdGroupAdd"
+                    className="inputAdd"
+                    type="text"
+                    placeholder="WebId example: https://mariaflorez.solid.community/profile/card#me"
+                  />
+                </Form.Group>
+                <Button
+                  id="addToGroupButton"
+                  className="addFriendButton"
+                  variant="light"
+                  onClick={(event) => this.addToGroup(event)}
+                  data-testid="addToGroupButton"
+                >
+                  Add to group
+                </Button>
+              </Form>
+            )}
           </ManageFriendsWrapper>
         );
       } else {
@@ -206,7 +261,7 @@ class GroupManager extends Component<Props> {
               <Form.Label className="label">GROUP MANAGER</Form.Label>
             </Form>
             <Dropdown actions={profileOpts} hover>
-              Seleccionar Grupo
+              <div id="seleccionarGrupo">Seleccionar Grupo</div>
             </Dropdown>
           </ManageFriendsWrapper>
         );
@@ -222,7 +277,7 @@ class GroupManager extends Component<Props> {
     return (
       <ManageFriendsWrapper>
         <Dropdown actions={profileOpts} hover>
-          Seleccionar Grupo
+          <div id="seleccionarGrupo">Seleccionar Grupo</div>
         </Dropdown>{" "}
         <div id="groupManager">No groups found</div>{" "}
       </ManageFriendsWrapper>
