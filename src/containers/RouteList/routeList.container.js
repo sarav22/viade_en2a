@@ -18,24 +18,22 @@ export class ListItem extends Component {
     this.state = {
       loading: true,
       route: "https://" + this.props.url,
-      title: null
+      title: null,
     };
   }
 
   componentDidMount() {
-    console.log(this.state.route);
-    loadListInfo(this.state.route).then(ruta => {
+    loadListInfo(this.state.route).then((ruta) => {
       this.setState({ loading: false, route: ruta });
     });
   }
 
-  viewContent = route => {
-
-    if(route !== undefined && route !== "error"){
+  viewContent = (route) => {
+    if (route !== undefined && route !== "error") {
       const img =
-      route.imagesToDisplay.length !== 0
-        ? route.imagesToDisplay[0].resourceUrl
-        : this.defaultImage;
+        route.imagesToDisplay.length !== 0
+          ? route.imagesToDisplay[0].resourceUrl
+          : this.defaultImage;
       return (
         <ItemWrapper className="card">
           <RouteImage>
@@ -44,9 +42,14 @@ export class ListItem extends Component {
           <WelcomeProfile>{route.name} </WelcomeProfile>
         </ItemWrapper>
       );
-    }
-    else{
-      return <ItemWrapper className="card"><ErrorComponent message={"This route has been removed"}></ErrorComponent></ItemWrapper>
+    } else {
+      return (
+        <ItemWrapper className="card">
+          <ErrorComponent
+            message={"This route has been removed"}
+          ></ErrorComponent>
+        </ItemWrapper>
+      );
     }
   };
 
@@ -56,7 +59,7 @@ export class ListItem extends Component {
       <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
     );
   }
-};
+}
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
@@ -72,7 +75,7 @@ export class RouteListComponent extends Component<Props> {
       hasImage: false,
       elements: [],
       isInfiniteLoading: false,
-      routes: []
+      routes: [],
     };
 
     this.loadRoutes();
@@ -80,7 +83,7 @@ export class RouteListComponent extends Component<Props> {
 
   async loadRoutes() {
     var result = await loadAllRoutes(this.props.webId);
-    var removed = result.map(route => route.replace("https://", ""));
+    var removed = result.map((route) => route.replace("https://", ""));
     this.setState({ routes: removed });
   }
 
@@ -160,13 +163,7 @@ export class RouteListComponent extends Component<Props> {
     var elements = [];
     for (var i = start; i < end; i++) {
       if (this.state.routes[i] !== undefined) {
-        elements.push(
-          <ListItem
-            key={i}
-            num={i}
-            url={this.state.routes[i]}
-          />
-        );
+        elements.push(<ListItem key={i} num={i} url={this.state.routes[i]} />);
       }
     }
     return elements;
@@ -175,14 +172,14 @@ export class RouteListComponent extends Component<Props> {
   handleInfiniteLoad = () => {
     var that = this;
     this.setState({
-      isInfiniteLoading: true
+      isInfiniteLoading: true,
     });
-    setTimeout(function () {
+    setTimeout(function() {
       var elemLength = that.state.elements.length,
         newElements = that.buildElements(elemLength, elemLength + 10);
       that.setState({
         isInfiniteLoading: false,
-        elements: that.state.elements.concat(newElements)
+        elements: that.state.elements.concat(newElements),
       });
     }, 100);
   };
@@ -194,18 +191,22 @@ export class RouteListComponent extends Component<Props> {
   render() {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
-      return <RouteListWrapper><RouteListPageContent
-        {...{
-          name,
-          image,
-          isLoading,
-          updatePhoto: this.updatePhoto,
-          handleInfiniteLoad: this.handleInfiniteLoad,
-          elementInfiniteLoad: this.elementInfiniteLoad,
-          elements: [],
-          isInfiniteLoading: this.state.isInfiniteLoading
-        }}
-      /></RouteListWrapper>;
+      return (
+        <RouteListWrapper>
+          <RouteListPageContent
+            {...{
+              name,
+              image,
+              isLoading,
+              updatePhoto: this.updatePhoto,
+              handleInfiniteLoad: this.handleInfiniteLoad,
+              elementInfiniteLoad: this.elementInfiniteLoad,
+              elements: [],
+              isInfiniteLoading: this.state.isInfiniteLoading,
+            }}
+          />
+        </RouteListWrapper>
+      );
     }
     return (
       <RouteListPageContent
@@ -217,7 +218,7 @@ export class RouteListComponent extends Component<Props> {
           handleInfiniteLoad: this.handleInfiniteLoad,
           elementInfiniteLoad: this.elementInfiniteLoad,
           elements: this.state.elements,
-          isInfiniteLoading: this.state.isInfiniteLoading
+          isInfiniteLoading: this.state.isInfiniteLoading,
         }}
       />
     );

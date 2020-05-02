@@ -10,27 +10,27 @@ import {
   WelcomeProfile,
   WelcomeDetail,
   WelcomeName,
-  ImageWrapper
+  ImageWrapper,
 } from "./welcome.style";
 import { ImageProfile } from "@components";
 import {
   errorToaster,
   storageHelper,
   ldflexHelper,
-  permissionHelper
+  permissionHelper,
 } from "@utils";
 
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
 
-import{storeJSONshared} from '../../services/PODExtractor';  
+import { storeJSONshared } from "../../services/PODExtractor";
 const fc = new FC(auth);
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const WelcomePageContent = props => {
+export const WelcomePageContent = (props) => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
@@ -41,7 +41,7 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let groupsPath = `${path}groups/`;
     let sharedPath = `${path}shared/`;
-    let notificationPath =`${path}notification.json`;
+    let notificationPath = `${path}notification.json`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -57,34 +57,28 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-     
+      // Check for CONTROL permissions to see if we can set permissions or not
+      const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+        webId,
+        AccessControlList.MODES.CONTROL
+      );
 
-        // Check for CONTROL permissions to see if we can set permissions or not
-        const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
-          webId,
-          AccessControlList.MODES.CONTROL
+      // If the user has Write and Control permissions, check the inbox settings
+      if (hasControlPermissions) {
+        // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
+        await permissionHelper.checkOrSetInboxAppendPermissions(
+          inboxPath,
+          webId
         );
+        await permissionHelper.checkOrSetSettingsReadPermissions(
+          settingsFilePath,
+          webId
+        );
+      }
 
-        // If the user has Write and Control permissions, check the inbox settings
-        if (hasControlPermissions) {
-          // Check if the inbox permissions are set to APPEND for public, and if not fix the issue
-          await permissionHelper.checkOrSetInboxAppendPermissions(
-            inboxPath,
-            webId
-          );
-          await permissionHelper.checkOrSetSettingsReadPermissions(
-              settingsFilePath,
-              webId
-            );
-          
-         
-          
-        }
-
-        if (!hasInboxLink) {
-          await data[settingsFilePath].inbox.set(namedNode(inboxPath));
-        }
-      
+      if (!hasInboxLink) {
+        await data[settingsFilePath].inbox.set(namedNode(inboxPath));
+      }
 
       const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
       if (!groupsFolderExists) {
@@ -95,31 +89,28 @@ export const WelcomePageContent = props => {
       if (!sharedFolderExists) {
         await fc.createFolder(sharedPath, { createPath: true });
       }
-      
-      let jsonldfriend ={};
-        jsonldfriend["@context"]={
-          "@version": 1.1,
-          "routes": {
-              "@container": "@list",
-              "@id": "viade:routes"
-          },
-          "viade": "http://arquisoft.github.io/viadeSpec/"
+
+      let jsonldfriend = {};
+      jsonldfriend["@context"] = {
+        "@version": 1.1,
+        routes: {
+          "@container": "@list",
+          "@id": "viade:routes",
+        },
+        viade: "http://arquisoft.github.io/viadeSpec/",
       };
       ldflexHelper.resourceExists(notificationPath).then(function(result) {
         if (result === false) {
-          
-            storeJSONshared(jsonldfriend, notificationPath, function(success){
-              if(success){
-              }
-            });
+          storeJSONshared(jsonldfriend, notificationPath, function(success) {
+            if (success) {
+            }
+          });
         }
       });
-      
-     
     }
   }
 
-  const init = async document => {
+  const init = async (document) => {
     try {
       const path = await storageHelper.getAppStorage(webId);
 
@@ -137,7 +128,7 @@ export const WelcomePageContent = props => {
       if (e.name === "Inbox Error") {
         return errorToaster(e.message, "Error", {
           label: t("errorCreateInbox.link.label"),
-          href: t("errorCreateInbox.link.href")
+          href: t("errorCreateInbox.link.href"),
         });
       }
 
@@ -168,34 +159,34 @@ export const WelcomePageContent = props => {
                 accept: "jpg,jpeg,png",
                 errorsText: {
                   sizeLimit: t("welcome.errors.sizeLimit", {
-                    limit: `${limit / 1000000}Mbs`
+                    limit: `${limit / 1000000}Mbs`,
                   }),
                   unsupported: t("welcome.errors.unsupported"),
-                  maximumFiles: t("welcome.errors.maximumFiles")
+                  maximumFiles: t("welcome.errors.maximumFiles"),
                 },
-                onError: error => {
+                onError: (error) => {
                   if (error && error.statusText) {
                     errorToaster(error.statusText, t("welcome.errorTitle"));
                   }
                 },
-                onComplete: uploadedFiles => {
+                onComplete: (uploadedFiles) => {
                   updatePhoto(
                     uploadedFiles[uploadedFiles.length - 1].uri,
                     t("welcome.uploadSuccess"),
                     t("welcome.successTitle")
                   );
                 },
-                render: props => (
+                render: (props) => (
                   <ImageProfile
                     {...{
                       ...props,
                       webId,
                       photo: image,
                       text: t("welcome.upload"),
-                      uploadingText: t("welcome.uploadingText")
+                      uploadingText: t("welcome.uploadingText"),
                     }}
                   />
-                )
+                ),
               }}
             />
           </ImageWrapper>
@@ -260,20 +251,12 @@ export const WelcomePageContent = props => {
           <Trans i18nKey="welcome.useGuide">
             <p>
               text
-            <ul>
-              <li>
-                view
-              </li>
-              <li>
-                create
-              </li>
-              <li>
-                import
-              </li>
-              <li>
-                friends
-              </li>
-            </ul>
+              <ul>
+                <li>view</li>
+                <li>create</li>
+                <li>import</li>
+                <li>friends</li>
+              </ul>
             </p>
           </Trans>
         </WelcomeDetail>

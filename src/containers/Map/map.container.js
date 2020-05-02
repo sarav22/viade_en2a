@@ -34,10 +34,6 @@ export class MapComponent extends Component<Props> {
       this.setState({ loading: false, route: ruta });
     });
     this.loadFriends();
-  
-    //const route = null;
-    //loadMapInfo("https://luispresacollada.solid.community/viade/routes/route.txt").then(function (result){const route = result;console.log(route)})
-    //console.log("log2"+ route)
   }
 
    async loadFriends() {

@@ -29,7 +29,7 @@ export const Map = props => {
         <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
           <GoogleMap
             id="mapView"
-            zoom={12}
+            zoom={5}
             resetBoundsOnResize
             mapContainerStyle={{
               "max-height": "calc(100vh - 180px)",
@@ -37,7 +37,6 @@ export const Map = props => {
               width: "100%",
               padding: "1rem 3.5rem"
             }}
-            onLoad={() => console.log("map loading")}
             loadingElement={<div>Loading...</div>}
             center={{
               lat: routePath[0].lat,

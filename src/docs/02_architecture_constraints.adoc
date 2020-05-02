@@ -26,7 +26,7 @@
 |=========================================================
 |Constraint |Motivation
 
-| Timespan| Development time must match the course duration.
+|Timespan| Development time must match the course duration.
 
 |Language | The project will be developed in its entirety using English.
 

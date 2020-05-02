@@ -138,7 +138,7 @@ export const ShareButton = (props) => {
   }
 
   return (
-    <Fragment>  
+    <Fragment data-testid={"shareButton-fragment"}>  
                     {
                         isOwner ?
     <div data-testid={"shareButton-container"}>
