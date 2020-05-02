@@ -49,12 +49,12 @@ defineFeature(feature, (test) => {
     await page.waitForSelector('a[href="#/seeRoutes"]');
     await page.click('a[href="#/seeRoutes"]');
 
-    await delay(5000);
+    await delay(10000);
   });
 
   test("Alice wants to share a route with Bob", ({ given, when, then }) => {
     given("Alice has a route", async () => {
-      delay(10000);
+      delay(3000);
       await page.waitForSelector(
         'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlLmlucnVwdC5uZXQvdmlhZGUvcm91dGVzL01hcl9hYjM4OWU5Yi1kMTIyLTRhMmQtYjhiMS1mZTE2ZTYxNzIzNjIuanNvbmxk"]'
       );
