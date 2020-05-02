@@ -11,7 +11,6 @@ import {saveRouteToPOD} from '../../services/DomainJSONTranslator.js';
 import {withTranslation} from 'react-i18next';
 
 
-
 export class CreateRoute extends Component<Props>{
 
     

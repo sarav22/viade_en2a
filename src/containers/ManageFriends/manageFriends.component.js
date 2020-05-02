@@ -2,7 +2,7 @@ import React from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useTranslation } from 'react-i18next';
-import {deleteFriend, viewRoutes , getImgByWebId, getName} from '../../services/friendsManager';
+import {deleteFriend, viewRoutes , getImgByWebId, getName, viewProfile} from '../../services/friendsManager';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -46,7 +46,7 @@ export const ManageFriendsContent = props => {
           </Col>
           <Col md={2} sm={2} xs={2}>
             <DropdownButton variant="light" key={friend+"dropdown"} id={friend+"dropdown"} title=""> 
-              <Dropdown.Item as="button" href={friend} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
+              <Dropdown.Item as="button" onClick={(event) => viewProfile(event, friend)} key={friend+"dropdownI1"}>{t('manageFriends.viewProfile')}</Dropdown.Item>
               <Dropdown.Item as="button"  onClick={(event) => deleteFriend(event,friend, webId)} key={friend+"dropdownI2"} id={friend+"dropdownDelete"}>{t('manageFriends.delete')}</Dropdown.Item>
               <Dropdown.Item as="button"  onClick={(event) => viewRoutes(event,friend)} key={friend+"dropdownI3"}>{t('manageFriends.viewRoutes')}</Dropdown.Item>
             </DropdownButton>

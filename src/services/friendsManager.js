@@ -26,6 +26,11 @@ export async function addFriend(event, friend, webId) {
  await reload();
 }
 
+export async function viewProfile(event, friend){
+  event.preventDefault();
+  window.location.replace(friend);
+}
+
 
  export async function viewRoutes(event, friend) {
     event.preventDefault();

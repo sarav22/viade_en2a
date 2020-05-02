@@ -7,15 +7,6 @@ const puppeteer = require('puppeteer');
 jest.setTimeout(100000);
 let page = null;
 
-function delay(time) {
-    return new Promise(function (resolve) {
-        setTimeout(resolve, time);
-    });
-}
-
-
-jest.setTimeout(100000);
-let page = null;
 
 function delay(time) {
     return new Promise(function (resolve) {

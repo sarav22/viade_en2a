@@ -110,15 +110,10 @@ export class ManageFriendsComponent extends Component<Props> {
                 <Col md={6} sm={6} xs={12}>
                   <AddFriendsContent webId={webId} />
                   <Form>
-                    <Form.Group>
-                      <Form.Label className="label">List of Friends</Form.Label>
-                      <Form.Control
-                        type="text"
-                        className="input"
-                        placeholder="Search..."
-                        onChange={this.handleChange}
-                      />
-                    </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                    <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
+                  </Form.Group>
                   </Form>
                   <ManageFriendsContent {...{ webId, friends, images }} />
                 </Col>
