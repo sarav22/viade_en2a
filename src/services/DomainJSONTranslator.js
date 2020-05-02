@@ -1,9 +1,6 @@
 import { Route, Resource, TrackPoint, CommentEntity } from '../domain/domainClasses.js';
 import { retrieveJson, retrieveAllRoutes, storeJSONToPOD } from './PODExtractor.js';
 import parseRouteJsonLD from './importing/DomainJSONLDParser.js';
-import { comment } from 'rdf-namespaces/dist/cal';
-import { resultComment } from 'rdf-namespaces/dist/schema';
-import { getEmptyCommentsJsonString } from './comments/commentsService.js';
 
 const ttl2jsonld = require('@frogcat/ttl2jsonld').parse;
 

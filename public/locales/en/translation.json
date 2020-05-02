@@ -213,7 +213,8 @@
     "sizeLimitImport": "Tried to import more than one file or tried to import a file that is not .gpx",
     "gpxNotRoutes": "The gpx contains no route, maybe the gpx has no trk",
     "gpxNotRoutesTitle": "No Route",
-    "fileReadError": "The system could not read the file"
+    "fileReadError": "The system could not read the file",
+    "removedRoute": "This route has been removed"
   },
   "import": {
     "dragAndDropMain": "Drag n' drop the route file you want to import",

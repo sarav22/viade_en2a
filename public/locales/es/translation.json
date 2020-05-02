@@ -215,7 +215,8 @@
     "sizeLimitImport": "Se ha intentado importar más de un archivo o el archivo importado no es .gpx",
     "gpxNotRoutes": "El archivo gpx no contiene ninguna ruta, quizás no tenga trks",
     "gpxNotRoutesTitle": "Sin Rutas",
-    "fileReadError": "El sistema no pudo leer el archivo proporcionado"
+    "fileReadError": "El sistema no pudo leer el archivo proporcionado",
+    "removedRoute": "Esta ruta ya no existe"
   },
   "import": {
     "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
