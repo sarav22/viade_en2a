@@ -22,11 +22,11 @@ defineFeature(feature, (test) => {
       defaultViewport: { width: 1366, height: 768 },
     });
 
-    await delay(10000);
+    await delay(20000);
     page = await browser.newPage();
     await page.goto("http://localhost:3000");
 
-    await delay(5000);
+    await delay(10000);
     await page.waitForSelector('input[name="idp"]');
     await expect(page).toMatchElement('input[name="idp"]');
 
