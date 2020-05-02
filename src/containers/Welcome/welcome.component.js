@@ -22,6 +22,8 @@ import {
 
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
+
+import{storeJSONshared} from '../../services/PODExtractor';  
 const fc = new FC(auth);
 /**
  * Welcome Page UI component, containing the styled components for the Welcome Page
@@ -39,6 +41,7 @@ export const WelcomePageContent = props => {
     let inboxPath = `${path}inbox/`;
     let groupsPath = `${path}groups/`;
     let sharedPath = `${path}shared/`;
+    let notificationPath =`${path}notification.json`;
     let hasInboxLink = false;
     // Check if the settings file contains a link to the inbox. If so, save it as inboxPath
     const inboxLinkedPath = await ldflexHelper.getLinkedInbox(settingsFilePath);
@@ -54,9 +57,7 @@ export const WelcomePageContent = props => {
     );
     // If so, try to create the inbox. No point in trying to create it if we don't have permissions
     if (hasWritePermission) {
-      const inboxExists = await ldflexHelper.resourceExists(inboxPath);
-      if (!inboxExists) {
-        await fc.createFolder(inboxPath, { createPath: true });
+     
 
         // Check for CONTROL permissions to see if we can set permissions or not
         const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
@@ -71,12 +72,19 @@ export const WelcomePageContent = props => {
             inboxPath,
             webId
           );
+          await permissionHelper.checkOrSetSettingsReadPermissions(
+              settingsFilePath,
+              webId
+            );
+          
+         
+          
         }
 
         if (!hasInboxLink) {
           await data[settingsFilePath].inbox.set(namedNode(inboxPath));
         }
-      }
+      
 
       const groupsFolderExists = await ldflexHelper.resourceExists(groupsPath);
       if (!groupsFolderExists) {
@@ -87,7 +95,27 @@ export const WelcomePageContent = props => {
       if (!sharedFolderExists) {
         await fc.createFolder(sharedPath, { createPath: true });
       }
-      permissionHelper.checkOrSetSettingsReadPermissions(settingsFilePath);
+      
+      let jsonldfriend ={};
+        jsonldfriend["@context"]={
+          "@version": 1.1,
+          "routes": {
+              "@container": "@list",
+              "@id": "viade:routes"
+          },
+          "viade": "http://arquisoft.github.io/viadeSpec/"
+      };
+      ldflexHelper.resourceExists(notificationPath).then(function(result) {
+        if (result === false) {
+          
+            storeJSONshared(jsonldfriend, notificationPath, function(success){
+              if(success){
+              }
+            });
+        }
+      });
+      
+     
     }
   }
 
@@ -226,6 +254,26 @@ export const WelcomePageContent = props => {
                 link
               </a>
               .
+            </p>
+          </Trans>
+          <h3>{t("welcome.useGuideTitle")}</h3>
+          <Trans i18nKey="welcome.useGuide">
+            <p>
+              text
+            <ul>
+              <li>
+                view
+              </li>
+              <li>
+                create
+              </li>
+              <li>
+                import
+              </li>
+              <li>
+                friends
+              </li>
+            </ul>
             </p>
           </Trans>
         </WelcomeDetail>

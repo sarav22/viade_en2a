@@ -21,7 +21,7 @@
     "notSharable": "(logéate y carga undocumento en tu própio pod para poder dar acceso)"
   },
   "login": {
-    "title": "Hola! Bienvenido a Solid.",
+    "title": "Hola! Bienvenido a Viade En2A.",
     "loginTitle": "Iniciar sesión",
     "register": "Registrarse por una identidad Solid",
     "solidHelp": "Qué es una identidad Solid?",
@@ -98,7 +98,9 @@
       "sizeLimit": "El tamaño del archivo supera el límite permitido ({{limit}})",
       "unsupported": "Formato no soportado",
       "maximumFiles": "Disculpe, has excedido la cantidad máxima de archivos permitidos por subida"
-    }
+    },
+    "useGuideTitle": "Guía de uso",
+    "useGuide": "<0>Con el gestor de rutas Viade podrás crear, importar y visualizar todas tus rutas. Además, podrás compartir cualquier ruta con tus amigos y ver las rutas que ellos te hayan compartido.<1>Ver Rutas: Muestra un listado con todas las rutas almacenadas en tu POD. Clickando sobre alguna de ellas accederás a una nueva pantalla donde se te mostrará dicha ruta en el mapa. Cada ruta cuenta con su propia sección de comentarios, multimedia e información. Desde esta pantalla podrás también compartir la ruta con los amigos que desees. Esto último se realiza pulsando el botón compartir y seleccionando después al amigo o grupo correspondiente.</1><1>Crear una ruta: El proceso de creación de una ruta tiene dos partes. La primera consiste en ir clickando en el mapa sobre los puntos por los que pasará la ruta. Una vez confeccionada, el modo de edición se desactiva clickando dos veces en el último punto de ruta o pulsando sobre el punto inicial en caso de que sea circular. Por último, se ha de rellenar el formulario con el nombre y una descripción (este último campo es opcinal) de la ruta.</1><1>Importar una ruta: Una vez seleccionado el archivo con extensión GPX, las rutas contenidas en dicho archivo aparecerán reflejadas en el mapa y se guardarán el POD.</1><1>Gestionar amigos: Desde esta pantalla podrás agregar amigos a tu POD insertando su Web ID y también podrás acceder a la lista de rutas que cada amigo ha compartido contigo. Así mismo, pulsando sobre el desplegable asignado a cada persona, tendrás la posibilidad de acceder a sus respectivos perfiles o de eliminarlos como amigos.</1></0>"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
@@ -132,7 +134,7 @@
   },
   "mapView":{
     "viewTitle":"Visualizando la ruta: ",
-    "importedRoutesTitle":"Visualizando rutas importadas",
+    "importedRoutesTitle":"Visualizando rutas a importar",
     "menu":{
       "images":"Imágenes y vídeos",
       "comments": "Comentarios",
@@ -142,8 +144,39 @@
     "shareWith":"Choose a friend or group to share with: ",
     "share":"Share",
     "shareSuccess": "La ruta se compartió correctamente",
+    "errorSuccess": "La ruta no se pudo compartir con ",
     "notificationTitle": "Ruta compartida",
-    "notificationSummary": " ha compartido una ruta contigo: "
+    "notificationSummary": " ha compartido una ruta contigo: ",
+    "comment": {
+      "commentSuccess" : "El comentario se ha añadido correctamente",
+      "commentFailure" : "Se ha producido un error al añadir el comentario, intentelo de nuevo",
+      "commentButton" : "Comentar",
+      "commentPlaceholder" : "Que ruta tan guay!",
+      "fieldName": "Introduce to comentario"
+    },
+    "resources":{
+      "pictures": "Imagenes",
+      "videos": "Videos",
+      "audios": "Audios"
+    }
+    
+  },
+  "createRouteView":{
+    "defaultFormValues":{
+      "name":"El nombre de la ruta",
+      "description":"La descripción de la ruta"
+    },
+    "errors":{
+      "nameEmpty":"El nombre de la ruta no puede estar vacio",
+      "routeEmpty":"La ruta tiene que contener al menos un punto en el mapa",
+      "error":"Hubo un problema y no se pudo guardar"
+    },
+    "success":"La ruta se ha guardado en el pod: OK!",
+    "lateralForm":{
+      "routeName":"Nombre de la ruta",
+      "routeDescription":"Descripción de la ruta",
+      "createButton":"Crear"
+    }
   },
   "friendsManagement":{
     "profile": "Ver Perfil",
@@ -160,21 +193,53 @@
   "manageFriends": {
     "viewProfile": "Ver perfil",
     "delete": "Eliminar",
-    "viewRoutes": "Ver rutas"
+    "viewRoutes": "Ver rutas",
+    "error":{
+      "nonexistentWebID": "El WebID introducido no existe",
+      "defaultErrorMessage": "Se ha producido un error al intentar encontrar este webID",
+      "notValidWebID": "El webID introducido no tiene un formato válido"
+    },
+    "addFriendExplanation": "Introduzca el webID de la persona a la que quiere agregar como amigo: ",
+    "webIDExample": "Ejemplo de webID válido: https://mariaflorez.solid.community/profile/card#me",
+    "addFriend": "Agregar amigo",
+    "searchPlaceholder": "Buscar...",
+    "listOfFriends": "Lista de amigos",
+    "addFriendSucess": "The user has been added as a friend successfully"
   },
   "utils":{
     "back": "Atrás"
   },
   "error":{
     "importError": "Un error ha ocurrido al importar la ruta, porfavor inténtelo de nuevo",
-    "sizeLimitImport": "El número máximo de archivos que se pueden importar es 1",
+    "importVisualizeError": "Un error ha ocurrido al parsear la ruta a visualizar, use otro gpx o inténtelo de nuevo",
+    "sizeLimitImport": "Se ha intentado importar más de un archivo o el archivo importado no es .gpx",
     "gpxNotRoutes": "El archivo gpx no contiene ninguna ruta, quizás no tenga trks",
-    "fileReadError": "El sistema no pudo leer el archivo proporcionado"
+    "gpxNotRoutesTitle": "Sin Rutas",
+    "fileReadError": "El sistema no pudo leer el archivo proporcionado",
+    "removedRoute": "Esta ruta ya no existe"
   },
   "import": {
     "dragAndDropMain": "Arrastre el archivo de la ruta que desee importar",
     "dragAndDropSupported": "Los archivos soportados son *.gpx",
-    "success": "Las rutas se han guardado correctamente en el POD",
-    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD"
+    "dragAndDropCurrentFiles": "Archivo de ruta a importar:",
+    "success": "Las rutas se han guardado correctamente en el POD", 
+    "successTitle": "Importado",
+    "failure": "Algunas o ninguna ruta pudo ser guardada en el POD",
+    "failureTitle": "No Importado",
+    "submitButton": "Importar"
+  },
+  "resourceUpload" :{
+    "dragAndDropMain": "Arrastre el archivo de imagen que desea añadir",
+    "dragAndDropSupported": "Los archivos soportados son *.jpg, *.png *.gif *.mp4 *.mp3",
+    "success": "El recurso se han guardado correctamente en el POD",
+    "failure": "Algun o ningun recurso no pudo ser guardado en el POD",
+    "button": "Subir"
+  },
+  "resourceVinculation" :{
+    "success": "El recurso se ha vinculado correctamente en el POD",
+    "failure": "Algun o ningun recurso no pudo ser vinculado en el POD",
+    "button": "Vincular",
+    "label":"URI del recurso:"
+   
   }
 }

@@ -1,25 +1,31 @@
 
 import React, { Component } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
-import {Route} from '../../../../../domain/domainClasses';
-
-
 
 import {postNewComment} from "../../../../../services/comments/commentsService";
 import CommentsList from "./CommentsList/commentsList.component";
 import CommentForm from "./CommentsForm/index";
+import { CommentsTabWrapper } from "./commentsTab.style";
+import {loadCommentsFromRouteCommentsProperty} from "../../../../../services/DomainJSONTranslator";
+
+import {successToaster, errorToaster} from "@utils";
+
+import { withTranslation } from "react-i18next";
+
+
+
 class CommentsTab extends Component<Props>{
 
     constructor(props) {
         super(props);
+        
+        const { routeObject } = this.props;
+        console.log(props)
+        
         this.state = {
             text: "",
+            commentList: routeObject.commentList
         };
-        console.log("Comments Tab props");
-        console.log(this.props);
 
         this.handleSetText = this.handleSetText.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,15 +41,21 @@ class CommentsTab extends Component<Props>{
 
    
     handleSubmit(event) {
+        const { t } = this.props;
         const { routeObject } = this.props;
+        var that = this;
         
         postNewComment(this.state.text, routeObject.comments, function(success) {
             if(success){
-                alert("Comment saved");
-            
+                loadCommentsFromRouteCommentsProperty(routeObject.comments).then(commentsParsed => {
+                    that.setState({commentList: commentsParsed});
+                    console.log(commentsParsed);
+                    successToaster(t("mapView.comment.commentSuccess"));
+                });
+                           
             }
             else{
-                alert("There was an error");
+                errorToaster(t("mapView.comment.commentFailure"));
             }
         });
         
@@ -54,22 +66,23 @@ class CommentsTab extends Component<Props>{
     }
 
     render() {
-        const { routeObject } = this.props;
+        //const { routeObject } = this.props;
         return (
             <Container fluid>
-            
+                <CommentsTabWrapper>
                         <CommentForm
                             setText={this.handleSetText} 
                             handleSubmit={this.handleSubmit}
-                         /> 
+                         />
+
 
                         <CommentsList ref = {this.commentsListReference}
-                            comments = {routeObject.commentsLit}
-                        /> 
-              
+                            comments = {this.state.commentList}
+                        />
+                </CommentsTabWrapper>
             </Container>
         );
     }
 }
 
-export default CommentsTab;
+export default withTranslation()(CommentsTab);

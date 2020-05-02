@@ -133,6 +133,11 @@ export const ItemWrapper = styled.div`
     color: #18A9E6;
     background-color: #F2F2F2;
   }
+
+  .error{
+    color: red;
+    padding: 0px;
+  }
 `;
 
 export const RouteImage = styled.div`

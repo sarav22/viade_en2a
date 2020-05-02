@@ -1,8 +1,8 @@
 Feature: Manage groups of friends
 
 	Scenario: Alice wants to create a group
-		Given Alice has Bob and Claire as friends
-		When Alice she selects them of them and writes as name group1
+		Given Alice creates a new group named group1
+		When Alice adds Bob to the group
 		Then the group is stored in her pod
 		
 	

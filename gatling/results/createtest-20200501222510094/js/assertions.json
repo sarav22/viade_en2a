@@ -1,0 +1,10 @@
+{
+  "simulation": "viadeGatling.CreateTest",
+  "simulationId": "createtest",
+  "start": 1588371910094,
+  "description": "",
+  "scenarios": ["CreateTest"],
+  "assertions": [
+
+  ]
+}

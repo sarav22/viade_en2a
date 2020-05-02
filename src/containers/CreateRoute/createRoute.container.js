@@ -3,20 +3,24 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { MapWrapper } from "./createRoute.style";
-
+import {errorToaster, successToaster} from '@utils';
 import Map from "./Map";
 import LateralForm from "./LateralForm";
 import {Route} from '../../domain/domainClasses.js'
-
 import {saveRouteToPOD} from '../../services/DomainJSONTranslator.js';
+import {withTranslation} from 'react-i18next';
+
 
 export class CreateRoute extends Component<Props>{
 
+    
+
     constructor(props) {
         super(props);
+        const {t} = this.props;
         this.state = {
-            name: "The name of the route",
-            description: "The description of the route",
+            name: "",
+            description: "",
             waypoints: [],
             polyline:null
         };
@@ -53,6 +57,18 @@ export class CreateRoute extends Component<Props>{
     }
 
     handleSubmit(event) {
+
+        const {t} = this.props;
+
+        if(!this.state.name || this.state.name === ""){
+            errorToaster(t('createRouteView.errors.nameEmpty'));
+            return;
+        }
+        if(!this.state.polyline){
+            errorToaster(t('createRouteView.errors.routeEmpty'));
+            return;
+        }
+
         var route = new Route({"name": this.state.name, "description":this.state.description,"itinerary": this.state.waypoints, "resources" : [], "comments" : []});
 
         let poly = this.state.polyline;
@@ -61,10 +77,10 @@ export class CreateRoute extends Component<Props>{
         console.log(route.name);
         saveRouteToPOD(route, function(success){
             if(success){
-                alert("La ruta se ha guardado en el pod: OK!");
+                successToaster(t('createRouteView.success'));
             }
             else{
-                alert("Mierda, hubo un problema y no se pudo guardar");
+                errorToaster(t('createRouteView.errors.error'));
             }
         });
 
@@ -76,7 +92,7 @@ export class CreateRoute extends Component<Props>{
             <MapWrapper>
                 <Container fluid>
                     <Row>
-                        <Col xs={12} md={7} sm={8} xs={12}>
+                        <Col xs={12} md={7} sm={8}>
                             <Map 
                                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0&libraries=drawing"
                                 loadingElement={<div style={{ height: `100%` }} />}
@@ -90,7 +106,7 @@ export class CreateRoute extends Component<Props>{
                             />
                         </Col>
 
-                        <Col xs={6} md={5} sm={4} xs={12}>
+                        <Col xs={12} md={5} sm={4}>
                             <LateralForm setDescription={this.handleSetDescription} 
                                 setName={this.handleSetName} 
                                 handleSubmit={this.handleSubmit}

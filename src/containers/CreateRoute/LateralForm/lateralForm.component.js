@@ -1,47 +1,52 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FormWrapper } from "./lateralForm.style";
+import { useTranslation } from 'react-i18next';
 
 
-export default class LateralForm extends Component<Props>{
+    
+const LateralForm = props  => {
 
-    render() {
+    const setName=props.setName;
+    const handleSubmit=props.handleSubmit;
+    const setDescription=props.setDescription;
+    const { t } = useTranslation();
+
         return (
             <FormWrapper>
-            <Form onSubmit={this.props.handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formName">
-                    <Form.Label className="label">Nombre de la ruta</Form.Label>
+                    <Form.Label className="label">{t('createRouteView.lateralForm.routeName')}</Form.Label>
 
                     <Form.Control
-                        required
+                        
                         type="text"
-                        placeholder="nombre"
-                        defaultValue={this.props.name}
+                        placeholder={t('createRouteView.defaultFormValues.name')}
                         onChange={(x: React.FormEvent<FormControl & HTMLInputElement>) => { 
-                            this.props.setName(x.currentTarget.value);
+                            setName(x.currentTarget.value);
                          } }
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="formSurname">
-                    <Form.Label className="label">Descripción</Form.Label>
+                    <Form.Label className="label">{t('createRouteView.lateralForm.routeDescription')}</Form.Label>
                     <Form.Control 
                         as="textarea"
                         rows="3"
-                        defaultValue={this.props.description}
+                        placeholder={t('createRouteView.defaultFormValues.description')}
                         onChange={(x: React.FormEvent<FormControl & HTMLInputElement>) => { 
-                            this.props.setDescription(x.currentTarget.value);
+                            setDescription(x.currentTarget.value);
                          } }                    />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Crear
+                {t('createRouteView.lateralForm.createButton')}
                 </Button>
             </Form>
             </FormWrapper>
         );
-    }
-
-}
+    
+                        }
+export default LateralForm;

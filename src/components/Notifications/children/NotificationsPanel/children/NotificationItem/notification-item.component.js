@@ -16,7 +16,6 @@ type Props = {
 const NotificationItem = ({ notification, markAsRead, children, deleteNotification }: Props) => {
   const { read } = notification;
   const currentRead = read ? JSON.parse(read) : false;
-  const { actor } = notification;
   /**
    * Redirect notification if it's coming with target
    * @type {Function}

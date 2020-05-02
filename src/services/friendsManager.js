@@ -26,6 +26,11 @@ export async function addFriend(event, friend, webId) {
  await reload();
 }
 
+export async function viewProfile(event, friend){
+  event.preventDefault();
+  window.location.replace(friend);
+}
+
 
  export async function viewRoutes(event, friend) {
     event.preventDefault();
@@ -55,5 +60,20 @@ export async function addFriend(event, friend, webId) {
       return false;
     }
    } 
+
+  export function getName(friendWebId){
+    return friendWebId.toString().substring(8).split(".")[0];
+  }
+
+  export function getImgByWebId(friendWebId, images){
+    if(images!== undefined){
+      for(let i=0; i<images.length; i++){
+        if(images[i].id === friendWebId){
+          return images[i].img;
+        }
+      }
+    }
+  }
+
 
 

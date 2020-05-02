@@ -5,6 +5,7 @@ export const ManageFriendsWrapper = styled.div`
   background-image: url('img/concentric-hex-pattern_2x_black.png');
   background-repeat: repeat;
   flex-direction: row !important;
+  align-items: left;
   h3 {
     color: #666666;
     span {
@@ -15,38 +16,72 @@ export const ManageFriendsWrapper = styled.div`
     }
   }
   
-  .input {
-    width: 50em;
-    margin: 20px;
+  .inputAdd{
+    width: 100%;
+    max-width: 65em;
   }
 
-  form {
-    p {
-      margin: 20px 20px 0px 20px;
-      color: #FFFFFF;
-      span {
-        font-weight: bold;
-      }
-      font-size: 1.2rem;
-    }
-    input {
-      width: 50em;
-      margin: 20px 20px 0px 20px;
-    }
-    .addFriendButton {
-      width: 40em;
-    }
+  .label{
+    color: #18A9E6;
+    margin: 20px 20px 0px 0px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
   }
 
-`;
+  .friend{
+    margin-top: 20px;
+  }
 
-export const ButtonFriend = styled.div`
-  margin-right: 5px;
-  .buttonFriend:hover{
+  .input{
+    max-width: 65em;
+  }
+
+  .buttonFriend:hover, .addFriendButton:hover, .buttonDelete:hover{
     color: #01C9EA;
   }
-  .buttonFriend{
+  .buttonFriend, .addFriendButton{
     padding-left: 2px;
     padding-right: 2px;
+    margin-right: 2px;
+    overflow-wrap: break-word;
   }
+
+  .buttonFriend{
+    text-align: left;
+    width: 100%;
+  }
+
+  .addFriendButton{
+    text-align: center;
+    max-width: 65em;
+    min-width: 30%;
+  }
+
+  #updateName, #addToGroupButton, #deleteGroup{
+    width: 100%;
+  }
+
+  #deleteGroup{
+    margin-top: 5px;
+  }
+
+  #addToGroupButton{
+    margin-bottom: 20px;
+  }
+
+  #groupName, #webIdGroupAdd{
+    max-width: 100%;
+  }
+
+  .picture{
+    overflow: visible;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 62px;
+    height: 42px;
+    border-radius: 50%;
+  }
+
 `;

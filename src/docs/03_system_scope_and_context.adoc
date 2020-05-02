@@ -63,5 +63,8 @@ image::technicalcontext.JPG[Technical context diagram]
 | POD
 | Storage unit unique for each user.
 
+| Google Maps API
+| An API to be able to see the routes in a map.
+
 |=========================================================
 

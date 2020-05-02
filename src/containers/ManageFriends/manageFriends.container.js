@@ -1,90 +1,152 @@
-import React, { Component } from 'react';
-import { ManageFriendsContent } from './manageFriends.component';
-import { SearchFriendsContent } from './searchFriends.component';
-import  AddFriendsContent  from './addFriend.component';
-import {foaf} from 'rdf-namespaces';
-import { fetchDocument } from 'tripledoc';
-import { ManageFriendsWrapper, ButtonFriend } from "./manageFriends.style";
+import React, { Component } from "react";
+import { ManageFriendsContent } from "./manageFriends.component";
+import { SearchFriendsContent } from "./searchFriends.component";
+import AddFriendsContent from "./addFriend.component";
+import { foaf } from "rdf-namespaces";
+import { fetchDocument } from "tripledoc";
+import { ManageFriendsWrapper } from "./manageFriends.style";
 import Row from 'react-bootstrap/Row';
-
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import data from '@solid/query-ldflex';
+import GroupManager from "./groupManager.component";
+import { retrieveGroups } from "@services/PODExtractor";
+import { getGroupName } from "@services/groupManager";
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
 export class ManageFriendsComponent extends Component<Props> {
-	
-	constructor(props){
+  constructor(props) {
     super(props);
-		this.state={
-      friends:null,
-      searchResults:null,
-    }
+    this.state = {
+      friends: null,
+      searchResults: null,
+      images: [],
+      groups: null,
+    };
     this.handleChange = this.handleChange.bind(this);
-	}
- 
-   componentDidMount() {
-     this.loadFriends();
-     this.searchFriends("");
-   }
-   
+  }
 
-    async loadFriends() {
-      const profileDoc =  await fetchDocument(this.props.webId);
-      const profile = profileDoc.getSubject(this.props.webId);
-      const fs=profile.getAllRefs(foaf.knows);
-      this.setState({friends: fs});
-   }
+  componentDidMount() {
+    this.loadFriends();
+    this.searchFriends("");
+    this.loadGroups().then(
+      function(result) {
+        this.setState({ groups: result });
+      }.bind(this)
+    );
+  }
 
-    searchFriends(matchingString) {
-      if (matchingString!==""){
-        const filtered = this.state.friends.filter(f=>f.toLowerCase().includes(matchingString.toLowerCase()));
-        this.setState({searchResults: filtered});
-      }
+  async loadGroups() {
+    var filesObj = await retrieveGroups(this.props.webId);
+    if (filesObj.files) {
+      let result = filesObj.files.map(async (urlMap) => ({
+        name: await getGroupName(urlMap.url),
+        url: urlMap.url,
+      }));
+      return Promise.all(result).then(function(rs) {
+        return rs;
+      });
     }
+  }
 
-    handleChange(e) {
-      const stringToSearch = e.target.value;
-      if (stringToSearch !== "") {
-        this.searchFriends(stringToSearch);
-      }
+  async loadFriends() {
+    const profileDoc = await fetchDocument(this.props.webId);
+    const profile = profileDoc.getSubject(this.props.webId);
+    const fs = profile.getAllRefs(foaf.knows);
+    this.setState({ friends: fs });
+    await this.loadImage(this.state.friends);
+  }
+
+  async loadImage(friends) {
+    friends.forEach((friendWebId) => {
+      const user = data[friendWebId];
+      const i = user.vcard_hasPhoto;
+      i.then((response) => {
+        if (response && response.value) {
+          let array = this.state.images;
+          array.push({ id: friendWebId, img: response.value });
+          this.setState({ images: array });
+        } else {
+          let array = this.state.images;
+          array.push({ id: friendWebId, img: "img/icon/empty-profile.svg" });
+          this.setState({ images: array });
+        }
+      });
+    });
+  }
+
+  searchFriends(matchingString) {
+    if (matchingString !== "") {
+      const filtered = this.state.friends.filter((f) =>
+        f.toLowerCase().includes(matchingString.toLowerCase())
+      );
+      this.setState({ searchResults: filtered });
     }
+  }
 
+  handleChange(e) {
+    const stringToSearch = e.target.value;
+    if (stringToSearch !== "") {
+      this.searchFriends(stringToSearch);
+    }
+  }
 
-   render() {
-    if (this.state.friends==null) {
-      return <div/>
-    } else{
-      const friends=this.state.friends;
-      const webId=this.props.webId;
-      if (this.state.searchResults==null){
+  render() {
+    const{ t } = this.props;
+    if (this.state.friends == null || !this.state.groups) {
+      return <div />;
+    } else {
+      const friends = this.state.friends;
+      const images = this.state.images;
+      const webId = this.props.webId;
+      if (this.state.searchResults == null) {
         return (
           <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-          <Row>
-            <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-          </Row>
-          <Row>
-            <ManageFriendsContent {...{ webId, friends}} />
-          </Row>
-          <Row>
-            <AddFriendsContent webId={webId}/>
-          </Row>
+            <Container fluid>
+              <Row>
+                <Col md={6} sm={6} xs={12}>
+                  <AddFriendsContent webId={webId} />
+                  <Form>
+                  <Form.Group>
+                    <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                    <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
+                  </Form.Group>
+                  </Form>
+                  <ManageFriendsContent {...{ webId, friends, images }} />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <GroupManager webId={webId} groups={this.state.groups} />
+                </Col>
+              </Row>
+            </Container>
           </ManageFriendsWrapper>
         );
       }
       const searchResults = this.state.searchResults;
       return (
         <ManageFriendsWrapper data-testid="manageFriends-wrapper">
-        <Row>
-          <input type="text" className="input" placeholder="Search..." onChange={this.handleChange} />
-        </Row>
-        <Row>
-          <SearchFriendsContent {...{ webId, searchResults}} />
-        </Row>
-        <Row>
-            <AddFriendsContent webId={webId}/>
-        </Row>
+          <Container fluid>
+            <Row>
+              <Col md={6} sm={6} xs={12}>
+                <AddFriendsContent webId={webId} />
+                <Form>
+                  <Form.Group>
+                    <Form.Label className="label" data-testid="manageFriends-listOfFriends">{t('manageFriends.listOfFriends')}</Form.Label>
+                    <Form.Control type="text" id="inputSearch" className="input" placeholder={t('manageFriends.searchPlaceholder')} onChange={this.handleChange} data-testid="manageFriends-searchBar"/>
+                  </Form.Group>
+                </Form>
+                <SearchFriendsContent {...{ webId, searchResults, images }} />
+              </Col>
+              <Col md={6} sm={6} xs={12}>
+                <GroupManager webId={webId} groups={this.state.groups} />
+              </Col>
+            </Row>
+          </Container>
         </ManageFriendsWrapper>
       );
     }
-   }
+  }
 }

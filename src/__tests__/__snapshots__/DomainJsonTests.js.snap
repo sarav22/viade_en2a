@@ -39,17 +39,17 @@ Object {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
   },
   "comments": Array [
-    Object {
-      "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
-    Object {
-      "@id": "http://inrupt.angelixus/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.angelixus/routeComments/<comentarioConSuTipo>",
     },
-    Object {
-      "@id": "http://inrupt.raupemol/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.raupemol/routeComments/<comentarioConSuTipo>",
     },
-    Object {
-      "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
   ],
   "description": "This is a test to see the output of the JsonLDConversor",
@@ -156,17 +156,17 @@ Object {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
   },
   "comments": Array [
-    Object {
-      "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
-    Object {
-      "@id": "http://inrupt.angelixus/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.angelixus/routeComments/<comentarioConSuTipo>",
     },
-    Object {
-      "@id": "http://inrupt.raupemol/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.raupemol/routeComments/<comentarioConSuTipo>",
     },
-    Object {
-      "@id": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
+    Comment {
+      "resourceUrl": "http://inrupt.luispc1998/routeComments/<comentarioConSuTipo>",
     },
   ],
   "description": "This is a test to see the output of the JsonLDConversor",
