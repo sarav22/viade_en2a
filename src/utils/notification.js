@@ -13,6 +13,7 @@ export const sendNotification = async (opponent, content, createNotification, to
     throw new Error(error);
   }
 };
+/* eslint-disable no-unused-vars */
 
 export const findUserInboxes = async paths => {
   try {
@@ -32,6 +33,7 @@ export const findUserInboxes = async paths => {
     throw new Error(error);
   }
 };
+/* eslint-enable no-unused-vars */
 
 export const getDefaultInbox = (inboxes, inbox1, inbox2) =>
   inboxes.find(inbox => inbox.name === inbox1) || inboxes.find(inbox => inbox.name === inbox2);

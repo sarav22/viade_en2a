@@ -8,12 +8,10 @@ import Map from "./Map";
 import LateralForm from "./LateralForm";
 import { Route } from "../../domain/domainClasses.js";
 import { saveRouteToPOD } from "../../services/DomainJSONTranslator.js";
-import { withTranslation } from "react-i18next";
 
 export class CreateRoute extends Component<Props> {
   constructor(props) {
     super(props);
-    const { t } = this.props;
     this.state = {
       name: "",
       description: "",

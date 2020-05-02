@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { media } from './styledComponents';
 import { expandedProperty } from './context';
 import { successToaster, errorToaster } from './toaster';
@@ -23,3 +24,4 @@ export {
   notification,
   permissionHelper
 };
+/* eslint-enable no-unused-vars */
