@@ -13,6 +13,7 @@ import data from '@solid/query-ldflex';
 import GroupManager from "./groupManager.component";
 import { retrieveGroups } from "@services/PODExtractor";
 import { getGroupName } from "@services/groupManager";
+import { Loader } from "@util-components";
 
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
@@ -97,7 +98,7 @@ export class ManageFriendsComponent extends Component<Props> {
   render() {
     const{ t } = this.props;
     if (this.state.friends == null || !this.state.groups) {
-      return <div />;
+      return <Loader /> ;
     } else {
       const friends = this.state.friends;
       const images = this.state.images;
