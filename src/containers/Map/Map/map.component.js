@@ -29,7 +29,7 @@ export const Map = props => {
         <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
           <GoogleMap
             id="mapView"
-            zoom={12}
+            zoom={5}
             resetBoundsOnResize
             mapContainerStyle={{
               "max-height": "calc(100vh - 180px)",
