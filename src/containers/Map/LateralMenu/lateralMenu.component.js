@@ -10,7 +10,7 @@ const LateralMenu = (props) => {
   const { t } = useTranslation();
   const { route } = props;
   return (
-    <Tabs id="controlled-tab-example">
+    <Tabs id="controlled-tab-example" data-testid="tabs">
       <Tab eventKey="multimedia" title={t("mapView.menu.images")}>
         <MultimediaTab routeObject={route} />
       </Tab>
