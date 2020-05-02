@@ -1,4 +1,4 @@
-import { setDefaultOptions } from 'expect-puppeteer';
+import { setDefaultOptions } from "expect-puppeteer";
 const expect = require("expect-puppeteer");
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const feature = loadFeature("./e2e/features/manageFriends.feature");
@@ -13,12 +13,12 @@ function delay(time) {
   });
 }
 
-setDefaultOptions({ timeout: 100000 })
-defineFeature(feature, test => {
+setDefaultOptions({ timeout: 100000 });
+defineFeature(feature, (test) => {
   beforeEach(async () => {
     const browser = await puppeteer.launch({
       headless: false,
-      defaultViewport: {width: 1366, height: 768},
+      defaultViewport: { width: 1366, height: 768 },
     });
 
     await delay(10000);
@@ -28,23 +28,23 @@ defineFeature(feature, test => {
     await delay(5000);
     await page.waitForSelector('input[name="idp"]');
     await expect(page).toMatchElement('input[name="idp"]');
-    
-      await page.click('input[name="idp"]');
-      await expect(page).toFill(
-        'input[name="idp"]',
-        "https://en2aviade.inrupt.net/profile/card#me"
-      );
+
+    await page.click('input[name="idp"]');
+    await expect(page).toFill(
+      'input[name="idp"]',
+      "https://en2aviade.inrupt.net/profile/card#me"
+    );
+    await page.click('[type="submit"]');
+    await page.waitForSelector('input[name="username"]');
+    const loggedin = await expect(page).toMatchElement(
+      'input[name="username"]'
+    );
+    if (loggedin !== null) {
+      await expect(page).toFill('input[name="username"]', "en2aviade");
+      await expect(page).toFill('input[name="password"]', "Viadeen2aasw!");
       await page.click('[type="submit"]');
-      await page.waitForSelector('input[name="username"]');
-      const loggedin = await expect(page).toMatchElement(
-        'input[name="username"]'
-      );
-      if (loggedin !== null) {
-        await expect(page).toFill('input[name="username"]', "en2aviade");
-        await expect(page).toFill('input[name="password"]', "Viadeen2aasw!");
-        await page.click('[type="submit"]');
-      }
-    
+    }
+
     await page.waitForSelector('a[href="#/manageFriends"]');
     await page.click('a[href="#/manageFriends"]');
 
