@@ -43,12 +43,12 @@ const saveSharedFile = (webId, notification) => {
       retrieveJson(jsonfile).then(function(result) {
         routeJson = JSON.parse(result);
         let routeExists = false;
-        routeJson.routes.forEach((route)=>{
-          if(route["@id"]===ruta){
-            routeExists=true;
+        routeJson.routes.forEach((route) => {
+          if (route["@id"] === ruta) {
+            routeExists = true;
           }
         });
-        if(routeExists===false){
+        if (routeExists === false) {
           routeJson.routes.push({ "@id": ruta });
           storeJSONshared(routeJson, jsonfile, function(success) {
             if (success) {
@@ -86,7 +86,6 @@ const insertNotificationsFile = (path, webId, n) => {
       } else {
         routeJson.notifications.forEach((jsonNotification) => {
           if (jsonNotification["@id"] === notification.id) {
-            
             parsed = true;
           }
         });

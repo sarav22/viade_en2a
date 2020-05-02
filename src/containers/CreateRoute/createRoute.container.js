@@ -31,7 +31,6 @@ export class CreateRoute extends Component<Props> {
   }
 
   handleSetName(newName) {
-    console.log(newName);
     this.setState({ name: newName });
   }
 
@@ -74,7 +73,6 @@ export class CreateRoute extends Component<Props> {
     let poly = this.state.polyline;
     poly.setMap(null);
     this.setState({ polyline: poly });
-    console.log(route.name);
     saveRouteToPOD(route, function(success) {
       if (success) {
         successToaster(t("createRouteView.success"));

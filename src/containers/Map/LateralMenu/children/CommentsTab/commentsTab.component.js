@@ -16,7 +16,6 @@ class CommentsTab extends Component<Props> {
     super(props);
 
     const { routeObject } = this.props;
-    console.log(props);
 
     this.state = {
       text: "",
@@ -43,7 +42,6 @@ class CommentsTab extends Component<Props> {
         loadCommentsFromRouteCommentsProperty(routeObject.comments).then(
           (commentsParsed) => {
             that.setState({ commentList: commentsParsed });
-            console.log(commentsParsed);
             successToaster(t("mapView.comment.commentSuccess"));
           }
         );
@@ -52,7 +50,6 @@ class CommentsTab extends Component<Props> {
       }
     });
 
-    console.log(this.state.text);
     event.preventDefault();
   }
 

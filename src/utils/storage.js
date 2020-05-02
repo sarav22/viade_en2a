@@ -2,8 +2,8 @@ import data from "@solid/query-ldflex";
 import { AccessControlList } from "@inrupt/solid-react-components";
 import { resourceExists, createDoc, createDocument } from "./ldflex-helper";
 import { storageHelper, errorToaster, permissionHelper } from "@utils";
-import auth from 'solid-auth-client';
-import FC from 'solid-file-client';
+import auth from "solid-auth-client";
+import FC from "solid-file-client";
 
 import { namedNode } from "@rdfjs/data-model";
 const fc = new FC(auth);
@@ -27,7 +27,7 @@ export const buildPathFromWebId = (webId, path) => {
  * Helper function to check for the user's pod storage value. If it doesn't exist, we assume root of the pod
  * @returns {Promise<string>}
  */
-export const getAppStorage = async webId => {
+export const getAppStorage = async (webId) => {
   const podStoragePath = await data[webId].storage;
   let podStoragePathValue =
     podStoragePath && podStoragePath.value.trim().length > 0
@@ -47,8 +47,8 @@ export const getAppStorage = async webId => {
       await createDoc(data, {
         method: "PUT",
         headers: {
-          "Content-Type": "text/turtle"
-        }
+          "Content-Type": "text/turtle",
+        },
       });
     }
     return url;
@@ -62,7 +62,7 @@ export const getAppStorage = async webId => {
  * @param folderPath
  * @returns {Promise<boolean>} Returns whether or not there were any errors during the creation process
  */
-export const createInitialFiles = async webId => {
+export const createInitialFiles = async (webId) => {
   try {
     // First, check if we have WRITE permission for the app
     const hasWritePermission = await permissionHelper.checkSpecificAppPermission(
@@ -88,73 +88,67 @@ export const createInitialFiles = async webId => {
       await createDoc(data, {
         method: "PUT",
         headers: {
-          "Content-Type": "text/turtle"
-        }
+          "Content-Type": "text/turtle",
+        },
       });
     }
 
     const inboxExists = await resourceExists(inboxPath);
     if (!inboxExists) {
-        await fc.createFolder(inboxPath, { createPath: true });
-        const settingsFileExists = await resourceExists(settingsFilePath);
-        if (!settingsFileExists) {
-           createDocument(settingsFilePath).then((response)=>{
-            permissionHelper.checkOrSetInboxAppendPermissions(
-              settingsFilePath,
-              webId
-            ).then(()=>{
+      await fc.createFolder(inboxPath, { createPath: true });
+      const settingsFileExists = await resourceExists(settingsFilePath);
+      if (!settingsFileExists) {
+        createDocument(settingsFilePath).then((response) => {
+          permissionHelper
+            .checkOrSetInboxAppendPermissions(settingsFilePath, webId)
+            .then(() => {
               permissionHelper.checkOrSetSettingsReadPermissions(
                 settingsFilePath,
                 webId
               );
             });
-            
-              console.log("INBOX+SETTINGS")
-              data[settingsFilePath].inbox.set(namedNode(inboxPath));
-          });
-        }
-    
+
+          data[settingsFilePath].inbox.set(namedNode(inboxPath));
+        });
+      }
     }
     const groupsFolderExists = await resourceExists(groupsPath);
-    if(!groupsFolderExists){
-      await fc.createFolder(groupsPath, {createPath:true});
+    if (!groupsFolderExists) {
+      await fc.createFolder(groupsPath, { createPath: true });
     }
 
     const sharedFolderExists = await resourceExists(sharedPath);
-    if(!sharedFolderExists){
-      await fc.createFolder(sharedPath, {createPath:true});
+    if (!sharedFolderExists) {
+      await fc.createFolder(sharedPath, { createPath: true });
     }
     // Check if the settings file exists, if not then create it. This file is for general settings including the link to the game-specific inbox
     const settingsFileExists = await resourceExists(settingsFilePath);
     if (!settingsFileExists) {
-      await createDocument(settingsFilePath).then(async()=>{
-        await permissionHelper.checkOrSetInboxAppendPermissions(
-          settingsFilePath,
-          webId
-        ).then(()=>{
-          permissionHelper.checkOrSetSettingsReadPermissions(
-            settingsFilePath,
-            webId
-          );
-        });
-        console.log("SETTINGS SOLO")
+      await createDocument(settingsFilePath).then(async () => {
+        await permissionHelper
+          .checkOrSetInboxAppendPermissions(settingsFilePath, webId)
+          .then(() => {
+            permissionHelper.checkOrSetSettingsReadPermissions(
+              settingsFilePath,
+              webId
+            );
+          });
         await data[settingsFilePath].inbox.set(namedNode(inboxPath));
       });
     }
-    
-       // Check for CONTROL permissions to see if we can set permissions or not
-       const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
-        webId,
-        AccessControlList.MODES.CONTROL
+
+    // Check for CONTROL permissions to see if we can set permissions or not
+    const hasControlPermissions = await permissionHelper.checkSpecificAppPermission(
+      webId,
+      AccessControlList.MODES.CONTROL
+    );
+
+    if (hasControlPermissions) {
+      await permissionHelper.checkOrSetSettingsReadPermissions(
+        settingsFilePath,
+        webId
       );
-
-      if (hasControlPermissions) {
-        await permissionHelper.checkOrSetSettingsReadPermissions(
-          settingsFilePath,
-          webId
-        );
-      }
-
+    }
 
     return true;
   } catch (error) {

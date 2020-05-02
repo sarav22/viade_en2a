@@ -23,7 +23,6 @@ export class ListItem extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.route);
     loadListInfo(this.state.route).then((ruta) => {
       this.setState({ loading: false, route: ruta });
     });

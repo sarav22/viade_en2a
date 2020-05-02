@@ -28,7 +28,6 @@ class CommentsList extends React.Component {
         >
           <Container>
             {this.props.comments.map((comment) => {
-              console.log(comment);
               return (
                 <Media>
                   <Media.Body>

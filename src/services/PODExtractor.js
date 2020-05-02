@@ -40,49 +40,66 @@ export const retrieveGroups = async (personWebId) => {
     return res;
   }
 };
-export const storeJSONToPOD = async (jsonLD, callback, fileNamePossible="") => {
-    let session = await auth.currentSession();
-    let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/routes';
-    let formattedName = jsonLD.name.replace(/ /g, "_");
-    console.log(formattedName + " "+jsonLD.name);
-    
-    let fileName = ""
-    console.log(fileNamePossible)
-    if(!fileNamePossible) {
-        fileName = formattedName + '_' + uuidv4() + '.jsonld';
-    } else {
-        fileName = fileNamePossible + '.jsonld'
-    }
-    let fileURI = userWebIdRoute + '/' + fileName;
+export const storeJSONToPOD = async (
+  jsonLD,
+  callback,
+  fileNamePossible = ""
+) => {
+  let session = await auth.currentSession();
+  let userWebIdRoute =
+    session.webId.substring(0, session.webId.length - 16) + "/viade/routes";
+  let formattedName = jsonLD.name.replace(/ /g, "_");
 
-
+  let fileName = "";
+  if (!fileNamePossible) {
+    fileName = formattedName + "_" + uuidv4() + ".jsonld";
+  } else {
+    fileName = fileNamePossible + ".jsonld";
+  }
+  let fileURI = userWebIdRoute + "/" + fileName;
 
   // Mirar si existe la carpeta de comentarios, crearla sino
   // Crear el archivo de comentarios en ese directorio
   // Añadir al json ld de la ruta, la URI del archivo de comentarios de esa ruta.
-  await createCommentsFileForNewRoute(session.webId.substring(0, session.webId.length - 16), fileName).then((commentsFileName) => {
+  await createCommentsFileForNewRoute(
+    session.webId.substring(0, session.webId.length - 16),
+    fileName
+  ).then((commentsFileName) => {
     jsonLD.comments = commentsFileName;
-  })
+  });
   //
 
-
   if (await fc.itemExists(userWebIdRoute)) {
-    fc.createFile(fileURI, JSON.stringify(jsonLD), 'text/plain').then(fileCreated => {
-      callback(true);
-    }, err => { callback(false); });
+    fc.createFile(fileURI, JSON.stringify(jsonLD), "text/plain").then(
+      (fileCreated) => {
+        callback(true);
+      },
+      (err) => {
+        callback(false);
+      }
+    );
   } else {
     await fc.createFolder(userWebIdRoute);
-    fc.createFile(fileURI, JSON.stringify(jsonLD), 'text/plain').then(fileCreated => {
-      callback(true);
-    }, err => { callback(false); });
+    fc.createFile(fileURI, JSON.stringify(jsonLD), "text/plain").then(
+      (fileCreated) => {
+        callback(true);
+      },
+      (err) => {
+        callback(false);
+      }
+    );
   }
-}
+};
 
 export const storeJSONshared = async (jsonLD, fileURI, callback) => {
-  fc.createFile(fileURI, JSON.stringify(jsonLD), 'text/plain').then(fileCreated => {
-    callback(true);
-  }, err => { callback(false); });
-
+  fc.createFile(fileURI, JSON.stringify(jsonLD), "text/plain").then(
+    (fileCreated) => {
+      callback(true);
+    },
+    (err) => {
+      callback(false);
+    }
+  );
 };
 
 async function createCommentsFileForNewRoute(podURI, routeFileName) {
@@ -103,14 +120,16 @@ export async function postCommentInPod(commentJson, routeComments, callback) {
   let session = await auth.currentSession();
   let author = session.webId;
 
-
-
   var routeCommentsFile = {};
-  await retrieveJson(routeComments).then(function (result) {
+  await retrieveJson(routeComments).then(function(result) {
     routeCommentsFile = JSON.parse(result);
-  })
+  });
 
-  routeCommentsFile.comments.push({ "text": commentJson.text, "dateCreated": commentJson.dateCreated, "author": author });
+  routeCommentsFile.comments.push({
+    text: commentJson.text,
+    dateCreated: commentJson.dateCreated,
+    author: author,
+  });
 
   //Overwrite the file.
 
@@ -119,64 +138,73 @@ export async function postCommentInPod(commentJson, routeComments, callback) {
     .then(
       (fileCreated) => {
         callback(true);
-      }, err => { callback(false); });
-
+      },
+      (err) => {
+        callback(false);
+      }
+    );
 }
-
 
 export async function uploadResourceToPod(resource, callback) {
   let session = await auth.currentSession();
-  let userWebIdRoute = session.webId.substring(0, session.webId.length - 16) + '/viade/resources';
+  let userWebIdRoute =
+    session.webId.substring(0, session.webId.length - 16) + "/viade/resources";
 
+  let aux = resource.name.split(".");
 
-  let aux = resource.name.split(".")
-
-  let extension = "." + aux[aux.length - 1]
-
+  let extension = "." + aux[aux.length - 1];
 
   let fileName = uuidv4() + extension;
-  let fileURI = userWebIdRoute + '/' + fileName;
-
-
+  let fileURI = userWebIdRoute + "/" + fileName;
 
   if (await fc.itemExists(userWebIdRoute)) {
-
-
-    fc.createFile(fileURI, resource, resource.type).then(response => {
-      callback(response.url)
-    }, err => { callback(null); }).then((response) => {
-      permissionHelper.checkOrSetInboxAppendPermissions(
-        fileURI,
-        session.webId
-      ).then(() => {
-        permissionHelper.checkOrSetSettingsReadPermissions(
-          fileURI,
-          session.webId
-        );
-      })
-    });
-
+    fc.createFile(fileURI, resource, resource.type)
+      .then(
+        (response) => {
+          callback(response.url);
+        },
+        (err) => {
+          callback(null);
+        }
+      )
+      .then((response) => {
+        permissionHelper
+          .checkOrSetInboxAppendPermissions(fileURI, session.webId)
+          .then(() => {
+            permissionHelper.checkOrSetSettingsReadPermissions(
+              fileURI,
+              session.webId
+            );
+          });
+      });
   } else {
     await fc.createFolder(userWebIdRoute);
-    fc.createFile(fileURI, resource, resource.type).then(response => {
-      callback(response.url);
-    }, err => { callback(null); });
+    fc.createFile(fileURI, resource, resource.type).then(
+      (response) => {
+        callback(response.url);
+      },
+      (err) => {
+        callback(null);
+      }
+    );
   }
 }
 
-
 export async function saveJsonLdWithId(jsonLd, Id, callback) {
-  fc.createFile(Id, JSON.stringify(jsonLd), 'application/json').then(response => {
-    callback(true);
-  }, err => callback(false))
+  fc.createFile(Id, JSON.stringify(jsonLd), "application/json").then(
+    (response) => {
+      callback(true);
+    },
+    (err) => callback(false)
+  );
 }
 
 export async function isRouteOwner(webId) {
   let session = await auth.currentSession();
-  
-  //https://
-  let aux = webId.slice(8)
-  let splited = aux.split("/")
 
-  return session.webId.includes(splited[0])
+  //https://
+  let aux = webId.slice(8);
+  let splited = aux.split("/");
+
+  return session.webId.includes(splited[0]);
 }

@@ -83,7 +83,6 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
 
 export const checkOrSetSettingsReadPermissions = async (inboxPath, webId) => {
   // Fetch app permissions for the inbox and see if Append is there
-  console.log("permissions");
   const inboxAcls = new AccessControlList(webId, inboxPath);
   const permissions = await inboxAcls.getPermissions();
   const inboxPublicPermissions = permissions.filter(

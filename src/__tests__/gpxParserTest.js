@@ -7,7 +7,6 @@ import "@testing-library/jest-dom/";
 var routesArray = [];
 
 function emptyCallback(routes) {
-  console.log(routes);
   routesArray = routes;
 }
 
@@ -22,7 +21,6 @@ test("Parsing just one track", () => {
 });
 
 test("Parsing no track", () => {
-  console.log(generateNoTrackInput());
   parseGpxToRoutes(generateNoTrackInput(), emptyCallback);
   expect(routesArray.length).toBe(0);
 });

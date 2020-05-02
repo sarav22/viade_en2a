@@ -27,7 +27,6 @@ const MapEmpty = (props) => {
               width: "100%",
               padding: "1rem 3.5rem",
             }}
-            onLoad={() => console.log("map loading")}
             loadingElement={<div>Loading...</div>}
             center={{
               lat: centralLat,

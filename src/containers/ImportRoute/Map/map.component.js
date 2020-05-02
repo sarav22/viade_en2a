@@ -37,7 +37,6 @@ const Map = (props) => {
               width: "100%",
               padding: "1rem 3.5rem",
             }}
-            onLoad={() => console.log("map loading")}
             loadingElement={<Loader />}
             center={{
               lat: routeArray[0].itinerary[0].latitude,
@@ -63,7 +62,6 @@ const Map = (props) => {
                   lng: trackPoint.longitude,
                 });
               });
-              console.log(routePath);
               return (
                 <Polyline
                   geodesic={true}

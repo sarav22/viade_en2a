@@ -3,8 +3,8 @@ import { render, cleanup } from "react-testing-library";
 import { ShareButton } from "@containers/Map/ShareButton/shareButton.component";
 import "@testing-library/jest-dom/";
 
-const webId = "https://podejemplo2.inrupt.net/profile/card#me";
-const routeUrl = "https://podejemplo2.inrupt.net/viade/routes/ruta.txt";
+const webId = "https://en2aviade.inrupt.net/profile/card#me";
+const routeUrl = "https://en2aviade.inrupt.net/viade/routes/Mar_ab389e9b-d122-4a2d-b8b1-fe16e6172362.jsonld";
 const friends = [
   "https://raulpemol.inrupt.net/profile/card#me",
   "https://carlosmanrique.inrupt.net/profile/card#me",

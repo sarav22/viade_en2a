@@ -42,7 +42,6 @@ class Map extends Component<Props> {
           width: "100%",
           padding: "1rem 3.5rem",
         }}
-        onLoad={() => console.log("map loaded")}
         loadingElement={<div>Loading...</div>}
         center={center}
       >

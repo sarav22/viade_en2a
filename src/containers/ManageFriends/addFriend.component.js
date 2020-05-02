@@ -21,7 +21,6 @@ class AddFriendsContent extends Component<Props> {
   componentDidMount() {}
 
   async ldflexAdder(friend) {
-    console.log(this.props.webId);
     return ldflex[this.props.webId].knows.add(ldflex[friend]);
   }
 
