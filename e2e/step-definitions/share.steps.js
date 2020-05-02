@@ -1,3 +1,4 @@
+import { setDefaultOptions } from 'expect-puppeteer';
 const expect = require("expect-puppeteer");
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const feature = loadFeature("./e2e/features/share.feature");
@@ -12,21 +13,23 @@ function delay(time) {
   });
 }
 
-defineFeature(feature, (test) => {
+setDefaultOptions({ timeout: 100000 })
+
+defineFeature(feature, test => {
   beforeEach(async () => {
     const browser = await puppeteer.launch({
       headless: false,
-      defaultViewport: null,
+      defaultViewport: {width: 1366, height: 768},
     });
 
-    await delay(5000);
+    await delay(10000);
     page = await browser.newPage();
     await page.goto("http://localhost:3000");
 
     await delay(5000);
     await page.waitForSelector('input[name="idp"]');
-    const firstpage = await expect(page).toMatchElement('input[name="idp"]');
-    if (firstpage !== null) {
+    await expect(page).toMatchElement('input[name="idp"]');
+   
       await page.click('input[name="idp"]');
       await expect(page).toFill(
         'input[name="idp"]',
@@ -42,7 +45,7 @@ defineFeature(feature, (test) => {
         await expect(page).toFill('input[name="password"]', "Viadeen2aasw!");
         await page.click('[type="submit"]');
       }
-    }
+    
     await page.waitForSelector('a[href="#/seeRoutes"]');
     await page.click('a[href="#/seeRoutes"]');
 
@@ -51,13 +54,13 @@ defineFeature(feature, (test) => {
 
   test("Alice wants to share a route with Bob", ({ given, when, then }) => {
     given("Alice has a route", async () => {
-      delay(5000);
+      delay(10000);
       await page.waitForSelector(
-        'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlLmlucnVwdC5uZXQvdmlhZGUvcm91dGVzL0Zsb3JpZGFfNjVjYTgyYTctNDUxNC00N2NlLWEzYmItMTMzZjI0YjFkNDU2Lmpzb25sZA=="]'
+        'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlLmlucnVwdC5uZXQvdmlhZGUvcm91dGVzL01hcl9hYjM4OWU5Yi1kMTIyLTRhMmQtYjhiMS1mZTE2ZTYxNzIzNjIuanNvbmxk"]'
       );
       page.click(
-        'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlLmlucnVwdC5uZXQvdmlhZGUvcm91dGVzL0Zsb3JpZGFfNjVjYTgyYTctNDUxNC00N2NlLWEzYmItMTMzZjI0YjFkNDU2Lmpzb25sZA=="]'
-      );
+        'a[href="/viade_en2a/#/map/ZW4yYXZpYWRlLmlucnVwdC5uZXQvdmlhZGUvcm91dGVzL01hcl9hYjM4OWU5Yi1kMTIyLTRhMmQtYjhiMS1mZTE2ZTYxNzIzNjIuanNvbmxk"]'
+        );
     });
 
     when("Alice shares the route with Bob", async () => {
@@ -66,7 +69,7 @@ defineFeature(feature, (test) => {
         await page.click('button[id="buttonShare"]');
         delay(500);
         await page.waitForSelector('input[id="inputShare"]');
-        await expect(page).toFill('input[id="inputShare"]', "https://luispresacollada.solid.community/profile/card#me" );
+        await expect(page).toFill('input[id="inputShare"]', "https://en2aviade2.inrupt.net/profile/card#me" );
         delay(1000);
         await page.waitForSelector('button[id="shareWith"]');
         await page.click('button[id="shareWith"]');   

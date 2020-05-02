@@ -1,3 +1,4 @@
+import { setDefaultOptions } from 'expect-puppeteer';
 const expect = require("expect-puppeteer");
 const { defineFeature, loadFeature } = require("jest-cucumber");
 const feature = loadFeature("./e2e/features/manageFriends.feature");
@@ -12,21 +13,22 @@ function delay(time) {
   });
 }
 
-defineFeature(feature, (test) => {
+setDefaultOptions({ timeout: 100000 })
+defineFeature(feature, test => {
   beforeEach(async () => {
     const browser = await puppeteer.launch({
       headless: false,
-      defaultViewport: null,
+      defaultViewport: {width: 1366, height: 768},
     });
 
-    await delay(5000);
+    await delay(10000);
     page = await browser.newPage();
     await page.goto("http://localhost:3000");
 
     await delay(5000);
     await page.waitForSelector('input[name="idp"]');
-    const firstpage = await expect(page).toMatchElement('input[name="idp"]');
-    if (firstpage !== null) {
+    await expect(page).toMatchElement('input[name="idp"]');
+    
       await page.click('input[name="idp"]');
       await expect(page).toFill(
         'input[name="idp"]',
@@ -42,7 +44,7 @@ defineFeature(feature, (test) => {
         await expect(page).toFill('input[name="password"]', "Viadeen2aasw!");
         await page.click('[type="submit"]');
       }
-    }
+    
     await page.waitForSelector('a[href="#/manageFriends"]');
     await page.click('a[href="#/manageFriends"]');
 
