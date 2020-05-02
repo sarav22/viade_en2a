@@ -18,29 +18,40 @@ const { container, getByTestId } = render(
 
 test("Renders correctly", () => {
   expect(container).toBeTruthy();
-  expect(getByTestId("shareButton-container")).toBeTruthy();
+  setTimeout(() => {
+    expect(getByTestId("shareButton-fragment")).toBeTruthy();
+    expect(getByTestId("shareButton-container")).toBeTruthy();
+  }, 10000);
 });
 
 test("Renders share button", () => {
-  expect(getByTestId("buttonShare")).toBeTruthy();
-  expect(getByTestId("buttonWrapper")).toBeTruthy();
+  setTimeout(() => {
+    expect(getByTestId("buttonShare")).toBeTruthy();
+    expect(getByTestId("buttonWrapper")).toBeTruthy();
+  }, 10000);
 });
 
 test("Renders friends buttons correctly", () => {
-  getByTestId("buttonShare").click();
-  friends.map((friend) =>
-    expect(getByTestId("buttonFriend" + friend)).toBeTruthy()
-  );
-  friends.map((friend) =>
-    expect(getByTestId("imageContainer" + friend)).toBeTruthy()
-  );
-  friends.map((friend) => expect(getByTestId("img" + friend)).toBeTruthy());
+  setTimeout(() => {
+      getByTestId("buttonShare").click();
+    friends.map((friend) =>
+      expect(getByTestId("buttonFriend" + friend)).toBeTruthy()
+    );
+    friends.map((friend) =>
+      expect(getByTestId("imageContainer" + friend)).toBeTruthy()
+    );
+    friends.map((friend) => expect(getByTestId("img" + friend)).toBeTruthy());
+  }, 10000);
+  
 });
 
 test("Modal works", () => {
-  getByTestId("buttonShare").click();
-  expect(getByTestId("modalShare")).toBeTruthy();
-  expect(getByTestId("inputShare")).toBeTruthy();
-  expect(getByTestId("closeShare")).toBeTruthy();
-  expect(getByTestId("shareWith")).toBeTruthy();
+  setTimeout(() => {
+    getByTestId("buttonShare").click();
+    expect(getByTestId("modalShare")).toBeTruthy();
+    expect(getByTestId("inputShare")).toBeTruthy();
+    expect(getByTestId("closeShare")).toBeTruthy();
+    expect(getByTestId("shareWith")).toBeTruthy();
+  }, 10000);
+  
 });

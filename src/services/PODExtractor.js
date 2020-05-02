@@ -1,4 +1,4 @@
-/*eslint no-use-before-define: "error"*/
+/* eslint-disable no-use-before-define */
 import auth from "solid-auth-client";
 import FC from "solid-file-client";
 import { v4 as uuidv4 } from "uuid";
