@@ -8,7 +8,7 @@
 === Overall System Diagram
 This diagrams stands as the whole structure of our system.
 
-image::images/buildingblockviewdiagram.png["Hierarchy of building blocks"]
+image::buildingblockviewdiagram.png["Hierarchy of building blocks"]
 
 === Whitebox Overall  (Level 1)
 
