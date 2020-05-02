@@ -54,7 +54,6 @@ export const ShareButton = (props) => {
       if (agent !== undefined && agent.length !== 0) {
         const isRegistered =await checkViadeRegistered(agent);
         if(isRegistered===true){
-          console.log("registered")
           permissionHelper.setReadPermissions(routeUrl, webId, agent);
           retrieveJson(routeUrl).then(function(result) {
             let routeJson = JSON.parse(result);

@@ -5,7 +5,7 @@ import { namedNode } from "@rdfjs/data-model";
 import { RouteListPageContent } from "./routeList.component";
 import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
-import { loadAllRoutes, loadMapInfo } from "/services/DomainJSONTranslator";
+import { loadAllRoutes, loadListInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
 
 const defaultProfilePhoto = "img/icon/empty-profile.svg";
@@ -23,24 +23,30 @@ export class ListItem extends Component {
 
   componentDidMount() {
     console.log(this.state.route);
-    loadMapInfo(this.state.route).then(ruta => {
+    loadListInfo(this.state.route).then(ruta => {
       this.setState({ loading: false, route: ruta });
     });
   }
 
   viewContent = route => {
-    const img =
-      route.resources.length !== 0
-        ? route.resources[0].resourceUrl
+
+    if(route !== undefined && route !== "error"){
+      const img =
+      route.imagesToDisplay.length !== 0
+        ? route.imagesToDisplay[0].resourceUrl
         : this.defaultImage;
-    return (
-      <ItemWrapper className="card">
-        <RouteImage>
-          <Image className="img" src={img} />
-        </RouteImage>
-        <WelcomeProfile>{route.name} </WelcomeProfile>
-      </ItemWrapper>
-    );
+      return (
+        <ItemWrapper className="card">
+          <RouteImage>
+            <Image className="img" src={img} />
+          </RouteImage>
+          <WelcomeProfile>{route.name} </WelcomeProfile>
+        </ItemWrapper>
+      );
+    }
+    else{
+      return null;
+    }
   };
 
   render() {
@@ -49,7 +55,8 @@ export class ListItem extends Component {
       <Fragment>{loading ? null : this.viewContent(this.state.route)}</Fragment>
     );
   }
-}
+};
+
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
@@ -151,7 +158,7 @@ export class RouteListComponent extends Component<Props> {
   buildElements(start, end) {
     var elements = [];
     for (var i = start; i < end; i++) {
-      if(this.state.routes[i] !== undefined){
+      if (this.state.routes[i] !== undefined) {
         elements.push(
           <ListItem
             key={i}
@@ -169,7 +176,7 @@ export class RouteListComponent extends Component<Props> {
     this.setState({
       isInfiniteLoading: true
     });
-    setTimeout(function() {
+    setTimeout(function () {
       var elemLength = that.state.elements.length,
         newElements = that.buildElements(elemLength, elemLength + 10);
       that.setState({
@@ -187,17 +194,17 @@ export class RouteListComponent extends Component<Props> {
     const { name, image, isLoading } = this.state;
     if (this.state.routes.length === 0) {
       return <RouteListWrapper><RouteListPageContent
-      {...{
-        name,
-        image,
-        isLoading,
-        updatePhoto: this.updatePhoto,
-        handleInfiniteLoad: this.handleInfiniteLoad,
-        elementInfiniteLoad: this.elementInfiniteLoad,
-        elements: [],
-        isInfiniteLoading: this.state.isInfiniteLoading
-      }}
-    /></RouteListWrapper>;
+        {...{
+          name,
+          image,
+          isLoading,
+          updatePhoto: this.updatePhoto,
+          handleInfiniteLoad: this.handleInfiniteLoad,
+          elementInfiniteLoad: this.elementInfiniteLoad,
+          elements: [],
+          isInfiniteLoading: this.state.isInfiniteLoading
+        }}
+      /></RouteListWrapper>;
     }
     return (
       <RouteListPageContent
