@@ -74,7 +74,6 @@ const LateralMenu = props  => {
           reader.onload = () => {
             const routeString = reader.result;
             try {
-              var importResult = true;
                 parseGpxToRoutes(routeString, function(routeArray) {
                   if(routeArray.length > 0) {
                     props.setRoute(routeArray);

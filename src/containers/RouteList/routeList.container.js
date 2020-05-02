@@ -7,6 +7,7 @@ import { successToaster, errorToaster } from "@utils";
 import { ItemWrapper, WelcomeProfile, RouteImage } from "./routeList.style";
 import { loadAllRoutes, loadListInfo } from "/services/DomainJSONTranslator";
 import { RouteListWrapper } from "./routeList.style";
+import ErrorComponent from "./errorComponent.component";
 
 const defaultProfilePhoto = "img/icon/empty-profile.svg";
 
@@ -45,7 +46,7 @@ export class ListItem extends Component {
       );
     }
     else{
-      return null;
+      return <ItemWrapper className="card"><ErrorComponent message={"This route has been removed"}></ErrorComponent></ItemWrapper>
     }
   };
 

@@ -2,7 +2,6 @@ import auth from "solid-auth-client";
 import FC from "solid-file-client";
 import { v4 as uuidv4 } from "uuid";
 import { getEmptyCommentsJsonString } from "../services/comments/commentsService";
-import { comment } from "rdf-namespaces/dist/cal";
 import { permissionHelper } from "@utils";
 const fc = new FC(auth);
 

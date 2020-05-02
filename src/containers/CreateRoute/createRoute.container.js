@@ -60,7 +60,7 @@ export class CreateRoute extends Component<Props>{
 
         const {t} = this.props;
 
-        if(!this.state.name || this.state.name == ""){
+        if(!this.state.name || this.state.name === ""){
             errorToaster(t('createRouteView.errors.nameEmpty'));
             return;
         }
