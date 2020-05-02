@@ -7,6 +7,8 @@ const center = {
   lat: 0,
   lng: -180,
 };
+
+/*global Props*/
 /*eslint no-undef: "error"*/
 class Map extends Component<Props> {
   constructor(props) {
