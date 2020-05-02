@@ -14,23 +14,23 @@ function delay(time) {
     });
 }
 
-setDefaultOptions({ timeout: 10000 })
+setDefaultOptions({ timeout: 100000 })
 
 defineFeature(feature, test => {
     beforeEach(async () => {
         const browser = await puppeteer.launch({
           headless: false,
-          defaultViewport: null,
+          defaultViewport: {width: 1366, height: 768},
         });
     
-        await delay(5000);
+        await delay(10000);
         page = await browser.newPage();
         await page.goto("http://localhost:3000");
     
         await delay(5000);
         await page.waitForSelector('input[name="idp"]');
-        const firstpage = await expect(page).toMatchElement('input[name="idp"]');
-        if (firstpage !== null) {
+        /*const firstpage = */await expect(page).toMatchElement('input[name="idp"]');
+        //if (firstpage !== null) {
           await page.click('input[name="idp"]');
           await expect(page).toFill(
             'input[name="idp"]',
@@ -47,7 +47,8 @@ defineFeature(feature, test => {
             await page.click('[type="submit"]');
           }
         }
-      });
+      //}
+      );
 
 
     test("Listing the routes created by a friend", ({given, when, then}) => {
