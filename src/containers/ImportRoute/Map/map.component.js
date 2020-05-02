@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
-  LoadScript,
   GoogleMap,
   Polyline,
   Marker,
@@ -23,10 +22,7 @@ const Map = (props) => {
       <MapRouteName>{t("mapView.importedRoutesTitle")}</MapRouteName>
 
       <MapCard>
-        <LoadScript
-          id="script-loader"
-          googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0"
-        >
+
           <GoogleMap
             id="mapView"
             zoom={12}
@@ -81,7 +77,6 @@ const Map = (props) => {
               );
             })}
           </GoogleMap>
-        </LoadScript>
       </MapCard>
     </div>
   );

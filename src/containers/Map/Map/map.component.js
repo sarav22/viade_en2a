@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { MapRouteName, MapCard } from "./map.style";
-import { LoadScript, GoogleMap, Polyline } from "@react-google-maps/api";
+import {  GoogleMap, Polyline } from "@react-google-maps/api";
 
 /**
  * Map Page UI component, containing the styled components for the Map Page
@@ -26,7 +26,6 @@ export const Map = props => {
         <MapRouteName>{t("mapView.viewTitle")}{route.name}</MapRouteName>
       </h3>
       <MapCard>
-        <LoadScript id="script-loader" googleMapsApiKey="AIzaSyBMF5XiwVXHrXjoCp0EsBbGoeKW08lHoo0">
           <GoogleMap
             id="mapView"
             zoom={5}
@@ -61,7 +60,6 @@ export const Map = props => {
               }}
             />
           </GoogleMap>
-        </LoadScript>
       </MapCard> 
     </div>
   );
