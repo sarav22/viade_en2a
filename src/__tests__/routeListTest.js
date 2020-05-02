@@ -22,7 +22,7 @@ const { container, getByTestId } = render(
       elements: buildElements(),
       isInfiniteLoading: false,
       handleInfiniteLoad: function() {},
-      elementInfiniteLoad: function() {}
+      elementInfiniteLoad: function() {},
     }}
   />
 );
@@ -33,7 +33,7 @@ test("Renders correctly", () => {
 });
 
 test("Renders list items correctly", () => {
-  elements.map(element =>
+  elements.map((element) =>
     expect(getByTestId("route" + Base64.encode(element.url))).toBeTruthy()
   );
 });
