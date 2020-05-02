@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { ButtonWrapper, Input } from "../Map/map.style";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { getImgByWebId, getName} from '../../../services/friendsManager';
+
+import {isRouteOwner} from "../../../services/PODExtractor";
 import {
   useNotification,
   NotificationTypes,
@@ -38,6 +40,7 @@ export const ShareButton = (props) => {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [agent, setAgent] = useState("");
+  const [isOwner, setIsOwner]= useState(false);
 
   const show = () => {
     setShowModal(true);
@@ -46,6 +49,10 @@ export const ShareButton = (props) => {
   const close = () => {
     setShowModal(false);
   };
+
+  isRouteOwner(routeUrl).then((owns) => {
+    setIsOwner(owns);
+});
 
   const { createNotification } = useNotification(webId);
 
@@ -131,6 +138,9 @@ export const ShareButton = (props) => {
   }
 
   return (
+    <Fragment>  
+                    {
+                        isOwner ?
     <div data-testid={"shareButton-container"}>
       <ButtonWrapper data-testid={"buttonWrapper"} key={"buttonWrapper"}>
         <Button
@@ -191,5 +201,8 @@ export const ShareButton = (props) => {
         </Modal.Footer>
       </Modal>
     </div>
+      : null
+    }
+    </Fragment>
   );
 };
