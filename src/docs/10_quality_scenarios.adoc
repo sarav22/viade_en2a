@@ -15,11 +15,11 @@ Now, some scenarios (stimulus and response) will be described for the previous Q
 [options="header",cols="1,1,1,1,1,3,1,1"]
 |===
 | Quality Requirement | Source | Stimulus | Artifact | Environment | Response | Response Measure | Priority
-| Interoperability | End user |POD login used on another application | SOLID POD | Normal operation | The application logs the user and interprets the information on the assumption that the POD information is stored using the https://github.com/Arquisoft/viadeSpec[viadeSpec] | <1sec | Medium 
+| Interoperability | End user |POD login used on another application | SOLID POD | Normal operation | The application logs the user and interprets the information on the assumption that the POD information is stored using the https://github.com/Arquisoft/viadeSpec[viadeSpec] specification | <1sec | Medium 
 | Efficiency | End user | Application usage on a low specification mobile device | Whole System | Normal operation | The application  responds without problem and fast | <5sec | High
 | Privacy | End user | POD login | Login System | Normal operation | User password is encrypted and then sent | <1sec | High
 | Maintainability | Developing and Production phases | Bug report | Whole System | Unusual | Source code is modified easily | <1sec | Medium
-| Usability | End user | Invalid data on the route creation form | Route management | Normal operation | Application informs the user with the errors on the input data | <0.5sec | Medium
+| Usability | End user | Invalid data on the route creation form | Route management | Normal operation | Application informs the user with the errors on the input data | <2sec | Medium
 | Efficiency | Map rendering | Visualization of the map with the route on a low end device | Route management | Normal operation | The visual map renders fast | <3sec | High
 | Availability | POD Connection | Application connects to a faulty POD | Login System/Data access Subsystem | Unusual | Application informs the user that the connection could not be established and follows its normal operation without crashing | <2sec | Medium
 |===
