@@ -21,7 +21,7 @@ defineFeature(feature, (test) => {
       defaultViewport: { width: 1366, height: 768 },
     });
 
-    await delay(20000);
+    await delay(30000);
     page = await browser.newPage();
     await page.goto("http://localhost:3000");
 

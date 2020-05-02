@@ -22,11 +22,11 @@ defineFeature(feature, (test) => {
       defaultViewport: { width: 1366, height: 768 },
     });
 
-    await delay(20000);
+    await delay(30000);
     page = await browser.newPage();
     await page.goto("http://localhost:3000");
 
-    await delay(10000);
+    await delay(15000);
     await page.waitForSelector('input[name="idp"]');
     await expect(page).toMatchElement('input[name="idp"]');
 
@@ -67,7 +67,7 @@ defineFeature(feature, (test) => {
       delay(10000);
       await page.waitForSelector('button[id="buttonShare"]');
       await page.click('button[id="buttonShare"]');
-      delay(500);
+      delay(1000);
       await page.waitForSelector('input[id="inputShare"]');
       await expect(page).toFill(
         'input[id="inputShare"]',
