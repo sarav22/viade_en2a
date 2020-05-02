@@ -7,7 +7,7 @@ import {
   WelcomeLogo,
   WelcomeProfile,
   WelcomeName,
-  ImageWrapper
+  ImageWrapper,
 } from "./routeList.style";
 import { ImageProfile } from "@components";
 import { errorToaster } from "@utils";
@@ -18,7 +18,7 @@ import { InfiniteList } from "@components";
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const RouteListPageContent = props => {
+export const RouteListPageContent = (props) => {
   const {
     webId,
     image,
@@ -27,7 +27,7 @@ export const RouteListPageContent = props => {
     elementInfiniteLoad,
     elements,
     isInfiniteLoading,
-    name
+    name,
   } = props;
   const { t } = useTranslation();
   const limit = 2100000;
@@ -50,34 +50,34 @@ export const RouteListPageContent = props => {
                 accept: "jpg,jpeg,png",
                 errorsText: {
                   sizeLimit: t("welcome.errors.sizeLimit", {
-                    limit: `${limit / 1000000}Mbs`
+                    limit: `${limit / 1000000}Mbs`,
                   }),
                   unsupported: t("welcome.errors.unsupported"),
-                  maximumFiles: t("welcome.errors.maximumFiles")
+                  maximumFiles: t("welcome.errors.maximumFiles"),
                 },
-                onError: error => {
+                onError: (error) => {
                   if (error && error.statusText) {
                     errorToaster(error.statusText, t("welcome.errorTitle"));
                   }
                 },
-                onComplete: uploadedFiles => {
+                onComplete: (uploadedFiles) => {
                   updatePhoto(
                     uploadedFiles[uploadedFiles.length - 1].uri,
                     t("welcome.uploadSuccess"),
                     t("welcome.successTitle")
                   );
                 },
-                render: props => (
+                render: (props) => (
                   <ImageProfile
                     {...{
                       ...props,
                       webId,
                       photo: image,
                       text: t("welcome.upload"),
-                      uploadingText: t("welcome.uploadingText")
+                      uploadingText: t("welcome.uploadingText"),
                     }}
                   />
-                )
+                ),
               }}
             />
           </ImageWrapper>
@@ -89,7 +89,7 @@ export const RouteListPageContent = props => {
             elements: elements,
             isInfiniteLoading: isInfiniteLoading,
             handleInfiniteLoad: handleInfiniteLoad,
-            elementInfiniteLoad: elementInfiniteLoad
+            elementInfiniteLoad: elementInfiniteLoad,
           }}
         />
       </RouteListCard>

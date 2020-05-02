@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
-import data from '@solid/query-ldflex';
-import { namedNode } from '@rdfjs/data-model';
-import { WelcomePageContent } from './welcome.component';
-import { successToaster, errorToaster } from '@utils';
+import React, { Component } from "react";
+import data from "@solid/query-ldflex";
+import { namedNode } from "@rdfjs/data-model";
+import { WelcomePageContent } from "./welcome.component";
+import { successToaster, errorToaster } from "@utils";
 
-const defaultProfilePhoto = 'img/icon/empty-profile.svg';
+const defaultProfilePhoto = "img/icon/empty-profile.svg";
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
 export class WelcomeComponent extends Component<Props> {
   constructor(props) {
     super(props);
-  
 
     this.state = {
-      name: '',
+      name: "",
       image: defaultProfilePhoto,
       isLoading: false,
-      hasImage: false
+      hasImage: false,
     };
   }
 
@@ -48,7 +47,10 @@ export class WelcomeComponent extends Component<Props> {
     const user = data[webId];
     const nameLd = await user.vcard_fn;
 
-    const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : webId.toString();
+    const name =
+      nameLd && nameLd.value.trim().length > 0
+        ? nameLd.value
+        : webId.toString();
     const imageLd = await user.vcard_hasPhoto;
 
     let image;
@@ -78,7 +80,7 @@ export class WelcomeComponent extends Component<Props> {
    * will just update it, the idea is use image instead of hasPhoto
    * @params{String} uri photo url
    */
-  updatePhoto = async (uri: String, message, title = '') => {
+  updatePhoto = async (uri: String, message, title = "") => {
     const { hasImage } = this.state;
     try {
       const { user } = data;
@@ -86,7 +88,7 @@ export class WelcomeComponent extends Component<Props> {
       else await user.vcard_hasPhoto.add(namedNode(uri));
       successToaster(message, title);
     } catch (error) {
-      errorToaster(error.message, 'Error');
+      errorToaster(error.message, "Error");
     }
   };
 
@@ -94,7 +96,9 @@ export class WelcomeComponent extends Component<Props> {
     const { name, image, isLoading } = this.state;
     const { webId } = this.props;
     return (
-      <WelcomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
+      <WelcomePageContent
+        {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }}
+      />
     );
   }
 }
