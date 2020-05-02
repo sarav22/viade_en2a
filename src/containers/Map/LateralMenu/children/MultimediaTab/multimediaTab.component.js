@@ -19,7 +19,7 @@ const MultimediaTab = (props) => {
 
   const userPanel = () => {
     return (
-      <Container>
+      <Container >
         <Row>
           <LateralMenu routeObject={routeObject} />
         </Row>
@@ -36,7 +36,7 @@ const MultimediaTab = (props) => {
   });
 
   return (
-    <Modal.Dialog scrollable centered style={{ "max-width": "100%" }}>
+    <Modal.Dialog scrollable centered style={{ "max-width": "100%" }} data-testid="multimediaTab">
       <Modal.Body
         style={{
           "max-height": "calc(100vh - 220px)",
