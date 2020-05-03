@@ -58,7 +58,7 @@ const Routes = () => (
   <Router>
     <Fragment>
       <Switch>
-        <NotLoggedInLayout component={Login} path="/#/login" exact/>
+        <NotLoggedInLayout component={Login} path="https://arquisoft.github.io/viade_en2a/#/login" exact/>
         <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout
           path="/register/success"
