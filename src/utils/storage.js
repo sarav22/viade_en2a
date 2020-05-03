@@ -40,6 +40,7 @@ export const getAppStorage = async (webId) => {
   }
 
   // If there is no storage value from the pod, use webId as the backup, and append the application path from env
+  /*
   if (!podStoragePathValue || podStoragePathValue.trim().length === 0) {
     const url = buildPathFromWebId(webId, appPath);
     const folderExist = await resourceExists(url);
@@ -53,7 +54,7 @@ export const getAppStorage = async (webId) => {
     }
     return url;
   }
-
+  */
   return `${podStoragePathValue}${appPath}`;
 };
 
@@ -94,6 +95,7 @@ export const createInitialFiles = async (webId) => {
       });
     }
     */
+
     const inboxExists = await resourceExists(inboxPath);
     if (!inboxExists) {
       await fc.createFolder(inboxPath, { createPath: true });
