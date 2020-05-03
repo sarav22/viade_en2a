@@ -37,6 +37,9 @@ Some of the most important quality attributes of this application are listed bel
 | ASW Subject Teachers | --------------------------------------------- | Quality software developed by their students.
 | Inrupt  | https://inrupt.com/contact-us | Wants to have applications developed using its technology, SOLID, to show how it works and expand the ecosystem around it.
 | Developers | --------------------------------------------- | Expand their knowledge using new technologies and develop a rich SOLID application.
-| Inexperienced Users | --------------------------------------------- | Have a route managment application where all the details from SOLID, known only by expert users, are hidden.
-| Experienced Users | --------------------------------------------- | Have a route managment application where the work needed to work with SOLID is minimized. |
+| Experienced Users | --------------------------------------------- | Have a route managment application where the work needed to work with SOLID is minimized.
+| Hikers | --------------------------------------------- | Plan beforehand an optimal route to go hiking.
+| Athletes | --------------------------------------------- | Plan their training routines and measure their performance analyzing the routes created with the application.
+| Travel Agency | --------------------------------------------- | Create routes for their pamphlets.
+| Tourist | --------------------------------------------- | Decide where to go before traveling to their destination. |
 |===
