@@ -13,7 +13,7 @@ const BackButton = (props) => {
   
   async function goBack(event) {
     event.preventDefault();
-    browserHistory.push("/viade_en2a/#/manageFriends");
+    browserHistory.push("#/manageFriends");
     await reload();
   }
 
