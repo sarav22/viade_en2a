@@ -83,6 +83,7 @@ export const createInitialFiles = async (webId) => {
     let inboxPath = `${path}inbox/`;
 
     // Check if the tictactoe folder exists, if not then create it. This is where game files, the game inbox, and settings files are created by default
+    /*
     const gameFolderExists = await resourceExists(path);
     if (!gameFolderExists) {
       await createDoc(data, {
@@ -92,7 +93,7 @@ export const createInitialFiles = async (webId) => {
         },
       });
     }
-
+    */
     const inboxExists = await resourceExists(inboxPath);
     if (!inboxExists) {
       await fc.createFolder(inboxPath, { createPath: true });
