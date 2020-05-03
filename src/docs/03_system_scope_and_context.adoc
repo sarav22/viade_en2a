@@ -35,6 +35,8 @@ image::SystemScopeLegend.png[System scope diagram legend,250,250]
 
 image::technicalcontext.JPG[Technical context diagram] 
 
+image::leyendaTechnicalContext.JPG[Technical context legend] 
+
 .Technical Context Table
 |=========================================================
 | Object | Description 
