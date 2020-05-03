@@ -22,10 +22,11 @@ Some of the most important quality attributes of this application are listed bel
 [options="header",cols="1,2"]
 |===
 |Quality Goal|Scenario
-| Interoperability | A final user should be able to use other SOLID based route applications and use their own POD the same way it is used for this application
-| Testability | The application is testable on all its development phases
-| Robustness | The whole application should be prepared against errors so that the probability of a user seeing one is highly reduced
-| Usability | Any user should have ease when using the application
+| Interoperability | A final user should be able to use other SOLID based route applications and use their own POD the same way it is used for this application.
+| Testability | The application is testable on all its development phases.
+| Robustness | The whole application should be prepared against errors so that the probability of a user seeing one is highly reduced.
+| Mobile Friendly | The whole application can be used and has a pleasant layout on smartphones and other mobile devices.
+| Usability | Any user should have ease when using the application.
 |===
 === Stakeholders
 
