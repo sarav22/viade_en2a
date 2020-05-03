@@ -61,7 +61,7 @@ const Routes = () => (
         <NotLoggedInLayout component={Login} path="/login" exact/>
         <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout
-          path="/register/success"
+          path="/viade_en2a/#/register/success"
           component={RegistrationSuccess}
           exact
         />
