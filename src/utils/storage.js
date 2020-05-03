@@ -40,9 +40,11 @@ export const getAppStorage = async (webId) => {
   }
 
   // If there is no storage value from the pod, use webId as the backup, and append the application path from env
-  /*
+  
   if (!podStoragePathValue || podStoragePathValue.trim().length === 0) {
     const url = buildPathFromWebId(webId, appPath);
+    console.log(appPath);
+    /*
     const folderExist = await resourceExists(url);
     if (!folderExist) {
       await createDoc(data, {
@@ -52,9 +54,10 @@ export const getAppStorage = async (webId) => {
         },
       });
     }
+    */
     return url;
   }
-  */
+  
   return `${podStoragePathValue}${appPath}`;
 };
 
