@@ -51,9 +51,8 @@ image::images/08-Crosscutting-Concepts-Structure-EN.png["Possible topics for cro
 
 ////
 
-=== Domain concepts and model
+=== Domain model
 
-image::08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
 
 [plantuml,"Domain diagram",png]
 ----
@@ -76,6 +75,10 @@ A *userComment* must contain the text of the comment, the time it was published 
 
 And finally, an *Image* or a *Video* must have an IRI to te resource, another IRI to the pod profile of the author and the time it was published
 
+
+---
+
+image::08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
 
 === User Experience concepts (UX)
 
