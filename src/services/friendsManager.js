@@ -33,7 +33,7 @@ export async function viewRoutes(event, friend) {
   event.preventDefault();
   let f = friend.replace("https://", "");
   f = Base64.encode(f);
-  browserHistory.push("/#/friendRoutes/" + f);
+  browserHistory.push("viade_en2a/#/friendRoutes/" + f);
   await reload();
 }
 
