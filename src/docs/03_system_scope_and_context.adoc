@@ -4,7 +4,7 @@
 === Business Context
 
 image::SystemScopeDiagram.PNG[System scope diagram] 
-image::SystemScopeLegend.PNG[System scope diagram legend,250,250] 
+image::SystemScopeLegend.png[System scope diagram legend,250,250] 
 
 
 .Viade
