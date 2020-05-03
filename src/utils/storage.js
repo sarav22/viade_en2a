@@ -58,6 +58,11 @@ export const getAppStorage = async (webId) => {
     return url;
   }
   
+  console.log(`${podStoragePathValue}`)
+  console.log(`${appPath}`)
+  console.log(webId)
+  console.log(`${podStoragePathValue}${appPath}`)
+  
   return `${podStoragePathValue}${appPath}`;
 };
 
