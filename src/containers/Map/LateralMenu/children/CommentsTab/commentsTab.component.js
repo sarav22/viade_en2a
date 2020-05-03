@@ -56,7 +56,7 @@ class CommentsTab extends Component<Props> {
   render() {
     //const { routeObject } = this.props;
     return (
-      <Container fluid>
+      <Container fluid data-testid="commentsTab">
         <CommentsTabWrapper>
           <CommentForm
             setText={this.handleSetText}
