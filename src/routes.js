@@ -66,7 +66,7 @@ const Routes = () => (
           exact
         />
         <PublicLayout path="/404" component={PageNotFound} exact />
-        <Redirect from="/" to="/welcome" exact />
+        <Redirect from="/" to="viade_en2a/#/welcome" exact />
         <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
       </Switch>
